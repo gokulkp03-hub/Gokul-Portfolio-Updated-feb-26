@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink } from "lucide-react";
 import { useLocation } from "wouter";
+import CreativeScroll from "../components/CreativeScroll";
 
 const FEATURED_WORK = [
   { id: 1, title: "Personal Branding", category: "Videography", image: "/portfolio-1.jpg" },
@@ -36,35 +37,8 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black">
 
       {/* Hero Section - Centered */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-20 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-600/5 via-transparent to-transparent pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="animate-slideDown space-y-8">
-            <h1 className="text-6xl md:text-7xl font-bold leading-tight">
-              <span className="text-white">Visual Storyteller &</span>
-              <br />
-              <span className="text-orange-500">Digital Creator</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto">
-              Videography • Photography • Motion Graphics • Design
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <Button
-                onClick={() => navigate("/portfolio")}
-                className="px-8 py-4 rounded-lg font-semibold bg-orange-600 text-white hover:bg-orange-700 text-lg"
-              >
-                View Portfolio <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="px-8 py-4 rounded-lg font-semibold bg-gray-800 text-white hover:bg-gray-700 text-lg border border-gray-700"
-              >
-                Contact Me
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Scrollytelling Hero Section */}
+      <CreativeScroll />
 
       {/* Featured Work Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
