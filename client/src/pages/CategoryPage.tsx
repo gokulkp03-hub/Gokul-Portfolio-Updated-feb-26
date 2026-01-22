@@ -3,6 +3,7 @@ import { getServiceById, getCategoryByServiceAndCategory } from "@/lib/portfolio
 import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 import { weddingImages } from "@/data/photography/wedding";
+import { brands } from "@/data/brands";
 
 export default function CategoryPage() {
   const params = useParams();
@@ -48,6 +49,7 @@ export default function CategoryPage() {
 
   // Determine content based on category
   const isWedding = params.category === "wedding";
+  const isSocialMedia = params.category === "social-media";
   const contentImages = isWedding ? weddingImages : []; // Add other categories here later
 
   const handleNext = () => {
@@ -107,16 +109,46 @@ export default function CategoryPage() {
             <span className="text-white">{category.name}</span>
           </h1>
           <p className="text-xl text-gray-400">
-            {category.type === "video"
-              ? "Explore our video production work"
-              : "Capturing moments that last a lifetime"}
+            {isSocialMedia
+              ? "Select a brand to view their social media graphics and ad creatives"
+              : category.type === "video"
+                ? "Explore our video production work"
+                : "Capturing moments that last a lifetime"}
           </p>
         </div>
       </div>
 
       {/* Content Grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {category.type === "image" && contentImages.length > 0 ? (
+        {isSocialMedia ? (
+          // Brand Grid
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {brands.map((brand, index) => (
+              <div
+                key={brand.id}
+                className="group relative overflow-hidden rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 cursor-pointer flex flex-col items-center justify-center aspect-square p-6 hover:border-orange-500/50 transition-all duration-300 hover:scale-105"
+                onClick={() => navigate(`/portfolio/graphic-design/social-media/${brand.id}`)}
+                style={{
+                  animation: `slideUp 0.6s ease-out ${index * 0.1}s both`,
+                }}
+              >
+                {/* Brand Name */}
+                <h3 className="text-2xl font-bold text-white group-hover:text-orange-500 transition-colors text-center mb-2">
+                  {brand.name}
+                </h3>
+                <p className="text-gray-400 text-sm text-center">
+                  {brand.items.length} Items
+                </p>
+
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer" />
+              </div>
+            ))}
+          </div>
+        ) : category.type === "image" && contentImages.length > 0 ? (
           // Image Grid
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {contentImages.map((image, index) => (
@@ -132,6 +164,7 @@ export default function CategoryPage() {
                   src={image.src}
                   alt={image.title || "Gallery Image"}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
                 />
 
                 {/* Overlay */}

@@ -222,6 +222,7 @@ export default function CaseStudyDetail() {
                                             src={visual}
                                             alt={`${caseStudy.client} visual ${idx + 1}`}
                                             className="w-full h-full object-cover"
+                                            loading="lazy"
                                             onError={(e) => {
                                                 e.currentTarget.style.display = 'none';
                                                 e.currentTarget.parentElement!.innerHTML = `

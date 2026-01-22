@@ -17,6 +17,7 @@ import EditingDesign from "./pages/EditingDesign";
 import BrandsAgencies from "./pages/BrandsAgencies";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
+import BrandGallery from "./pages/BrandGallery";
 import ScrollToTop from "./components/ScrollToTop";
 
 function Router() {
@@ -31,6 +32,7 @@ function Router() {
         <Route path={"/portfolio"} component={Portfolio} />
         <Route path={"/portfolio/:service"} component={ServicePage} />
         <Route path={"/portfolio/:service/:category"} component={CategoryPage} />
+        <Route path={"/portfolio/graphic-design/social-media/:brand"} component={BrandGallery} />
         <Route path={"/photography"} component={Photography} />
         <Route path={"/videography"} component={Videography} />
         <Route path={"/editing-design"} component={EditingDesign} />

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink, TrendingUp, Target, BarChart3 } from "lucide-react";
+import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink, TrendingUp, Target, BarChart3, Layers } from "lucide-react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
+import { caseStudies } from "@/data/caseStudies";
 
 const FEATURED_WORK = [
   { id: 1, title: "Personal Branding", category: "Videography", image: "/portfolio-1.jpg" },
@@ -28,7 +29,7 @@ const fadeInUp = {
     y: 0,
     transition: { duration: 0.6, ease: "easeOut" }
   }
-};
+} as const;
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -38,7 +39,7 @@ const staggerContainer = {
       staggerChildren: 0.1
     }
   }
-};
+} as const;
 
 export default function Home() {
   const [, navigate] = useLocation();
@@ -315,6 +316,7 @@ export default function Home() {
                     src={brand.img}
                     alt={brand.name}
                     className="w-full h-full object-contain filter brightness-100 contrast-125"
+                    loading="lazy"
                   />
                 </div>
 
@@ -414,6 +416,7 @@ export default function Home() {
                     src="/images/profile/profile.jpg"
                     alt="Gokul KP"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
@@ -444,18 +447,41 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
-            {[1, 2].map((idx) => (
+            {[
+              {
+                title: "Vantage Marketing Framework",
+                purpose: "Performance-first brand identity for high-growth e-commerce startups",
+                target: "D2C Founders & Seed-stage Startups",
+                direction: "Modern, high-trust, data-driven aesthetics with aggressive contrast"
+              },
+              {
+                title: "Cinematic Product Systems",
+                purpose: "Modular video production framework for rapid social media ad testing",
+                target: "Performance Marketing Teams",
+                direction: "Focus on 'The Hook' and 'The Benefit' through high-impact visual storytelling"
+              }
+            ].map((project, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeInUp}
                 className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300"
               >
-                <div className="w-16 h-16 bg-gray-800 rounded-lg mb-6" />
-                <h3 className="text-2xl font-bold text-white mb-4">Project {idx}</h3>
-                <div className="space-y-3">
+                <div className="w-12 h-12 bg-orange-600/20 rounded-lg mb-6 flex items-center justify-center">
+                  <Layers className="w-6 h-6 text-orange-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
+                <div className="space-y-4">
                   <div>
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">Purpose</p>
-                    <p className="text-gray-300 mt-1">Brand identity and creative direction</p>
+                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Purpose</p>
+                    <p className="text-gray-300 mt-1 text-sm">{project.purpose}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Target Audience</p>
+                    <p className="text-gray-300 mt-1 text-sm">{project.target}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Creative Direction</p>
+                    <p className="text-orange-400 mt-1 text-sm font-medium">{project.direction}</p>
                   </div>
                 </div>
               </motion.div>
@@ -509,25 +535,37 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
-            {[1, 2].map((idx) => (
+            {caseStudies.slice(0, 2).map((study) => (
               <motion.div
-                key={idx}
+                key={study.slug}
                 variants={fadeInUp}
-                className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300"
+                onClick={() => navigate(`/case-studies/${study.slug}`)}
+                className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300 cursor-pointer"
               >
-                <h3 className="text-2xl font-bold text-white mb-6">Case Study {idx}</h3>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-600/20 border border-orange-500/30 mb-6">
+                  <TrendingUp className="w-4 h-4 text-orange-500" />
+                  <span className="text-xs font-medium text-orange-400">{study.platform}</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">{study.client}</h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">Problem Statement</p>
-                    <p className="text-gray-300 mt-1">Strategic challenge description</p>
+                    <p className="text-sm text-gray-500 uppercase tracking-wide">Objective</p>
+                    <p className="text-gray-300 mt-1 line-clamp-2">{study.objective}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">Results</p>
-                    <p className="text-orange-400 font-semibold mt-1">Significant impact achieved</p>
+                    <p className="text-sm text-gray-500 uppercase tracking-wide">Key Results</p>
+                    <div className="flex gap-4 mt-2">
+                      {study.metrics.slice(0, 2).map((metric, mIdx) => (
+                        <div key={mIdx}>
+                          <p className="text-orange-400 font-bold">{metric.value}</p>
+                          <p className="text-[10px] text-gray-500 uppercase">{metric.label}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <button className="mt-6 px-4 py-2 bg-orange-600/10 text-orange-400 rounded-lg hover:bg-orange-600/20 transition-colors text-sm font-medium">
-                  Download Case Study
+                <button className="mt-8 px-5 py-2.5 bg-orange-600/10 text-orange-400 border border-orange-500/20 rounded-lg hover:bg-orange-600/20 transition-all text-sm font-medium flex items-center gap-2 group">
+                  View Full Case Study <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
             ))}
