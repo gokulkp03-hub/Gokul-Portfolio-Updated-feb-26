@@ -5,12 +5,54 @@ import { motion } from "framer-motion";
 import { caseStudies } from "@/data/caseStudies";
 
 const FEATURED_WORK = [
-  { id: 1, title: "Personal Branding", category: "Videography", image: "/portfolio-1.jpg" },
-  { id: 2, title: "Event Coverage", category: "Videography", image: "/portfolio-2.jpg" },
-  { id: 3, title: "Motion Graphics", category: "Motion Graphics", image: "/portfolio-3.jpg" },
-  { id: 4, title: "Product Photography", category: "Photography", image: "/portfolio-4.jpg" },
-  { id: 5, title: "Social Media Design", category: "Graphic Design", image: "/portfolio-5.jpg" },
-  { id: 6, title: "Video Editing", category: "Video Editing", image: "/portfolio-6.jpg" },
+  {
+    id: 1,
+    title: "Personal Branding",
+    category: "Videography",
+    image: "", // Empty for now
+    link: "/portfolio/videography/personal-branding",
+    glimpse: "Cinematic brand stories and professional personas"
+  },
+  {
+    id: 2,
+    title: "Event Coverage",
+    category: "Videography",
+    image: "", // Empty for now
+    link: "/portfolio/videography/event",
+    glimpse: "Capturing the energy and key moments of your events"
+  },
+  {
+    id: 3,
+    title: "Motion Graphics",
+    category: "Motion Graphics",
+    image: "", // Empty for now
+    link: "/portfolio/motion-graphics",
+    glimpse: "Dynamic animations and visual elements that pop"
+  },
+  {
+    id: 4,
+    title: "Product Photography",
+    category: "Photography",
+    image: "", // Empty for now
+    link: "/portfolio/photography/product",
+    glimpse: "Stunning product visuals for e-commerce and social"
+  },
+  {
+    id: 5,
+    title: "Social Media Design",
+    category: "Graphic Design",
+    image: "/images/brands/Q4/Ad 9.jpg",
+    link: "/portfolio/graphic-design/social-media",
+    glimpse: "High-performance ad creatives and social graphics"
+  },
+  {
+    id: 6,
+    title: "Wedding Photography",
+    category: "Photography",
+    image: "/images/photography/wedding/wedding-1.jpg",
+    link: "/portfolio/photography/wedding",
+    glimpse: "Capturing timeless moments and emotions"
+  },
 ];
 
 const SERVICES = [
@@ -238,33 +280,35 @@ export default function Home() {
                 key={item.id}
                 variants={fadeInUp}
                 className="group relative overflow-hidden rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 aspect-square cursor-pointer hover:border-orange-500/50 transition-all duration-300"
-                onClick={() => navigate("/portfolio")}
+                onClick={() => navigate(item.link)}
               >
-                {/* Placeholder Image */}
-                <div className="w-full h-full bg-transparent flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-orange-600/20 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8 text-orange-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-white font-semibold">{item.title}</p>
-                    <p className="text-gray-400 text-sm mt-2">{item.category}</p>
+                {/* Visual Glimpse Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Content Overlay */}
+                <div className="relative z-10 w-full h-full flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/20 to-transparent">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-orange-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      {item.category}
+                    </p>
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      {item.glimpse}
+                    </p>
                   </div>
                 </div>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </motion.div>
             ))}
           </motion.div>
@@ -426,69 +470,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sub-Brand & Concept Projects Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Sub-Brand & Concept Projects</h2>
-            <p className="text-xl text-gray-400 max-w-2xl">Creative explorations and brand development projects</p>
-          </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {[
-              {
-                title: "Vantage Marketing Framework",
-                purpose: "Performance-first brand identity for high-growth e-commerce startups",
-                target: "D2C Founders & Seed-stage Startups",
-                direction: "Modern, high-trust, data-driven aesthetics with aggressive contrast"
-              },
-              {
-                title: "Cinematic Product Systems",
-                purpose: "Modular video production framework for rapid social media ad testing",
-                target: "Performance Marketing Teams",
-                direction: "Focus on 'The Hook' and 'The Benefit' through high-impact visual storytelling"
-              }
-            ].map((project, idx) => (
-              <motion.div
-                key={idx}
-                variants={fadeInUp}
-                className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300"
-              >
-                <div className="w-12 h-12 bg-orange-600/20 rounded-lg mb-6 flex items-center justify-center">
-                  <Layers className="w-6 h-6 text-orange-500" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Purpose</p>
-                    <p className="text-gray-300 mt-1 text-sm">{project.purpose}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Target Audience</p>
-                    <p className="text-gray-300 mt-1 text-sm">{project.target}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Creative Direction</p>
-                    <p className="text-orange-400 mt-1 text-sm font-medium">{project.direction}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* Final CTA Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-600/20 to-orange-500/10 border-t border-orange-500/30">

@@ -185,12 +185,56 @@ export default function CategoryPage() {
             ))}
           </div>
         ) : category.type === "video" ? (
-          // Video Grid Placeholder (To be implemented dynamically if needed)
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Existing video code or placeholder */}
-            <div className="col-span-full text-center py-20 bg-gray-900/30 rounded-xl border border-white/5">
-              <p className="text-gray-400">Video gallery coming soon.</p>
-            </div>
+          // Video Display
+          <div className="flex flex-col items-center">
+            {params.service === "videography" && params.category === "event" ? (
+              <div className="w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden bg-gray-900 border border-white/10 shadow-2xl animate-slideUp">
+                <iframe
+                  src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Quant_hmvjvq"
+                  width="100%"
+                  height="100%"
+                  className="w-full h-full"
+                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  frameBorder="0"
+                  title="Event Video"
+                ></iframe>
+              </div>
+            ) : params.service === "videography" && params.category === "personal-branding" ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
+                <div className="aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 border border-white/10 shadow-2xl animate-slideUp">
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Boss_1_znnsfe"
+                    width="100%"
+                    height="100%"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                    title="Personal Branding Reel 1"
+                  ></iframe>
+                </div>
+                <div className="aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 border border-white/10 shadow-2xl animate-slideUp [animation-delay:0.1s]">
+                  <iframe
+                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Boss_2_final_zjfhqk"
+                    width="100%"
+                    height="100%"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder="0"
+                    title="Personal Branding Reel 2"
+                  ></iframe>
+                </div>
+              </div>
+            ) : (
+              // General Video Grid Placeholder
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                <div className="col-span-full text-center py-20 bg-gray-900/30 rounded-xl border border-white/5">
+                  <p className="text-gray-400">Video gallery coming soon.</p>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           // Empty State
