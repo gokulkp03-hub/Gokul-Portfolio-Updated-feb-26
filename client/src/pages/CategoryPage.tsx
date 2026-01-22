@@ -1,9 +1,9 @@
 import { useParams, useLocation } from "wouter";
 import { getServiceById, getCategoryByServiceAndCategory } from "@/lib/portfolioData";
-import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
-import { weddingImages } from "@/data/photography/wedding";
 import { brands } from "@/data/brands";
+import { portfolioContent, PortfolioItem } from "@/data/portfolioContent";
 
 export default function CategoryPage() {
   const params = useParams();
@@ -12,18 +12,34 @@ export default function CategoryPage() {
   const category = getCategoryByServiceAndCategory(params.service || "", params.category || "");
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activeVideo, setActiveVideo] = useState<PortfolioItem | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [params.service, params.category]);
 
+  // Map internal service ID to portfolioContent keys if they differ
+  const sectionKeyMap: Record<string, string> = {
+    "video-production": "video-production",
+    "photography": "photography",
+    "graphic-design": "graphic-design",
+    "marketing-growth": "marketing-growth"
+  };
+
+  const sectionKey = sectionKeyMap[params.service || ""] || params.service || "";
+  const categoryItems = (portfolioContent as any)[sectionKey]?.[params.category || ""] || [];
+
   // Handle keyboard navigation for lightbox
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (lightboxIndex === null) return;
-    if (e.key === "Escape") setLightboxIndex(null);
-    if (e.key === "ArrowLeft") handlePrev();
-    if (e.key === "ArrowRight") handleNext();
-  }, [lightboxIndex]);
+    if (lightboxIndex !== null) {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+    }
+    if (activeVideo !== null && e.key === "Escape") {
+      setActiveVideo(null);
+    }
+  }, [lightboxIndex, activeVideo]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -47,10 +63,8 @@ export default function CategoryPage() {
     );
   }
 
-  // Determine content based on category
-  const isWedding = params.category === "wedding";
   const isSocialMedia = params.category === "social-media";
-  const contentImages = isWedding ? weddingImages : []; // Add other categories here later
+  const contentImages = categoryItems.filter(item => item.type === "image");
 
   const handleNext = () => {
     setLightboxIndex((prev) =>
@@ -62,6 +76,24 @@ export default function CategoryPage() {
     setLightboxIndex((prev) =>
       prev !== null ? (prev - 1 + contentImages.length) % contentImages.length : null
     );
+  };
+
+  const getVideoEmbedUrl = (item: PortfolioItem) => {
+    if (item.type === "youtube") {
+      // Handle both standard and shorts URLs
+      const videoId = item.url?.includes("v=")
+        ? item.url.split("v=")[1].split("&")[0]
+        : item.url?.split("/").pop();
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+    if (item.type === "vimeo") {
+      const videoId = item.url?.split("/").pop();
+      return `https://player.vimeo.com/video/${videoId}?autoplay=1`;
+    }
+    if (item.type === "cloudinary") {
+      return `https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${item.cloudinaryId}&autoplay=true`;
+    }
+    return "";
   };
 
   return (
@@ -111,7 +143,7 @@ export default function CategoryPage() {
           <p className="text-xl text-gray-400">
             {isSocialMedia
               ? "Select a brand to view their social media graphics and ad creatives"
-              : category.type === "video"
+              : categoryItems.some(i => i.type !== "image")
                 ? "Explore our video production work"
                 : "Capturing moments that last a lifetime"}
           </p>
@@ -121,7 +153,6 @@ export default function CategoryPage() {
       {/* Content Grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {isSocialMedia ? (
-          // Brand Grid
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {brands.map((brand, index) => (
               <div
@@ -132,112 +163,73 @@ export default function CategoryPage() {
                   animation: `slideUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
               >
-                {/* Brand Name */}
                 <h3 className="text-2xl font-bold text-white group-hover:text-orange-500 transition-colors text-center mb-2">
                   {brand.name}
                 </h3>
                 <p className="text-gray-400 text-sm text-center">
                   {brand.items.length} Items
                 </p>
-
-                {/* Glow effect */}
                 <div className="absolute inset-0 bg-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                {/* Shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer" />
               </div>
             ))}
           </div>
-        ) : category.type === "image" && contentImages.length > 0 ? (
-          // Image Grid
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {contentImages.map((image, index) => (
+        ) : categoryItems.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {categoryItems.map((item, index) => (
               <div
-                key={image.id}
-                className="group relative overflow-hidden rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 cursor-pointer aspect-[3/4]"
-                onClick={() => setLightboxIndex(index)}
+                key={item.id}
+                className={`group relative overflow-hidden rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 cursor-pointer flex flex-col transition-all duration-300 hover:border-orange-500/30 ${item.aspectRatio === "vertical" ? "max-w-[320px] mx-auto w-full" : ""
+                  }`}
                 style={{
                   animation: `slideUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
+                onClick={() => {
+                  if (item.type === "image") {
+                    const imgIndex = contentImages.findIndex(i => i.id === item.id);
+                    setLightboxIndex(imgIndex);
+                  } else {
+                    setActiveVideo(item);
+                  }
+                }}
               >
-                <img
-                  src={image.src}
-                  alt={image.title || "Gallery Image"}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
+                <div className={`${item.type === "image"
+                    ? "aspect-[3/4]"
+                    : item.aspectRatio === "vertical"
+                      ? "aspect-[9/16]"
+                      : "aspect-video"
+                  } overflow-hidden relative`}>
+                  <img
+                    src={item.type === "image" ? item.src : item.thumbnail}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-white font-bold text-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    {image.title}
-                  </h3>
-                  {image.location && (
-                    <p className="text-orange-400 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                      {image.location}
-                    </p>
+                  {item.type !== "image" && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
+                      <div className="w-16 h-16 rounded-full bg-orange-500/90 flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform shadow-xl">
+                        <Play size={32} className="ml-1" />
+                      </div>
+                    </div>
                   )}
-                </div>
 
-                {/* Shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 className="text-white font-bold text-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 line-clamp-1">
+                      {item.title}
+                    </h3>
+                    {item.description && (
+                      <p className="text-gray-300 text-sm line-clamp-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer" />
               </div>
             ))}
           </div>
-        ) : category.type === "video" ? (
-          // Video Display
-          <div className="flex flex-col items-center">
-            {params.service === "videography" && params.category === "event" ? (
-              <div className="w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden bg-gray-900 border border-white/10 shadow-2xl animate-slideUp">
-                <iframe
-                  src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Quant_hmvjvq"
-                  width="100%"
-                  height="100%"
-                  className="w-full h-full"
-                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  frameBorder="0"
-                  title="Event Video"
-                ></iframe>
-              </div>
-            ) : params.service === "videography" && params.category === "personal-branding" ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
-                <div className="aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 border border-white/10 shadow-2xl animate-slideUp">
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Boss_1_znnsfe"
-                    width="100%"
-                    height="100%"
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
-                    title="Personal Branding Reel 1"
-                  ></iframe>
-                </div>
-                <div className="aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 border border-white/10 shadow-2xl animate-slideUp [animation-delay:0.1s]">
-                  <iframe
-                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Boss_2_final_zjfhqk"
-                    width="100%"
-                    height="100%"
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder="0"
-                    title="Personal Branding Reel 2"
-                  ></iframe>
-                </div>
-              </div>
-            ) : (
-              // General Video Grid Placeholder
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-                <div className="col-span-full text-center py-20 bg-gray-900/30 rounded-xl border border-white/5">
-                  <p className="text-gray-400">Video gallery coming soon.</p>
-                </div>
-              </div>
-            )}
-          </div>
         ) : (
-          // Empty State
           <div className="mt-16 p-8 rounded-xl bg-gray-900/50 border border-gray-800 text-center">
             <p className="text-gray-400 mb-2">Portfolio items coming soon</p>
             <p className="text-gray-500 text-sm">
@@ -247,26 +239,49 @@ export default function CategoryPage() {
         )}
       </div>
 
+      {/* Video Modal */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-xl animate-fadeIn p-4"
+          onClick={() => setActiveVideo(null)}
+        >
+          <button
+            className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all z-[70]"
+            onClick={() => setActiveVideo(null)}
+          >
+            <X size={32} />
+          </button>
+
+          <div className={`relative w-full shadow-2xl border border-white/10 rounded-2xl overflow-hidden bg-black ${activeVideo.aspectRatio === "vertical" ? "max-w-[400px] aspect-[9/16]" : "max-w-5xl aspect-video"
+            }`} onClick={e => e.stopPropagation()}>
+            <iframe
+              src={getVideoEmbedUrl(activeVideo)}
+              className="w-full h-full"
+              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+              allowFullScreen
+              frameBorder="0"
+              title={activeVideo.title}
+            ></iframe>
+          </div>
+        </div>
+      )}
+
       {/* Lightbox Modal */}
       {lightboxIndex !== null && contentImages.length > 0 && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl animate-fadeIn"
           onClick={() => setLightboxIndex(null)}
         >
-          {/* Close Button */}
           <button
             className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all z-50"
             onClick={() => setLightboxIndex(null)}
-            aria-label="Close lightbox"
           >
             <X size={32} />
           </button>
 
-          {/* Navigation Buttons */}
           <button
             className="absolute left-4 p-4 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all md:block hidden"
             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            aria-label="Previous image"
           >
             <ChevronLeft size={40} />
           </button>
@@ -274,12 +289,10 @@ export default function CategoryPage() {
           <button
             className="absolute right-4 p-4 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-all md:block hidden"
             onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            aria-label="Next image"
           >
             <ChevronRight size={40} />
           </button>
 
-          {/* Main Image */}
           <div
             className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
@@ -290,16 +303,10 @@ export default function CategoryPage() {
               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
             />
 
-            {/* Caption */}
             <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
               <h3 className="text-white text-xl font-bold bg-black/50 inline-block px-4 py-2 rounded-lg backdrop-blur-md">
                 {contentImages[lightboxIndex].title}
               </h3>
-              {contentImages[lightboxIndex].location && (
-                <p className="text-gray-300 text-sm mt-1 bg-black/50 inline-block px-3 py-1 rounded-lg backdrop-blur-md ml-2">
-                  {contentImages[lightboxIndex].location}
-                </p>
-              )}
             </div>
           </div>
         </div>

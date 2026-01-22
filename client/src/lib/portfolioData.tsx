@@ -3,20 +3,16 @@ import { Video, Camera, Scissors, Palette, Sparkles, Layers } from "lucide-react
 export const portfolioData = {
   services: [
     {
-      id: "videography",
-      name: "Videography",
-      description: "Cinematic and brand-focused video work",
+      id: "video-production",
+      name: "Video Production (Shoot + Edit)",
+      description: "Complete video solutions from filming to high-end post-production",
       icon: <Video className="w-8 h-8 text-orange-500" />,
       categories: [
-        { id: "ads", name: "Ads", type: "video" },
-        { id: "reels", name: "Reels", type: "video" },
+        { id: "weddings", name: "Weddings", type: "video" },
+        { id: "events", name: "Events", type: "video" },
+        { id: "product", name: "Product", type: "video" },
         { id: "personal-branding", name: "Personal Branding", type: "video" },
-        { id: "fb", name: "F&B", type: "video" },
-        { id: "event", name: "Event", type: "video" },
-        { id: "inauguration", name: "Inauguration", type: "video" },
-        { id: "wedding", name: "Wedding", type: "video" },
-        { id: "real-estate", name: "Real Estate", type: "video" },
-        { id: "app-promo", name: "App Promo", type: "video" },
+        { id: "reels", name: "Reels", type: "video" },
       ],
     },
     {
@@ -26,7 +22,6 @@ export const portfolioData = {
       icon: <Camera className="w-8 h-8 text-orange-500" />,
       categories: [
         { id: "wedding", name: "Wedding", type: "image" },
-        { id: "candid", name: "Candid", type: "image" },
         { id: "product", name: "Product", type: "image" },
         { id: "automobile", name: "Automobile", type: "image" },
         { id: "corporate", name: "Corporate", type: "image" },
@@ -35,20 +30,6 @@ export const portfolioData = {
         { id: "food", name: "Food", type: "image" },
         { id: "portraits", name: "Portraits", type: "image" },
         { id: "architecture", name: "Architecture & Interiors", type: "image" },
-      ],
-    },
-    {
-      id: "video-editing",
-      name: "Video Editing",
-      description: "Post-production focused editing services",
-      icon: <Scissors className="w-8 h-8 text-orange-500" />,
-      categories: [
-        { id: "instagram-reels", name: "Instagram Reels Editing", type: "video" },
-        { id: "youtube", name: "YouTube Editing", type: "video" },
-        { id: "short-form-ads", name: "Short-form Ads", type: "video" },
-        { id: "long-form", name: "Long-form Content", type: "video" },
-        { id: "event-highlights", name: "Event Highlights", type: "video" },
-        { id: "color-grading", name: "Color Grading", type: "video" },
       ],
     },
     {

@@ -33,10 +33,6 @@ function Router() {
         <Route path={"/portfolio/:service"} component={ServicePage} />
         <Route path={"/portfolio/:service/:category"} component={CategoryPage} />
         <Route path={"/portfolio/graphic-design/social-media/:brand"} component={BrandGallery} />
-        <Route path={"/photography"} component={Photography} />
-        <Route path={"/videography"} component={Videography} />
-        <Route path={"/editing-design"} component={EditingDesign} />
-        <Route path={"/brands-agencies"} component={BrandsAgencies} />
         <Route path={"/case-studies"} component={CaseStudies} />
         <Route path="/case-studies/:slug" component={CaseStudyDetail} />
         <Route path={"/404"} component={NotFound} />

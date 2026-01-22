@@ -22,7 +22,7 @@ export default function Portfolio() {
             <span className="text-orange-500">Portfolio</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl">
-            Explore my work across videography, photography, video editing, graphic design, motion graphics, and creative projects.
+            Explore my work across Video Production, Photography, Graphic Design, and Performance Marketing.
           </p>
         </div>
       </div>
@@ -92,10 +92,10 @@ export default function Portfolio() {
               Check out some of my most recent and impactful projects across different disciplines.
             </p>
             <button
-              onClick={() => navigate("/portfolio/videography")}
+              onClick={() => navigate("/portfolio/video-production")}
               className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors font-semibold"
             >
-              View Videography <ArrowRight size={18} />
+              View Video Production <ArrowRight size={18} />
             </button>
           </div>
 

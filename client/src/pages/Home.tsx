@@ -8,17 +8,17 @@ const FEATURED_WORK = [
   {
     id: 1,
     title: "Personal Branding",
-    category: "Videography",
+    category: "Video Production",
     image: "", // Empty for now
-    link: "/portfolio/videography/personal-branding",
+    link: "/portfolio/video-production/reels",
     glimpse: "Cinematic brand stories and professional personas"
   },
   {
     id: 2,
     title: "Event Coverage",
-    category: "Videography",
+    category: "Video Production",
     image: "", // Empty for now
-    link: "/portfolio/videography/event",
+    link: "/portfolio/video-production/events",
     glimpse: "Capturing the energy and key moments of your events"
   },
   {
