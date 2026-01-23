@@ -9,15 +9,15 @@ const FEATURED_WORK = [
     id: 1,
     title: "Personal Branding",
     category: "Video Production",
-    image: "", // Empty for now
-    link: "/portfolio/video-production/reels",
+    image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.jpg",
+    link: "/portfolio/video-production/personal-branding",
     glimpse: "Cinematic brand stories and professional personas"
   },
   {
     id: 2,
     title: "Event Coverage",
     category: "Video Production",
-    image: "", // Empty for now
+    image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Quant_hmvjvq.jpg",
     link: "/portfolio/video-production/events",
     glimpse: "Capturing the energy and key moments of your events"
   },
@@ -25,15 +25,15 @@ const FEATURED_WORK = [
     id: 3,
     title: "Motion Graphics",
     category: "Motion Graphics",
-    image: "", // Empty for now
-    link: "/portfolio/motion-graphics",
+    image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_ci2fz2.jpg",
+    link: "/portfolio/motion-graphics/reels-motion",
     glimpse: "Dynamic animations and visual elements that pop"
   },
   {
     id: 4,
     title: "Product Photography",
     category: "Photography",
-    image: "", // Empty for now
+    image: "/images/brands/Q4/Ad 9.jpg",
     link: "/portfolio/photography/product",
     glimpse: "Stunning product visuals for e-commerce and social"
   },
