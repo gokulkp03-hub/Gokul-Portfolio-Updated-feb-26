@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLocation, useParams } from "wouter";
-import { caseStudies } from "@/data/caseStudies";
+import { marketingCampaigns } from "@/data/marketing";
 import { ArrowLeft, TrendingUp, Target, CheckCircle2, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
@@ -30,7 +30,7 @@ export default function CaseStudyDetail() {
     const [, navigate] = useLocation();
     const slug = params.slug;
 
-    const caseStudy = caseStudies.find(cs => cs.slug === slug);
+    const caseStudy = marketingCampaigns.find(cs => cs.slug === slug);
 
     if (!caseStudy) {
         return (

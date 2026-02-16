@@ -18,14 +18,24 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({
   children,
-  defaultTheme = "light",
-  switchable = false,
+  defaultTheme = "dark",
+  switchable = true,
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return defaultTheme;
+
     if (switchable) {
       const stored = localStorage.getItem("theme");
-      return (stored as Theme) || defaultTheme;
+      if (stored === "light" || stored === "dark") {
+        return stored;
+      }
+
+      // Check system preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
     }
+
     return defaultTheme;
   });
 

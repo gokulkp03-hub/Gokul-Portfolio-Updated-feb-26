@@ -1,190 +1,158 @@
-import { useLocation } from "wouter";
-import { portfolioData } from "@/lib/portfolioData";
-import { ArrowRight, ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
-import { setSEO } from "@/utils/seo";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { videoProjects } from "@/data/video";
+import { photoProjects } from "@/data/photo";
+import { marketingCampaigns } from "@/data/marketing";
+import { ArrowUpRight, Filter, Play, Camera, TrendingUp } from "lucide-react";
+import { Link } from "wouter";
+import { cn } from "@/lib/utils";
+
+type ProjectType = "All" | "Video" | "Photo" | "Strategy";
 
 export default function Portfolio() {
-  const [, navigate] = useLocation();
+  const [activeFilter, setActiveFilter] = useState<ProjectType>("All");
 
-  useEffect(() => {
-    setSEO({
-      title: "Portfolio - Gokul KP",
-      description: "Explore my work across Video Production, Photography, Graphic Design, and Performance Marketing.",
-      url: "https://gokulkp.com/portfolio"
-    });
-  }, []);
+  // Unified project list
+  const allProjects = [
+    ...videoProjects.map(v => ({
+      id: v.id,
+      title: v.title,
+      category: "Video",
+      type: "Video",
+      image: v.thumbnail,
+      path: "/video",
+      tags: [v.category]
+    })),
+    ...photoProjects.map(p => ({
+      id: p.id,
+      title: p.title,
+      category: "Photo",
+      type: "Photo",
+      image: p.image,
+      path: "/photo",
+      tags: [p.category]
+    })),
+    ...marketingCampaigns.map(m => ({
+      id: m.id,
+      title: m.title,
+      category: "Strategy",
+      type: "Strategy",
+      image: m.visuals[0],
+      path: "/marketing",
+      tags: [m.industry]
+    }))
+  ].sort(() => Math.random() - 0.5);
+
+  const filteredProjects = activeFilter === "All"
+    ? allProjects
+    : allProjects.filter(p => p.type === activeFilter);
+
+  const filters: ProjectType[] = ["All", "Video", "Photo", "Strategy"];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black pt-24 pb-16">
-      {/* Header */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="animate-slideDown">
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900/30 backdrop-blur-md border border-white/10 text-gray-400 hover:text-orange-500 hover:border-orange-500/50 transition-all duration-300 mb-8 group/nav w-fit"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover/nav:-translate-x-1 transition-transform" />
-            <span className="text-sm font-medium">Home</span>
-          </button>
+    <div className="min-h-screen bg-background pt-32 pb-20">
+      <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="text-orange-500">Portfolio</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-2xl">
-            Explore my work across Video Production, Photography, Graphic Design, and Performance Marketing.
-          </p>
-        </div>
-      </div>
-
-      {/* Services Grid */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolioData.services.map((service, index) => (
-            <button
-              key={service.id}
-              onClick={() => navigate(`/portfolio/${service.id}`)}
-              className="group relative overflow-hidden rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 hover:border-orange-500/50 hover:bg-gray-900/60 transition-all duration-300 p-8 text-left h-full"
-              style={{
-                animation: `slideUp 0.6s ease-out ${index * 0.1}s both`,
-              }}
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="max-w-2xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 uppercase"
             >
-              {/* Hover gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              Master <span className="text-orange-500 italic">Gallery</span>
+            </motion.h1>
+            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+              A complete archive of professional work across cinematic video,
+              premium photography, and growth-focused marketing.
+            </p>
+          </div>
 
-              {/* Content */}
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex-1">
-                  <div className="mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">
-                    {service.name}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4">{service.description}</p>
-                </div>
+          {/* Filter Bar */}
+          <div className="flex flex-wrap gap-2 bg-white/5 p-1 rounded-full border border-white/10 backdrop-blur-md">
+            {filters.map((f) => (
+              <button
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                className={cn(
+                  "px-6 py-2 rounded-full text-sm font-medium transition-all",
+                  activeFilter === f
+                    ? "bg-orange-500 text-white shadow-lg"
+                    : "text-muted-foreground hover:text-white"
+                )}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                {/* Category count and arrow */}
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500">
-                    {service.categories.length} categories
-                  </span>
-                  <svg
-                    className="w-5 h-5 text-orange-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
+        {/* Projects Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, i) => (
+              <motion.div
+                key={`${project.id}-${project.type}`}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+                className="group relative"
+              >
+                <Link href={project.path}>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted border border-border/40 transition-colors cursor-pointer group-hover:border-orange-500/30">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
                     />
-                  </svg>
-                </div>
-              </div>
 
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer" />
-            </button>
-          ))}
-        </div>
-      </div>
+                    {/* Overlays */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
 
-      {/* Quick Links Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Featured Work */}
-          <div className="rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 hover:border-orange-500/50 transition-all duration-300 p-8 animate-slideUp" style={{ animationDelay: "0.3s" }}>
-            <h3 className="text-2xl font-bold text-white mb-4">Featured Work</h3>
-            <p className="text-gray-400 mb-6">
-              Check out some of my most recent and impactful projects across different disciplines.
-            </p>
-            <button
-              onClick={() => navigate("/portfolio/video-production")}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors font-semibold"
-            >
-              View Video Production <ArrowRight size={18} />
-            </button>
+                    <div className="absolute top-6 left-6 flex flex-col gap-2">
+                      <span className="inline-flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 text-white rounded-full text-[10px] uppercase font-bold tracking-widest">
+                        {project.type === "Video" && <Play className="w-3 h-3 text-orange-500" />}
+                        {project.type === "Photo" && <Camera className="w-3 h-3 text-orange-500" />}
+                        {project.type === "Strategy" && <TrendingUp className="w-3 h-3 text-orange-500" />}
+                        {project.type}
+                      </span>
+                      <span className="text-[10px] text-white/60 font-medium px-3 uppercase tracking-tighter">
+                        {project.tags[0]}
+                      </span>
+                    </div>
+
+                    <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <h3 className="text-2xl font-display font-bold text-white mb-2">{project.title}</h3>
+                      <p className="text-sm text-white/60 font-light">Explore Case Study</p>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-40">
+            <p className="text-xl text-muted-foreground italic">No projects found in this category.</p>
           </div>
+        )}
 
-          {/* About Portfolio */}
-          <div className="rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 hover:border-orange-500/50 transition-all duration-300 p-8 animate-slideUp" style={{ animationDelay: "0.4s" }}>
-            <h3 className="text-2xl font-bold text-white mb-4">About My Work</h3>
-            <p className="text-gray-400 mb-6">
-              Each project showcases my expertise in creating compelling visual content that drives engagement and delivers results for brands and individuals.
-            </p>
-            <button
-              onClick={() => navigate("/experience")}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors font-semibold"
-            >
-              View Experience <ArrowRight size={18} />
-            </button>
-          </div>
-        </div>
       </div>
-
-      {/* CTA Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="rounded-xl bg-gradient-to-r from-orange-600/20 to-orange-500/10 border border-orange-500/30 p-12 text-center animate-slideUp" style={{ animationDelay: "0.5s" }}>
-          <h2 className="text-4xl font-bold text-white mb-4">Ready to collaborate?</h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and how I can bring your vision to life with creative content and strategic execution.
-          </p>
-          <button
-            onClick={() => navigate("/#contact")}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors font-semibold text-lg"
-          >
-            Get in Touch <ArrowRight size={20} />
-          </button>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-
-        .animate-slideUp {
-          animation: slideUp 0.6s ease-out;
-        }
-
-        .animate-slideDown {
-          animation: slideDown 0.6s ease-out;
-        }
-
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
-      `}</style>
     </div>
   );
 }

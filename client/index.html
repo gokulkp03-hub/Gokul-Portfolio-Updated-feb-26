@@ -6,26 +6,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="%VITE_APP_LOGO%" />
   <link rel="apple-touch-icon" href="%VITE_APP_LOGO%" />
-  
+
   <!-- SEO Default Tags -->
   <title>Gokul KP - Digital Marketer & Performance Strategist</title>
   <meta name="title" content="Gokul KP - Digital Marketer & Performance Strategist" />
-  <meta name="description" content="I design, launch, and scale performance-driven marketing systems — combining Meta ads, funnels, content, and creative production to drive real business growth." />
-  <meta name="keywords" content="Digital Marketing, Performance Marketing, Meta Ads, Video Production, Graphic Design, Lead Generation, Marketing Strategy" />
-  
+  <meta name="description"
+    content="I design, launch, and scale performance-driven marketing systems — combining Meta ads, funnels, content, and creative production to drive real business growth." />
+  <meta name="keywords"
+    content="Digital Marketing, Performance Marketing, Meta Ads, Video Production, Graphic Design, Lead Generation, Marketing Strategy" />
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gokulkp.com/" />
   <meta property="og:title" content="Gokul KP - Digital Marketer & Performance Strategist" />
-  <meta property="og:description" content="Driving business growth through performance marketing and creative strategy." />
+  <meta property="og:description"
+    content="Driving business growth through performance marketing and creative strategy." />
   <meta property="og:image" content="/images/og-image.jpg" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://gokulkp.com/" />
   <meta property="twitter:title" content="Gokul KP - Digital Marketer & Performance Strategist" />
-  <meta property="twitter:description" content="Driving business growth through performance marketing and creative strategy." />
+  <meta property="twitter:description"
+    content="Driving business growth through performance marketing and creative strategy." />
   <meta property="twitter:image" content="/images/og-image.jpg" />
+
+  <!-- Theme Script - Prevent FOUC -->
+  <script>
+    (function () {
+      const getTheme = () => {
+        const stored = localStorage.getItem('theme');
+        if (stored) return stored;
+
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+
+        // Default to dark
+        return 'dark';
+      };
+
+      const theme = getTheme();
+      const root = document.documentElement;
+      root.setAttribute('data-theme', theme);
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      }
+    })();
+  </script>
 </head>
 
 <body>

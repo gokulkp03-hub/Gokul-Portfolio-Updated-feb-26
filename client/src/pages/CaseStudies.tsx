@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
-import { caseStudies } from "@/data/caseStudies";
+import { marketingCampaigns } from "@/data/marketing";
 import { ArrowRight, TrendingUp } from "lucide-react";
 
 const fadeInUp = {
@@ -51,7 +51,7 @@ export default function CaseStudies() {
                         variants={staggerContainer}
                         className="grid grid-cols-1 md:grid-cols-2 gap-8"
                     >
-                        {caseStudies.map((study) => (
+                        {marketingCampaigns.map((study) => (
                             <motion.div
                                 key={study.slug}
                                 variants={fadeInUp}
@@ -101,7 +101,7 @@ export default function CaseStudies() {
                     </motion.div>
 
                     {/* Empty State */}
-                    {caseStudies.length === 0 && (
+                    {marketingCampaigns.length === 0 && (
                         <motion.div
                             initial="hidden"
                             animate="visible"
