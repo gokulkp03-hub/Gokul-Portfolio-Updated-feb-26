@@ -54,8 +54,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Customer Retention", value: "40%+", trend: "up" }
         ],
         visuals: [
-            "/images/experience/prepmeal.jpg",
-            "/images/brands/Q4/Ad 9.jpg"
+            "/assets/images/experience/prepmeal.jpg",
+            "/assets/images/brands/Q4/Ad 9.jpg"
         ],
         learnings: [
             "Authentic behind-the-scenes content converts 2x better than polished ads.",
@@ -94,8 +94,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "CPA Reduction", value: "45%", trend: "down" }
         ],
         visuals: [
-            "/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.jpg",
-            "/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg"
+            "/assets/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.jpg",
+            "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg"
         ],
         learnings: [
             "Lifestyle-oriented video content drives 3x more engagement than static car photos.",
@@ -134,8 +134,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Conversion Rate", value: "22%", trend: "up" }
         ],
         visuals: [
-            "/images/brands/Acero/Ad 01.png",
-            "/images/brands/Acero/Acero 2-1.jpg"
+            "/assets/images/brands/Acero/Ad 01.png",
+            "/assets/images/brands/Acero/Acero 2-1.jpg"
         ],
         learnings: [
             "Trust is built through detailed project proofs rather than typical sales talk.",
@@ -173,9 +173,9 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Phone Calls", value: "+40%", trend: "up" }
         ],
         visuals: [
-            "/images/case-studies/steaburg/audit.png",
-            "/images/case-studies/steaburg/strategy.png",
-            "/images/case-studies/steaburg/works.png"
+            "/assets/images/case-studies/steaburg/audit.png",
+            "/assets/images/case-studies/steaburg/strategy.png",
+            "/assets/images/case-studies/steaburg/works.png"
         ],
         learnings: [
             "Local citations are the backbone of UAE business rankings.",
@@ -213,9 +213,9 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Inbound Leads", value: "Weekly", trend: "up" }
         ],
         visuals: [
-            "/images/case-studies/sisa/search_console.png",
-            "/images/case-studies/sisa/traffic_sources.png",
-            "/images/case-studies/sisa/full_layout.png"
+            "/assets/images/case-studies/sisa/search_console.png",
+            "/assets/images/case-studies/sisa/traffic_sources.png",
+            "/assets/images/case-studies/sisa/full_layout.png"
         ],
         learnings: [
             "Foundational technical SEO is often overlooked but provides the highest ROI for B2B.",
@@ -253,8 +253,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Conversion Rate", value: "1.8%", trend: "up" }
         ],
         visuals: [
-            "/images/brands/Galaxy-Star/Galaxy 3.jpg",
-            "/images/brands/Galaxy-Star/Galaxy 1.jpg"
+            "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+            "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg"
         ],
         learnings: [
             "Website speed is the single most important factor for luxury e-com bounce rates.",

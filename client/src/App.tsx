@@ -35,7 +35,12 @@ function Router() {
           <Route path="/services" component={Services} />
           <Route path="/about" component={About} />
           <Route path="/portfolio" component={PortfolioLayout} />
-          <Route path="/portfolio/:category/:slug" component={ProjectDetail} />
+          <Route path="/portfolio/:category/:slug">
+            {(params) => <ProjectDetail category={params.category} slug={params.slug} />}
+          </Route>
+          <Route path="/marketing/:slug">
+            {(params) => <ProjectDetail category="marketing" slug={params.slug} />}
+          </Route>
           <Route path="/results" component={Results} />
           <Route path="/contact" component={Contact} />
 

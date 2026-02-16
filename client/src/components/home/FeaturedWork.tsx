@@ -3,21 +3,35 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { videoProjects } from "@/data/video";
 import { photoProjects } from "@/data/photo";
-import { marketingCampaigns } from "@/data/marketing";
+import { caseStudies } from "@/data/caseStudies";
 
 export function FeaturedWork() {
-    // Select featured items from each category
-    const featuredVideos = videoProjects.filter(v => v.featured).slice(0, 2);
-    const featuredPhotos = photoProjects.filter(p => p.featured).slice(0, 2);
-    const featuredMarketing = marketingCampaigns.filter(m => m.featured).slice(0, 2);
+    // Select curated featured items to prioritize brand/corporate work over weddings
+    const featuredVideos = videoProjects
+        .filter(v => v.featured && v.category !== "Weddings")
+        .slice(0, 2);
+    const featuredPhotos = photoProjects
+        .filter(p => p.featured && p.category !== "Wedding")
+        .slice(0, 2);
+    const featuredMarketing = caseStudies
+        .filter(m => m.featured)
+        .slice(0, 3);
 
     const featuredItems = [
+        ...featuredMarketing.map(m => ({
+            id: m.id,
+            title: m.client,
+            image: m.image,
+            category: "Marketing",
+            path: `/marketing/${m.slug}`,
+            tags: [m.industry]
+        })),
         ...featuredVideos.map(v => ({
             id: v.id,
             title: v.title,
             image: v.thumbnail,
             category: "Video",
-            path: "/video",
+            path: `/portfolio/video/${v.id}`,
             tags: [v.category]
         })),
         ...featuredPhotos.map(p => ({
@@ -25,18 +39,10 @@ export function FeaturedWork() {
             title: p.title,
             image: p.image,
             category: "Photo",
-            path: "/photo",
+            path: p.category.toLowerCase().includes("wedding") ? `/portfolio/photo/${p.id}` : `/portfolio/photo/${p.id}`,
             tags: [p.category]
-        })),
-        ...featuredMarketing.map(m => ({
-            id: m.id,
-            title: m.title,
-            image: m.visuals[0],
-            category: "Marketing",
-            path: "/marketing",
-            tags: [m.industry]
         }))
-    ].sort(() => Math.random() - 0.5).slice(0, 6); // Mix and show 6
+    ].slice(0, 6); // Show exactly 6 curated items
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

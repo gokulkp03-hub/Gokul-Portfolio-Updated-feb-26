@@ -115,7 +115,7 @@ export const projects: Project[] = [
         title: "Premium Product Photography",
         category: "photo",
         subcategory: "Product",
-        thumbnail: "/images/photo/product-1.jpg",
+        thumbnail: "/assets/images/photo/product-1.jpg",
         description: "High-end product photography for e-commerce and marketing.",
         client: "E-commerce Brand",
         role: "Product Photographer",
@@ -123,9 +123,9 @@ export const projects: Project[] = [
         date: "2024",
         featured: true,
         images: [
-            "/images/photo/product-1.jpg",
-            "/images/photo/product-2.jpg",
-            "/images/photo/product-3.jpg"
+            "/assets/images/photo/product-1.jpg",
+            "/assets/images/photo/product-2.jpg",
+            "/assets/images/photo/product-3.jpg"
         ],
         challenge: "Create consistent, high-quality product images that drive conversions.",
         solution: "Developed a standardized lighting setup and post-processing workflow for brand consistency.",
@@ -142,15 +142,15 @@ export const projects: Project[] = [
         title: "Executive Portraits",
         category: "photo",
         subcategory: "Portraits",
-        thumbnail: "/images/photo/portrait-1.jpg",
+        thumbnail: "/assets/images/photo/portrait-1.jpg",
         description: "Professional headshots and portraits for corporate clients.",
         client: "Tech Company",
         role: "Portrait Photographer",
         tools: ["Lightroom", "Photoshop", "Natural Light"],
         date: "2024",
         images: [
-            "/images/photo/portrait-1.jpg",
-            "/images/photo/portrait-2.jpg"
+            "/assets/images/photo/portrait-1.jpg",
+            "/assets/images/photo/portrait-2.jpg"
         ]
     },
 
@@ -161,7 +161,7 @@ export const projects: Project[] = [
         title: "Viral Reels Campaign",
         category: "social",
         subcategory: "Instagram Reels",
-        thumbnail: "/images/social/reel-1.jpg",
+        thumbnail: "/assets/images/social/reel-1.jpg",
         description: "High-performing Instagram Reels that drove massive engagement.",
         client: "Fashion Brand",
         role: "Content Creator & Editor",
@@ -185,7 +185,7 @@ export const projects: Project[] = [
         title: "High-Converting Meta Ads",
         category: "ads",
         subcategory: "Meta Ads",
-        thumbnail: "/images/ads/meta-1.jpg",
+        thumbnail: "/assets/images/ads/meta-1.jpg",
         description: "Performance-driven ad creatives that scaled revenue.",
         client: "E-commerce Store",
         role: "Creative Strategist",

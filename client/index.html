@@ -21,7 +21,7 @@
   <meta property="og:title" content="Gokul KP - Digital Marketer & Performance Strategist" />
   <meta property="og:description"
     content="Driving business growth through performance marketing and creative strategy." />
-  <meta property="og:image" content="/images/og-image.jpg" />
+  <meta property="og:image" content="/assets/images/og-image.jpg" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
@@ -29,30 +29,26 @@
   <meta property="twitter:title" content="Gokul KP - Digital Marketer & Performance Strategist" />
   <meta property="twitter:description"
     content="Driving business growth through performance marketing and creative strategy." />
-  <meta property="twitter:image" content="/images/og-image.jpg" />
+  <meta property="twitter:image" content="/assets/images/og-image.jpg" />
 
   <!-- Theme Script - Prevent FOUC -->
   <script>
     (function () {
       const getTheme = () => {
         const stored = localStorage.getItem('theme');
-        if (stored) return stored;
+        if (stored === 'dark' || stored === 'light') return stored;
 
-        // Check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
           return 'dark';
         }
-
-        // Default to dark
-        return 'dark';
+        return 'dark'; // Default to dark for luxury feel
       };
 
       const theme = getTheme();
       const root = document.documentElement;
-      root.setAttribute('data-theme', theme);
-      if (theme === 'dark') {
-        root.classList.add('dark');
-      }
+      root.classList.remove('light', 'dark');
+      root.classList.add(theme);
+      root.style.colorScheme = theme;
     })();
   </script>
 </head>

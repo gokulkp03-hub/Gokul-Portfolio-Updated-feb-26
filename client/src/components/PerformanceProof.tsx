@@ -6,21 +6,21 @@ const PERFORMANCE_PROOF = [
         client: "Healthy Meals",
         metric: "4.2x ROAS",
         result: "$63k Revenue",
-        image: "/images/case-studies/healthy-meals/results.jpg"
+        image: "/assets/images/case-studies/healthy-meals/results.jpg"
     },
     {
         id: 2,
         client: "BeyondCars",
         metric: "287 Leads",
         result: "$42 Cost/Lead",
-        image: "/images/case-studies/beyondcars/campaign-overview.jpg"
+        image: "/assets/images/case-studies/beyondcars/campaign-overview.jpg"
     },
     {
         id: 3,
         client: "PrepMeal",
         metric: "-38% CPA",
         result: "300+ Leads",
-        image: "/images/case-studies/prepmeal/results.jpg"
+        image: "/assets/images/case-studies/prepmeal/results.jpg"
     }
 ];
 

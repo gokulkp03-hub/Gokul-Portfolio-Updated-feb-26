@@ -12,7 +12,7 @@ export default function About() {
                     <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-8">
                         <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-white/10 group">
                             <img
-                                src="/images/profile/profile.webp"
+                                src="/assets/images/profile/profile.webp"
                                 alt="Gokul KP"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 onError={(e) => {

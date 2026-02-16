@@ -226,7 +226,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
             {
                 id: "wedding-1",
                 type: "image",
-                src: "/images/photography/wedding/wedding-1.jpg",
+                src: "/assets/images/photography/wedding/wedding-1.jpg",
                 title: "Wedding Story",
                 description: "Beautiful moments from a traditional wedding."
             }
@@ -245,7 +245,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
             {
                 id: "design-1",
                 type: "image",
-                src: "/images/brands/Q4/Ad 9.jpg",
+                src: "/assets/images/brands/Q4/Ad 9.jpg",
                 title: "Social Media Campaign",
                 description: "High-converting ad for Q4 brand."
             }

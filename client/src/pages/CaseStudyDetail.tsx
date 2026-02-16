@@ -50,7 +50,7 @@ export default function CaseStudyDetail() {
             setSEO({
                 title: `${caseStudy.client} - Case Study | Gokul KP`,
                 description: caseStudy.objective,
-                image: caseStudy.visuals[0] || "/images/og-image.jpg",
+                image: caseStudy.visuals[0] || "/assets/images/og-image.jpg",
                 url: `https://gokulkp.com/case-studies/${slug}`
             });
         }

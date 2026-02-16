@@ -17,7 +17,7 @@ export default function BrandGallery() {
             setSEO({
                 title: `${brand.name} - Brand Gallery | Gokul KP`,
                 description: brand.description || `Explore social media graphics and designs for ${brand.name}.`,
-                image: brand.items[0] || "/images/og-image.jpg",
+                image: brand.items[0] || "/assets/images/og-image.jpg",
                 url: `https://gokulkp.com/portfolio/brand/${brand.id}`
             });
         }
