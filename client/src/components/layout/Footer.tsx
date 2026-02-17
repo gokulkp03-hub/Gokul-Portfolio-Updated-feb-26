@@ -29,7 +29,7 @@ export default function Footer() {
                             <Link href="/marketing"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Marketing</a></Link>
                         </div>
                         <div className="flex flex-col gap-3">
-                            <Link href="/case-studies"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Case Studies</a></Link>
+                            <Link href="/portfolio"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Case Studies</a></Link>
                             <Link href="/about"><a className="text-sm font-medium hover:text-orange-400 transition-colors">About</a></Link>
                             <Link href="mailto:hello@gokulkp.com"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</a></Link>
                         </div>
@@ -57,7 +57,7 @@ export default function Footer() {
 
                 </div>
 
-                <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-background/40">
+                <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-background/40 text-center md:text-left">
                     <p>© {year} Gokul KP. All rights reserved.</p>
                     <p>Designed with <span className="text-red-500">♥</span> in 2024.</p>
                 </div>

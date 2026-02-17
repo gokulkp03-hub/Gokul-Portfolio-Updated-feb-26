@@ -59,7 +59,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-background pt-32 pb-20">
+    <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
       <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
 
         {/* Header */}
@@ -67,11 +67,11 @@ export default function Services() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-9xl font-display font-bold mb-8 uppercase italic tracking-tighter"
+            className="text-5xl sm:text-7xl md:text-9xl font-display font-bold mb-6 md:mb-8 uppercase italic tracking-tighter"
           >
             Digital <span className="text-orange-500">Arsenal</span>
           </motion.h1>
-          <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
+          <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed">
             I don't just provide services; I build growth systems.
             Select the tier that aligns with your current scale.
           </p>
@@ -86,7 +86,7 @@ export default function Services() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group glass-card p-10 md:p-16 border border-white/5 rounded-[3rem] hover:border-orange-500/20 transition-all flex flex-col"
+              className="group glass-card p-8 md:p-16 border border-white/5 rounded-[2.5rem] md:rounded-[3rem] hover:border-orange-500/20 transition-all flex flex-col"
             >
               <div className="mb-12 flex items-start justify-between">
                 <div className="p-5 rounded-3xl bg-white/5 group-hover:bg-orange-500 group-hover:text-white transition-colors">
@@ -132,10 +132,10 @@ export default function Services() {
         <section className="mb-48 relative overflow-hidden rounded-[4rem] bg-orange-500/5 border border-orange-500/10 p-12 md:p-24">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <h2 className="text-5xl md:text-7xl font-display font-bold mb-10 tracking-tighter uppercase line-clamp-2 italic">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-8 md:mb-10 tracking-tighter uppercase italic">
                 The Growth <br /> <span className="text-orange-500 italic">Arc</span>
               </h2>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-12">
+              <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed mb-10 md:mb-12">
                 My process is engineered for predictable scaling.
                 We move from audit to execution in under 14 days.
               </p>
@@ -173,7 +173,7 @@ export default function Services() {
 
         {/* Global Footer CTA */}
         <section className="text-center">
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 uppercase tracking-tighter italic">Ready to engage?</h2>
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic">Ready to engage?</h2>
           <p className="text-xl text-muted-foreground font-light mb-12 max-w-xl mx-auto">Skip the generic agencies. Get a specialist growth engine working for you.</p>
           <Link href="/contact">
             <a className="btn-primary px-16 py-6 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-2xl">

@@ -43,7 +43,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-9xl font-display font-semibold tracking-tighter mb-8 text-balance uppercase"
+            className="text-5xl sm:text-7xl md:text-9xl font-display font-semibold tracking-tighter mb-8 text-balance uppercase"
           >
             Creative that <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 italic">performs</span>.
           </motion.h1>
@@ -94,8 +94,8 @@ export default function Home() {
       <section className="py-32 container px-4 md:px-8 max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight">Recent Productions</h2>
-            <p className="text-muted-foreground text-xl font-light">
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 md:mb-6 tracking-tight">Recent Productions</h2>
+            <p className="text-muted-foreground text-lg md:text-xl font-light">
               A curated selection of high-end visuals across all creative disciplines.
             </p>
           </div>
@@ -124,14 +124,14 @@ export default function Home() {
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-6xl md:text-9xl font-display font-bold mb-8 tracking-tighter uppercase italic">
+            <h2 className="text-5xl sm:text-7xl md:text-9xl font-display font-bold mb-8 tracking-tighter uppercase italic">
               Ready to <br /> scale?
             </h2>
-            <p className="text-xl md:text-3xl text-background/80 mb-16 font-light leading-relaxed">
+            <p className="text-lg md:text-3xl text-background/80 mb-12 md:mb-16 font-light leading-relaxed">
               Let's build a brand that commands attention and drives results.
               Schedule a call or start a project today.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
               <Link href="/contact">
                 <a className="btn bg-background text-foreground hover:bg-white/90 px-10 py-5 rounded-full text-xl font-semibold w-full sm:w-auto shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
                   Connect Now

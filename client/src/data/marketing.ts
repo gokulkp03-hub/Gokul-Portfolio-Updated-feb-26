@@ -23,6 +23,7 @@ export interface MarketingCampaign {
     platform: string;
     role: string;
     duration: string;
+    reportUrl?: string;
 }
 
 export const marketingCampaigns: MarketingCampaign[] = [
@@ -32,38 +33,38 @@ export const marketingCampaigns: MarketingCampaign[] = [
         client: "PrepMeal",
         industry: "Health & Wellness",
         platform: "Instagram / Meta Ads",
-        title: "Scaling a Meal-Prep Disruptor",
-        headline: "Launching a Direct-to-Consumer Brand",
-        description: "Built and scaled a healthy meal prep brand through aggressive content marketing and automated funnel systems.",
-        objective: "Establish market presence and achieve 3x growth in primary city within 6 months.",
-        challenge: "New market entry with zero brand awareness and high competition from established catering services.",
+        title: "Social Growth Strategy",
+        headline: "Establishing Digital Presence in UAE",
+        description: "Coordinated social media growth and content strategy, helping the brand establish a strong digital foothold.",
+        objective: "Build a consistent social presence and coordinate content production during the launch phase.",
+        challenge: "New market entry with a need for hyper-local social proof and high-volume content production.",
         strategy: [
-            "Vertical video strategy focusing on 'behind the kitchen' transparency.",
-            "Micro-influencer partnership campaign for hyper-local social proof.",
-            "Automated WhatsApp ordering funnel for frictionless conversion."
+            "Vertical video strategy focusing on food quality and prep transparency.",
+            "Coordination of brand-aligned social content for daily engagement.",
+            "WhatsApp-based customer service coordination for higher retention."
         ],
         execution: [
-            "Created 200+ pieces of short-form video content.",
-            "Managed AED 185,000+ in Meta Ad spend with daily optimization.",
-            "Launched weekly referral programs for community growth."
+            "Produced 150+ vertical video assets for TikTok and Instagram reels.",
+            "Supported Meta ad accounts with creative strategy and coordination.",
+            "Implemented WhatsApp-based sales coordination increasing conversion by 25%."
         ],
-        results: "Achieved consistent month-over-month growth and high customer retention. The brand became a household name in the health niche.",
+        results: "Successfully managed the brand's social growth, establishing it as a credible player in the health niche.",
         metrics: [
             { label: "Meals Delivered", value: "21k+", trend: "up" },
-            { label: "Revenue Growth", value: "3x", trend: "up" },
-            { label: "Customer Retention", value: "40%+", trend: "up" }
+            { label: "Community Growth", value: "3.5x", trend: "up" },
+            { label: "Ad Spend Supported", value: "AED 300K+", trend: "up" }
         ],
         visuals: [
-            "/assets/images/experience/prepmeal.jpg",
+            "/assets/images/case-studies/prepmeal/Mockup.png",
             "/assets/images/brands/Q4/Ad 9.jpg"
         ],
         learnings: [
-            "Authentic behind-the-scenes content converts 2x better than polished ads.",
-            "Automated funnel reduces CAC by 30% compared to manual sales."
+            "Consistent short-form content is key for building trust in food services.",
+            "Coordinated WhatsApp support significantly improves local conversion rates."
         ],
-        tags: ["Content Strategy", "Brand Growth", "Retention Systems"],
+        tags: ["Social Media Management", "Content Planning", "Coordination"],
         featured: true,
-        role: "Head of Marketing & Content",
+        role: "Social Media Manager",
         duration: "18 Months"
     },
     {
@@ -183,7 +184,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         tags: ["Local SEO", "GBP Optimization", "Review Systems"],
         role: "SEO Strategist",
-        duration: "6 Months"
+        duration: "6 Months",
+        reportUrl: "/assets/images/case-studies/steaburg/Steaburg Strategy.pdf"
     },
     {
         id: "sias-group-seo",
@@ -223,7 +225,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         tags: ["Technical SEO", "B2B Lead Gen", "Indexing Strategy"],
         role: "Digital Asset Manager",
-        duration: "3 Months"
+        duration: "3 Months",
+        reportUrl: "/assets/images/case-studies/sisa/Sias Group Report.pdf"
     },
     {
         id: "galaxy-star-perfumes",

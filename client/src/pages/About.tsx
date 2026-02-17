@@ -4,7 +4,7 @@ import { Coffee, Code, Heart, Trophy, Target, Sparkles, MapPin, ArrowUpRight } f
 
 export default function About() {
     return (
-        <div className="min-h-screen bg-background pt-32 pb-20">
+        <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
@@ -55,7 +55,7 @@ export default function About() {
                         {/* Bio Section */}
                         <section>
                             <h2 className="text-sm uppercase tracking-[0.4em] text-orange-500 mb-8">Professional Philosophy</h2>
-                            <p className="text-3xl md:text-5xl font-display font-bold text-white mb-12 leading-tight">
+                            <p className="text-2xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-8 md:mb-12 leading-tight">
                                 {bio.description}
                             </p>
                             <div className="prose prose-invert max-w-none text-muted-foreground text-lg font-light leading-relaxed">
@@ -153,7 +153,7 @@ export default function About() {
                         {/* Personal CTA */}
                         <section className="bg-foreground text-background rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
                             <div className="relative z-10 max-w-2xl mx-auto">
-                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 uppercase tracking-tighter italic">Ready to build the <br /> next chapter?</h2>
+                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic">Ready to build the <br /> next chapter?</h2>
                                 <p className="text-xl text-background/80 font-light mb-12">Let's discuss how we can scale your brand's presence today.</p>
                                 <Link href="/contact">
                                     <a className="btn bg-background text-foreground px-12 py-5 rounded-full font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">

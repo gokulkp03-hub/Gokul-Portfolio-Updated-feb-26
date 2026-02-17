@@ -7,9 +7,9 @@ export interface Metric {
 
 export const proof = {
     metrics: [
-        { label: "High-Performance Ads", value: "300", suffix: "+" },
-        { label: "Ad Spend Managed", value: "4.4", prefix: "AED ", suffix: "M+" },
-        { label: "Direct Revenue", value: "18.3", prefix: "AED ", suffix: "M+" },
+        { label: "Ad creatives produced", value: "80", suffix: "+" },
+        { label: "Ad spend supported", value: "300", prefix: "AED ", suffix: "K+" },
+        { label: "Brands Handled", value: "5", suffix: "+" },
         { label: "Meals Delivered (PrepMeal)", value: "21", suffix: "k+" },
     ],
     logos: [
@@ -35,7 +35,7 @@ export const proof = {
         {
             id: "t2",
             text: "We saw a 3x ROI in the first month of working with him. The creative strategy was spot on.",
-            author: "Founder",
+            author: "Director",
             role: "Q4 Clean Home",
         },
         {

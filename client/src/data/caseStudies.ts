@@ -23,6 +23,7 @@ export interface CaseStudy {
     visuals: string[];
     tags: string[];
     featured?: boolean;
+    reportUrl?: string;
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -31,31 +32,31 @@ export const caseStudies: CaseStudy[] = [
         slug: "prepmeal-launch",
         client: "PrepMeal",
         industry: "Direct-to-Consumer / Health",
-        headline: "Scaling a Meal-Prep Disruptor",
-        description: "Built and scaled a healthy meal prep brand through aggressive content marketing and automated funnel systems.",
-        challenge: "New market entry with zero brand awareness and high competition from established catering services.",
+        headline: "Scaling Social Presence for PrepMeal",
+        description: "Coordinated social media growth and content strategy, helping the brand establish a strong digital presence in the UAE.",
+        challenge: "New market entry with a need for hyper-local social proof and high-volume content production.",
         strategy: [
-            "Vertical video strategy focusing on 'behind the kitchen' transparency.",
-            "Micro-influencer partnership campaign for hyper-local social proof.",
-            "Automated WhatsApp ordering funnel for frictionless conversion."
+            "Short-form video strategy focusing on food quality and prep transparency.",
+            "Coordination of brand-aligned social content for daily engagement.",
+            "WhatsApp-based customer service coordination for higher retention."
         ],
         execution: [
-            "Created 200+ pieces of short-form video content.",
-            "Managed AED 185,000+ in Meta Ad spend with daily optimization.",
-            "Launched weekly referral programs for community growth."
+            "Produced 150+ vertical video assets for TikTok and Instagram.",
+            "Supported Meta Ad campaigns with creative strategy and content.",
+            "Coordinated with production team for consistent visual output."
         ],
-        results: "Achieved consistent month-over-month growth and high customer retention. The brand became a household name in the health niche.",
+        results: "Successfully managed the brand's social growth during its first year, establishing it as a credible player in the health niche.",
         metrics: [
             { label: "Meals Delivered", value: "21k+", trend: "up" },
-            { label: "Revenue Growth", value: "3x", trend: "up" },
-            { label: "Customer Retention", value: "40%+", trend: "up" }
+            { label: "Community Growth", value: "3.5x", trend: "up" },
+            { label: "Ad Spend Supported", value: "AED 300K+", trend: "up" }
         ],
-        image: "/assets/images/experience/prepmeal.jpg",
+        image: "/assets/images/case-studies/prepmeal/Mockup.png",
         visuals: [
-            "/assets/images/experience/prepmeal.jpg",
+            "/assets/images/case-studies/prepmeal/Mockup.png",
             "/assets/images/brands/Q4/Ad 9.jpg"
         ],
-        tags: ["Content Strategy", "Brand Growth", "Retention Systems"],
+        tags: ["Social Media Management", "Content Planning", "Coordination"],
         featured: true
     },
     {
@@ -128,66 +129,65 @@ export const caseStudies: CaseStudy[] = [
         client: "Steaburg",
         industry: "Food & Beverage",
         headline: "Dominating Local Search",
-        description: "Transformed Steaburg's digital presence by optimizing their Google Business Profile and implementing a high-velocity review system.",
-        challenge: "Low digital visibility with only 26 reviews compared to thousands for competitors.",
+        description: "Improved Steaburg's local visibility by optimizing their Google Business Profile and implementing a review collection system.",
+        challenge: "Low digital search visibility in a highly competitive local food market.",
         strategy: [
-            "Full GBP optimization with keyword-rich descriptions.",
-            "Physical 'Review Us' QR card system at checkout.",
-            "Hyper-local Meta and TikTok ad targeting within 3km."
+            "Google Business Profile (GBP) optimization and keyword refinement.",
+            "Physical review prompt system to increase social proof.",
+            "Local social content to drive neighborhood awareness."
         ],
         execution: [
-            "Launched weekly professional food photography updates.",
-            "Submitted business to 10+ high-authority UAE directories.",
-            "Implemented proximity-based ad campaigns."
+            "Optimized business description and service categories for search.",
+            "Coordinated professional food photography for profile updates.",
+            "Implemented proximity-based social ad strategy."
         ],
-        results: "Significant jump in Google Local Pack rankings and doubled review velocity within the first month.",
+        results: "Increased local search visibility and halved the gap with top category competitors within 3 months.",
         metrics: [
             { label: "Google Reviews", value: "100+", trend: "up" },
-            { label: "Local Ranking", value: "Top 3", trend: "up" },
-            { label: "Phone Calls", value: "+40%", trend: "up" }
+            { label: "Local Visibility", value: "+40%", trend: "up" },
+            { label: "Search Actions", value: "Consistently Up", trend: "up" }
         ],
         image: "/assets/images/case-studies/steaburg/strategy.png",
         visuals: [
             "/assets/images/case-studies/steaburg/audit.png",
             "/assets/images/case-studies/steaburg/strategy.png",
-            "/assets/images/case-studies/steaburg/works.png",
-            "/assets/images/case-studies/steaburg/comparison.png",
-            "/assets/images/case-studies/steaburg/mistakes.png"
+            "/assets/images/case-studies/steaburg/works.png"
         ],
-        tags: ["Local SEO", "GBP Optimization", "Review Systems"],
-        featured: true
+        tags: ["Local SEO", "GBP Optimization", "Marketing Support"],
+        featured: true,
+        reportUrl: "/assets/images/case-studies/steaburg/Steaburg Strategy.pdf"
     },
     {
         id: "sias-group-seo",
         slug: "sias-group-b2b",
         client: "SIAS Group",
         industry: "Business Solutions",
-        headline: "Architecting B2B Search Dominance",
-        description: "Recovered a dormant B2B website by fixing technical SEO fundamentals and optimizing indexing for high-value services in the UAE.",
-        challenge: "The client had a 'simple site' that was completely invisible to search engines.",
+        headline: "Optimizing B2B Search Presence",
+        description: "Recovered a dormant B2B website by fixing technical SEO fundamentals and improving indexing for core services in the UAE.",
+        challenge: "Corporate website was not correctly indexed, leading to zero search visibility.",
         strategy: [
-            "Comprehensive technical SEO audit and indexing fix.",
-            "Google Search Console integration and sitemap optimization.",
-            "Keyword targeting for enterprise-level business solutions in UAE."
+            "Technical SEO audit and Google Search Console indexing fix.",
+            "Sitemap optimization and service page keyword refinement.",
+            "Focusing on high-intent B2B search terms in the UAE."
         ],
         execution: [
-            "Resolved critical crawl errors and meta-tag inconsistencies.",
-            "Optimized site architecture for faster indexing.",
-            "Monitored performance metrics for inbound lead verification."
+            "Resolved critical crawl and indexing errors.",
+            "Optimized meta-data for service category pages.",
+            "Monitored Search Console for keyword performance."
         ],
-        results: "Site transformed from zero visibility to receiving direct calls from reputable companies within 3 months.",
+        results: "Site visibility restored in search results, contributing to professional inbound inquiries.",
         metrics: [
-            { label: "Organic Reach", value: "High", trend: "up" },
-            { label: "Event Count", value: "2.5k+", trend: "up" },
-            { label: "Inbound Leads", value: "Weekly", trend: "up" }
+            { label: "Organic Indexing", value: "Restored", trend: "up" },
+            { label: "B2B Impressions", value: "2.5k+", trend: "up" },
+            { label: "Lead Quality", value: "High", trend: "up" }
         ],
         image: "/assets/images/case-studies/sisa/full_layout.png",
         visuals: [
             "/assets/images/case-studies/sisa/search_console.png",
-            "/assets/images/case-studies/sisa/traffic_sources.png",
-            "/assets/images/case-studies/sisa/full_layout.png"
+            "/assets/images/case-studies/sisa/traffic_sources.png"
         ],
-        tags: ["Technical SEO", "B2B Lead Gen", "Indexing Strategy"],
-        featured: true
+        tags: ["Technical SEO", "B2B Marketing", "Crawl Optimization"],
+        featured: true,
+        reportUrl: "/assets/images/case-studies/sisa/Sias Group Report.pdf"
     }
 ];

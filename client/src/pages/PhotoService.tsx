@@ -106,7 +106,7 @@ export default function PhotoService() {
             <section className="py-24 bg-muted/10 border-y border-border/50">
                 <div className="container max-w-5xl">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Post-Production Mastery</h2>
+                        <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Professional Post-Production</h2>
                         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                             Every image undergoes rigorous color grading and retouching.
                             I ensure the final output is flawless while maintaining natural texture.

@@ -65,7 +65,7 @@ export function ServiceCard({
                         rotateY,
                         transformStyle: "preserve-3d",
                     }}
-                    className="group relative flex flex-col justify-end h-[450px] md:h-[550px] p-8 rounded-[2rem] overflow-hidden bg-card border border-border/50 hover:border-transparent transition-colors cursor-pointer"
+                    className="group relative flex flex-col justify-end h-[400px] sm:h-[450px] md:h-[550px] p-6 md:p-8 rounded-[2rem] overflow-hidden bg-card border border-border/50 hover:border-transparent transition-colors cursor-pointer"
                 >
                     {/* Background Layer */}
                     <div className="absolute inset-0 z-0 select-none pointer-events-none">
@@ -116,7 +116,7 @@ export function ServiceCard({
                             </div>
                         </div>
 
-                        <h3 className="text-4xl md:text-5xl font-display font-medium text-white mb-3 leading-tight tracking-tight">
+                        <h3 className="text-3xl md:text-5xl font-display font-medium text-white mb-3 leading-tight tracking-tight">
                             {title}
                         </h3>
                         <p className="text-white/70 text-base md:text-lg line-clamp-2 leading-relaxed group-hover:text-white/90 transition-colors">

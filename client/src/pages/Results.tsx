@@ -5,16 +5,16 @@ import { TrendingUp, Users, Target, BarChart3, PieChart, ArrowUpRight } from "lu
 
 export default function Results() {
     return (
-        <div className="min-h-screen bg-background pt-32 pb-20">
+        <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
                 {/* Header */}
-                <div className="mb-20">
-                    <h1 className="text-6xl md:text-9xl font-display font-bold tracking-tighter mb-8 uppercase italic">
+                <div className="mb-16 md:mb-20">
+                    <h1 className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter mb-6 md:mb-8 uppercase italic">
                         The <span className="text-orange-500">Proof</span>.
                     </h1>
-                    <p className="text-xl md:text-3xl text-muted-foreground max-w-3xl font-light leading-relaxed">
-                        Concrete evidence of growth. From hyper-local local SEO dominance to
-                        scaling multi-million dollar B2B pipelines.
+                    <p className="text-lg md:text-3xl text-muted-foreground max-w-3xl font-light leading-relaxed">
+                        Concrete evidence of growth. From hyper-local SEO dominance to
+                        optimizing professional B2B pipelines.
                     </p>
                 </div>
 
@@ -29,8 +29,8 @@ export default function Results() {
                             transition={{ delay: i * 0.1 }}
                             className="glass-card p-8 border border-white/5"
                         >
-                            <div className="text-4xl md:text-6xl font-display font-bold text-white mb-2">
-                                {metric.value}
+                            <div className="text-3xl md:text-6xl font-display font-bold text-white mb-2">
+                                {metric.prefix}{metric.value}{metric.suffix}
                             </div>
                             <div className="text-xs uppercase tracking-[0.2em] text-orange-500 font-bold">
                                 {metric.label}
@@ -57,7 +57,7 @@ export default function Results() {
                                         {camp.industry}
                                     </span>
                                 </div>
-                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">
+                                <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 leading-tight">
                                     {camp.headline}
                                 </h2>
                                 <p className="text-lg text-muted-foreground mb-12 font-light leading-relaxed">

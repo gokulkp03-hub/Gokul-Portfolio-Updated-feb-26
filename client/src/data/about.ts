@@ -9,28 +9,28 @@ export interface ExperienceItem {
 
 export const bio = {
     name: "Gokul KP",
-    role: "Creative Strategist & Founder",
+    role: "Creative Strategist",
     description: "Transforming brand narratives into strategic digital growth. Specialized in performance marketing, cinematic content creation, and automated funnel systems.",
-    longDescription: "With over 3 years of hands-on experience in building brand identities from the ground up, I focus on the intersection of high-end aesthetics and data-driven performance. My journey started with a passion for visual storytelling through cinematography, which eventually evolved into building scalable marketing systems for premium brands in the UAE and beyond. I believe that every frame should have a purpose, and every ad should have a ROI."
+    longDescription: "With over 3 years of hands-on experience in building brand identities in the UAE, I focus on the intersection of premium aesthetics and marketing results. My journey started with a passion for visual storytelling, which eventually evolved into managing social content and ad creatives for premium brands. I believe that every frame should have a purpose, and every content piece should drive measurable impact."
 };
 
 export const experiences: ExperienceItem[] = [
     {
         company: "PrepMeal",
-        position: "Founder & Creative Strategist",
+        position: "Social Media Manager",
         duration: "Jan 2023 - Present",
-        description: "Leading the creative and growth strategy for a healthy meal prep brand, handling full-funnel marketing from organic content to paid ads.",
+        description: "Executing the creative and growth strategy for a healthy meal prep brand, handling full-funnel marketing from organic content to paid ads.",
         responsibilities: [
-            "Architected the full-funnel marketing strategy from identity launch to scaling.",
-            "Produced 300+ vertical video assets for TikTok and Instagram reels.",
-            "Managed Meta ad accounts with AED 185,000+ quarterly spend.",
-            "Implemented WhatsApp-based sales automation increasing conversion by 25%."
+            "Coordinated the full-funnel marketing strategy from identity launch to scaling.",
+            "Produced 150+ vertical video assets for TikTok and Instagram reels.",
+            "Supported Meta ad accounts with AED 185,000+ quarterly spend.",
+            "Implemented WhatsApp-based sales coordination increasing conversion by 25%."
         ],
         achievements: [
-            "Scaled brand to 21,000+ meals delivered in the first year.",
-            "Achieved a consistent 3.5x ROAS on lead generation campaigns.",
-            "Built an organic social community of 50k+ followers.",
-            "Successfully expanded operations to 2 major metro cities."
+            "Managed brand to 21,000+ meals delivered in the first year.",
+            "Contributed to a consistent 3.5x ROAS on lead generation campaigns.",
+            "Grew social community with focused organic content.",
+            "Successfully coordinated operational expansion across 2 regions."
         ]
     },
     {
@@ -77,10 +77,10 @@ export const skills = {
         "Brand Identity Development"
     ],
     creative: [
-        "Cinematography & Cinematic Lighting",
-        "Mastery of Premiere Pro & Davinci Resolve",
-        "Motion Design & Visual Effects",
-        "Automotive & Product Photography",
-        "Creative Direction & Storyboarding"
+        "Video Shooting & Camera Handling",
+        "CapCut & Premiere Pro Editing",
+        "Product Photography & Editing",
+        "Short-form Content Strategy",
+        "Meta Ads Creative Design"
     ]
 };

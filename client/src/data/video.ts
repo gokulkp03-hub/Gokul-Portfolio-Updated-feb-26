@@ -10,21 +10,39 @@ export interface VideoProject {
 
 export const videoProjects: VideoProject[] = [
     {
-        id: "wedding-highlight-1",
-        title: "Cinematic Wedding Memories",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.mp4",
-        description: "Capturing the pure emotion and timeless moments of a beautiful wedding day.",
-        featured: true
-    },
-    {
         id: "boss-branding-1",
         title: "The Entrepreneur Mindset",
         category: "Personal Branding",
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.mp4",
         description: "A high-impact brand story for a visionary entrepreneur.",
+        featured: true
+    },
+    {
+        id: "product-showcase-1",
+        title: "Luxury Watch Reveal",
+        category: "Product",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Product_1_gfqhqr.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Product_1_gfqhqr.mp4",
+        description: "Premium product showcase highlighting craftsmanship and detail.",
+        featured: true
+    },
+    {
+        id: "event-quant-dubai",
+        title: "Quant Event Dubai",
+        category: "Events",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Quant_hmvjvq.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Quant_hmvjvq.mp4",
+        description: "Dynamic highlights from the high-energy Quant event in Dubai.",
+        featured: true
+    },
+    {
+        id: "reel-brand-identity",
+        title: "Brand Identity Story",
+        category: "Reels",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_n4wvsc.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_n4wvsc.mp4",
+        description: "A punchy, vertical brand narrative for modern social audiences.",
         featured: true
     },
     {
@@ -36,14 +54,6 @@ export const videoProjects: VideoProject[] = [
         description: "Deep dive into the journey of building a premium brand."
     },
     {
-        id: "event-quant-dubai",
-        title: "Quant Event Dubai",
-        category: "Events",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Quant_hmvjvq.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Quant_hmvjvq.mp4",
-        description: "Dynamic highlights from the high-energy Quant event in Dubai."
-    },
-    {
         id: "event-inauguration",
         title: "Grand Inauguration",
         category: "Events",
@@ -52,36 +62,20 @@ export const videoProjects: VideoProject[] = [
         description: "Official ceremony and ribbon cutting highlights for a major launch."
     },
     {
+        id: "wedding-highlight-1",
+        title: "Cinematic Wedding Memories",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.mp4",
+        description: "Capturing the pure emotion and timeless moments of a beautiful wedding day."
+    },
+    {
         id: "game-street-reel",
         title: "Game Street Showcase",
         category: "Events",
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Game_Street_Reel_1_zosjmg.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Game_Street_Reel_1_zosjmg.mp4",
         description: "Fast-paced event recap capturing the electric atmosphere."
-    },
-    {
-        id: "wedding-cinematic-5",
-        title: "Eternal Love Story",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/5_t1jx9h.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/5_t1jx9h.mp4",
-        description: "A celebration of love, culture, and togetherness."
-    },
-    {
-        id: "motion-dynamic-reel",
-        title: "Dynamic Motion Reel",
-        category: "Motion Graphics",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_ci2fz2.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_ci2fz2.mp4",
-        description: "Pushing boundaries with motion design and visual effects."
-    },
-    {
-        id: "reel-brand-identity",
-        title: "Brand Identity Story",
-        category: "Reels",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_n4wvsc.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_n4wvsc.mp4",
-        description: "A punchy, vertical brand narrative for modern social audiences."
     },
     {
         id: "reel-professional-showcase",

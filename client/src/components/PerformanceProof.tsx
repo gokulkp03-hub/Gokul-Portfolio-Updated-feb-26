@@ -4,23 +4,23 @@ const PERFORMANCE_PROOF = [
     {
         id: 1,
         client: "Healthy Meals",
-        metric: "4.2x ROAS",
-        result: "$63k Revenue",
-        image: "/assets/images/case-studies/healthy-meals/results.jpg"
+        metric: "3.2x ROAS",
+        result: "AED 220k Revenue",
+        image: "/assets/images/case-studies/prepmeal/Mockup.png" // Using available asset
     },
     {
         id: 2,
         client: "BeyondCars",
-        metric: "287 Leads",
-        result: "$42 Cost/Lead",
-        image: "/assets/images/case-studies/beyondcars/campaign-overview.jpg"
+        metric: "150+ Leads",
+        result: "AED 180 CPL",
+        image: "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg"
     },
     {
         id: 3,
         client: "PrepMeal",
-        metric: "-38% CPA",
-        result: "300+ Leads",
-        image: "/assets/images/case-studies/prepmeal/results.jpg"
+        metric: "150+ Creatives",
+        result: "21k+ Deliveries",
+        image: "/assets/images/case-studies/prepmeal/Mockup.png"
     }
 ];
 

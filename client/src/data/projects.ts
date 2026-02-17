@@ -15,6 +15,7 @@ export interface Project {
     // Media
     images?: string[];
     videoUrl?: string;
+    cloudinaryId?: string;
 
     // Detail page content
     challenge?: string;
@@ -71,7 +72,7 @@ export const projects: Project[] = [
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.mp4",
         description: "A high-impact brand story for a visionary entrepreneur.",
-        client: "Tech Startup Founder",
+        client: "Social Media Campaign",
         role: "Director & Editor",
         tools: ["DaVinci Resolve", "After Effects", "Sony FX3"],
         date: "2024",
@@ -100,6 +101,7 @@ export const projects: Project[] = [
         subcategory: "Product",
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Product_1_gfqhqr.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Product_1_gfqhqr.mp4",
+        cloudinaryId: "Product_1_gfqhqr",
         description: "Premium product showcase highlighting craftsmanship and detail.",
         client: "Luxury Watch Brand",
         role: "Product Videographer",
