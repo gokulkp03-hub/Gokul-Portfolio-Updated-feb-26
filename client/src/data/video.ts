@@ -116,5 +116,69 @@ export const videoProjects: VideoProject[] = [
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_yeqql7.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_yeqql7.mp4",
         description: "Sophisticated wedding highlights with emotional depth."
+    },
+    {
+        id: "burj-aerial",
+        title: "Burj Khalifa Aerial",
+        category: "Events",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Burj_2_hcocpv.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Burj_2_hcocpv.mp4",
+        description: "Breathtaking aerial views of the iconic Burj Khalifa."
+    },
+    {
+        id: "anu-save-date",
+        title: "Anu Save the Date",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu_Save_the_date_wm3qle.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu_Save_the_date_wm3qle.mp4",
+        description: "A beautiful cinematic save-the-date film."
+    },
+    {
+        id: "wedding-film-7",
+        title: "Timeless Celebration",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/7_t4fw2q.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/7_t4fw2q.mp4",
+        description: "Capturing the essence of a beautiful wedding union."
+    },
+    {
+        id: "wedding-film-12",
+        title: "Vibrant Vows",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/12_zhg9oi.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/12_zhg9oi.mp4",
+        description: "Emotional highlights from a vibrant wedding celebration."
+    },
+    {
+        id: "wedding-film-10",
+        title: "Golden Hour Memories",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/10_exc2jg.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/10_exc2jg.mp4",
+        description: "Cinematic wedding highlights captured during the golden hour."
+    },
+    {
+        id: "wedding-film-15",
+        title: "Eternal Bond",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/15_vn0m4b.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/15_vn0m4b.mp4",
+        description: "A soulful wedding film capturing every precious moment."
+    },
+    {
+        id: "anu-2",
+        title: "Anu's Story",
+        category: "Personal Branding",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu-_2_ziwvlp.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu-_2_ziwvlp.mp4",
+        description: "Personal branding story highlighting growth and vision."
+    },
+    {
+        id: "video-2025-07",
+        title: "Creative Reel 2025",
+        category: "Reels",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.mp4",
+        description: "A dynamic showcase of creative projects from 2025."
     }
 ];

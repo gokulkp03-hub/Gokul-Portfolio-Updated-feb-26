@@ -49,7 +49,9 @@ export default function ShowreelModal({ isOpen, onClose, videoId = "VIDEO_ID" }:
                     >
                         <iframe
                             className="w-full h-full"
-                            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
+                            src={videoId.includes('_') || videoId.match(/^[0-9]+$/)
+                                ? `https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${videoId}&autoplay=true`
+                                : `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
                             title="Showreel"
                             allow="autoplay; encrypted-media; picture-in-picture"
                             allowFullScreen

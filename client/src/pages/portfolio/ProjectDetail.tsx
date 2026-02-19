@@ -110,7 +110,9 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                     >
                         {project.videoUrl ? (
                             <iframe
-                                src={project.videoUrl.replace(".mp4", "") + "?autoplay=1&muted=1&loop=1"}
+                                src={project.cloudinaryId
+                                    ? `https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${project.cloudinaryId}&autoplay=true&muted=true&loop=true`
+                                    : project.videoUrl.replace(".mp4", "") + "?autoplay=1&muted=1&loop=1"}
                                 className="absolute inset-0 w-full h-full object-cover"
                                 allow="autoplay; fullscreen"
                                 title="Project Preview Video"
