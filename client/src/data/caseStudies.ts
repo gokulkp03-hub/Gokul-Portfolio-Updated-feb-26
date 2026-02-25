@@ -51,9 +51,9 @@ export const caseStudies: CaseStudy[] = [
             { label: "Community Growth", value: "3.5x", trend: "up" },
             { label: "Ad Spend Supported", value: "AED 300K+", trend: "up" }
         ],
-        image: "/assets/images/case-studies/prepmeal/Mockup.png",
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg",
         visuals: [
-            "/assets/images/case-studies/prepmeal/Mockup.png",
+            "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg",
             "/assets/images/brands/Q4/Ad 9.jpg"
         ],
         tags: ["Social Media Management", "Content Planning", "Coordination"],

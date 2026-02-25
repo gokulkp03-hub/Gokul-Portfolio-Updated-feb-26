@@ -9,6 +9,22 @@ export interface PhotoProject {
 
 export const photoProjects: PhotoProject[] = [
     {
+        id: "food-pancakes-1",
+        title: "Maple Drip Pancakes",
+        image: "/assets/images/brands/Food-Photography/Pancakes.jpg",
+        category: "Food",
+        description: "Mouth-watering breakfast lifestyle photography.",
+        featured: true
+    },
+    {
+        id: "food-cheesecake-1",
+        title: "Artisan Cheesecake",
+        image: "/assets/images/brands/Food-Photography/Cheesecake.jpg",
+        category: "Food",
+        description: "Delicious dessert detailing and styling.",
+        featured: true
+    },
+    {
         id: "wedding-photo-1",
         title: "Timeless Wedding Story",
         image: "/assets/images/photography/wedding/wedding-1.jpg",
@@ -107,5 +123,33 @@ export const photoProjects: PhotoProject[] = [
         image: "/assets/images/brands/Knk/Artboard 1.png",
         category: "Architecture",
         description: "Capturing the energy and flow of modern residential layouts."
+    },
+    {
+        id: "food-acai-bowl",
+        title: "Fresh Acai Smoothie",
+        image: "/assets/images/brands/Food-Photography/Acai Smoothie.jpg",
+        category: "Food",
+        description: "Vibrant and healthy food and beverage presentation."
+    },
+    {
+        id: "food-iced-v60",
+        title: "Iced V60 Pour Over",
+        image: "/assets/images/brands/Food-Photography/Iced V60.jpg",
+        category: "Food",
+        description: "Specialty coffee photography highlighting texture and lighting."
+    },
+    {
+        id: "food-chicken-pesto",
+        title: "Chicken Pesto Pasta",
+        image: "/assets/images/brands/Food-Photography/Chicken Pesto.jpg",
+        category: "Food",
+        description: "Savory dishes captured with appetizing detail."
+    },
+    {
+        id: "food-sourdough-zaatar",
+        title: "Sourdough Labneh Zaatar",
+        image: "/assets/images/brands/Food-Photography/Sourdough Labneh Zaatar.jpg",
+        category: "Food",
+        description: "Artisanal bakery and cafe food photography."
     }
 ];

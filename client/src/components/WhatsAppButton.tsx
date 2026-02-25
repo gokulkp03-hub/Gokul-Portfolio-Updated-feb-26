@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
         <AnimatePresence>
             {isVisible && (
                 <motion.a
-                    href="https://wa.me/919876543210" // Replace with actual number
+                    href="https://wa.me/971500000000" // UAE number format
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ scale: 0, opacity: 0 }}
@@ -30,11 +30,11 @@ export default function WhatsAppButton() {
                     exit={{ scale: 0, opacity: 0 }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="fixed bottom-6 right-6 z-50 p-4 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center cursor-pointer"
+                    className="fixed bottom-6 right-6 z-40 p-4 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center cursor-pointer mb-[env(safe-area-inset-bottom)]"
                     aria-label="Chat on WhatsApp"
                 >
                     <MessageCircle size={28} fill="currentColor" className="text-white" />
-                    <span className="absolute right-full mr-3 bg-white text-black px-2 py-1 rounded text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">
+                    <span className="absolute right-full mr-3 bg-white text-black px-2 py-1 rounded text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md hidden md:block">
                         Chat with me
                     </span>
                 </motion.a>

@@ -5,6 +5,7 @@ import { ArrowRight, Play, Camera, TrendingUp } from "lucide-react";
 import { ShowreelPreview } from "@/components/home/ShowreelPreview";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProofStrip } from "@/components/home/ProofStrip";
+import { LittleRoosterBranding } from "@/components/home/LittleRoosterBranding";
 import { GrowthEngine } from "@/components/home/GrowthEngine";
 import { MouseEvent } from "react";
 
@@ -68,6 +69,8 @@ export default function Home() {
             description="Cinematic brand films and high-impact reels."
             href="/video"
             color="bg-blue-500"
+            videoSrc="https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4"
+            imageSrc="/assets/images/brands/Beyond-Cars/beyondcarsin.webp"
             index={0}
           />
           <ServiceCard
@@ -75,6 +78,7 @@ export default function Home() {
             description="Premium product and lifestyle photography."
             href="/photo"
             color="bg-orange-500"
+            imageSrc="/assets/images/brands/Food-Photography/Cheesecake.jpg"
             index={1}
           />
           <ServiceCard
@@ -82,6 +86,7 @@ export default function Home() {
             description="Performance ads and growth strategy."
             href="/marketing"
             color="bg-emerald-500"
+            imageSrc="/assets/images/case-studies/prepmeal/PrepMeal Website.jpg"
             index={2}
           />
         </div>
@@ -94,7 +99,7 @@ export default function Home() {
       <section className="py-32 container px-4 md:px-8 max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 md:mb-6 tracking-tight">Recent Productions</h2>
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 md:mb-6 tracking-tight">Featured Work</h2>
             <p className="text-muted-foreground text-lg md:text-xl font-light">
               A curated selection of high-end visuals across all creative disciplines.
             </p>
@@ -112,6 +117,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Brand Identity Showcase */}
+      <LittleRoosterBranding />
 
       {/* Growth Engine Section */}
       <GrowthEngine />

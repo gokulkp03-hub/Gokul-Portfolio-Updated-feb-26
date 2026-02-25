@@ -10,6 +10,15 @@ export interface VideoProject {
 
 export const videoProjects: VideoProject[] = [
     {
+        id: "beyond-cars-showcase",
+        title: "Beyond Cars Showcase",
+        category: "Product",
+        thumbnail: "/assets/images/brands/Beyond-Cars/beyondcarsin.webp",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4",
+        description: "High-energy automotive video production highlighting luxury and performance.",
+        featured: true
+    },
+    {
         id: "boss-branding-1",
         title: "The Entrepreneur Mindset",
         category: "Personal Branding",

@@ -10,20 +10,16 @@ export const proof = {
         { label: "Ad creatives produced", value: "80", suffix: "+" },
         { label: "Ad spend supported", value: "300", prefix: "AED ", suffix: "K+" },
         { label: "Brands Handled", value: "5", suffix: "+" },
-        { label: "Meals Delivered (PrepMeal)", value: "21", suffix: "k+" },
     ],
     logos: [
-        "PrepMeal",
-        "Acero Steel",
-        "Beyond Cars",
-        "Galaxy Star",
-        "Suncore",
-        "Q4 Clean Home",
-        "TESS",
-        "KNK Interiors",
-        "Aqua Care",
-        "Steaburg",
-        "SIAS Group"
+        { name: "Beyond Cars", src: "/assets/images/logos/beyondcars.png" },
+        { name: "Acero Steel", src: "/assets/images/logos/Acero.png" },
+        { name: "Galaxy Star", src: "/assets/images/logos/Galaxy Star Perfumes.png" },
+        { name: "Suncore", src: "/assets/images/logos/Suncore.png" },
+        { name: "Q4 Clean Home", src: "/assets/images/logos/Q4c.png" },
+        { name: "Ecom 100", src: "/assets/images/logos/Ecom 100.png" },
+        { name: "PrepMeal", src: "/assets/images/logos/PrepMeal.png" },
+        { name: "Healthy Meals", src: "/assets/images/logos/Healthy_Meals.png" }
     ],
     testimonials: [
         {

@@ -32,16 +32,20 @@ export function ProofStrip() {
             <div className="container overflow-hidden">
 
                 {/* Infinite Scroll Logos */}
-                <div className="flex flex-nowrap md:justify-center gap-12 md:gap-24 items-center animate-scroll md:animate-none opacity-60 hover:opacity-100 transition-opacity mb-20">
+                <div className="flex flex-nowrap md:justify-center gap-10 md:gap-20 items-center animate-scroll md:animate-none group hover:opacity-100 transition-opacity mb-20 overflow-x-auto pb-4 hide-scrollbar">
                     {proof.logos.map((logo, i) => (
-                        <span key={i} className="text-xl md:text-2xl font-display font-medium text-muted-foreground whitespace-nowrap cursor-default">
-                            {logo}
-                        </span>
+                        <div key={i} className="flex-shrink-0 cursor-pointer opacity-50 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300">
+                            <img
+                                src={logo.src}
+                                alt={logo.name}
+                                className="h-8 md:h-12 w-auto object-contain dark:invert mix-blend-multiply dark:mix-blend-screen"
+                            />
+                        </div>
                     ))}
                 </div>
 
                 {/* Animated Metrics */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
                     {proof.metrics.map((metric, i) => {
                         // Parse value to number for animation
                         const numericValue = parseInt(metric.value.replace(/,/g, ''), 10);

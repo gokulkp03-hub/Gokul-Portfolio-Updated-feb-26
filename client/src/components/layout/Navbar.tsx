@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,10 @@ const Navbar = () => {
         };
 
         const handleEsc = (event: KeyboardEvent) => {
-            if (event.key === "Escape") setPortfolioOpen(false);
+            if (event.key === "Escape") {
+                setPortfolioOpen(false);
+                setIsOpen(false);
+            }
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -36,6 +40,18 @@ const Navbar = () => {
             document.removeEventListener("keydown", handleEsc);
         };
     }, []);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isOpen]);
 
     // Close menus on route change
     useEffect(() => {
@@ -66,7 +82,7 @@ const Navbar = () => {
         <>
             <nav
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+                    "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 border-b",
                     scrolled
                         ? "bg-background/80 backdrop-blur-md border-border/40 py-3"
                         : "bg-transparent border-transparent py-5"
@@ -158,7 +174,7 @@ const Navbar = () => {
                         <ThemeToggle />
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="text-foreground p-2 relative z-[110]"
+                            className="text-foreground p-2 relative z-[120]"
                             aria-label="Toggle menu"
                         >
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -168,52 +184,61 @@ const Navbar = () => {
             </nav>
 
             {/* Mobile Menu - Full Screen Sheet */}
-            {isOpen && (
-                <div className="fixed inset-0 z-[100] md:hidden bg-[#0A0A0B] w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto animate-in slide-in-from-right duration-500">
-                    <div className="flex flex-col space-y-8">
-                        {navLinks.map((link) => (
-                            <div key={link.name} className="space-y-3">
-                                <Link href={link.href}>
-                                    <a
-                                        className={cn(
-                                            "text-4xl font-display font-bold transition-colors block leading-tight",
-                                            location === link.href ? link.activeColor : "text-white"
-                                        )}
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {link.name}
-                                    </a>
-                                </Link>
-                                {link.dropdown && (
-                                    <div className="flex flex-col gap-4 pl-4 mt-2 border-l border-white/10">
-                                        {link.dropdown.map((item) => (
-                                            <Link key={item.name} href={item.href}>
-                                                <a
-                                                    className="block text-xl text-white/50 hover:text-orange-500 transition-colors py-1"
-                                                    onClick={() => setIsOpen(false)}
-                                                >
-                                                    {item.name}
-                                                </a>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, x: "100%" }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: "100%" }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className="fixed inset-0 z-[110] md:hidden bg-[#0A0A0B] w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto"
+                    >
+                        <div className="flex flex-col space-y-8">
+                            {navLinks.map((link) => (
+                                <div key={link.name} className="space-y-3">
+                                    <Link href={link.href}>
+                                        <a
+                                            className={cn(
+                                                "text-4xl font-display font-bold transition-colors block leading-tight",
+                                                location === link.href ? link.activeColor : "text-white"
+                                            )}
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            {link.name}
+                                        </a>
+                                    </Link>
+                                    {link.dropdown && (
+                                        <div className="flex flex-col gap-4 pl-4 mt-2 border-l border-white/10">
+                                            {link.dropdown.map((item) => (
+                                                <Link key={item.name} href={item.href}>
+                                                    <a
+                                                        className="block text-xl text-white/50 hover:text-orange-500 transition-colors py-1"
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        {item.name}
+                                                    </a>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
 
-                    <div className="mt-auto pt-10">
-                        <Link href="/contact">
-                            <a
-                                className="btn-primary w-full text-center py-4 text-base rounded-full"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Start a Project
-                            </a>
-                        </Link>
-                    </div>
-                </div>
-            )}
+                        <div className="mt-auto pt-10">
+                            <Link href="/contact">
+                                <a
+                                    className="btn-primary w-full text-center py-4 text-base rounded-full"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Start a Project
+                                </a>
+                            </Link>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
         </>
     );
 };

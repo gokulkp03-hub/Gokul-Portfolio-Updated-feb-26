@@ -18,6 +18,18 @@ export default function CategoryPage() {
     window.scrollTo(0, 0);
   }, [params.service, params.category]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (activeVideo !== null || lightboxIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [activeVideo, lightboxIndex]);
+
   // Map internal service ID to portfolioContent keys if they differ
   const sectionKeyMap: Record<string, string> = {
     "video-production": "video-production",

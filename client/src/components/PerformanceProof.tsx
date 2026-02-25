@@ -6,7 +6,7 @@ const PERFORMANCE_PROOF = [
         client: "Healthy Meals",
         metric: "3.2x ROAS",
         result: "AED 220k Revenue",
-        image: "/assets/images/case-studies/prepmeal/Mockup.png" // Using available asset
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg" // Using available asset
     },
     {
         id: 2,
@@ -20,7 +20,7 @@ const PERFORMANCE_PROOF = [
         client: "PrepMeal",
         metric: "150+ Creatives",
         result: "21k+ Deliveries",
-        image: "/assets/images/case-studies/prepmeal/Mockup.png"
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg"
     }
 ];
 

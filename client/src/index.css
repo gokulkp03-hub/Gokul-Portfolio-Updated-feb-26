@@ -50,6 +50,8 @@
 
 @layer base {
   :root {
+    scroll-padding-top: 100px;
+    /* ... rest of the properties ... */
     /* 
       THEME: Apple Premium 
       Light Mode: Soft Cream (Warm, Human, Calm)

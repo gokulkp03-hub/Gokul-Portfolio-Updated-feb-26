@@ -34,6 +34,21 @@ export interface Project {
 export const projects: Project[] = [
     // VIDEO PROJECTS
     {
+        id: "beyond-cars-showcase",
+        slug: "beyond-cars-video-showcase",
+        title: "Beyond Cars Showcase",
+        category: "video",
+        subcategory: "Automotive",
+        thumbnail: "/assets/images/brands/Beyond-Cars/beyondcarsin.webp",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4",
+        cloudinaryId: "lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht",
+        description: "High-energy automotive video production highlighting luxury and performance.",
+        client: "Beyond Cars",
+        role: "Director & Cinematographer",
+        date: "2024",
+        featured: true
+    },
+    {
         id: "wedding-highlight-1",
         slug: "cinematic-wedding-memories",
         title: "Cinematic Wedding Memories",
@@ -223,6 +238,57 @@ export const projects: Project[] = [
     },
 
     // PHOTO PROJECTS
+    {
+        id: "food-pancakes-1",
+        slug: "maple-drip-pancakes",
+        title: "Maple Drip Pancakes",
+        category: "photo",
+        subcategory: "Food",
+        thumbnail: "/assets/images/brands/Food-Photography/Pancakes.jpg",
+        description: "Mouth-watering breakfast lifestyle photography focusing on texture and syrup drip.",
+        client: "Breakfast Cafe",
+        role: "Food Photographer",
+        tools: ["Lightroom", "Macro Lens", "Natural Light"],
+        date: "2024",
+        featured: true
+    },
+    {
+        id: "food-cheesecake-1",
+        slug: "artisan-cheesecake",
+        title: "Artisan Cheesecake",
+        category: "photo",
+        subcategory: "Food",
+        thumbnail: "/assets/images/brands/Food-Photography/Cheesecake.jpg",
+        description: "Delicious dessert detailing and styling perfectly lit to showcase layers.",
+        client: "Artisan Bakery",
+        role: "Food Photographer",
+        date: "2024",
+        featured: true
+    },
+    {
+        id: "food-iced-v60",
+        slug: "iced-v60-pour-over",
+        title: "Iced V60 Pour Over",
+        category: "photo",
+        subcategory: "Food",
+        thumbnail: "/assets/images/brands/Food-Photography/Iced V60.jpg",
+        description: "Specialty coffee photography highlighting texture, condensation, and lighting.",
+        client: "Specialty Coffee Shop",
+        role: "Food Photographer",
+        date: "2024"
+    },
+    {
+        id: "food-chicken-pesto",
+        slug: "chicken-pesto-pasta",
+        title: "Chicken Pesto Pasta",
+        category: "photo",
+        subcategory: "Food",
+        thumbnail: "/assets/images/brands/Food-Photography/Chicken Pesto.jpg",
+        description: "Savory dishes captured with appetizing detail and vibrant colors.",
+        client: "Italian Restaurant",
+        role: "Food Photographer",
+        date: "2024"
+    },
     {
         id: "product-photo-1",
         slug: "premium-product-photography",

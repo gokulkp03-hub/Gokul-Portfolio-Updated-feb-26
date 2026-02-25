@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, Project } from "@/data/projects";
-import { Link } from "wouter";
-import { Play, Camera, Edit, Share2, TrendingUp, ArrowUpRight } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { Play, Camera, Edit, Share2, TrendingUp, ArrowUpRight, RotateCcw } from "lucide-react";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 type FilterCategory = "all" | Project["category"];
 
@@ -15,7 +16,18 @@ const categoryIcons = {
 };
 
 export default function PortfolioLayout() {
-    const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
+    const [location] = useLocation();
+    const searchParams = new URLSearchParams(window.location.search);
+    const filterParam = searchParams.get("filter") as FilterCategory | null;
+
+    const [activeFilter, setActiveFilter] = useState<FilterCategory>(filterParam || "all");
+
+    // Sync state if filterParam changes (e.g. from Navbar click while on page)
+    useEffect(() => {
+        if (filterParam && filterParam !== activeFilter) {
+            setActiveFilter(filterParam);
+        }
+    }, [filterParam]);
 
     const filteredProjects = activeFilter === "all"
         ? projects
@@ -57,8 +69,8 @@ export default function PortfolioLayout() {
                                 key={filter.value}
                                 onClick={() => setActiveFilter(filter.value)}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${activeFilter === filter.value
-                                        ? "bg-orange-500 text-white shadow-lg"
-                                        : "text-muted-foreground hover:text-white"
+                                    ? "bg-orange-500 text-white shadow-lg"
+                                    : "text-muted-foreground hover:text-white"
                                     }`}
                             >
                                 {filter.label}
@@ -88,11 +100,11 @@ export default function PortfolioLayout() {
                                 >
                                     <Link href={`/portfolio/${project.category}/${project.slug}`}>
                                         <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted border border-border/40 transition-colors cursor-pointer group-hover:border-orange-500/30">
-                                            <img
+                                            <SafeImage
                                                 src={project.thumbnail}
                                                 alt={project.title}
+                                                aspectRatio="portrait"
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                                loading="lazy"
                                             />
 
                                             {/* Overlays */}
@@ -130,9 +142,20 @@ export default function PortfolioLayout() {
 
                 {/* Empty State */}
                 {filteredProjects.length === 0 && (
-                    <div className="text-center py-40">
-                        <p className="text-xl text-muted-foreground italic">No projects found in this category.</p>
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-center py-40 bg-white/5 rounded-[3rem] border border-dashed border-white/10"
+                    >
+                        <RotateCcw className="w-12 h-12 text-muted-foreground mx-auto mb-6 opacity-20" />
+                        <p className="text-xl text-muted-foreground italic mb-8">No projects found in this category.</p>
+                        <button
+                            onClick={() => setActiveFilter("all")}
+                            className="btn-secondary rounded-full"
+                        >
+                            Reset Filters
+                        </button>
+                    </motion.div>
                 )}
 
             </div>
