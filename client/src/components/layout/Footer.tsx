@@ -31,17 +31,17 @@ export default function Footer() {
                         <div className="flex flex-col gap-3">
                             <Link href="/portfolio"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Case Studies</a></Link>
                             <Link href="/about"><a className="text-sm font-medium hover:text-orange-400 transition-colors">About</a></Link>
-                            <Link href="mailto:hello@gokulkp.com"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</a></Link>
+                            <Link href="mailto:gokulkp03@gmail.com"><a className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</a></Link>
                         </div>
                     </div>
 
                     {/* Socials */}
                     <div className="flex gap-4">
                         {[
-                            { icon: Instagram, href: "https://instagram.com" },
-                            { icon: Linkedin, href: "https://linkedin.com" },
+                            { icon: Instagram, href: "https://www.instagram.com/__agotime/" },
+                            { icon: Linkedin, href: "https://www.linkedin.com/in/gokul-kp03" },
                             { icon: Twitter, href: "https://twitter.com" },
-                            { icon: Mail, href: "mailto:hello@gokulkp.com" },
+                            { icon: Mail, href: "mailto:gokulkp03@gmail.com" },
                         ].map((social, i) => (
                             <a
                                 key={i}

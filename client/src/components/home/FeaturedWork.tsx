@@ -11,7 +11,7 @@ export function FeaturedWork() {
         .filter(v => v.featured && v.category !== "Weddings")
         .slice(0, 2);
     const featuredPhotos = photoProjects
-        .filter(p => p.featured && p.category !== "Wedding")
+        .filter(p => p.featured && p.category !== "Wedding" && p.title !== "Beyond Cars - Luxury Fleet")
         .slice(0, 2);
     const featuredMarketing = caseStudies
         .filter(m => m.featured)

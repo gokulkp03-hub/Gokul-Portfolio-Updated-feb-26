@@ -115,7 +115,7 @@ export default function Results() {
                     <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                         {proof.logos.map((logo, i) => (
                             <span key={i} className="text-2xl font-display font-bold text-white whitespace-nowrap">
-                                {logo}
+                                {logo.name}
                             </span>
                         ))}
                     </div>

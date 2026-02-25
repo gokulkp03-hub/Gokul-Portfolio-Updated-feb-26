@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
         <AnimatePresence>
             {isVisible && (
                 <motion.a
-                    href="https://wa.me/971500000000" // UAE number format
+                    href="https://wa.me/971545264632" // UAE number format
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ scale: 0, opacity: 0 }}

@@ -10,7 +10,7 @@ export interface ExperienceItem {
 export const bio = {
     name: "Gokul KP",
     role: "Creative Strategist",
-    description: "Transforming brand narratives into strategic digital growth. Specialized in performance marketing, cinematic content creation, and automated funnel systems.",
+    description: "Driving digital growth through performance marketing & cinematic content.",
     longDescription: "With over 3 years of hands-on experience in building brand identities in the UAE, I focus on the intersection of premium aesthetics and marketing results. My journey started with a passion for visual storytelling, which eventually evolved into managing social content and ad creatives for premium brands. I believe that every frame should have a purpose, and every content piece should drive measurable impact."
 };
 
