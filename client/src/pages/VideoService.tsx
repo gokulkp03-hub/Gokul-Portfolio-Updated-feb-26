@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Play, Film, Clock, CheckCircle2, ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { videoProjects } from "@/data/video";
+import { trpc } from "@/lib/trpc";
+import { useMemo } from "react";
 
 const services = [
     { title: "Music Videos", desc: "Cinematic visuals that match the beat." },
@@ -36,6 +37,16 @@ const packages = [
 ];
 
 export default function VideoService() {
+    const { data: dbProjects } = trpc.projects.list.useQuery();
+    
+    const videos = useMemo(() => {
+        if (!dbProjects) return [];
+        return dbProjects.filter((p: any) => p.category.toLowerCase() === "video");
+    }, [dbProjects]);
+
+    const showreel = videos.length > 0 ? videos[0] : null;
+    const latestVideos = videos.slice(0, 4);
+
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden">
 
@@ -92,13 +103,17 @@ export default function VideoService() {
                                 <Play className="w-8 h-8 text-white fill-current ml-1" />
                             </div>
                         </div>
-                        <img
-                            src={videoProjects[0].thumbnail}
-                            alt="Showreel Cover"
-                            className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
-                        />
+                        {showreel ? (
+                            <img
+                                src={showreel.thumbnail || ""}
+                                alt="Showreel Cover"
+                                className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-muted/20 opacity-60" />
+                        )}
                         <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
-                            <h2 className="text-2xl font-bold text-white">{videoProjects[0].title}</h2>
+                            <h2 className="text-2xl font-bold text-white">{showreel?.title || "Showreel Coming Soon"}</h2>
                             <p className="text-white/60">Cinematic Collection 2024</p>
                         </div>
                     </div>
@@ -112,17 +127,17 @@ export default function VideoService() {
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {videoProjects.map((project, i) => (
-                        <Link key={project.id} href="/portfolio">
-                            <motion.div
+                    {latestVideos.map((project: any, i: number) => (
+                        <Link key={project.id} href={`/portfolio/${project.category}/${project.slug}`}>
+                            <motion.a
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="group relative aspect-video rounded-2xl overflow-hidden bg-muted cursor-pointer border border-border/50"
+                                className="block group relative aspect-video rounded-2xl overflow-hidden bg-muted cursor-pointer border border-border/50"
                             >
                                 <img
-                                    src={project.thumbnail}
+                                    src={project.thumbnail || ""}
                                     alt={project.title}
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
@@ -134,9 +149,12 @@ export default function VideoService() {
                                         <ArrowRight className="w-5 h-5 -rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" />
                                     </h3>
                                 </div>
-                            </motion.div>
+                            </motion.a>
                         </Link>
                     ))}
+                    {latestVideos.length === 0 && (
+                        <p className="col-span-full text-center text-muted-foreground">Video projects coming soon.</p>
+                    )}
                 </div>
             </section>
 

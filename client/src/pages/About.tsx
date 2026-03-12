@@ -1,8 +1,15 @@
 import { motion } from "framer-motion";
 import { bio, experiences, skills } from "@/data/about";
 import { Coffee, Code, Heart, Trophy, Target, Sparkles, MapPin, ArrowUpRight } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 export default function About() {
+    const { data: content } = trpc.content.get.useQuery();
+    
+    const aboutTextRaw = content?.aboutText || bio.longDescription;
+    const chunks = aboutTextRaw.split('\n\n');
+    const displayHeading = chunks[0] || bio.description;
+    const displayParas = chunks.slice(1).length > 0 ? chunks.slice(1) : chunks;
     return (
         <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
@@ -56,10 +63,10 @@ export default function About() {
                         <section>
                             <h2 className="text-sm uppercase tracking-[0.4em] text-orange-500 mb-8">Professional Philosophy</h2>
                             <p className="text-2xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-8 md:mb-12 leading-tight">
-                                {bio.description}
+                                {displayHeading}
                             </p>
                             <div className="prose prose-invert max-w-none text-muted-foreground text-lg font-light leading-relaxed">
-                                {bio.longDescription.split('\n\n').map((p, i) => (
+                                {displayParas.map((p, i) => (
                                     <p key={i} className="mb-6">{p}</p>
                                 ))}
                             </div>

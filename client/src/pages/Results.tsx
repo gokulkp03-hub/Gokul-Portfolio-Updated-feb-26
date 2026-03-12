@@ -1,9 +1,18 @@
 import { motion } from "framer-motion";
 import { proof } from "@/data/proof";
-import { marketingCampaigns } from "@/data/marketing";
 import { TrendingUp, Users, Target, BarChart3, PieChart, ArrowUpRight } from "lucide-react";
+import { Link } from "wouter";
+import { trpc } from "@/lib/trpc";
+import { useMemo } from "react";
 
 export default function Results() {
+    const { data: dbProjects } = trpc.projects.list.useQuery();
+    
+    const campaigns = useMemo(() => {
+        if (!dbProjects) return [];
+        return dbProjects.filter((p: any) => p.category.toLowerCase() === "marketing");
+    }, [dbProjects]);
+
     return (
         <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
@@ -41,72 +50,97 @@ export default function Results() {
 
                 {/* Visual Wall of Wins */}
                 <div className="space-y-32">
-                    {marketingCampaigns.map((camp, i) => (
-                        <div key={camp.id} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            <motion.div
-                                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                className={i % 2 === 0 ? "order-1" : "order-1 lg:order-2"}
-                            >
-                                <div className="flex items-center gap-3 mb-6">
-                                    <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-500 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                                        {camp.client}
-                                    </span>
-                                    <span className="text-muted-foreground text-sm font-light italic">
-                                        {camp.industry}
-                                    </span>
-                                </div>
-                                <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 leading-tight">
-                                    {camp.headline}
-                                </h2>
-                                <p className="text-lg text-muted-foreground mb-12 font-light leading-relaxed">
-                                    {camp.description}
-                                </p>
+                    {campaigns.map((camp: any, i: number) => {
+                        let parsedResults: any[] = [];
+                        try {
+                            parsedResults = typeof camp.results === 'string' ? JSON.parse(camp.results) : camp.results;
+                        } catch (e) {}
+                        
+                        let industry = "E-Commerce";
+                        try {
+                            const parsedTags = typeof camp.tags === 'string' ? JSON.parse(camp.tags) : camp.tags;
+                            if (Array.isArray(parsedTags) && parsedTags[1]) {
+                                industry = parsedTags[1];
+                            } else if (Array.isArray(parsedTags) && parsedTags[0]) {
+                                industry = parsedTags[0];
+                            }
+                        } catch (e) {}
 
-                                <div className="grid grid-cols-2 gap-8 mb-12">
-                                    {camp.metrics.map((m, mi) => (
-                                        <div key={mi} className="border-l-2 border-orange-500/30 pl-6">
-                                            <div className="text-3xl font-display font-bold text-white mb-1">
-                                                {m.value}
-                                            </div>
-                                            <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                                                {m.label}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                        let visuals = [];
+                        try {
+                            visuals = typeof camp.gallery === 'string' ? JSON.parse(camp.gallery) : camp.gallery;
+                        } catch (e) {}
+                        const mainImage = Array.isArray(visuals) && visuals.length > 0 ? visuals[0] : camp.thumbnail;
 
-                                <Link href={`/marketing/${camp.slug}`}>
-                                    <a className="btn bg-white text-black px-8 py-4 rounded-full font-bold group inline-flex items-center gap-2">
-                                        View Strategy
-                                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                    </a>
-                                </Link>
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className={i % 2 === 0 ? "order-2" : "order-2 lg:order-1"}
-                            >
-                                <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 group">
-                                    <img
-                                        src={camp.visuals[0]}
-                                        alt={camp.client}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                    <div className="absolute bottom-8 left-8 right-8">
-                                        <p className="text-sm text-white/80 font-light italic">
-                                            "{camp.results}"
-                                        </p>
+                        return (
+                            <div key={camp.id} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                                <motion.div
+                                    initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    className={i % 2 === 0 ? "order-1" : "order-1 lg:order-2"}
+                                >
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-500 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+                                            <Target className="w-3 h-3" />
+                                            {camp.client || camp.title}
+                                        </span>
+                                        <span className="text-muted-foreground text-sm font-light italic">
+                                            {industry}
+                                        </span>
                                     </div>
-                                </div>
-                            </motion.div>
-                        </div>
-                    ))}
+                                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 leading-tight">
+                                        {camp.title}
+                                    </h2>
+                                    <p className="text-lg text-muted-foreground mb-12 font-light leading-relaxed line-clamp-4">
+                                        {camp.description}
+                                    </p>
+
+                                    {Array.isArray(parsedResults) && parsedResults.length > 0 && (
+                                        <div className="grid grid-cols-2 gap-8 mb-12">
+                                            {parsedResults.slice(0, 4).map((m: any, mi: number) => (
+                                                <div key={mi} className="border-l-2 border-orange-500/30 pl-6">
+                                                    <div className="text-3xl font-display font-bold text-white mb-1">
+                                                        {m.value}
+                                                    </div>
+                                                    <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                                                        {m.label}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <Link href={`/marketing/${camp.slug}`}>
+                                        <a className="btn bg-white text-black px-8 py-4 rounded-full font-bold group inline-flex items-center gap-2">
+                                            View Strategy
+                                            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                        </a>
+                                    </Link>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    className={i % 2 === 0 ? "order-2" : "order-2 lg:order-1"}
+                                >
+                                    <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 group">
+                                        {mainImage ? (
+                                            <img
+                                                src={mainImage}
+                                                alt={camp.client || camp.title}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-muted/20" />
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                    </div>
+                                </motion.div>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* Brands Grid */}
@@ -125,4 +159,4 @@ export default function Results() {
     );
 }
 
-import { Link } from "wouter";
+

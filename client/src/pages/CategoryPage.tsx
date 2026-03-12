@@ -39,7 +39,7 @@ export default function CategoryPage() {
   };
 
   const sectionKey = sectionKeyMap[params.service || ""] || params.service || "";
-  const categoryItems = (portfolioContent as any)[sectionKey]?.[params.category || ""] || [];
+  const categoryItems: PortfolioItem[] = (portfolioContent as any)[sectionKey]?.[params.category || ""] || [];
 
   // Handle keyboard navigation for lightbox
   const handleKeyDown = useCallback((e: KeyboardEvent) => {

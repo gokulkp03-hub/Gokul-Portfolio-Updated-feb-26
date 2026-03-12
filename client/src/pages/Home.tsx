@@ -8,10 +8,13 @@ import { ProofStrip } from "@/components/home/ProofStrip";
 import { LittleRoosterBranding } from "@/components/home/LittleRoosterBranding";
 import { GrowthEngine } from "@/components/home/GrowthEngine";
 import { MouseEvent } from "react";
+import { trpc } from "@/lib/trpc";
 
 export default function Home() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  const { data: content, isLoading: contentLoading } = trpc.content.get.useQuery();
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect();
@@ -46,7 +49,9 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-7xl md:text-9xl font-display font-semibold tracking-tighter mb-8 text-balance uppercase"
           >
-            Creative that <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 italic">performs</span>.
+            {content?.heroTitle || (
+              <>Creative that <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 italic">performs</span>.</>
+            )}
           </motion.h1>
 
           <motion.p
@@ -55,8 +60,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed mb-12"
           >
-            I build aesthetics that convert. Specialized in high-end video,
-            premium photography, and data-driven marketing growth.
+            {content?.heroSubtitle || "I build aesthetics that convert. Specialized in high-end video, premium photography, and data-driven marketing growth."}
           </motion.p>
 
           <ShowreelPreview />

@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "@/components/layout/Navbar";
@@ -21,11 +21,14 @@ import Results from "./pages/Results";
 import Contact from "./pages/Contact";
 
 function Router() {
+  const [location] = useLocation();
+  const isAdminRoute = location.startsWith("/admin");
+
   return (
     <>
       <ScrollToTop />
-      <Navbar />
-      <WhatsAppButton />
+      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && <WhatsAppButton />}
       <main>
         <Switch>
           <Route path="/" component={Home} />
@@ -44,14 +47,54 @@ function Router() {
           <Route path="/results" component={Results} />
           <Route path="/contact" component={Contact} />
 
+          {/* Admin Routes */}
+          <Route path="/admin">
+            <AdminProtectedRoute>
+              <AdminDashboard />
+            </AdminProtectedRoute>
+          </Route>
+          <Route path="/admin/projects">
+            <AdminProtectedRoute>
+              <ProjectManager />
+            </AdminProtectedRoute>
+          </Route>
+          <Route path="/admin/media">
+            <AdminProtectedRoute>
+              <MediaLibrary />
+            </AdminProtectedRoute>
+          </Route>
+          <Route path="/admin/content">
+            <AdminProtectedRoute>
+              <ContentManager />
+            </AdminProtectedRoute>
+          </Route>
+          <Route path="/admin/marketing">
+            <AdminProtectedRoute>
+              <MarketingManager />
+            </AdminProtectedRoute>
+          </Route>
+          <Route path="/admin/settings">
+            <AdminProtectedRoute>
+              <Settings />
+            </AdminProtectedRoute>
+          </Route>
+
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />
         </Switch>
       </main>
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </>
   );
 }
+
+import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
+import AdminDashboard from "./pages/admin/Dashboard";
+import ProjectManager from "./pages/admin/ProjectManager";
+import MediaLibrary from "./pages/admin/MediaLibrary";
+import ContentManager from "./pages/admin/ContentManager";
+import MarketingManager from "./pages/admin/MarketingManager";
+import Settings from "./pages/admin/Settings";
 
 import { CustomCursor } from "@/components/ui/CustomCursor";
 

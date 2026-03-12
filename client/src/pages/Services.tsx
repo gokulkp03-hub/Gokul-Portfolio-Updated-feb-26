@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Zap, Target, Sparkles, BarChart, Camera, Play, Layers } from "lucide-react";
 import { Link } from "wouter";
+import { trpc } from "@/lib/trpc";
 
 export default function Services() {
   const services = [
@@ -58,6 +59,10 @@ export default function Services() {
     }
   ];
 
+  const { data: content } = trpc.content.get.useQuery();
+  const sections = (content?.sections as any) || {};
+  const introText = sections.servicesText || "I don't just provide services; I build growth systems. Select the tier that aligns with your current scale.";
+
   return (
     <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
       <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
@@ -71,9 +76,8 @@ export default function Services() {
           >
             Digital <span className="text-orange-500">Arsenal</span>
           </motion.h1>
-          <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed">
-            I don't just provide services; I build growth systems.
-            Select the tier that aligns with your current scale.
+          <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed whitespace-pre-wrap">
+            {introText}
           </p>
         </div>
 

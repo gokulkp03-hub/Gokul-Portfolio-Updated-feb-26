@@ -1,48 +1,42 @@
+import { trpc } from "@/lib/trpc";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
-import { videoProjects } from "@/data/video";
-import { photoProjects } from "@/data/photo";
-import { caseStudies } from "@/data/caseStudies";
 
 export function FeaturedWork() {
-    // Select curated featured items to prioritize brand/corporate work over weddings
-    const featuredVideos = videoProjects
-        .filter(v => v.featured && v.category !== "Weddings")
-        .slice(0, 2);
-    const featuredPhotos = photoProjects
-        .filter(p => p.featured && p.category !== "Wedding" && p.title !== "Beyond Cars - Luxury Fleet")
-        .slice(0, 2);
-    const featuredMarketing = caseStudies
-        .filter(m => m.featured)
-        .slice(0, 3);
+    const { data: dbProjects, isLoading } = trpc.projects.list.useQuery();
 
-    const featuredItems = [
-        ...featuredMarketing.map(m => ({
-            id: m.id,
-            title: m.client,
-            image: m.image,
-            category: "Marketing",
-            path: `/marketing/${m.slug}`,
-            tags: [m.industry]
-        })),
-        ...featuredVideos.map(v => ({
-            id: v.id,
-            title: v.title,
-            image: v.thumbnail,
-            category: "Video",
-            path: `/portfolio/video/${v.id}`,
-            tags: [v.category]
-        })),
-        ...featuredPhotos.map(p => ({
-            id: p.id,
-            title: p.title,
-            image: p.image,
-            category: "Photo",
-            path: p.category.toLowerCase().includes("wedding") ? `/portfolio/photo/${p.id}` : `/portfolio/photo/${p.id}`,
-            tags: [p.category]
-        }))
-    ].slice(0, 6); // Show exactly 6 curated items
+    const featuredItems = (dbProjects && (dbProjects as any[]).length > 0)
+        ? (dbProjects as any[])
+            .filter(p => p.featured)
+            .slice(0, 6)
+            .map(p => ({
+                id: p.id,
+                title: p.title,
+                image: p.thumbnail,
+                category: p.category.charAt(0).toUpperCase() + p.category.slice(1),
+                path: `/portfolio/${p.category}/${p.slug}`,
+                tags: (p.tools as string[]) || []
+            }))
+        : [];
+
+    if (isLoading) {
+        return (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(3)].map((_, i) => (
+                    <div key={i} className="aspect-[4/5] bg-muted animate-pulse rounded-2xl" />
+                ))}
+            </div>
+        );
+    }
+    
+    if (featuredItems.length === 0) {
+        return (
+            <div className="text-center py-20 bg-muted/20 border border-border/20 rounded-3xl">
+                <p className="text-muted-foreground italic">Featured work will appear here once items are published.</p>
+            </div>
+        );
+    }
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

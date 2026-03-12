@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { BarChart, PieChart, TrendingUp, Users, Target, ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { marketingCampaigns } from "@/data/marketing";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { trpc } from "@/lib/trpc";
 
 const process = [
     { title: "Audit & Strategy", desc: "Deep dive into your current data and competitors." },
@@ -47,6 +47,13 @@ function FAQItem({ question, answer }: { question: string, answer: string }) {
 }
 
 export default function MarketingService() {
+    const { data: dbProjects } = trpc.projects.list.useQuery();
+    
+    const campaigns = useMemo(() => {
+        if (!dbProjects) return [];
+        return dbProjects.filter((p: any) => p.category.toLowerCase() === "marketing");
+    }, [dbProjects]);
+
     return (
         <div className="min-h-screen bg-background overflow-hidden relative">
 
@@ -102,39 +109,63 @@ export default function MarketingService() {
                 <div className="container max-w-6xl">
                     <h2 className="text-3xl md:text-5xl font-display font-bold mb-12">Recent Wins</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {marketingCampaigns.map((campaign, i) => (
-                            <motion.div
-                                key={campaign.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="p-8 rounded-3xl bg-card border border-border hover:border-emerald-500/30 transition-all hover:shadow-xl group"
-                            >
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="px-4 py-2 bg-emerald-500/10 text-emerald-500 rounded-full text-sm font-bold flex items-center gap-2">
-                                        <Target className="w-4 h-4" />
-                                        {campaign.industry}
-                                    </div>
-                                    <span className="text-emerald-500 font-bold bg-emerald-500/10 px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                                        <TrendingUp className="w-3 h-3" />
-                                        {campaign.metrics[0].value} {campaign.metrics[0].label}
-                                    </span>
-                                </div>
+                        {campaigns.map((campaign: any, i: number) => {
+                            let parsedResults: any[] = [];
+                            try {
+                                parsedResults = typeof campaign.results === 'string' ? JSON.parse(campaign.results) : campaign.results;
+                            } catch (e) {}
 
-                                <h3 className="text-2xl font-bold mb-2 group-hover:text-emerald-500 transition-colors">{campaign.title}</h3>
-                                <p className="text-muted-foreground mb-6 line-clamp-2">{campaign.description}</p>
+                            const mainMetric = parsedResults?.[0] || { label: "Results", value: "Verified" };
+                            
+                            // Try to extract an industry from tags, else default to 'Growth'
+                            let industry = "Growth";
+                            try {
+                                const parsedTags = typeof campaign.tags === 'string' ? JSON.parse(campaign.tags) : campaign.tags;
+                                if (Array.isArray(parsedTags) && parsedTags.length > 0) {
+                                    industry = parsedTags[0];
+                                }
+                            } catch (e) {}
 
-                                <div className="grid grid-cols-3 gap-4 border-t border-border/40 pt-6">
-                                    {campaign.metrics.map((res, j) => (
-                                        <div key={j}>
-                                            <div className="text-xl font-bold text-foreground">{res.value}</div>
-                                            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{res.label}</div>
+                            return (
+                                <Link key={campaign.id} href={`/marketing/${campaign.slug}`}>
+                                    <motion.a
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="block p-8 rounded-3xl bg-card border border-border hover:border-emerald-500/30 transition-all hover:shadow-xl group"
+                                    >
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="px-4 py-2 bg-emerald-500/10 text-emerald-500 rounded-full text-sm font-bold flex items-center gap-2 capitalize">
+                                                <Target className="w-4 h-4" />
+                                                {industry}
+                                            </div>
+                                            <span className="text-emerald-500 font-bold bg-emerald-500/10 px-3 py-1 rounded-full text-sm flex items-center gap-1">
+                                                <TrendingUp className="w-3 h-3" />
+                                                {mainMetric.value} {mainMetric.label}
+                                            </span>
                                         </div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
+
+                                        <h3 className="text-2xl font-bold mb-2 group-hover:text-emerald-500 transition-colors">{campaign.title}</h3>
+                                        <p className="text-muted-foreground mb-6 line-clamp-2">{campaign.description}</p>
+
+                                        {Array.isArray(parsedResults) && parsedResults.length > 0 && (
+                                            <div className="grid grid-cols-3 gap-4 border-t border-border/40 pt-6">
+                                                {parsedResults.slice(0, 3).map((res: any, j: number) => (
+                                                    <div key={j}>
+                                                        <div className="text-xl font-bold text-foreground">{res.value}</div>
+                                                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{res.label}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </motion.a>
+                                </Link>
+                            );
+                        })}
+                        {campaigns.length === 0 && (
+                            <p className="col-span-full text-center text-muted-foreground">Marketing projects coming soon.</p>
+                        )}
                     </div>
                 </div>
             </section>

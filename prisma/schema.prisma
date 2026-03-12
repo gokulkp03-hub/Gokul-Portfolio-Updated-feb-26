@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Project {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  category        String   // enum: video, photo, marketing, case-study
+  description     String?
+  tags            Json     @default("[]") // string[]
+  client          String?
+  year            Int?
+  thumbnail       String
+  gallery         Json     @default("[]") // string[]
+  videoUrl        String?
+  videoType       String?  // e.g. youtube, vimeo, cloudinary, mp4
+  directVideoUrl  String?
+  summary         String?
+  problem         String?
+  solution        String?
+  results         Json     @default("[]") // string[]
+  tools           Json     @default("[]") // string[]
+  credits         Json     @default("[]") // string[]
+  featured        Boolean  @default(false)
+  sortOrder       Int      @default(0)
+  status          String   @default("draft") // enum: draft, published, scheduled
+  publishDate     DateTime?
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  views           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model SiteContent {
+  id             Int      @id @default(1)
+  heroTitle      String?
+  heroSubtitle   String?
+  aboutText      String?
+  services       Json?    // json
+  skills         Json?    // json
+  socials        Json?    // json
+  contact        Json?    // json
+  sections       Json?    // flexible sections
+  updatedAt      DateTime @updatedAt
+}
+
+model Category {
+  id    String @id @default(cuid())
+  name  String
+  slug  String @unique
+  order Int    @default(0)
+}
+
+model Tag {
+  id   String @id @default(cuid())
+  name String
+  slug String @unique
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  type      String   // image/video
+  width     Int?
+  height    Int?
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Revision {
+  id         String   @id @default(cuid())
+  entityType String   // e.g., "Project"
+  entityId   String
+  data       Json     // snapshot
+  createdAt  DateTime @default(now())
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  openId       String   @unique
+  name         String?
+  email        String?
+  loginMethod  String?
+  role         String   @default("user")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  lastSignedIn DateTime @default(now())
+}

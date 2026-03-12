@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Camera, Layers, Zap, ArrowRight, Expand, Image, ArrowUpRight, Sparkles } from "lucide-react";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
-import { photoProjects } from "@/data/photo";
+import { trpc } from "@/lib/trpc";
+import { useMemo } from "react";
 
 const services = [
     { icon: Camera, title: "Editorial Shoots", desc: "Stylized imagery for magazines and brands." },
@@ -11,6 +12,13 @@ const services = [
 ];
 
 export default function PhotoService() {
+    const { data: dbProjects } = trpc.projects.list.useQuery();
+    
+    const photos = useMemo(() => {
+        if (!dbProjects) return [];
+        return dbProjects.filter((p: any) => p.category.toLowerCase() === "photo" || p.category.toLowerCase() === "photography").slice(0, 9);
+    }, [dbProjects]);
+    
     return (
         <div className="min-h-screen bg-background overflow-hidden relative">
 
@@ -63,33 +71,32 @@ export default function PhotoService() {
                 <h2 className="text-3xl md:text-5xl font-display font-bold mb-12">Collections</h2>
 
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-                    {photoProjects.map((item, i) => (
-                        <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="break-inside-avoid rounded-2xl overflow-hidden bg-muted relative group cursor-pointer border border-border/50"
-                        >
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
-                            <div className="absolute bottom-0 left-0 p-6 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/80 to-transparent">
-                                <h4 className="text-white font-bold text-lg">{item.title}</h4>
-                                <p className="text-white/70 text-sm">{item.category}</p>
-                            </div>
-
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                <div className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30">
-                                    <ArrowUpRight className="w-5 h-5" />
+                    {photos.map((item: any, i: number) => (
+                        <Link key={item.id} href={`/portfolio/${item.category}/${item.slug}`}>
+                            <motion.a
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="break-inside-avoid shadow-sm overflow-hidden bg-muted relative group cursor-pointer border border-border/50 block rounded-2xl"
+                            >
+                                <img
+                                    src={item.thumbnail}
+                                    alt={item.title}
+                                    className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                                <div className="absolute bottom-0 left-0 p-6 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/80 to-transparent">
+                                    <h4 className="text-white font-bold text-lg leading-tight mb-1">{item.title}</h4>
+                                    <p className="text-white/70 text-sm capitalize">{item.category}</p>
                                 </div>
-                            </div>
-                        </motion.div>
+                                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                    <div className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30">
+                                        <ArrowUpRight className="w-5 h-5" />
+                                    </div>
+                                </div>
+                            </motion.a>
+                        </Link>
                     ))}
 
                     {/* Added a placeholder for masonry layout demonstration */}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Instagram, Linkedin, MessageSquare, ArrowRight, MapPin, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,12 +14,20 @@ export default function Contact() {
         details: ""
     });
 
+    const { data: content } = trpc.content.get.useQuery();
+    const sections = (content?.sections as any) || {};
+
+    const contactEmail = sections.contactEmail || "gokulkp03@gmail.com";
+    const instagramLink = sections.socialInstagram || "https://www.instagram.com/__agotime/";
+    const instagramHandle = sections.socialInstagram ? "@" + sections.socialInstagram.split(".com/")[1] : "@__agotime";
+    const linkedinLink = sections.socialLinkedIn || "https://www.linkedin.com/in/gokul-kp03"; 
+
     const contactMethods = [
         {
             icon: <Mail className="w-6 h-6" />,
             label: "Email",
-            value: "gokulkp03@gmail.com",
-            href: "mailto:gokulkp03@gmail.com",
+            value: contactEmail,
+            href: `mailto:${contactEmail}`,
             color: "text-blue-500"
         },
         {
@@ -32,14 +41,14 @@ export default function Contact() {
             icon: <Linkedin className="w-6 h-6" />,
             label: "LinkedIn",
             value: "gokul-kp03",
-            href: "https://www.linkedin.com/in/gokul-kp03",
+            href: linkedinLink,
             color: "text-blue-600"
         },
         {
             icon: <Instagram className="w-6 h-6" />,
             label: "Instagram",
-            value: "@__agotime",
-            href: "https://www.instagram.com/__agotime/",
+            value: instagramHandle,
+            href: instagramLink,
             color: "text-pink-500"
         }
     ];

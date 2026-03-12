@@ -1,53 +1,52 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { videoProjects } from "@/data/video";
-import { photoProjects } from "@/data/photo";
-import { marketingCampaigns } from "@/data/marketing";
 import { ArrowUpRight, Filter, Play, Camera, TrendingUp } from "lucide-react";
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
+import { trpc } from "@/lib/trpc";
 
-type ProjectType = "All" | "Video" | "Photo" | "Strategy";
+type ProjectType = "All" | string;
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState<ProjectType>("All");
 
-  // Unified project list
-  const allProjects = [
-    ...videoProjects.map(v => ({
-      id: v.id,
-      title: v.title,
-      category: "Video",
-      type: "Video",
-      image: v.thumbnail,
-      path: "/video",
-      tags: [v.category]
-    })),
-    ...photoProjects.map(p => ({
-      id: p.id,
-      title: p.title,
-      category: "Photo",
-      type: "Photo",
-      image: p.image,
-      path: "/photo",
-      tags: [p.category]
-    })),
-    ...marketingCampaigns.map(m => ({
-      id: m.id,
-      title: m.title,
-      category: "Strategy",
-      type: "Strategy",
-      image: m.visuals[0],
-      path: "/marketing",
-      tags: [m.industry]
-    }))
-  ].sort(() => Math.random() - 0.5);
+  const { data: dbProjects, isLoading } = trpc.projects.list.useQuery();
+
+  // Unified project list derived dynamically from DB
+  const allProjects = useMemo(() => {
+    if (!dbProjects) return [];
+    
+    return dbProjects
+      .filter((p: any) => p.status === "published")
+      .map((p: any) => {
+        const categoryName = p.category.charAt(0).toUpperCase() + p.category.slice(1);
+        return {
+          id: p.id,
+          title: p.title,
+          category: categoryName,
+          type: categoryName,
+          image: p.thumbnail,
+          path: `/portfolio/${p.category}/${p.slug}`,
+          tags: (p.tools as string[]) || []
+    }}).sort(() => Math.random() - 0.5);
+  }, [dbProjects]);
+
+  const filters: ProjectType[] = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(allProjects.map(p => p.type)));
+    return ["All", ...uniqueCategories];
+  }, [allProjects]);
 
   const filteredProjects = activeFilter === "All"
     ? allProjects
     : allProjects.filter(p => p.type === activeFilter);
 
-  const filters: ProjectType[] = ["All", "Video", "Photo", "Strategy"];
+  if (isLoading) {
+      return (
+          <div className="min-h-screen bg-background pt-32 pb-20 flex justify-center">
+              <div className="w-8 h-8 rounded-full border-2 border-orange-500 border-t-transparent animate-spin" />
+          </div>
+      );
+  }
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-20">

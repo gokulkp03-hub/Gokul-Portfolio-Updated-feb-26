@@ -107,3 +107,5 @@ temp/
 *.sqlite3
 client/public/images/brands/**/*.mp4
 client/public/images/brands/**/*.mov
+
+/generated/prisma

@@ -90,10 +90,8 @@ const Navbar = () => {
             >
                 <div className="container flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/">
-                        <a className="text-xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity">
-                            Gokul KP<span className="text-accent">.</span>
-                        </a>
+                    <Link href="/" className="text-xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity">
+                        Gokul KP<span className="text-accent">.</span>
                     </Link>
 
                     {/* Desktop Nav */}
@@ -126,13 +124,13 @@ const Navbar = () => {
                                         {portfolioOpen && (
                                             <div className="absolute top-full left-0 mt-4 z-50 min-w-[220px] rounded-2xl border border-black/10 bg-white/90 backdrop-blur-xl shadow-xl dark:border-white/10 dark:bg-zinc-950/70 overflow-hidden animate-in fade-in zoom-in duration-200">
                                                 {link.dropdown.map((item) => (
-                                                    <Link key={item.name} href={item.href}>
-                                                        <a
-                                                            className="block px-6 py-3.5 text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                                                            onClick={() => setPortfolioOpen(false)}
-                                                        >
-                                                            {item.name}
-                                                        </a>
+                                                    <Link
+                                                        key={item.name}
+                                                        href={item.href}
+                                                        className="block px-6 py-3.5 text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                                                        onClick={() => setPortfolioOpen(false)}
+                                                    >
+                                                        {item.name}
                                                     </Link>
                                                 ))}
                                             </div>
@@ -142,18 +140,18 @@ const Navbar = () => {
                             }
 
                             return (
-                                <Link key={link.name} href={link.href}>
-                                    <a
-                                        className={cn(
-                                            "text-sm font-medium transition-all duration-300 relative hover:text-foreground/80",
-                                            isActive ? link.activeColor : "text-muted-foreground"
-                                        )}
-                                    >
-                                        {link.name}
-                                        {isActive && (
-                                            <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-current rounded-full" />
-                                        )}
-                                    </a>
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={cn(
+                                        "text-sm font-medium transition-all duration-300 relative hover:text-foreground/80",
+                                        isActive ? link.activeColor : "text-muted-foreground"
+                                    )}
+                                >
+                                    {link.name}
+                                    {isActive && (
+                                        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-current rounded-full" />
+                                    )}
                                 </Link>
                             );
                         })}
@@ -162,10 +160,8 @@ const Navbar = () => {
                     {/* Right Actions */}
                     <div className="hidden md:flex items-center gap-4">
                         <ThemeToggle />
-                        <Link href="/contact">
-                            <a className="btn-primary rounded-full px-5 py-2 text-sm">
-                                Let's work
-                            </a>
+                        <Link href="/contact" className="btn-primary rounded-full px-5 py-2 text-sm">
+                            Let's work
                         </Link>
                     </div>
 
@@ -196,27 +192,26 @@ const Navbar = () => {
                         <div className="flex flex-col space-y-8">
                             {navLinks.map((link) => (
                                 <div key={link.name} className="space-y-3">
-                                    <Link href={link.href}>
-                                        <a
-                                            className={cn(
-                                                "text-4xl font-display font-bold transition-colors block leading-tight",
-                                                location === link.href ? link.activeColor : "text-white"
-                                            )}
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {link.name}
-                                        </a>
+                                    <Link
+                                        href={link.href}
+                                        className={cn(
+                                            "text-4xl font-display font-bold transition-colors block leading-tight",
+                                            location === link.href ? link.activeColor : "text-white"
+                                        )}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.name}
                                     </Link>
                                     {link.dropdown && (
                                         <div className="flex flex-col gap-4 pl-4 mt-2 border-l border-white/10">
                                             {link.dropdown.map((item) => (
-                                                <Link key={item.name} href={item.href}>
-                                                    <a
-                                                        className="block text-xl text-white/50 hover:text-orange-500 transition-colors py-1"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        {item.name}
-                                                    </a>
+                                                <Link
+                                                    key={item.name}
+                                                    href={item.href}
+                                                    className="block text-xl text-white/50 hover:text-orange-500 transition-colors py-1"
+                                                    onClick={() => setIsOpen(false)}
+                                                >
+                                                    {item.name}
                                                 </Link>
                                             ))}
                                         </div>
@@ -226,13 +221,12 @@ const Navbar = () => {
                         </div>
 
                         <div className="mt-auto pt-10">
-                            <Link href="/contact">
-                                <a
-                                    className="btn-primary w-full text-center py-4 text-base rounded-full"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    Start a Project
-                                </a>
+                            <Link
+                                href="/contact"
+                                className="btn-primary w-full text-center py-4 text-base rounded-full"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Start a Project
                             </Link>
                         </div>
                     </motion.div>

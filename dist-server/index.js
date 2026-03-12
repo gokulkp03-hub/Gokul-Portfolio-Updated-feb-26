@@ -12,96 +12,36 @@ var AXIOS_TIMEOUT_MS = 3e4;
 var UNAUTHED_ERR_MSG = "Please login (10001)";
 var NOT_ADMIN_ERR_MSG = "You do not have required permission (10002)";
 
-// server/db.ts
-import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
-
-// drizzle/schema.ts
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
-var users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
-  id: int("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
-  openId: varchar("openId", { length: 64 }).notNull().unique(),
-  name: text("name"),
-  email: varchar("email", { length: 320 }),
-  loginMethod: varchar("loginMethod", { length: 64 }),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-  lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull()
+// server/prisma-db.ts
+import "dotenv/config";
+import { PrismaClient } from "@prisma/client";
+import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+var globalForPrisma = globalThis;
+var adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL });
+var prisma = globalForPrisma.prisma ?? new PrismaClient({
+  adapter,
+  log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"]
 });
-
-// server/_core/env.ts
-var ENV = {
-  appId: process.env.VITE_APP_ID ?? "",
-  cookieSecret: process.env.JWT_SECRET ?? "",
-  databaseUrl: process.env.DATABASE_URL ?? "",
-  oAuthServerUrl: process.env.OAUTH_SERVER_URL ?? "",
-  ownerOpenId: process.env.OWNER_OPEN_ID ?? "",
-  isProduction: process.env.NODE_ENV === "production",
-  forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
-  forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? ""
-};
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 // server/db.ts
-var _db = null;
-async function getDb() {
-  if (!_db && process.env.DATABASE_URL) {
-    try {
-      _db = drizzle(process.env.DATABASE_URL);
-    } catch (error) {
-      console.warn("[Database] Failed to connect:", error);
-      _db = null;
-    }
-  }
-  return _db;
-}
 async function upsertUser(user) {
   if (!user.openId) {
     throw new Error("User openId is required for upsert");
   }
-  const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot upsert user: database not available");
-    return;
-  }
   try {
-    const values = {
-      openId: user.openId
+    const data = {
+      openId: user.openId,
+      name: user.name,
+      email: user.email,
+      loginMethod: user.loginMethod,
+      role: user.role,
+      lastSignedIn: user.lastSignedIn || /* @__PURE__ */ new Date()
     };
-    const updateSet = {};
-    const textFields = ["name", "email", "loginMethod"];
-    const assignNullable = (field) => {
-      const value = user[field];
-      if (value === void 0) return;
-      const normalized = value ?? null;
-      values[field] = normalized;
-      updateSet[field] = normalized;
-    };
-    textFields.forEach(assignNullable);
-    if (user.lastSignedIn !== void 0) {
-      values.lastSignedIn = user.lastSignedIn;
-      updateSet.lastSignedIn = user.lastSignedIn;
-    }
-    if (user.role !== void 0) {
-      values.role = user.role;
-      updateSet.role = user.role;
-    } else if (user.openId === ENV.ownerOpenId) {
-      values.role = "admin";
-      updateSet.role = "admin";
-    }
-    if (!values.lastSignedIn) {
-      values.lastSignedIn = /* @__PURE__ */ new Date();
-    }
-    if (Object.keys(updateSet).length === 0) {
-      updateSet.lastSignedIn = /* @__PURE__ */ new Date();
-    }
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
-      set: updateSet
+    await prisma.user.upsert({
+      where: { openId: user.openId },
+      update: data,
+      create: data
     });
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
@@ -109,13 +49,9 @@ async function upsertUser(user) {
   }
 }
 async function getUserByOpenId(openId) {
-  const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
-    return void 0;
-  }
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-  return result.length > 0 ? result[0] : void 0;
+  return prisma.user.findUnique({
+    where: { openId }
+  });
 }
 
 // server/_core/cookies.ts
@@ -127,11 +63,12 @@ function isSecureRequest(req) {
   return protoList.some((proto) => proto.trim().toLowerCase() === "https");
 }
 function getSessionCookieOptions(req) {
+  const isSecure = isSecureRequest(req);
   return {
     httpOnly: true,
     path: "/",
-    sameSite: "none",
-    secure: isSecureRequest(req)
+    sameSite: isSecure ? "none" : "lax",
+    secure: isSecure
   };
 }
 
@@ -149,6 +86,22 @@ var ForbiddenError = (msg) => new HttpError(403, msg);
 import axios from "axios";
 import { parse as parseCookieHeader } from "cookie";
 import { SignJWT, jwtVerify } from "jose";
+
+// server/_core/env.ts
+var ENV = {
+  appId: process.env.VITE_APP_ID ?? "",
+  cookieSecret: process.env.JWT_SECRET ?? "",
+  databaseUrl: process.env.DATABASE_URL ?? "",
+  oAuthServerUrl: process.env.OAUTH_SERVER_URL ?? "",
+  ownerOpenId: process.env.OWNER_OPEN_ID ?? "",
+  isProduction: process.env.NODE_ENV === "production",
+  forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
+  forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
+  adminUsername: process.env.ADMIN_USERNAME ?? "admin",
+  adminPassword: process.env.ADMIN_PASSWORD ?? "admin"
+};
+
+// server/_core/sdk.ts
 var isNonEmptyString = (value) => typeof value === "string" && value.length > 0;
 var EXCHANGE_TOKEN_PATH = `/webdev.v1.WebDevAuthPublicService/ExchangeToken`;
 var GET_USER_INFO_PATH = `/webdev.v1.WebDevAuthPublicService/GetUserInfo`;
@@ -362,44 +315,55 @@ var SDKServer = class {
 };
 var sdk = new SDKServer();
 
-// server/_core/oauth.ts
-function getQueryParam(req, key) {
-  const value = req.query[key];
-  return typeof value === "string" ? value : void 0;
-}
-function registerOAuthRoutes(app) {
-  app.get("/api/oauth/callback", async (req, res) => {
-    const code = getQueryParam(req, "code");
-    const state = getQueryParam(req, "state");
-    if (!code || !state) {
-      res.status(400).json({ error: "code and state are required" });
+// server/_core/login.ts
+function registerLoginRoutes(app) {
+  app.post("/api/login", async (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      res.status(400).json({ error: "Username and password are required" });
+      return;
+    }
+    const adminUsername = ENV.adminUsername;
+    const adminPassword = ENV.adminPassword;
+    if (!adminPassword || !adminUsername) {
+      console.error("[Login] Admin credentials are not fully set in .env.");
+      res.status(500).json({ error: "Server configuration error" });
+      return;
+    }
+    if (username !== adminUsername || password !== adminPassword) {
+      res.status(401).json({ error: "Invalid credentials" });
       return;
     }
     try {
-      const tokenResponse = await sdk.exchangeCodeForToken(code, state);
-      const userInfo = await sdk.getUserInfo(tokenResponse.accessToken);
-      if (!userInfo.openId) {
-        res.status(400).json({ error: "openId missing from user info" });
+      const openId = process.env.OWNER_OPEN_ID;
+      if (!openId) {
+        console.error("[Login] OWNER_OPEN_ID environment variable is not set.");
+        res.status(500).json({ error: "Server configuration error" });
         return;
       }
       await upsertUser({
-        openId: userInfo.openId,
-        name: userInfo.name || null,
-        email: userInfo.email ?? null,
-        loginMethod: userInfo.loginMethod ?? userInfo.platform ?? null,
+        openId,
+        name: "Admin",
+        email: null,
+        loginMethod: "password",
         lastSignedIn: /* @__PURE__ */ new Date()
       });
-      const sessionToken = await sdk.createSessionToken(userInfo.openId, {
-        name: userInfo.name || "",
+      const sessionToken = await sdk.createSessionToken(openId, {
+        name: "Admin",
         expiresInMs: ONE_YEAR_MS
       });
       const cookieOptions = getSessionCookieOptions(req);
       res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
-      res.redirect(302, "/");
+      res.status(200).json({ success: true });
     } catch (error) {
-      console.error("[OAuth] Callback failed", error);
-      res.status(500).json({ error: "OAuth callback failed" });
+      console.error("[Login] Login failed", error);
+      res.status(500).json({ error: "Login process failed" });
     }
+  });
+  app.post("/api/logout", (req, res) => {
+    const cookieOptions = getSessionCookieOptions(req);
+    res.clearCookie(COOKIE_NAME, cookieOptions);
+    res.status(200).json({ success: true });
   });
 }
 
@@ -546,6 +510,207 @@ var systemRouter = router({
   })
 });
 
+// server/projectRouter.ts
+import { z as z2 } from "zod";
+var projectRouter = router({
+  list: publicProcedure.query(async () => {
+    return prisma.project.findMany({
+      orderBy: [
+        { sortOrder: "asc" },
+        { createdAt: "desc" }
+      ]
+    });
+  }),
+  getById: publicProcedure.input(z2.string()).query(async ({ input }) => {
+    return prisma.project.findUnique({
+      where: { id: input }
+    });
+  }),
+  getBySlug: publicProcedure.input(z2.string()).query(async ({ input }) => {
+    return prisma.project.findUnique({
+      where: { slug: input }
+    });
+  }),
+  create: adminProcedure.input(
+    z2.object({
+      title: z2.string(),
+      slug: z2.string(),
+      category: z2.string(),
+      description: z2.string().optional(),
+      thumbnail: z2.string(),
+      tags: z2.array(z2.string()).optional(),
+      gallery: z2.array(z2.string()).optional(),
+      client: z2.string().optional(),
+      year: z2.number().optional(),
+      videoUrl: z2.string().optional(),
+      videoType: z2.string().optional(),
+      directVideoUrl: z2.string().optional(),
+      summary: z2.string().optional(),
+      problem: z2.string().optional(),
+      solution: z2.string().optional(),
+      results: z2.array(z2.string()).optional(),
+      tools: z2.array(z2.string()).optional(),
+      status: z2.enum(["draft", "published", "scheduled"]).default("draft"),
+      featured: z2.boolean().default(false),
+      sortOrder: z2.number().default(0),
+      publishDate: z2.date().optional()
+    })
+  ).mutation(async ({ input }) => {
+    return prisma.project.create({
+      data: {
+        ...input,
+        tags: input.tags || [],
+        gallery: input.gallery || [],
+        results: input.results || [],
+        tools: input.tools || []
+      }
+    });
+  }),
+  update: adminProcedure.input(
+    z2.object({
+      id: z2.string(),
+      title: z2.string().optional(),
+      slug: z2.string().optional(),
+      category: z2.string().optional(),
+      description: z2.string().optional(),
+      thumbnail: z2.string().optional(),
+      tags: z2.array(z2.string()).optional(),
+      gallery: z2.array(z2.string()).optional(),
+      client: z2.string().optional(),
+      year: z2.number().optional(),
+      videoUrl: z2.string().optional(),
+      videoType: z2.string().optional(),
+      directVideoUrl: z2.string().optional(),
+      summary: z2.string().optional(),
+      problem: z2.string().optional(),
+      solution: z2.string().optional(),
+      results: z2.array(z2.string()).optional(),
+      tools: z2.array(z2.string()).optional(),
+      status: z2.enum(["draft", "published", "scheduled"]).optional(),
+      featured: z2.boolean().optional(),
+      sortOrder: z2.number().optional(),
+      publishDate: z2.date().optional()
+    })
+  ).mutation(async ({ input }) => {
+    const { id, ...data } = input;
+    return prisma.project.update({
+      where: { id },
+      data
+    });
+  }),
+  delete: adminProcedure.input(z2.string()).mutation(async ({ input }) => {
+    return prisma.project.delete({
+      where: { id: input }
+    });
+  })
+});
+
+// server/contentRouter.ts
+import { z as z3 } from "zod";
+var contentRouter = router({
+  get: publicProcedure.query(async () => {
+    let content = await prisma.siteContent.findFirst({
+      where: { id: 1 }
+    });
+    if (!content) {
+      content = await prisma.siteContent.create({
+        data: { id: 1 }
+      });
+    }
+    return content;
+  }),
+  update: adminProcedure.input(
+    z3.object({
+      heroTitle: z3.string().optional(),
+      heroSubtitle: z3.string().optional(),
+      aboutText: z3.string().optional(),
+      services: z3.any().optional(),
+      skills: z3.any().optional(),
+      socials: z3.any().optional(),
+      contact: z3.any().optional(),
+      sections: z3.any().optional()
+    })
+  ).mutation(async ({ input }) => {
+    return prisma.siteContent.upsert({
+      where: { id: 1 },
+      update: input,
+      create: { id: 1, ...input }
+    });
+  })
+});
+
+// server/mediaRouter.ts
+import { z as z4 } from "zod";
+import fs from "fs/promises";
+import path from "path";
+import crypto from "crypto";
+var mediaRouter = router({
+  list: publicProcedure.query(async () => {
+    return prisma.media.findMany({
+      orderBy: { createdAt: "desc" }
+    });
+  }),
+  upload: adminProcedure.input(
+    z4.object({
+      fileName: z4.string(),
+      fileType: z4.string(),
+      base64Data: z4.string(),
+      // Raw base64 data
+      width: z4.number().optional(),
+      height: z4.number().optional()
+    })
+  ).mutation(async ({ input }) => {
+    const buffer = Buffer.from(input.base64Data, "base64");
+    const extMatch = input.fileName.match(/\.[0-9a-z]+$/i);
+    const ext = extMatch ? extMatch[0] : input.fileType.startsWith("video") ? ".mp4" : ".png";
+    const uniqueName = crypto.randomUUID() + ext;
+    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    await fs.mkdir(uploadDir, { recursive: true });
+    const filePath = path.join(uploadDir, uniqueName);
+    await fs.writeFile(filePath, buffer);
+    const url = `/uploads/${uniqueName}`;
+    return prisma.media.create({
+      data: {
+        url,
+        type: input.fileType,
+        width: input.width,
+        height: input.height
+      }
+    });
+  }),
+  addExternal: adminProcedure.input(
+    z4.object({
+      url: z4.string(),
+      type: z4.string(),
+      // e.g., 'video/embed'
+      title: z4.string().optional()
+    })
+  ).mutation(async ({ input }) => {
+    return prisma.media.create({
+      data: {
+        url: input.url,
+        type: input.type
+      }
+    });
+  }),
+  delete: adminProcedure.input(z4.string()).mutation(async ({ input }) => {
+    const media = await prisma.media.findUnique({ where: { id: input } });
+    if (!media) return;
+    if (media.url.startsWith("/uploads/")) {
+      const fileName = media.url.replace("/uploads/", "");
+      const filePath = path.join(process.cwd(), "public", "uploads", fileName);
+      try {
+        await fs.unlink(filePath);
+      } catch (err) {
+        console.error("Failed to delete local file:", err);
+      }
+    }
+    return prisma.media.delete({
+      where: { id: input }
+    });
+  })
+});
+
 // server/routers.ts
 var appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -559,13 +724,10 @@ var appRouter = router({
         success: true
       };
     })
-  })
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  }),
+  projects: projectRouter,
+  content: contentRouter,
+  media: mediaRouter
 });
 
 // server/_core/context.ts
@@ -585,46 +747,43 @@ async function createContext(opts) {
 
 // server/_core/vite.ts
 import express from "express";
-import fs from "fs";
+import fs2 from "fs";
 import { nanoid } from "nanoid";
-import path2 from "path";
+import path3 from "path";
 import { createServer as createViteServer } from "vite";
 
 // vite.config.ts
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+import path2 from "path";
 import { defineConfig } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
-var plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
+var plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  vitePluginManusRuntime()
+];
 var vite_config_default = defineConfig({
   plugins,
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets")
+      "@": path2.resolve(import.meta.dirname, "client", "src"),
+      "@shared": path2.resolve(import.meta.dirname, "shared"),
+      "@assets": path2.resolve(import.meta.dirname, "attached_assets")
     }
   },
-  envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname, "client"),
-  publicDir: path.resolve(import.meta.dirname, "client", "public"),
+  envDir: path2.resolve(import.meta.dirname),
+  root: path2.resolve(import.meta.dirname, "client"),
+  publicDir: path2.resolve(import.meta.dirname, "client", "public"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist"),
+    outDir: path2.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true
   },
   server: {
     host: true,
-    allowedHosts: [
-      ".manuspre.computer",
-      ".manus.computer",
-      ".manus-asia.computer",
-      ".manuscomputer.ai",
-      ".manusvm.computer",
-      "localhost",
-      "127.0.0.1"
-    ],
+    allowedHosts: true,
     fs: {
       strict: true,
       deny: ["**/.*"]
@@ -649,13 +808,13 @@ async function setupVite(app, server) {
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
     try {
-      const clientTemplate = path2.resolve(
+      const clientTemplate = path3.resolve(
         import.meta.dirname,
         "../..",
         "client",
         "index.html"
       );
-      let template = await fs.promises.readFile(clientTemplate, "utf-8");
+      let template = await fs2.promises.readFile(clientTemplate, "utf-8");
       template = template.replace(
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`
@@ -669,19 +828,20 @@ async function setupVite(app, server) {
   });
 }
 function serveStatic(app) {
-  const distPath = process.env.NODE_ENV === "development" ? path2.resolve(import.meta.dirname, "../..", "dist") : path2.resolve(import.meta.dirname, "../dist");
-  if (!fs.existsSync(distPath)) {
+  const distPath = process.env.NODE_ENV === "development" ? path3.resolve(import.meta.dirname, "../..", "dist") : path3.resolve(import.meta.dirname, "../dist");
+  if (!fs2.existsSync(distPath)) {
     console.error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`
     );
   }
   app.use(express.static(distPath));
   app.use("*", (_req, res) => {
-    res.sendFile(path2.resolve(distPath, "index.html"));
+    res.sendFile(path3.resolve(distPath, "index.html"));
   });
 }
 
 // server/_core/index.ts
+import path4 from "path";
 function isPortAvailable(port) {
   return new Promise((resolve) => {
     const server = net.createServer();
@@ -704,7 +864,8 @@ async function startServer() {
   const server = createServer(app);
   app.use(express2.json({ limit: "50mb" }));
   app.use(express2.urlencoded({ limit: "50mb", extended: true }));
-  registerOAuthRoutes(app);
+  app.use("/uploads", express2.static(path4.join(process.cwd(), "public", "uploads")));
+  registerLoginRoutes(app);
   app.use(
     "/api/trpc",
     createExpressMiddleware({
