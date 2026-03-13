@@ -19,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { cn } from "@/lib/utils";
+import { cn, getMediaUrl } from "@/lib/utils";
 import {
     Dialog,
     DialogContent,
@@ -231,7 +231,7 @@ export default function MediaLibrary() {
                             <div key={item.id} className="group relative bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300">
                                 <div className="aspect-square relative flex items-center justify-center bg-neutral-950">
                                     {item.type.startsWith("image") ? (
-                                        <img src={item.url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                        <img src={getMediaUrl(item.url)} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                                     ) : item.type === "video/embed" ? (
                                         <div className="flex flex-col items-center gap-2 p-4 text-center">
                                             <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center">

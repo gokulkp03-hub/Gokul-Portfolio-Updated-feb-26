@@ -55,7 +55,8 @@ export default function AdminProtectedRoute({ children }: { children: ReactNode 
                                 setIsLoggingIn(true);
                                 setError("");
                                 try {
-                                    const res = await fetch("/api/login", {
+                                    const backendUrl = import.meta.env.VITE_API_URL || "";
+                                    const res = await fetch(`${backendUrl}/api/login`, {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",

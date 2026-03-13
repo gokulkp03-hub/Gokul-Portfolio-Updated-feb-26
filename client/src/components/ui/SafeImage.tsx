@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Image as ImageIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getMediaUrl } from "@/lib/utils";
 
 interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     fallbackSrc?: string;
@@ -60,7 +60,7 @@ export function SafeImage({
                 </div>
             ) : (
                 <img
-                    src={src}
+                    src={getMediaUrl(src)}
                     alt={alt}
                     loading="lazy"
                     decoding="async"

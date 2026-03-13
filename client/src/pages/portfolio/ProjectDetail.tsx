@@ -119,7 +119,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                         {project.videoType !== "none" && (project.videoUrl || project.directVideoUrl) ? (
                             project.videoType === "mp4" ? (
                                 <video 
-                                    src={project.directVideoUrl || project.videoUrl} 
+                                    src={project.directVideoUrl || project.videoUrl || undefined} 
                                     autoPlay 
                                     muted 
                                     loop 

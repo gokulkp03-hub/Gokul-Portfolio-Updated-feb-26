@@ -3,6 +3,7 @@ import express from "express";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
+import cors from "cors";
 import { registerLoginRoutes } from "./login";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
@@ -34,6 +35,12 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+  // Allow cross-origin requests from the Vercel frontend
+  app.use(cors({
+    origin: process.env.FRONTEND_URL || "*",
+    credentials: true
+  }));
 
   // Serve the local uploads directory directly so Vite / Express can resolve /uploads/...
   const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
