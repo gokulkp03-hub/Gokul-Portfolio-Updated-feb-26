@@ -1,0 +1,9 @@
+# This file configures the Nixpacks environment used by Railway (and other Nixpacks hosts).
+# The "..." syntax tells Nixpacks to keep the default packages provided by the Node.js provider 
+# (like node and pnpm), and then appends python3, gcc, and gnumake to the environment.
+# These are strictly required by 'node-gyp' to compile the 'better-sqlite3' native C++ binaries.
+
+providers = ["node"]
+
+[phases.setup]
+nixPkgs = ["...", "python3", "gcc", "gnumake"]
