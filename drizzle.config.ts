@@ -10,6 +10,6 @@ export default defineConfig({
   out: "./drizzle",
   dialect: "sqlite",
   dbCredentials: {
-    url: "prisma/dev.db",
+    url: connectionString.replace("file:", ""),
   },
 });

@@ -63,7 +63,7 @@ export default function MarketingManager() {
                 </div>
             ) : (
                 <div className="space-y-8">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
                             <div className="p-3 bg-neutral-900 border border-neutral-800 rounded-xl">
                                 <TrendingUp className="w-6 h-6 text-orange-500" />
@@ -73,7 +73,7 @@ export default function MarketingManager() {
                                 <p className="text-neutral-500 text-sm">Manage campaigns, PDFs, strategy decks, and ad creatives.</p>
                             </div>
                         </div>
-                        <Button onClick={() => setEditingAsset({})} className="bg-orange-500 hover:bg-orange-600 text-white gap-2 h-11 px-6 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.2)]">
+                        <Button onClick={() => setEditingAsset({})} className="bg-orange-500 hover:bg-orange-600 text-white gap-2 h-11 px-6 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.2)] flex-shrink-0">
                             <Plus className="w-4 h-4" />
                             New Asset
                         </Button>

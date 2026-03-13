@@ -664,7 +664,7 @@ var mediaRouter = router({
     const extMatch = input.fileName.match(/\.[0-9a-z]+$/i);
     const ext = extMatch ? extMatch[0] : input.fileType.startsWith("video") ? ".mp4" : ".png";
     const uniqueName = crypto.randomUUID() + ext;
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
     await fs.mkdir(uploadDir, { recursive: true });
     const filePath = path.join(uploadDir, uniqueName);
     await fs.writeFile(filePath, buffer);
@@ -698,7 +698,8 @@ var mediaRouter = router({
     if (!media) return;
     if (media.url.startsWith("/uploads/")) {
       const fileName = media.url.replace("/uploads/", "");
-      const filePath = path.join(process.cwd(), "public", "uploads", fileName);
+      const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
+      const filePath = path.join(uploadDir, fileName);
       try {
         await fs.unlink(filePath);
       } catch (err) {
@@ -864,7 +865,8 @@ async function startServer() {
   const server = createServer(app);
   app.use(express2.json({ limit: "50mb" }));
   app.use(express2.urlencoded({ limit: "50mb", extended: true }));
-  app.use("/uploads", express2.static(path4.join(process.cwd(), "public", "uploads")));
+  const uploadDir = process.env.UPLOADS_DIR || path4.join(process.cwd(), "public", "uploads");
+  app.use("/uploads", express2.static(uploadDir));
   registerLoginRoutes(app);
   app.use(
     "/api/trpc",

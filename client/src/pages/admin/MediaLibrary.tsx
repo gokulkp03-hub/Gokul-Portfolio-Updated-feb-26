@@ -13,7 +13,8 @@ import {
     Video as VideoIcon,
     CheckCircle2,
     XCircle,
-    Plus
+    Plus,
+    CheckSquare
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -199,24 +200,33 @@ export default function MediaLibrary() {
                         <Button
                             onClick={() => fileInputRef.current?.click()}
                             disabled={isUploading}
-                            className="bg-orange-500 hover:bg-orange-600 text-white gap-2 px-6 h-12 rounded-xl transition-all shadow-[0_0_20px_rgba(249,115,22,0.2)] whitespace-nowrap"
+                            className="bg-orange-500 hover:bg-orange-600 text-white gap-2 px-4 sm:px-6 h-12 rounded-xl transition-all shadow-[0_0_20px_rgba(249,115,22,0.2)] flex-1 sm:flex-none whitespace-nowrap"
                         >
                             {isUploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-5 h-5" />}
                             <span className="hidden sm:inline">{isUploading ? "Uploading..." : "Upload New Asset"}</span>
                             <span className="inline sm:hidden">{isUploading ? "..." : "Upload"}</span>
+                        </Button>
+
+                        <Button
+                            variant="outline"
+                            className="border-neutral-800 bg-neutral-900 hover:bg-neutral-800 text-white gap-2 px-4 sm:px-6 h-12 rounded-xl transition-all hidden md:flex"
+                            onClick={() => toast.info("Bulk actions coming soon")}
+                        >
+                            <CheckSquare className="w-5 h-5" />
+                            <span>Bulk Select</span>
                         </Button>
                     </div>
                 </div>
 
                 {/* Media Grid */}
                 {isLoading ? (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-6">
                         {[...Array(12)].map((_, i) => (
                             <div key={i} className="aspect-square bg-neutral-900 animate-pulse rounded-2xl border border-neutral-800" />
                         ))}
                     </div>
                 ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-6">
                         {filteredMedia?.map((item) => (
                             <div key={item.id} className="group relative bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300">
                                 <div className="aspect-square relative flex items-center justify-center bg-neutral-950">

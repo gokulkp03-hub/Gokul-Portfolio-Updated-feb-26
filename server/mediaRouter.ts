@@ -31,7 +31,7 @@ export const mediaRouter = router({
             
             // Use unique filename
             const uniqueName = crypto.randomUUID() + ext;
-            const uploadDir = path.join(process.cwd(), "public", "uploads");
+            const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
 
             // Ensure directory exists
             await fs.mkdir(uploadDir, { recursive: true });
@@ -79,7 +79,8 @@ export const mediaRouter = router({
             // Delete from disk if it starts with /uploads
             if (media.url.startsWith("/uploads/")) {
                 const fileName = media.url.replace("/uploads/", "");
-                const filePath = path.join(process.cwd(), "public", "uploads", fileName);
+                const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
+                const filePath = path.join(uploadDir, fileName);
                 try {
                     await fs.unlink(filePath);
                 } catch (err) {

@@ -36,7 +36,8 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
   // Serve the local uploads directory directly so Vite / Express can resolve /uploads/...
-  app.use("/uploads", express.static(path.join(process.cwd(), "public", "uploads")));
+  const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
+  app.use("/uploads", express.static(uploadDir));
 
   // Local login route under /api/login
   registerLoginRoutes(app);

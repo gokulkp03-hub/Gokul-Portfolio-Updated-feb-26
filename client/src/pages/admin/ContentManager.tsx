@@ -79,17 +79,17 @@ export default function ContentManager() {
     return (
         <AdminLayout>
             <div className="max-w-5xl space-y-12">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div>
                         <h2 className="text-2xl font-bold tracking-tight mb-1">Content Manager</h2>
                         <p className="text-neutral-500 text-sm italic">"Control your narrative. Update site text instantly without editing code."</p>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                         <Button variant="outline" className="border-neutral-800 bg-neutral-900 rounded-xl" onClick={() => refetch()}>
                             <RotateCcw className="w-4 h-4 mr-2" />
                             Discard Changes
                         </Button>
-                        <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-8 h-11 shadow-[0_0_20px_rgba(249,115,22,0.2)]" onClick={handleSave} disabled={isSaving}>
+                        <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-8 h-11 shadow-[0_0_20px_rgba(249,115,22,0.2)] whitespace-nowrap" onClick={handleSave} disabled={isSaving}>
                             {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Save className="w-4 h-4 mr-2" />}
                             Publish Content
                         </Button>
