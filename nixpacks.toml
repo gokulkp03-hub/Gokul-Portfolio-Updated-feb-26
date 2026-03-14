@@ -5,5 +5,8 @@
 
 providers = ["node"]
 
+[variables]
+NIXPACKS_NODE_VERSION = "22"
+
 [phases.setup]
 nixPkgs = ["...", "python3", "gcc", "gnumake"]
