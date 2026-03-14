@@ -63,16 +63,18 @@ async function startServer() {
     serveStatic(app);
   }
 
-  const preferredPort = parseInt(process.env.PORT || "3000");
-  const port = await findAvailablePort(preferredPort);
+  const port = parseInt(process.env.PORT || "3000");
 
-  if (port !== preferredPort) {
-    console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
+  if (process.env.NODE_ENV === "production") {
+    server.listen(port, "0.0.0.0", () => {
+      console.log(`Server running in production on port ${port}`);
+    });
+  } else {
+    const availablePort = await findAvailablePort(port);
+    server.listen(availablePort, () => {
+      console.log(`Server running in development on http://localhost:${availablePort}/`);
+    });
   }
-
-  server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
-  });
 }
 
 startServer().catch(console.error);
