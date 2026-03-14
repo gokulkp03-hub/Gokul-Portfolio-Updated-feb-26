@@ -1,6 +1,6 @@
 [build]
-builder = "NIXPACKS"
-buildCommand = "pnpm install && pnpm run db:push && pnpm run build"
+builder = "DOCKER"
+dockerfilePath = "Dockerfile"
 
 [deploy]
 startCommand = "pnpm run start:server"
