@@ -23,4 +23,4 @@ RUN pnpm run build
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "mkdir -p ${UPLOADS_DIR:-/data/uploads} && pnpm run db:push && pnpm run start:server"]
+CMD ["sh", "-c", "node -e \"console.log('DATABASE_URL present:', !!process.env.DATABASE_URL)\" && mkdir -p ${UPLOADS_DIR:-/data/uploads} && pnpm run db:push && pnpm run start:server"]
