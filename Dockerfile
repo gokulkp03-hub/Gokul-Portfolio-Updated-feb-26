@@ -16,8 +16,9 @@ RUN npm install -g pnpm@10.32.1
 # Set the working directory
 WORKDIR /app
 
-# Copy package management files first for layer caching
+# Copy package management files and patches first for layer caching
 COPY package.json pnpm-lock.yaml ./
+COPY patches ./patches
 
 # 2. Install dependencies (better-sqlite3 will compile natively here)
 RUN pnpm install
