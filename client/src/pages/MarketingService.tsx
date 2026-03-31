@@ -1,239 +1,370 @@
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Link } from "wouter";
-import { BarChart, PieChart, TrendingUp, Users, Target, ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useState, useMemo } from "react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { trpc } from "@/lib/trpc";
+import { MorphBlob } from "@/components/ui/MorphBlob";
+import { RevealText } from "@/components/ui/RevealText";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { useScroll, useTransform } from "framer-motion";
 
-const process = [
-    { title: "Audit & Strategy", desc: "Deep dive into your current data and competitors." },
-    { title: "Creative Setup", desc: "Designing high-converting ad creatives." },
-    { title: "Launch & Test", desc: "A/B testing audiences and hooks." },
-    { title: "Scale & Optimize", desc: "Doubling down on winners, cutting losers." },
+// ------- FAQ Item -------
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  
+  return (
+    <div className="border-b border-border/40 py-4">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between w-full text-left font-medium text-lg hover:text-emerald-500 transition-colors"
+      >
+        {question}
+        <motion.div animate={prefersReducedMotion ? undefined : { rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+          <ChevronDown className="w-5 h-5" />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={prefersReducedMotion ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={prefersReducedMotion ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <p className="pt-2 pb-4 text-muted-foreground leading-relaxed">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ------- Case Study Flip Card -------
+function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  let parsedResults: any[] = [];
+  try {
+    parsedResults = typeof campaign.results === "string" ? JSON.parse(campaign.results) : campaign.results || [];
+  } catch {}
+
+  let industry = "Growth";
+  try {
+    const tags = typeof campaign.tags === "string" ? JSON.parse(campaign.tags) : campaign.tags;
+    if (Array.isArray(tags) && tags[0]) industry = tags[0];
+  } catch {}
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="relative w-full h-[380px] perspective-1000"
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="w-full h-full relative cursor-pointer group rounded-2xl shadow-xl"
+        onClick={() => setIsFlipped(!isFlipped)}
+      >
+        {/* Front Face */}
+        <div style={{ backfaceVisibility: "hidden" }} className="absolute inset-0 glass-card p-8 border border-border/20 group-hover:border-emerald-500/30 transition-colors overflow-hidden rounded-2xl flex flex-col justify-between bg-card">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-colors pointer-events-none" />
+          <div className="relative z-10 flex flex-col h-full">
+            <div className="flex items-center justify-between mb-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500">
+                {industry}
+              </span>
+              <div className="p-2 rounded-full border border-border/50 group-hover:border-emerald-500/50 text-muted-foreground group-hover:text-emerald-500 transition-colors">
+                 <ArrowUpRight className="w-4 h-4" />
+              </div>
+            </div>
+            <h3 className="text-2xl font-bold mb-3 group-hover:text-emerald-500 transition-colors">{campaign.title}</h3>
+            <p className="text-muted-foreground line-clamp-3 font-light flex-1">{campaign.description}</p>
+            
+            <div className="text-emerald-500 text-sm font-semibold mt-6 pt-4 border-t border-border/20 flex items-center justify-between">
+              <span>View Metrics</span>
+              <span className="text-xs text-muted-foreground font-normal">Click to flip</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Back Face */}
+        <div style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }} className="absolute inset-0 glass-card p-8 border border-emerald-500/30 bg-emerald-950/20 overflow-hidden rounded-2xl flex flex-col justify-between">
+           <h3 className="text-xl font-bold text-white mb-6 border-b border-emerald-500/20 pb-4">Campaign Metrics</h3>
+           <div className="flex-1 space-y-4">
+              {Array.isArray(parsedResults) && parsedResults.map((res: any, j: number) => (
+                <div key={j} className="flex justify-between items-center border-l-2 border-emerald-500 pl-4 py-1">
+                  <span className="text-xs uppercase tracking-wider text-emerald-100/60">{res.label}</span>
+                  <span className="text-xl font-bold text-emerald-400">{res.value}</span>
+                </div>
+              ))}
+           </div>
+           
+           <Link href={`/marketing/${campaign.slug}`}>
+               <a className="mt-6 text-center block w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl transition-colors" onClick={(e) => e.stopPropagation()}>
+                  Read Full Study
+               </a>
+           </Link>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ------- Marketing Hero -------
+function MarketingHero() {
+  const stats = [
+    { val: 500, suffix: "K+", prefix: "AED ", label: "Ad Spend Managed" },
+    { val: 2, suffix: "M+", prefix: "AED ", label: "Revenue Generated" },
+    { val: 4.2, suffix: "x", prefix: "", label: "Avg ROAS" },
+    { val: 150, suffix: "+", prefix: "", label: "Campaigns Run" },
+  ];
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32 pb-20">
+      {/* Ambient background */}
+      <MorphBlob color="emerald-500" size={700} opacity={0.05} blur={150} className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" animDuration={14} />
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col items-center">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center"
+        >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-8 border border-emerald-500/20 shadow-xl shadow-emerald-500/5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Performance Marketing
+            </div>
+
+            <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 text-center leading-[1.1]">
+                Growth based on <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+                data, not guesses.
+                </span>
+            </h1>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full max-w-4xl mt-6 mb-16">
+                {stats.map((s, i) => (
+                <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+                    className="bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md rounded-2xl p-6 text-center shadow-sm"
+                >
+                    <div className="text-emerald-400 text-2xl md:text-3xl font-bold tabular-nums mb-2">
+                    {s.prefix}{s.val}{s.suffix}
+                    </div>
+                    <div className="text-zinc-400 text-[10px] md:text-xs uppercase tracking-widest">{s.label}</div>
+                </motion.div>
+                ))}
+            </div>
+
+            {/* CTA */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="flex flex-col sm:flex-row items-center gap-4"
+            >
+                <Link href="/contact">
+                    <a className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-full transition-all hover:shadow-xl hover:shadow-emerald-500/20 hover:-translate-y-1 flex items-center gap-2">
+                    Start Your Growth Arc
+                    <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                </Link>
+                <Link href="/results">
+                    <a className="px-8 py-4 border border-border/50 hover:border-emerald-500/50 text-muted-foreground hover:text-foreground rounded-full transition-all inline-block text-center whitespace-nowrap">
+                    View Case Studies
+                    </a>
+                </Link>
+            </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/40"
+      >
+        <span className="text-xs uppercase tracking-[0.3em]">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-px h-8 bg-gradient-to-b from-muted-foreground/30 to-transparent"
+        />
+      </motion.div>
+    </section>
+  );
+}
+
+// ------- Main Page -------
+const processSteps = [
+  { title: "Audit & Strategy", desc: "Deep dive into your current data and competitors." },
+  { title: "Creative Setup", desc: "Designing high-converting ad creatives." },
+  { title: "Launch & Test", desc: "A/B testing audiences and hooks." },
+  { title: "Scale & Optimize", desc: "Doubling down on winners, cutting losers." },
 ];
 
 const faqs = [
-    { q: "What is your minimum budget?", a: "I recommend a minimum ad spend of $1,500/month to ensure we have enough data for optimization." },
-    { q: "Do you guarantee results?", a: "I guarantee a data-driven process. While specific ROAS cannot be legally guaranteed, my track record shows consistent growth." },
-    { q: "How long does it take?", a: "Optimization is ongoing, but initial results typically appear within the first 14-30 days." },
-    { q: "Do you handle creative?", a: "Yes, I provide creative strategy and can produce ad assets as part of the retainer." },
+  { q: "What is your minimum budget?", a: "I recommend a minimum ad spend of AED 5,000/month to ensure we have enough data for optimization." },
+  { q: "Do you guarantee results?", a: "I guarantee a data-driven process. While specific ROAS cannot be legally guaranteed, my track record shows consistent growth." },
+  { q: "How long does it take?", a: "Optimization is ongoing, but initial results typically appear within the first 14-30 days." },
+  { q: "Do you handle creative?", a: "Yes, I provide creative strategy and can produce ad assets as part of the retainer." },
 ];
 
-function FAQItem({ question, answer }: { question: string, answer: string }) {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <div className="border-b border-border/40 py-4">
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center justify-between w-full text-left font-medium text-lg hover:text-emerald-500 transition-colors"
-            >
-                {question}
-                {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-            </button>
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden"
-                    >
-                        <p className="pt-2 pb-4 text-muted-foreground leading-relaxed">{answer}</p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
-    );
-}
-
 export default function MarketingService() {
-    const { data: dbProjects } = trpc.projects.list.useQuery();
-    
-    const campaigns = useMemo(() => {
-        if (!dbProjects) return [];
-        return dbProjects.filter((p: any) => p.category.toLowerCase() === "marketing");
-    }, [dbProjects]);
+  const { data: dbProjects } = trpc.projects.list.useQuery();
 
-    return (
-        <div className="min-h-screen bg-background overflow-hidden relative">
+  const processRef = useRef(null);
+  const { scrollYProgress: processProgress } = useScroll({ target: processRef, offset: ["start center", "end center"] });
 
-            {/* Abstract Background */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[150px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none" />
+  const campaigns = useMemo(() => {
+    if (!dbProjects) return [];
+    return (dbProjects as any[]).filter((p) => p.category.toLowerCase() === "marketing");
+  }, [dbProjects]);
 
-            {/* Hero */}
-            <section className="pt-32 pb-20 container text-center z-10 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-500 text-sm font-medium mb-8 border border-emerald-500/20 backdrop-blur-md">
-                        <TrendingUp className="w-4 h-4" /> Performance Marketing
-                    </div>
+  return (
+    <div className="min-h-screen bg-background overflow-hidden relative">
 
-                    <h1 className="text-5xl md:text-8xl font-display font-semibold tracking-tighter mb-8 text-balance">
-                        Growth based on <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">data, not guesses</span>.
-                    </h1>
+      {/* ---- Marketing Hero ---- */}
+      <MarketingHero />
 
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12 font-light">
-                        Meta Ads, Google Ads, and Funnel Optimization.
-                        I turn ad spend into predictable revenue.
-                    </p>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                        {[
-                            { label: "Ad Spend Managed", val: "$500k+" },
-                            { label: "Revenue Generated", val: "$2M+" },
-                            { label: "Avg ROAS", val: "4.2x" },
-                            { label: "Campaigns", val: "150+" },
-                        ].map((stat, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ delay: 0.4 + (i * 0.1) }}
-                                className="p-6 rounded-2xl bg-card border border-border/50 shadow-sm hover:border-emerald-500/30 transition-colors"
-                            >
-                                <div className="text-3xl font-bold mb-1 text-foreground">{stat.val}</div>
-                                <div className="text-xs uppercase tracking-wider text-muted-foreground">{stat.label}</div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
-            </section>
-
-            {/* Case Studies */}
-            <section className="py-24 bg-muted/20 border-y border-border/40">
-                <div className="container max-w-6xl">
-                    <h2 className="text-3xl md:text-5xl font-display font-bold mb-12">Recent Wins</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {campaigns.map((campaign: any, i: number) => {
-                            let parsedResults: any[] = [];
-                            try {
-                                parsedResults = typeof campaign.results === 'string' ? JSON.parse(campaign.results) : campaign.results;
-                            } catch (e) {}
-
-                            const mainMetric = parsedResults?.[0] || { label: "Results", value: "Verified" };
-                            
-                            // Try to extract an industry from tags, else default to 'Growth'
-                            let industry = "Growth";
-                            try {
-                                const parsedTags = typeof campaign.tags === 'string' ? JSON.parse(campaign.tags) : campaign.tags;
-                                if (Array.isArray(parsedTags) && parsedTags.length > 0) {
-                                    industry = parsedTags[0];
-                                }
-                            } catch (e) {}
-
-                            return (
-                                <Link key={campaign.id} href={`/marketing/${campaign.slug}`}>
-                                    <motion.a
-                                        initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: i * 0.1 }}
-                                        className="block p-8 rounded-3xl bg-card border border-border hover:border-emerald-500/30 transition-all hover:shadow-xl group"
-                                    >
-                                        <div className="flex justify-between items-start mb-6">
-                                            <div className="px-4 py-2 bg-emerald-500/10 text-emerald-500 rounded-full text-sm font-bold flex items-center gap-2 capitalize">
-                                                <Target className="w-4 h-4" />
-                                                {industry}
-                                            </div>
-                                            <span className="text-emerald-500 font-bold bg-emerald-500/10 px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                                                <TrendingUp className="w-3 h-3" />
-                                                {mainMetric.value} {mainMetric.label}
-                                            </span>
-                                        </div>
-
-                                        <h3 className="text-2xl font-bold mb-2 group-hover:text-emerald-500 transition-colors">{campaign.title}</h3>
-                                        <p className="text-muted-foreground mb-6 line-clamp-2">{campaign.description}</p>
-
-                                        {Array.isArray(parsedResults) && parsedResults.length > 0 && (
-                                            <div className="grid grid-cols-3 gap-4 border-t border-border/40 pt-6">
-                                                {parsedResults.slice(0, 3).map((res: any, j: number) => (
-                                                    <div key={j}>
-                                                        <div className="text-xl font-bold text-foreground">{res.value}</div>
-                                                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{res.label}</div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </motion.a>
-                                </Link>
-                            );
-                        })}
-                        {campaigns.length === 0 && (
-                            <p className="col-span-full text-center text-muted-foreground">Marketing projects coming soon.</p>
-                        )}
-                    </div>
+      {/* ---- Stats Strip ---- */}
+      <section className="py-16 border-y border-border/20 bg-muted/10">
+        <div className="container max-w-5xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { to: 500, suffix: "K+", prefix: "AED ", label: "Ad Spend Managed" },
+              { to: 2, suffix: "M+", prefix: "AED ", label: "Revenue Generated" },
+              { to: 42, suffix: "x", prefix: "4.", label: "Avg ROAS" },
+              { to: 150, suffix: "+", prefix: "", label: "Campaigns Run" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+              >
+                <div className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-2 tabular-nums">
+                  <AnimatedCounter to={stat.to} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
-            </section>
-
-            {/* Process */}
-            <section className="py-24 container max-w-6xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    <div>
-                        <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">How It Works</h2>
-                        <p className="text-lg text-muted-foreground mb-8 max-w-lg">
-                            Stop burning money on "boost post". My process is scientific, iterative, and focused on one metric: <span className="text-foreground font-semibold">Profit</span>.
-                        </p>
-                        <Link href="#contact">
-                            <a className="btn-outline rounded-full group px-6 py-3">
-                                Start Your Growth Arc
-                                <ArrowUpRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </a>
-                        </Link>
-                    </div>
-
-                    <div className="space-y-8 relative">
-                        <div className="absolute left-5 top-8 bottom-8 w-px bg-border/50 border-l border-dashed border-muted-foreground/30"></div>
-                        {process.map((step, i) => (
-                            <div key={i} className="flex gap-6 items-start relative z-10">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-card border border-emerald-500/30 text-emerald-500 flex items-center justify-center font-bold shadow-sm">
-                                    {i + 1}
-                                </div>
-                                <div className="pt-2">
-                                    <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                                    <p className="text-muted-foreground">{step.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* FAQ */}
-            <section className="py-24 bg-card border-t border-border/40">
-                <div className="container max-w-3xl">
-                    <h2 className="text-3xl md:text-4xl font-display font-bold mb-12 text-center">Frequently Asked Questions</h2>
-                    <div className="space-y-2">
-                        {faqs.map((faq, i) => (
-                            <FAQItem key={i} question={faq.q} answer={faq.a} />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            <section id="contact" className="py-32 container text-center">
-                <div className="bg-gradient-to-br from-emerald-900 to-emerald-950 rounded-[3rem] p-12 md:p-20 text-white relative overflow-hidden shadow-2xl shadow-emerald-900/20">
-                    <div className="relative z-10">
-                        <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">Scale your revenue.</h2>
-                        <p className="text-emerald-100 text-xl mb-10 max-w-xl mx-auto font-light">
-                            Ready to turn your traffic into customers?
-                        </p>
-                        <Link href="mailto:hello@gokulkp.com">
-                            <a className="btn bg-white text-emerald-900 hover:bg-emerald-50 px-10 py-5 rounded-full font-bold shadow-lg transition-all hover:scale-105">
-                                Get a Free Audit
-                            </a>
-                        </Link>
-                    </div>
-                    {/* Background Pattern noise */}
-                    <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
-                </div>
-            </section>
-
+                <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-    );
+      </section>
+
+      {/* ---- Case Studies ---- */}
+      <section className="py-24 relative overflow-hidden">
+        <MorphBlob color="emerald-500" size={500} opacity={0.04} blur={120} className="-right-20 top-0" animDuration={16} />
+        <div className="container max-w-6xl relative z-10">
+          <RevealText text="Recent Wins" as="h2" className="text-3xl md:text-5xl font-display font-bold mb-12" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {campaigns.map((campaign: any, i: number) => (
+              <CaseStudyCard key={campaign.id} campaign={campaign} i={i} />
+            ))}
+            {campaigns.length === 0 && (
+              <div className="col-span-full text-center py-20 text-muted-foreground border border-dashed border-border/30 rounded-2xl">
+                Case studies are being published. <Link href="/contact"><a className="text-emerald-500 underline">Start a project</a></Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Process ---- */}
+      <section className="py-24 border-t border-border/20">
+        <div className="container max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <RevealText text="How It Works" as="h2" className="text-4xl md:text-5xl font-display font-bold mb-6" />
+              <p className="text-lg text-muted-foreground mb-8 max-w-lg font-light">
+                Stop burning money on "boost post". My process is scientific, iterative, and focused on one metric:{" "}
+                <span className="text-foreground font-semibold">Profit</span>.
+              </p>
+              <Link href="/contact">
+                <a className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/50 hover:border-emerald-500/50 transition-all text-sm font-medium hover:text-emerald-500">
+                  Start Your Growth Arc
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </Link>
+            </div>
+            <div className="space-y-8 relative" ref={processRef}>
+              <motion.div 
+                style={{ scaleY: processProgress, originY: 0 }}
+                className="absolute left-[20.5px] top-8 bottom-8 w-[2px] bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)] z-0" 
+              />
+              <div className="absolute left-5 top-8 bottom-8 w-px border-l border-dashed border-muted-foreground/20 -z-10" />
+              {processSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12, duration: 0.5 }}
+                  className="flex gap-6 items-start relative z-10"
+                >
+                  <motion.div
+                    className="flex-shrink-0 w-10 h-10 rounded-full bg-card border border-emerald-500/30 text-emerald-500 flex items-center justify-center font-bold text-sm shadow-sm"
+                    whileHover={{ scale: 1.1, borderColor: "rgba(16,185,129,0.8)" }}
+                  >
+                    {i + 1}
+                  </motion.div>
+                  <div className="pt-2">
+                    <h3 className="text-xl font-bold mb-1">{step.title}</h3>
+                    <p className="text-muted-foreground font-light">{step.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- FAQ ---- */}
+      <section className="py-24 bg-muted/10 border-t border-border/20">
+        <div className="container max-w-3xl">
+          <RevealText text="Frequently Asked Questions" as="h2" className="text-3xl md:text-4xl font-display font-bold mb-12 text-center" />
+          <div className="space-y-2">
+            {faqs.map((faq, i) => <FAQItem key={i} question={faq.q} answer={faq.a} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- CTA ---- */}
+      <section id="contact" className="py-32 container text-center">
+        <div className="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 rounded-[3rem] p-8 md:p-20 text-white overflow-hidden shadow-2xl shadow-emerald-900/30">
+          <MorphBlob color="emerald-500" size={500} opacity={0.12} blur={100} className="left-0 top-0" animDuration={10} />
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <RevealText text="Scale your revenue." as="h2" className="text-4xl md:text-7xl font-display font-black mb-8 uppercase italic tracking-tighter" />
+            <p className="text-white/80 text-lg md:text-xl mb-12 font-light">Ready to turn your traffic into customers? Get a free performance audit.</p>
+            <Link href="/contact">
+              <motion.a
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-3 bg-white text-black font-bold text-lg px-8 py-4 md:px-10 md:py-5 rounded-full shadow-xl cursor-pointer"
+              >
+                Get a Free Audit
+                <ArrowUpRight className="w-5 h-5" />
+              </motion.a>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

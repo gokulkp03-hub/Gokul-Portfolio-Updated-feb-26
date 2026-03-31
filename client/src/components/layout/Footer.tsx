@@ -67,7 +67,7 @@ export default function Footer() {
 
                 <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-background/40 text-center md:text-left">
                     <p>© {year} Gokul KP. All rights reserved.</p>
-                    <p>Designed with <span className="text-red-500">♥</span> in 2024.</p>
+                    <p>Designed with <span className="text-red-500">♥</span> in {year}.</p>
                 </div>
             </div>
         </footer>

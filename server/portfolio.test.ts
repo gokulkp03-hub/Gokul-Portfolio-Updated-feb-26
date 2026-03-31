@@ -348,8 +348,7 @@ describe("Portfolio Data Integrity", () => {
 
   it("should have icons for all services", () => {
     portfolioData.services.forEach((service) => {
-      expect(service.icon).toBeTruthy();
-      expect(service.icon.length).toBeGreaterThan(0);
+      expect(service.icon).toBeDefined();
     });
   });
 

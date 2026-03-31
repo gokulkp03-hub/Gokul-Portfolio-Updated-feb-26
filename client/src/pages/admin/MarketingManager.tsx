@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import { ProjectForm } from "@/components/admin/ProjectForm";
 
 export default function MarketingManager() {
-    const { data: projects, isLoading, refetch } = trpc.projects.list.useQuery();
+    const { data: projects, isLoading, refetch } = trpc.projects.adminList.useQuery();
     const deleteMutation = trpc.projects.delete.useMutation();
     const [search, setSearch] = useState("");
     const [editingAsset, setEditingAsset] = useState<any | null>(null);

@@ -1,30 +1,8 @@
 import { motion, useInView, animate } from "framer-motion";
 import { proof } from "@/data/proof";
 import { useEffect, useRef } from "react";
-
-function Counter({ from, to, prefix = "", suffix = "" }: { from: number; to: number; prefix?: string; suffix?: string }) {
-    const nodeRef = useRef<HTMLSpanElement>(null);
-    const inView = useInView(nodeRef, { once: true, margin: "-50px" });
-
-    useEffect(() => {
-        const node = nodeRef.current;
-        if (!node || !inView) return;
-
-        const controls = animate(from, to, {
-            duration: 2.5,
-            ease: "easeOut",
-            onUpdate(value) {
-                // Round to nearest integer for display, or maintain decimals if needed (here simplified)
-                const formatted = Math.floor(value).toLocaleString();
-                node.textContent = `${prefix}${formatted}${suffix}`;
-            },
-        });
-
-        return () => controls.stop();
-    }, [from, to, inView, prefix, suffix]);
-
-    return <span ref={nodeRef} className="tabular-nums" />;
-}
+import { MorphBlob } from "@/components/ui/MorphBlob";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 export function ProofStrip() {
     return (
@@ -32,35 +10,35 @@ export function ProofStrip() {
             <div className="container overflow-hidden">
 
                 {/* Infinite Scroll Logos */}
-                <div className="flex flex-nowrap md:justify-center gap-10 md:gap-24 items-center animate-scroll md:animate-none group hover:opacity-100 transition-opacity mb-20 overflow-x-auto pb-8 hide-scrollbar">
-                    {proof.logos.map((logo, i) => (
-                        <div key={i} className="flex-shrink-0 cursor-pointer opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300">
-                            <img
-                                src={logo.src}
-                                alt={logo.name}
-                                className="h-10 md:h-16 w-auto object-contain dark:invert brightness-110"
-                            />
-                        </div>
-                    ))}
+                <div className="marquee-container mb-20">
+                    <div className="animate-marquee">
+                        {[...proof.logos, ...proof.logos].map((logo, i) => (
+                            <div key={i} className="flex-shrink-0 mx-8 md:mx-16 opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 duration-300">
+                                <img src={logo.src} alt={logo.name} className="h-10 md:h-16 w-auto object-contain" />
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
+                <MorphBlob color="emerald-500" size={500} opacity={0.05} blur={100} className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" animDuration={14} />
+
                 {/* Animated Metrics */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
                     {proof.metrics.map((metric, i) => {
                         // Parse value to number for animation
                         const numericValue = parseInt(metric.value.replace(/,/g, ''), 10);
                         return (
-                            <div key={i} className="text-center">
+                            <div key={i} className="flex flex-col items-center text-center">
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: i * 0.1, duration: 0.5 }}
                                     viewport={{ once: true }}
-                                    className="text-4xl md:text-6xl font-display font-bold mb-2 text-foreground tracking-tighter"
+                                    className="text-4xl md:text-7xl font-display font-bold mb-3 text-foreground tracking-tighter min-w-[120px] text-center tabular-nums"
                                 >
-                                    <Counter from={0} to={numericValue} prefix={metric.prefix} suffix={metric.suffix} />
+                                    <AnimatedCounter to={numericValue} prefix={metric.prefix} suffix={metric.suffix} />
                                 </motion.div>
-                                <div className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
+                                <div className="text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground text-center">
                                     {metric.label}
                                 </div>
                             </div>

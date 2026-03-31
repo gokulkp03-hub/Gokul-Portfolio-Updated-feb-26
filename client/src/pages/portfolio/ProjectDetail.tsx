@@ -62,12 +62,10 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
         <div className="min-h-screen pt-24 pb-20">
             <div className="container">
                 {/* Back Link */}
-                <Link href={category === "marketing" || project.category === "marketing" ? "/portfolio" : "/portfolio"}>
-                    <a className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-12 group cursor-pointer">
-                        <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-                        Back to Portfolio
-                    </a>
-                </Link>
+                <button onClick={() => window.history.back()} className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-12 group cursor-pointer">
+                    <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                    Back to Portfolio
+                </button>
 
                 {/* Hero Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">

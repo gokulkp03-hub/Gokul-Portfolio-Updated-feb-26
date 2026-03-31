@@ -10,13 +10,14 @@ import {
 } from "lucide-react";
 
 export default function AdminDashboard() {
-    const { data: projects } = trpc.projects.list.useQuery();
+    const { data: projects } = trpc.projects.adminList.useQuery();
     const { data: media } = trpc.media.list.useQuery();
+    const { data: contacts } = trpc.contact.list.useQuery();
 
     const STATS = [
         { label: "Total Projects", value: projects?.length || 0, icon: Briefcase, color: "text-blue-500" },
         { label: "Media Assets", value: media?.length || 0, icon: ImageIcon, color: "text-orange-500" },
-        { label: "Messages", value: 0, icon: MessageSquare, color: "text-green-500" },
+        { label: "Messages", value: contacts?.length || 0, icon: MessageSquare, color: "text-green-500" },
         { label: "Total Views", value: projects?.reduce((acc, p) => acc + (p.views || 0), 0) || 0, icon: Eye, color: "text-purple-500" },
     ];
 

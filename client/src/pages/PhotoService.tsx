@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Camera, Layers, Zap, ArrowRight, Expand, Image, ArrowUpRight, Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
 import { trpc } from "@/lib/trpc";
 import { useMemo } from "react";
@@ -9,6 +10,27 @@ const services = [
     { icon: Camera, title: "Editorial Shoots", desc: "Stylized imagery for magazines and brands." },
     { icon: Image, title: "Product Photography", desc: "Clean, high-end visuals for e-commerce." },
     { icon: Layers, title: "High-End Retouching", desc: "Flawless skin and color grading." },
+];
+
+const packages = [
+    {
+        name: "Portrait Session",
+        price: "AED 1,800",
+        features: ["2 Hour Session", "10 High-End Retouched Images", "Online Gallery", "Personal Usage Rights"],
+        highlight: false
+    },
+    {
+        name: "Brand Content Day",
+        price: "AED 4,500",
+        features: ["Full Day Shoot", "50+ Edited Assets", "Product & Lifestyle", "Commercial Usage Rights"],
+        highlight: true
+    },
+    {
+        name: "Custom Project",
+        price: "Custom",
+        features: ["Tailored Production", "Studio Rental Included", "Professional Styling", "Global Usage Rights"],
+        highlight: false
+    }
 ];
 
 export default function PhotoService() {
@@ -21,9 +43,9 @@ export default function PhotoService() {
     
     return (
         <div className="min-h-screen bg-background overflow-hidden relative">
-
-            {/* Background Ambience */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] pointer-events-none" />
+            {/* Background Texture & Ambience */}
+            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Hero */}
             <section className="relative pt-32 pb-20 container px-4 text-center z-10">
@@ -122,10 +144,8 @@ export default function PhotoService() {
 
                     <div className="shadow-2xl shadow-orange-500/10 rounded-3xl overflow-hidden border border-border/50">
                         <BeforeAfter
-                            beforeImage="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop" // Raw/Flat
-                            afterImage="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=2000&auto=format&fit=crop" // Graded/Retouched (Simulated with similar but different style or same image with filter if I had one, using different images for concept)
-                            // Better to use same image with different processing, but for demo using two high quality portraits
-                            // Let's use a better pair if possible or just accepted they are different for demo
+                            beforeImage="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2000&auto=format&fit=crop&sat=-100" // Desaturated
+                            afterImage="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2000&auto=format&fit=crop" // Color
                             labelBefore="Raw Capture"
                             labelAfter="Final Grade"
                         />
@@ -148,16 +168,54 @@ export default function PhotoService() {
                 </div>
             </section>
 
-            {/* Services */}
-            <section className="py-24 container">
+             {/* Pricing Section */}
+            <section className="py-24 container relative z-10 border-t border-border/20">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Investment</h2>
+                    <p className="text-muted-foreground text-lg">Transparent pricing for premium photography services.</p>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {packages.map((pkg, i) => (
+                        <div key={i} className={cn(
+                            "p-8 rounded-3xl border transition-all duration-300",
+                            pkg.highlight 
+                                ? "bg-muted/30 border-orange-500/50 scale-105 shadow-xl shadow-orange-500/10" 
+                                : "bg-background border-border/50"
+                        )}>
+                            <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
+                            <div className="text-3xl font-display font-bold mb-6 text-orange-500">{pkg.price}</div>
+                            <ul className="space-y-4 mb-8">
+                                {pkg.features.map((feat, j) => (
+                                    <li key={j} className="flex items-center gap-3 text-sm">
+                                        <Sparkles className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                                        <span>{feat}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link href="/contact">
+                                <a className={cn(
+                                    "w-full py-3 rounded-full text-center block text-sm font-semibold transition-all",
+                                    pkg.highlight ? "bg-orange-500 text-white" : "border border-border hover:bg-muted"
+                                )}>
+                                    Book Now
+                                </a>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Services */}
+            <section className="py-24 container relative z-10 border-t border-border/20">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {services.map((service, i) => (
-                        <div key={i} className="p-8 rounded-3xl bg-card border border-border/50 hover:border-orange-500/30 transition-all text-center group hover:shadow-lg hover:-translate-y-1 duration-300">
-                            <div className="w-16 h-16 mx-auto bg-muted rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform text-orange-500 group-hover:bg-orange-500/10">
-                                <service.icon className="w-8 h-8" />
+                        <div key={i} className="skeuo-card p-8 text-center group transition-all duration-500 hover:-translate-y-2">
+                            <div className="w-20 h-20 mx-auto bg-muted/50 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1),0_10px_20px_rgba(0,0,0,0.05)] group-hover:scale-110 transition-transform text-orange-500">
+                                <service.icon className="w-10 h-10" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                            <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+                            <h3 className="text-2xl font-display font-medium mb-4">{service.title}</h3>
+                            <p className="text-muted-foreground leading-relaxed font-light">{service.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -168,8 +226,8 @@ export default function PhotoService() {
                 <h2 className="text-4xl md:text-6xl font-display font-medium tracking-tight mb-8">
                     Let's shoot something <span className="text-orange-500">beautiful</span>.
                 </h2>
-                <Link href="mailto:hello@gokulkp.com">
-                    <a className="btn bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-full text-lg shadow-lg shadow-orange-500/20 transition-all hover:bg-orange-400">
+                <Link href="/contact">
+                    <a className="skeuo-button bg-orange-500 text-white px-12 py-5 rounded-full text-lg shadow-lg shadow-orange-500/20 active:bg-orange-600">
                         Book a Session
                     </a>
                 </Link>

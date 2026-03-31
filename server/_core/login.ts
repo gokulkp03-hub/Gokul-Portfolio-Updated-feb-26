@@ -2,11 +2,12 @@ import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import type { Express, Request, Response } from "express";
 import * as db from "../db";
 import { getSessionCookieOptions } from "./cookies";
-import { sdk } from "./sdk";
 import { ENV } from "./env";
+import jwt from "jsonwebtoken";
+import { loginIpLimiter, loginIdentifierLimiter } from "./limiters";
 
 export function registerLoginRoutes(app: Express) {
-  app.post("/api/login", async (req: Request, res: Response) => {
+  app.post("/api/login", loginIpLimiter, loginIdentifierLimiter, async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -44,15 +45,23 @@ export function registerLoginRoutes(app: Express) {
         lastSignedIn: new Date(),
       });
 
-      const sessionToken = await sdk.createSessionToken(openId, {
-        name: "Admin",
-        expiresInMs: ONE_YEAR_MS,
-      });
+      const secret = process.env.JWT_SECRET;
+      if (!secret) throw new Error("JWT_SECRET is not configured");
+
+      const jwtToken = jwt.sign(
+        { id: openId, name: "Admin", role: "admin" },
+        secret,
+        { 
+          expiresIn: (process.env.JWT_EXPIRY || "1d") as jwt.SignOptions["expiresIn"],
+          algorithm: "HS256"
+        }
+      );
 
       const cookieOptions = getSessionCookieOptions(req);
-      res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+      // Set token inside cookie using a name checked by our middleware
+      res.cookie("auth_token", jwtToken, { ...cookieOptions, maxAge: 24 * 60 * 60 * 1000 }); // 1 day default
 
-      res.status(200).json({ success: true });
+      res.status(200).json({ success: true, token: jwtToken });
     } catch (error) {
       console.error("[Login] Login failed", error);
       res.status(500).json({ error: "Login process failed" });
@@ -61,7 +70,7 @@ export function registerLoginRoutes(app: Express) {
 
   app.post("/api/logout", (req: Request, res: Response) => {
     const cookieOptions = getSessionCookieOptions(req);
-    res.clearCookie(COOKIE_NAME, cookieOptions);
+    res.clearCookie("auth_token", cookieOptions);
     res.status(200).json({ success: true });
   });
 }

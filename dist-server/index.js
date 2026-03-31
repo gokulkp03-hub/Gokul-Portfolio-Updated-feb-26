@@ -4,6 +4,7 @@ import express2 from "express";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
+import cors from "cors";
 
 // shared/const.ts
 var COOKIE_NAME = "app_session_id";
@@ -712,6 +713,22 @@ var mediaRouter = router({
   })
 });
 
+// server/contactRouter.ts
+import { z as z5 } from "zod";
+var contactRouter = router({
+  submit: publicProcedure.input(z5.object({
+    name: z5.string().min(1),
+    email: z5.string().email(),
+    service: z5.string(),
+    details: z5.string().optional()
+  })).mutation(async ({ input }) => {
+    return await prisma.contactSubmission.create({ data: input });
+  }),
+  list: publicProcedure.query(async () => {
+    return await prisma.contactSubmission.findMany();
+  })
+});
+
 // server/routers.ts
 var appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -728,7 +745,8 @@ var appRouter = router({
   }),
   projects: projectRouter,
   content: contentRouter,
-  media: mediaRouter
+  media: mediaRouter,
+  contact: contactRouter
 });
 
 // server/_core/context.ts
@@ -865,6 +883,10 @@ async function startServer() {
   const server = createServer(app);
   app.use(express2.json({ limit: "50mb" }));
   app.use(express2.urlencoded({ limit: "50mb", extended: true }));
+  app.use(cors({
+    origin: process.env.FRONTEND_URL || "*",
+    credentials: true
+  }));
   const uploadDir = process.env.UPLOADS_DIR || path4.join(process.cwd(), "public", "uploads");
   app.use("/uploads", express2.static(uploadDir));
   registerLoginRoutes(app);
@@ -880,13 +902,16 @@ async function startServer() {
   } else {
     serveStatic(app);
   }
-  const preferredPort = parseInt(process.env.PORT || "3000");
-  const port = await findAvailablePort(preferredPort);
-  if (port !== preferredPort) {
-    console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
+  const port = parseInt(process.env.PORT || "3000");
+  if (process.env.NODE_ENV === "production") {
+    server.listen(port, "0.0.0.0", () => {
+      console.log(`Server running in production on port ${port}`);
+    });
+  } else {
+    const availablePort = await findAvailablePort(port);
+    server.listen(availablePort, () => {
+      console.log(`Server running in development on http://localhost:${availablePort}/`);
+    });
   }
-  server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
-  });
 }
 startServer().catch(console.error);

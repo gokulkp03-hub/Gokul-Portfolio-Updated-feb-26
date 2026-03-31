@@ -36,9 +36,9 @@ export default function Results() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="glass-card p-8 border border-white/5"
+                            className="glass-card p-8 border border-border/50"
                         >
-                            <div className="text-3xl md:text-6xl font-display font-bold text-white mb-2">
+                            <div className="text-3xl md:text-6xl font-display font-bold text-foreground mb-2">
                                 {metric.prefix}{metric.value}{metric.suffix}
                             </div>
                             <div className="text-xs uppercase tracking-[0.2em] text-orange-500 font-bold">
@@ -100,7 +100,7 @@ export default function Results() {
                                         <div className="grid grid-cols-2 gap-8 mb-12">
                                             {parsedResults.slice(0, 4).map((m: any, mi: number) => (
                                                 <div key={mi} className="border-l-2 border-orange-500/30 pl-6">
-                                                    <div className="text-3xl font-display font-bold text-white mb-1">
+                                                    <div className="text-3xl font-display font-bold text-foreground mb-1">
                                                         {m.value}
                                                     </div>
                                                     <div className="text-xs uppercase tracking-wider text-muted-foreground">
@@ -125,7 +125,7 @@ export default function Results() {
                                     viewport={{ once: true }}
                                     className={i % 2 === 0 ? "order-2" : "order-2 lg:order-1"}
                                 >
-                                    <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 group">
+                                    <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-border group">
                                         {mainImage ? (
                                             <img
                                                 src={mainImage}
@@ -148,7 +148,7 @@ export default function Results() {
                     <h3 className="text-sm uppercase tracking-[0.4em] text-muted-foreground mb-12">Trusted by 20+ Regional Entities</h3>
                     <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                         {proof.logos.map((logo, i) => (
-                            <span key={i} className="text-2xl font-display font-bold text-white whitespace-nowrap">
+                            <span key={i} className="text-2xl font-display font-bold text-foreground whitespace-nowrap">
                                 {logo.name}
                             </span>
                         ))}

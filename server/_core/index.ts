@@ -4,11 +4,33 @@ import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import cors from "cors";
+import jwt from "jsonwebtoken";
+import { apiLimiter } from "./limiters";
 import { registerLoginRoutes } from "./login";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import path from "path";
+
+// 2. JWT Validation Middleware: validates token on each request
+const jwtValidationMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith("Bearer ") 
+    ? authHeader.substring(7) 
+    : (req.headers.cookie?.includes("auth_token=") ? req.headers.cookie.split("auth_token=")[1].split(";")[0] : null);
+
+  if (token) {
+    try {
+      const secret = process.env.JWT_SECRET;
+      if (!secret) throw new Error("JWT_SECRET is not configured");
+      const decoded = jwt.verify(token, secret, { algorithms: ["HS256"] });
+      (req as any).user = decoded; // Bind user to request
+    } catch (err) {
+      console.error("[Auth] JWT validation failed:", (err as Error).message);
+    }
+  }
+  next();
+};
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -30,17 +52,42 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 }
 
 async function startServer() {
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    console.error("FATAL: Environment variable JWT_SECRET is missing.");
+    process.exit(1);
+  }
+
   const app = express();
+  app.set("trust proxy", 1);
   const server = createServer(app);
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
-  // Allow cross-origin requests from the Vercel frontend
+  // 3. CORS Hardening: Strict origin whitelist based on ENV
+  const allowedOrigins = process.env.ALLOWED_ORIGINS 
+    ? process.env.ALLOWED_ORIGINS.split(",") 
+    : ["http://localhost:5173", "http://localhost:3000"];
+
   app.use(cors({
-    origin: process.env.FRONTEND_URL || "*",
-    credentials: true
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    credentials: true,
   }));
+
+  // Apply JWT middleware globally
+  app.use(jwtValidationMiddleware);
+
+  // Apply Rate limiter to all API routes
+  app.use("/api", apiLimiter);
 
   // Serve the local uploads directory directly so Vite / Express can resolve /uploads/...
   const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");

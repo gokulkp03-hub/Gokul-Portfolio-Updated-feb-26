@@ -189,5 +189,72 @@ export const videoProjects: VideoProject[] = [
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.mp4",
         description: "A dynamic showcase of creative projects from 2025."
+    },
+    {
+        id: "wedding-film-5",
+        title: "Wedding Highlights — 5",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/5_t1jx9h.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/5_t1jx9h.mp4",
+        description: "Cinematic wedding highlights filled with intimate moments and emotion.",
+        featured: true
+    },
+    {
+        id: "wedding-film-14",
+        title: "Wedding Highlights — 14",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/14_ijw1ew.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/14_ijw1ew.mp4",
+        description: "Timeless wedding film capturing every cherished moment of the celebration."
+    },
+    {
+        id: "wedding-film-4",
+        title: "Wedding Highlights — 4",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/4_s3azf8.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/4_s3azf8.mp4",
+        description: "A heartfelt wedding film with sweeping visuals and emotional moments."
+    },
+    {
+        id: "wedding-film-6b",
+        title: "Wedding Film — 6",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/6_ci2fz2.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_ci2fz2.mp4",
+        description: "A beautifully edited wedding highlight reel with cinematic colour grading."
+    },
+    {
+        id: "wedding-film-1",
+        title: "Wedding Highlights — 1",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/1_fljmrg.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/1_fljmrg.mp4",
+        description: "Cinematic wedding film capturing the magic of the first day together."
+    },
+    {
+        id: "ziya-wedding-5",
+        title: "Ziya — Wedding Film",
+        category: "Weddings",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Ziya_5_easwfm.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Ziya_5_easwfm.mp4",
+        description: "A soulful wedding film for Ziya — cinematic, emotional, and timeless."
+    },
+    {
+        id: "steaburg-reel-social",
+        title: "Steaburg — Social Reel",
+        category: "Reels",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/steaburgsharjah_1749307530_3649778156913339989_51220232024_u3srac.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/steaburgsharjah_1749307530_3649778156913339989_51220232024_u3srac.mp4",
+        description: "High-energy social reel for Steaburg — Sharjah's favourite burger spot.",
+        featured: true
+    },
+    {
+        id: "steaburg-brand-film",
+        title: "Steaburg — Brand Film",
+        category: "Product",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Steaburg_sjl6ik.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.mp4",
+        description: "Cinematic brand film for Steaburg showcasing the food, the atmosphere, and the brand story.",
+        featured: true
     }
 ];

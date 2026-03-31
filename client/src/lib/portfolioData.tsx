@@ -1,18 +1,23 @@
+import React from "react";
 import { Video, Camera, Scissors, Palette, Sparkles, Layers } from "lucide-react";
 
 export const portfolioData = {
   services: [
     {
-      id: "video-production",
-      name: "Video Production (Shoot + Edit)",
-      description: "Complete video solutions from filming to high-end post-production",
+      id: "videography",
+      name: "Videography",
+      description: "Professional video captures including weddings, events, and brand films",
       icon: <Video className="w-8 h-8 text-orange-500" />,
       categories: [
-        { id: "weddings", name: "Weddings", type: "video" },
-        { id: "events", name: "Events", type: "video" },
-        { id: "product", name: "Product", type: "video" },
-        { id: "personal-branding", name: "Personal Branding", type: "video" },
+        { id: "ads", name: "Ads", type: "video" },
         { id: "reels", name: "Reels", type: "video" },
+        { id: "personal-branding", name: "Personal Branding", type: "video" },
+        { id: "fb", name: "F&B", type: "video" },
+        { id: "event", name: "Event", type: "video" },
+        { id: "inauguration", name: "Inauguration", type: "video" },
+        { id: "wedding", name: "Wedding", type: "video" },
+        { id: "real-estate", name: "Real Estate", type: "video" },
+        { id: "app-promo", name: "App Promo", type: "video" },
       ],
     },
     {
@@ -22,6 +27,7 @@ export const portfolioData = {
       icon: <Camera className="w-8 h-8 text-orange-500" />,
       categories: [
         { id: "wedding", name: "Wedding", type: "image" },
+        { id: "candid", name: "Candid", type: "image" },
         { id: "product", name: "Product", type: "image" },
         { id: "automobile", name: "Automobile", type: "image" },
         { id: "corporate", name: "Corporate", type: "image" },
@@ -33,9 +39,23 @@ export const portfolioData = {
       ],
     },
     {
+      id: "video-editing",
+      name: "Video Editing",
+      description: "High-end post-production, storytelling, and color grading",
+      icon: <Scissors className="w-8 h-8 text-orange-500" />,
+      categories: [
+        { id: "instagram-reels", name: "Instagram Reels Editing", type: "video" },
+        { id: "youtube", name: "YouTube Editing", type: "video" },
+        { id: "short-form-ads", name: "Short-form Ads", type: "video" },
+        { id: "long-form", name: "Long-form Content", type: "video" },
+        { id: "event-highlights", name: "Event Highlights", type: "video" },
+        { id: "color-grading", name: "Color Grading", type: "video" },
+      ],
+    },
+    {
       id: "graphic-design",
       name: "Graphic Design",
-      description: "Visual communication and brand design",
+      description: "Visual communication, brand identity, and marketing materials",
       icon: <Palette className="w-8 h-8 text-orange-500" />,
       categories: [
         { id: "social-media", name: "Social Media Graphics", type: "image" },
@@ -50,7 +70,7 @@ export const portfolioData = {
     {
       id: "motion-graphics",
       name: "Motion Graphics",
-      description: "Animated visuals and dynamic storytelling",
+      description: "Animated visuals, logo animations, and dynamic storytelling",
       icon: <Sparkles className="w-8 h-8 text-orange-500" />,
       categories: [
         { id: "logo-animations", name: "Logo Animations", type: "video" },
@@ -63,7 +83,7 @@ export const portfolioData = {
     {
       id: "creative-projects",
       name: "Creative Projects",
-      description: "Personal and experimental visual work",
+      description: "Personal and experimental visual stories and concept work",
       icon: <Layers className="w-8 h-8 text-orange-500" />,
       categories: [
         { id: "short-films", name: "Short Films", type: "video" },

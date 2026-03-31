@@ -10,11 +10,27 @@ export interface ExperienceItem {
 export const bio = {
     name: "Gokul KP",
     role: "Creative Strategist",
-    description: "Driving digital growth through performance marketing & cinematic content.",
-    longDescription: "With over 3 years of hands-on experience in building brand identities in the UAE, I focus on the intersection of premium aesthetics and marketing results. My journey started with a passion for visual storytelling, which eventually evolved into managing social content and ad creatives for premium brands. I believe that every frame should have a purpose, and every content piece should drive measurable impact."
+    description: "Performance-driven creative for brands that want results.",
+    longDescription: "3+ years scaling UAE brands through content + ads. Managed AED 185K+ quarterly spend & 20K+ conversions. Focused on the intersection of premium aesthetics and high-performance output."
 };
 
 export const experiences: ExperienceItem[] = [
+    {
+        company: "Aqua Care",
+        position: "Performance Marketing Lead",
+        duration: "July 2024 - Present",
+        description: "Leading the digital transformation and lead generation strategy for a premier water purification brand in the UAE.",
+        responsibilities: [
+            "Architected a multi-channel lead generation funnel across Meta and Google.",
+            "Produced high-converting direct-response video assets for product launches.",
+            "Optimized CRM workflows to reduce lead response time by 40%."
+        ],
+        achievements: [
+            "Generated 1,200+ qualified leads in the first 90 days of the new strategy.",
+            "Reduced Cost Per Acquisition (CPA) by 35% through creative testing.",
+            "Scaled monthly revenue attribution from social channels by 2x."
+        ]
+    },
     {
         company: "PrepMeal",
         position: "Social Media Manager",
@@ -70,17 +86,17 @@ export const experiences: ExperienceItem[] = [
 
 export const skills = {
     marketing: [
-        "Performance Marketing (Meta & Google Ads)",
-        "Social Media Growth Strategy",
-        "Funnel Building & CRM Automation",
-        "Local SEO & GBP Optimization",
-        "Brand Identity Development"
+        "Meta Ads Manager",
+        "Google Ads",
+        "TikTok Ads",
+        "CRM & Automation",
+        "Growth Strategy"
     ],
     creative: [
-        "Video Shooting & Camera Handling",
-        "CapCut & Premiere Pro Editing",
-        "Product Photography & Editing",
-        "Short-form Content Strategy",
-        "Meta Ads Creative Design"
+        "DaVinci Resolve",
+        "Adobe After Effects",
+        "Premiere Pro",
+        "Short-form Content",
+        "Product Photography"
     ]
 };

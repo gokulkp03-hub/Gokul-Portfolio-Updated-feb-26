@@ -5,6 +5,16 @@ import { z } from "zod";
 export const projectRouter = router({
     list: publicProcedure.query(async () => {
         return prisma.project.findMany({
+            where: { status: "published" },
+            orderBy: [
+                { sortOrder: 'asc' },
+                { createdAt: 'desc' },
+            ]
+        });
+    }),
+
+    adminList: adminProcedure.query(async () => {
+        return prisma.project.findMany({
             orderBy: [
                 { sortOrder: 'asc' },
                 { createdAt: 'desc' },

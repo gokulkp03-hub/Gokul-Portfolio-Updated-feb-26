@@ -53,6 +53,8 @@ export default function Contact() {
         }
     ];
 
+    const submitContact = trpc.contact.submit.useMutation();
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -63,23 +65,27 @@ export default function Contact() {
 
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            await submitContact.mutateAsync(formData);
+            setSubmitted(true);
+            toast.success("Message sent successfully! I'll get back to you soon.");
 
-        setIsSubmitting(false);
-        setSubmitted(true);
-        toast.success("Message sent successfully! I'll get back to you soon.");
+            // Reset form after success
+            setFormData({
+                name: "",
+                email: "",
+                service: "High-End Video Production",
+                details: ""
+            });
 
-        // Reset form after success
-        setFormData({
-            name: "",
-            email: "",
-            service: "High-End Video Production",
-            details: ""
-        });
-
-        // Reset success state after 5 seconds to allow new submission if needed
-        setTimeout(() => setSubmitted(false), 5000);
+            // Reset success state after 10 seconds to allow new submission if needed
+            setTimeout(() => setSubmitted(false), 10000);
+        } catch (error) {
+            toast.error("Something went wrong. Please try again or email me directly.");
+            console.error("Submission error:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -88,15 +94,22 @@ export default function Contact() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
                     {/* Left: Info */}
                     <div>
-                        <motion.h1
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="text-6xl md:text-9xl font-display font-bold tracking-tighter mb-8 uppercase italic"
-                        >
-                            Let's <br /> <span className="text-orange-500">Scale</span>.
-                        </motion.h1>
+                        <h1 className="text-6xl md:text-9xl font-display font-bold tracking-tighter mb-8 uppercase italic flex flex-col items-start overflow-hidden">
+                            <motion.span 
+                                initial={{ opacity: 0, y: -40, rotate: -2 }}
+                                animate={{ opacity: 1, y: 0, rotate: 0 }}
+                                transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+                                className="block"
+                            >Let's</motion.span>
+                            <motion.span 
+                                initial={{ opacity: 0, x: 40, rotate: 2 }}
+                                animate={{ opacity: 1, x: 0, rotate: 0 }}
+                                transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.15 }}
+                                className="text-orange-500 block"
+                            >Scale.</motion.span>
+                        </h1>
                         <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed mb-12 max-w-lg">
-                            Whether you need a high-end cinematic showreel or a data-driven growth strategy, I'm ready to build it.
+                            Let's discuss how we can scale your brand.
                         </p>
 
                         <div className="space-y-6 mb-16">
@@ -107,14 +120,14 @@ export default function Contact() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="flex items-center gap-6 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-orange-500/30 transition-all group"
+                                    className="flex items-center gap-6 p-6 rounded-2xl bg-muted/20 border border-border hover:border-orange-500/30 transition-all group"
                                 >
-                                    <div className={`${method.color} bg-white/5 p-4 rounded-xl group-hover:scale-110 transition-transform`}>
+                                    <div className={`${method.color} bg-muted/30 p-4 rounded-xl group-hover:scale-110 transition-transform`}>
                                         {method.icon}
                                     </div>
                                     <div>
                                         <div className="text-xs uppercase tracking-widest text-muted-foreground mb-1">{method.label}</div>
-                                        <div className="text-xl font-medium text-white">{method.value}</div>
+                                        <div className="text-xl font-medium text-foreground">{method.value}</div>
                                     </div>
                                 </motion.a>
                             ))}
@@ -130,7 +143,7 @@ export default function Contact() {
                     <div className="relative">
                         <div className="absolute inset-0 bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-                        <div className="relative glass-card p-8 md:p-12 border border-white/10 rounded-[2rem]">
+                        <div className="relative glass-card p-8 md:p-12 border border-border rounded-[2rem]">
                             {submitted ? (
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
@@ -159,53 +172,65 @@ export default function Contact() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="space-y-2">
                                                 <label className="text-xs uppercase tracking-widest text-muted-foreground">Name</label>
-                                                <input
-                                                    type="text"
-                                                    required
-                                                    value={formData.name}
-                                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                    disabled={isSubmitting}
-                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-orange-500/50 outline-none transition-colors disabled:opacity-50"
-                                                    placeholder="John Doe"
-                                                />
+                                                <div className="relative rounded-xl overflow-hidden bg-muted/20 border border-border">
+                                                    <input
+                                                        type="text"
+                                                        required
+                                                        value={formData.name}
+                                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                        disabled={isSubmitting}
+                                                        className="w-full bg-transparent px-5 py-4 outline-none transition-colors disabled:opacity-50 peer z-10 relative"
+                                                        placeholder="John Doe"
+                                                    />
+                                                    <span className="absolute bottom-0 left-0 w-0 h-1 bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
+                                                </div>
                                             </div>
                                             <div className="space-y-2">
                                                 <label className="text-xs uppercase tracking-widest text-muted-foreground">Email</label>
-                                                <input
-                                                    type="email"
-                                                    required
-                                                    value={formData.email}
-                                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                    disabled={isSubmitting}
-                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-orange-500/50 outline-none transition-colors disabled:opacity-50"
-                                                    placeholder="john@company.com"
-                                                />
+                                                <div className="relative rounded-xl overflow-hidden bg-muted/20 border border-border">
+                                                    <input
+                                                        type="email"
+                                                        required
+                                                        value={formData.email}
+                                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                        disabled={isSubmitting}
+                                                        className="w-full bg-transparent px-5 py-4 outline-none transition-colors disabled:opacity-50 peer z-10 relative"
+                                                        placeholder="john@company.com"
+                                                    />
+                                                    <span className="absolute bottom-0 left-0 w-0 h-1 bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-xs uppercase tracking-widest text-muted-foreground">Service Interest</label>
-                                            <select
-                                                value={formData.service}
-                                                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                                                disabled={isSubmitting}
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-orange-500/50 outline-none transition-colors appearance-none disabled:opacity-50"
-                                            >
-                                                <option className="bg-black">High-End Video Production</option>
-                                                <option className="bg-black">Performance Marketing Scaling</option>
-                                                <option className="bg-black">Brand Photography</option>
-                                                <option className="bg-black">Full Growth Retainer</option>
-                                            </select>
+                                            <div className="relative rounded-xl overflow-hidden bg-muted/20 border border-border">
+                                                <select
+                                                    value={formData.service}
+                                                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                                                    disabled={isSubmitting}
+                                                    className="w-full bg-transparent px-5 py-4 outline-none transition-colors appearance-none disabled:opacity-50 peer z-10 relative"
+                                                >
+                                                    <option className="bg-black">High-End Video Production</option>
+                                                    <option className="bg-black">Performance Marketing Scaling</option>
+                                                    <option className="bg-black">Brand Photography</option>
+                                                    <option className="bg-black">Full Growth Retainer</option>
+                                                </select>
+                                                <span className="absolute bottom-0 left-0 w-0 h-1 bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
+                                            </div>
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-xs uppercase tracking-widest text-muted-foreground">Project Details</label>
-                                            <textarea
-                                                rows={4}
-                                                value={formData.details}
-                                                onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                                                disabled={isSubmitting}
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-orange-500/50 outline-none transition-colors disabled:opacity-50"
-                                                placeholder="Tell me about your goals..."
-                                            ></textarea>
+                                            <div className="relative rounded-xl overflow-hidden bg-muted/20 border border-border">
+                                                <textarea
+                                                    rows={4}
+                                                    value={formData.details}
+                                                    onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                                                    disabled={isSubmitting}
+                                                    className="w-full bg-transparent px-5 py-4 outline-none transition-colors disabled:opacity-50 peer z-10 relative resize-none"
+                                                    placeholder="Tell me about your goals..."
+                                                ></textarea>
+                                                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
+                                            </div>
                                         </div>
 
                                         <button

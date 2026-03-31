@@ -28,6 +28,39 @@ export interface MarketingCampaign {
 
 export const marketingCampaigns: MarketingCampaign[] = [
     {
+        id: "aqua-care-uae",
+        slug: "aqua-care-uae",
+        client: "Aqua Care UAE",
+        industry: "Water Treatment",
+        platform: "Meta Ads",
+        title: "From zero to AED 31,743 revenue",
+        headline: "Built a full-funnel Meta ad system across 6 product lines. 3-month sprint, AED 7,131 spend, 4.45× ROAS.",
+        description: "Generate direct sales and qualified leads for 6 water treatment products across UAE market using Meta Ads only.",
+        objective: "Direct sales and qualified leads across varying price points.",
+        challenge: "Wide price range required entirely different funnel strategies per product.",
+        strategy: [
+            "Awareness: Reach campaigns, broad targeting",
+            "Engagement: Messaging conversations, warm retargeting",
+            "Leads: Lead gen forms, qualified intent"
+        ],
+        execution: [],
+        results: "31K Revenue, 4.45x Return on Ad Spend.",
+        metrics: [
+            { label: "ROAS", value: "4.45x", trend: "up" },
+            { label: "Revenue generated", value: "AED 31K", trend: "up" },
+            { label: "People reached", value: "874K", trend: "up" },
+            { label: "Active campaigns", value: "16", trend: "up" }
+        ],
+        visuals: [
+            "/assets/images/case-studies/placeholder.jpg"
+        ],
+        learnings: [],
+        tags: ["Performance Marketing", "Meta Ads"],
+        featured: true,
+        role: "Performance Marketer",
+        duration: "Dec 2025 – Mar 2026"
+    },
+    {
         id: "prepmeal-growth",
         slug: "prepmeal-launch",
         client: "PrepMeal",
@@ -189,11 +222,11 @@ export const marketingCampaigns: MarketingCampaign[] = [
     },
     {
         id: "sias-group-seo",
-        slug: "sias-group-b2b",
+        slug: "sias-group-marketing-scale",
         client: "SIAS Group",
         industry: "Business Solutions",
         platform: "Organic Search / SEO",
-        title: "Architecting B2B Search Dominance",
+        title: "SIAS Group Digital Scale",
         headline: "Converting a Static Site into a Lead Engine",
         description: "Recovered a dormant B2B website by fixing technical SEO fundamentals and optimizing indexing for high-value services in the UAE.",
         objective: "Generate organic inbound calls from large enterprises searching for business solutions.",
@@ -210,14 +243,14 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         results: "Site transformed from zero visibility to receiving direct calls from reputable companies within 3 months.",
         metrics: [
-            { label: "Organic Reach", value: "High", trend: "up" },
-            { label: "Event Count", value: "2.5k+", trend: "up" },
-            { label: "Inbound Leads", value: "Weekly", trend: "up" }
+            { label: "Assets produced", value: "230+", trend: "up" },
+            { label: "Campaigns run", value: "15+", trend: "up" },
+            { label: "Total Spend", value: "AED 50K+", trend: "up" }
         ],
         visuals: [
-            "/assets/images/case-studies/sisa/search_console.png",
-            "/assets/images/case-studies/sisa/traffic_sources.png",
-            "/assets/images/case-studies/sisa/full_layout.png"
+            "/assets/images/brands/SIAS-Group/search_console.png",
+            "/assets/images/brands/SIAS-Group/traffic_sources.png",
+            "/assets/images/brands/SIAS-Group/full_layout.png"
         ],
         learnings: [
             "Foundational technical SEO is often overlooked but provides the highest ROI for B2B.",
@@ -226,7 +259,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         tags: ["Technical SEO", "B2B Lead Gen", "Indexing Strategy"],
         role: "Digital Asset Manager",
         duration: "3 Months",
-        reportUrl: "/assets/images/case-studies/sisa/Sias Group Report.pdf"
+        reportUrl: "/assets/images/brands/SIAS-Group/Sias Group Report.pdf"
     },
     {
         id: "galaxy-star-perfumes",

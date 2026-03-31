@@ -1,9 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Play, Camera, TrendingUp, LayoutGrid } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+
+const dropdownIcons: Record<string, any> = {
+  grid: LayoutGrid,
+  play: Play,
+  camera: Camera,
+  trending: TrendingUp,
+};
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,15 +69,14 @@ const Navbar = () => {
     const navLinks = [
         { name: "Home", href: "/", activeColor: "text-orange-500" },
         {
-            name: "Portfolio",
+            name: "Work",
             href: "/portfolio",
             activeColor: "text-orange-500",
             dropdown: [
-                { name: "All Work", href: "/portfolio" },
-                { name: "Video", href: "/portfolio?filter=video" },
-                { name: "Photography", href: "/portfolio?filter=photo" },
-                { name: "Social Content", href: "/portfolio?filter=social" },
-                { name: "Ads Creative", href: "/portfolio?filter=ads" }
+                { name: "All Portfolio", href: "/portfolio", icon: "grid" },
+                { name: "Video", href: "/video", icon: "play", accent: "text-blue-400" },
+                { name: "Photography", href: "/photo", icon: "camera", accent: "text-orange-400" },
+                { name: "Marketing", href: "/marketing", icon: "trending", accent: "text-emerald-400" },
             ]
         },
         { name: "Services", href: "/services", activeColor: "text-orange-500" },
@@ -95,7 +101,7 @@ const Navbar = () => {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8 bg-background/50 backdrop-blur-sm px-6 py-2 rounded-full border border-white/10 shadow-sm">
+                    <div className="hidden md:flex items-center gap-8 bg-background/50 backdrop-blur-sm px-6 py-2 rounded-full border border-border/20 shadow-sm">
                         {navLinks.map((link) => {
                             const isActive = location === link.href || (link.href !== "/" && location.startsWith(link.href));
 
@@ -121,20 +127,53 @@ const Navbar = () => {
                                         </button>
 
                                         {/* Dropdown */}
-                                        {portfolioOpen && (
-                                            <div className="absolute top-full left-0 mt-4 z-50 min-w-[220px] rounded-2xl border border-black/10 bg-white/90 backdrop-blur-xl shadow-xl dark:border-white/10 dark:bg-zinc-950/70 overflow-hidden animate-in fade-in zoom-in duration-200">
-                                                {link.dropdown.map((item) => (
-                                                    <Link
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className="block px-6 py-3.5 text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                                                        onClick={() => setPortfolioOpen(false)}
-                                                    >
-                                                        {item.name}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        )}
+                                        <AnimatePresence>
+                                            {portfolioOpen && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                    exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                                                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                                                    className="absolute top-full left-0 mt-3 z-50 min-w-[260px] rounded-2xl overflow-hidden"
+                                                    style={{
+                                                        background: "hsl(var(--background))",
+                                                        border: "1px solid hsl(var(--border))",
+                                                        boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)",
+                                                    }}
+                                                >
+                                                    {/* Header Panel */}
+                                                    <div className="px-5 py-4 border-b border-border/40 bg-muted/20">
+                                                        <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-bold">My Work</p>
+                                                        <div className="flex gap-1.5 mt-2">
+                                                            <div className="w-2 h-2 rounded-full bg-blue-400" />
+                                                            <div className="w-2 h-2 rounded-full bg-orange-400" />
+                                                            <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                                                        </div>
+                                                    </div>
+                                                    {/* Links */}
+                                                    {link.dropdown.map((item: any, idx: number) => {
+                                                        const Icon = dropdownIcons[item.icon] || LayoutGrid;
+                                                        return (
+                                                            <div key={item.name}>
+                                                                <Link
+                                                                    href={item.href}
+                                                                    className="flex items-center gap-3 px-5 py-3.5 text-sm hover:bg-muted/60 transition-colors group/item"
+                                                                    onClick={() => setPortfolioOpen(false)}
+                                                                >
+                                                                    <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center bg-muted/50")}>
+                                                                        <Icon className={cn("w-3.5 h-3.5", item.accent || "text-muted-foreground")} />
+                                                                    </div>
+                                                                    <span className={cn("font-medium", item.accent || "text-foreground")}>
+                                                                        {item.name}
+                                                                    </span>
+                                                                </Link>
+                                                                {idx === 0 && <div className="h-px bg-border/60 mx-3" />}
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
                                     </div>
                                 );
                             }
@@ -144,13 +183,14 @@ const Navbar = () => {
                                     key={link.name}
                                     href={link.href}
                                     className={cn(
-                                        "text-sm font-medium transition-all duration-300 relative hover:text-foreground/80",
+                                        "text-sm font-medium transition-all duration-300 relative hover:text-foreground group",
                                         isActive ? link.activeColor : "text-muted-foreground"
                                     )}
                                 >
                                     {link.name}
+                                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-foreground rounded-full origin-left scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
                                     {isActive && (
-                                        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-current rounded-full" />
+                                        <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-current rounded-full" />
                                     )}
                                 </Link>
                             );
@@ -186,8 +226,8 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: "100%" }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 z-[110] md:hidden bg-[#0A0A0B] w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto"
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="fixed inset-0 z-[110] md:hidden bg-background w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto"
                     >
                         <div className="flex flex-col space-y-8">
                             {navLinks.map((link) => (
@@ -196,19 +236,19 @@ const Navbar = () => {
                                         href={link.href}
                                         className={cn(
                                             "text-4xl font-display font-bold transition-colors block leading-tight",
-                                            location === link.href ? link.activeColor : "text-white"
+                                            location === link.href ? link.activeColor : "text-foreground"
                                         )}
                                         onClick={() => setIsOpen(false)}
                                     >
                                         {link.name}
                                     </Link>
                                     {link.dropdown && (
-                                        <div className="flex flex-col gap-4 pl-4 mt-2 border-l border-white/10">
+                                        <div className="flex flex-col gap-4 pl-4 mt-2 border-l border-border/20">
                                             {link.dropdown.map((item) => (
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
-                                                    className="block text-xl text-white/50 hover:text-orange-500 transition-colors py-1"
+                                                    className={cn("block text-xl hover:text-orange-500 transition-colors py-1", item.accent || "text-muted-foreground")}
                                                     onClick={() => setIsOpen(false)}
                                                 >
                                                     {item.name}

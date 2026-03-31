@@ -6,7 +6,7 @@ import path from "path";
 import crypto from "crypto";
 
 export const mediaRouter = router({
-    list: publicProcedure.query(async () => {
+    list: adminProcedure.query(async () => {
         return prisma.media.findMany({
             orderBy: { createdAt: "desc" },
         });

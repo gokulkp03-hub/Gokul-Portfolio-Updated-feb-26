@@ -10,6 +10,7 @@ import {
     ChevronRight,
     TrendingUp,
     FileText,
+    MessageSquare,
     Menu,
     X
 } from "lucide-react";
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
     { href: "/admin/media", label: "Media Library", icon: ImageIcon },
     { href: "/admin/marketing", label: "Marketing Assets", icon: TrendingUp },
     { href: "/admin/content", label: "Pages / Content", icon: FileText },
+    { href: "/admin/contact", label: "Messages", icon: MessageSquare },
     { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
@@ -110,7 +112,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     );
 
     return (
-        <div className="flex min-h-screen bg-neutral-950 text-white font-sans selection:bg-orange-500/30 overflow-x-hidden">
+        <div className="dark flex min-h-screen bg-neutral-950 text-white font-sans selection:bg-orange-500/30 overflow-x-hidden">
             {/* Desktop Sidebar */}
             <aside className="hidden md:flex w-72 border-r border-neutral-800 flex-col fixed inset-y-0 left-0 z-50 bg-neutral-950/80 backdrop-blur-xl">
                 <SidebarContent />

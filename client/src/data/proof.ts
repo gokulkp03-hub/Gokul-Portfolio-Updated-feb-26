@@ -9,17 +9,18 @@ export const proof = {
     metrics: [
         { label: "Ad creatives produced", value: "80", suffix: "+" },
         { label: "Ad spend supported", value: "300", prefix: "AED ", suffix: "K+" },
+        { label: "Avg. ROAS Delivered", value: "3", suffix: "x", prefix: "" },
         { label: "Brands Handled", value: "5", suffix: "+" },
     ],
     logos: [
-        { name: "Beyond Cars", src: "/assets/images/logos/beyondcars.png" },
-        { name: "Acero Steel", src: "/assets/images/logos/Acero.png" },
-        { name: "Galaxy Star", src: "/assets/images/logos/Galaxy Star Perfumes.png" },
-        { name: "Suncore", src: "/assets/images/logos/Suncore.png" },
-        { name: "Q4 Clean Home", src: "/assets/images/logos/Q4c.png" },
-        { name: "Ecom 100", src: "/assets/images/logos/Ecom 100.png" },
-        { name: "PrepMeal", src: "/assets/images/logos/PrepMeal.png" },
-        { name: "Healthy Meals", src: "/assets/images/logos/Healthy_Meals.png" }
+        { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.png" },
+        { name: "Acero Steel", src: "/assets/images/logos/acero.png" },
+        { name: "Galaxy Star", src: "/assets/images/logos/galaxy-star.png" },
+        { name: "Suncore", src: "/assets/images/logos/suncore.png" },
+        { name: "Q4 Clean Home", src: "/assets/images/logos/q4c.png" },
+        { name: "Ecom 100", src: "/assets/images/logos/ecom-100.png" },
+        { name: "PrepMeal", src: "/assets/images/logos/prepmeal.png" },
+        { name: "Healthy Meals", src: "/assets/images/logos/healthy-meals.png" }
     ],
     testimonials: [
         {

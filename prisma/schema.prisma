@@ -101,3 +101,12 @@ model User {
   updatedAt    DateTime @updatedAt
   lastSignedIn DateTime @default(now())
 }
+
+model ContactSubmission {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  service   String
+  details   String?
+  createdAt DateTime @default(now())
+}
