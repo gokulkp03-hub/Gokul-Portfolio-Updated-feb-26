@@ -64,17 +64,15 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
       viewport={{ once: true }}
       transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="relative w-full h-[380px] perspective-1000"
-      style={{ perspective: 1000 }}
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-        style={{ transformStyle: "preserve-3d" }}
-        className="w-full h-full relative cursor-pointer group rounded-2xl shadow-xl"
+        className="w-full h-full relative cursor-pointer group rounded-2xl shadow-xl transform-style-3d"
         onClick={() => setIsFlipped(!isFlipped)}
       >
         {/* Front Face */}
-        <div style={{ backfaceVisibility: "hidden" }} className="absolute inset-0 glass-card p-8 border border-border/20 group-hover:border-emerald-500/30 transition-colors overflow-hidden rounded-2xl flex flex-col justify-between bg-card">
+        <div className="backface-hidden absolute inset-0 glass-card p-6 md:p-8 border border-border/20 group-hover:border-emerald-500/30 transition-colors overflow-hidden rounded-2xl flex flex-col justify-between bg-card">
           <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-colors pointer-events-none" />
           <div className="relative z-10 flex flex-col h-full">
             <div className="flex items-center justify-between mb-6">
@@ -96,7 +94,7 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
         </div>
         
         {/* Back Face */}
-        <div style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }} className="absolute inset-0 glass-card p-8 border border-emerald-500/30 bg-emerald-950/20 overflow-hidden rounded-2xl flex flex-col justify-between">
+        <div className="backface-hidden [transform:rotateY(180deg)] absolute inset-0 glass-card p-6 md:p-8 border border-emerald-500/30 bg-emerald-950/20 overflow-hidden rounded-2xl flex flex-col justify-between">
            <h3 className="text-xl font-bold text-white mb-6 border-b border-emerald-500/20 pb-4">Campaign Metrics</h3>
            <div className="flex-1 space-y-4">
               {Array.isArray(parsedResults) && parsedResults.map((res: any, j: number) => (
@@ -144,7 +142,7 @@ function MarketingHero() {
                 Performance Marketing
             </div>
 
-            <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 text-center leading-[1.1]">
+            <h1 className="text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 text-center leading-[1.1]">
                 Growth based on <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
                 data, not guesses.
@@ -161,7 +159,7 @@ function MarketingHero() {
                     transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
                     className="bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md rounded-2xl p-6 text-center shadow-sm"
                 >
-                    <div className="text-emerald-400 text-2xl md:text-3xl font-bold tabular-nums mb-2">
+                    <div className="text-emerald-400 text-xl sm:text-2xl md:text-3xl font-bold tabular-nums mb-2">
                     {s.prefix}{s.val}{s.suffix}
                     </div>
                     <div className="text-zinc-400 text-[10px] md:text-xs uppercase tracking-widest">{s.label}</div>
@@ -258,7 +256,7 @@ export default function MarketingService() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
               >
-                <div className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-2 tabular-nums">
+                <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-2 tabular-nums">
                   <AnimatedCounter to={stat.to} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
                 <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</div>

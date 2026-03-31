@@ -5,13 +5,35 @@ import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import cors from "cors";
+import jwt2 from "jsonwebtoken";
 
-// shared/const.ts
-var COOKIE_NAME = "app_session_id";
-var ONE_YEAR_MS = 1e3 * 60 * 60 * 24 * 365;
-var AXIOS_TIMEOUT_MS = 3e4;
-var UNAUTHED_ERR_MSG = "Please login (10001)";
-var NOT_ADMIN_ERR_MSG = "You do not have required permission (10002)";
+// server/_core/limiters.ts
+import rateLimit from "express-rate-limit";
+var store = void 0;
+var createLimiter = (options) => rateLimit({
+  store,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." },
+  ...options
+});
+var apiLimiter = createLimiter({
+  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW || "60000", 10),
+  max: parseInt(process.env.RATE_LIMIT_MAX || "100", 10)
+});
+var loginIpLimiter = createLimiter({
+  windowMs: 10 * 60 * 1e3,
+  max: 5,
+  message: { error: "Too many login attempts, please try again later." }
+});
+var loginIdentifierLimiter = createLimiter({
+  windowMs: 10 * 60 * 1e3,
+  max: 5,
+  message: { error: "Too many login attempts, please try again later." },
+  keyGenerator: (req) => {
+    return req.body?.username || req.body?.email || "unknown_user";
+  }
+});
 
 // server/prisma-db.ts
 import "dotenv/config";
@@ -49,11 +71,6 @@ async function upsertUser(user) {
     throw error;
   }
 }
-async function getUserByOpenId(openId) {
-  return prisma.user.findUnique({
-    where: { openId }
-  });
-}
 
 // server/_core/cookies.ts
 function isSecureRequest(req) {
@@ -73,21 +90,6 @@ function getSessionCookieOptions(req) {
   };
 }
 
-// shared/_core/errors.ts
-var HttpError = class extends Error {
-  constructor(statusCode, message) {
-    super(message);
-    this.statusCode = statusCode;
-    this.name = "HttpError";
-  }
-};
-var ForbiddenError = (msg) => new HttpError(403, msg);
-
-// server/_core/sdk.ts
-import axios from "axios";
-import { parse as parseCookieHeader } from "cookie";
-import { SignJWT, jwtVerify } from "jose";
-
 // server/_core/env.ts
 var ENV = {
   appId: process.env.VITE_APP_ID ?? "",
@@ -102,223 +104,10 @@ var ENV = {
   adminPassword: process.env.ADMIN_PASSWORD ?? "admin"
 };
 
-// server/_core/sdk.ts
-var isNonEmptyString = (value) => typeof value === "string" && value.length > 0;
-var EXCHANGE_TOKEN_PATH = `/webdev.v1.WebDevAuthPublicService/ExchangeToken`;
-var GET_USER_INFO_PATH = `/webdev.v1.WebDevAuthPublicService/GetUserInfo`;
-var GET_USER_INFO_WITH_JWT_PATH = `/webdev.v1.WebDevAuthPublicService/GetUserInfoWithJwt`;
-var OAuthService = class {
-  constructor(client) {
-    this.client = client;
-    console.log("[OAuth] Initialized with baseURL:", ENV.oAuthServerUrl);
-    if (!ENV.oAuthServerUrl) {
-      console.error(
-        "[OAuth] ERROR: OAUTH_SERVER_URL is not configured! Set OAUTH_SERVER_URL environment variable."
-      );
-    }
-  }
-  decodeState(state) {
-    const redirectUri = atob(state);
-    return redirectUri;
-  }
-  async getTokenByCode(code, state) {
-    const payload = {
-      clientId: ENV.appId,
-      grantType: "authorization_code",
-      code,
-      redirectUri: this.decodeState(state)
-    };
-    const { data } = await this.client.post(
-      EXCHANGE_TOKEN_PATH,
-      payload
-    );
-    return data;
-  }
-  async getUserInfoByToken(token) {
-    const { data } = await this.client.post(
-      GET_USER_INFO_PATH,
-      {
-        accessToken: token.accessToken
-      }
-    );
-    return data;
-  }
-};
-var createOAuthHttpClient = () => axios.create({
-  baseURL: ENV.oAuthServerUrl,
-  timeout: AXIOS_TIMEOUT_MS
-});
-var SDKServer = class {
-  client;
-  oauthService;
-  constructor(client = createOAuthHttpClient()) {
-    this.client = client;
-    this.oauthService = new OAuthService(this.client);
-  }
-  deriveLoginMethod(platforms, fallback) {
-    if (fallback && fallback.length > 0) return fallback;
-    if (!Array.isArray(platforms) || platforms.length === 0) return null;
-    const set = new Set(
-      platforms.filter((p) => typeof p === "string")
-    );
-    if (set.has("REGISTERED_PLATFORM_EMAIL")) return "email";
-    if (set.has("REGISTERED_PLATFORM_GOOGLE")) return "google";
-    if (set.has("REGISTERED_PLATFORM_APPLE")) return "apple";
-    if (set.has("REGISTERED_PLATFORM_MICROSOFT") || set.has("REGISTERED_PLATFORM_AZURE"))
-      return "microsoft";
-    if (set.has("REGISTERED_PLATFORM_GITHUB")) return "github";
-    const first = Array.from(set)[0];
-    return first ? first.toLowerCase() : null;
-  }
-  /**
-   * Exchange OAuth authorization code for access token
-   * @example
-   * const tokenResponse = await sdk.exchangeCodeForToken(code, state);
-   */
-  async exchangeCodeForToken(code, state) {
-    return this.oauthService.getTokenByCode(code, state);
-  }
-  /**
-   * Get user information using access token
-   * @example
-   * const userInfo = await sdk.getUserInfo(tokenResponse.accessToken);
-   */
-  async getUserInfo(accessToken) {
-    const data = await this.oauthService.getUserInfoByToken({
-      accessToken
-    });
-    const loginMethod = this.deriveLoginMethod(
-      data?.platforms,
-      data?.platform ?? data.platform ?? null
-    );
-    return {
-      ...data,
-      platform: loginMethod,
-      loginMethod
-    };
-  }
-  parseCookies(cookieHeader) {
-    if (!cookieHeader) {
-      return /* @__PURE__ */ new Map();
-    }
-    const parsed = parseCookieHeader(cookieHeader);
-    return new Map(Object.entries(parsed));
-  }
-  getSessionSecret() {
-    const secret = ENV.cookieSecret;
-    return new TextEncoder().encode(secret);
-  }
-  /**
-   * Create a session token for a Manus user openId
-   * @example
-   * const sessionToken = await sdk.createSessionToken(userInfo.openId);
-   */
-  async createSessionToken(openId, options = {}) {
-    return this.signSession(
-      {
-        openId,
-        appId: ENV.appId,
-        name: options.name || ""
-      },
-      options
-    );
-  }
-  async signSession(payload, options = {}) {
-    const issuedAt = Date.now();
-    const expiresInMs = options.expiresInMs ?? ONE_YEAR_MS;
-    const expirationSeconds = Math.floor((issuedAt + expiresInMs) / 1e3);
-    const secretKey = this.getSessionSecret();
-    return new SignJWT({
-      openId: payload.openId,
-      appId: payload.appId,
-      name: payload.name
-    }).setProtectedHeader({ alg: "HS256", typ: "JWT" }).setExpirationTime(expirationSeconds).sign(secretKey);
-  }
-  async verifySession(cookieValue) {
-    if (!cookieValue) {
-      console.warn("[Auth] Missing session cookie");
-      return null;
-    }
-    try {
-      const secretKey = this.getSessionSecret();
-      const { payload } = await jwtVerify(cookieValue, secretKey, {
-        algorithms: ["HS256"]
-      });
-      const { openId, appId, name } = payload;
-      if (!isNonEmptyString(openId) || !isNonEmptyString(appId) || !isNonEmptyString(name)) {
-        console.warn("[Auth] Session payload missing required fields");
-        return null;
-      }
-      return {
-        openId,
-        appId,
-        name
-      };
-    } catch (error) {
-      console.warn("[Auth] Session verification failed", String(error));
-      return null;
-    }
-  }
-  async getUserInfoWithJwt(jwtToken) {
-    const payload = {
-      jwtToken,
-      projectId: ENV.appId
-    };
-    const { data } = await this.client.post(
-      GET_USER_INFO_WITH_JWT_PATH,
-      payload
-    );
-    const loginMethod = this.deriveLoginMethod(
-      data?.platforms,
-      data?.platform ?? data.platform ?? null
-    );
-    return {
-      ...data,
-      platform: loginMethod,
-      loginMethod
-    };
-  }
-  async authenticateRequest(req) {
-    const cookies = this.parseCookies(req.headers.cookie);
-    const sessionCookie = cookies.get(COOKIE_NAME);
-    const session = await this.verifySession(sessionCookie);
-    if (!session) {
-      throw ForbiddenError("Invalid session cookie");
-    }
-    const sessionUserId = session.openId;
-    const signedInAt = /* @__PURE__ */ new Date();
-    let user = await getUserByOpenId(sessionUserId);
-    if (!user) {
-      try {
-        const userInfo = await this.getUserInfoWithJwt(sessionCookie ?? "");
-        await upsertUser({
-          openId: userInfo.openId,
-          name: userInfo.name || null,
-          email: userInfo.email ?? null,
-          loginMethod: userInfo.loginMethod ?? userInfo.platform ?? null,
-          lastSignedIn: signedInAt
-        });
-        user = await getUserByOpenId(userInfo.openId);
-      } catch (error) {
-        console.error("[Auth] Failed to sync user from OAuth:", error);
-        throw ForbiddenError("Failed to sync user info");
-      }
-    }
-    if (!user) {
-      throw ForbiddenError("User not found");
-    }
-    await upsertUser({
-      openId: user.openId,
-      lastSignedIn: signedInAt
-    });
-    return user;
-  }
-};
-var sdk = new SDKServer();
-
 // server/_core/login.ts
+import jwt from "jsonwebtoken";
 function registerLoginRoutes(app) {
-  app.post("/api/login", async (req, res) => {
+  app.post("/api/login", loginIpLimiter, loginIdentifierLimiter, async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
       res.status(400).json({ error: "Username and password are required" });
@@ -349,13 +138,19 @@ function registerLoginRoutes(app) {
         loginMethod: "password",
         lastSignedIn: /* @__PURE__ */ new Date()
       });
-      const sessionToken = await sdk.createSessionToken(openId, {
-        name: "Admin",
-        expiresInMs: ONE_YEAR_MS
-      });
+      const secret = process.env.JWT_SECRET;
+      if (!secret) throw new Error("JWT_SECRET is not configured");
+      const jwtToken = jwt.sign(
+        { id: openId, name: "Admin", role: "admin" },
+        secret,
+        {
+          expiresIn: process.env.JWT_EXPIRY || "1d",
+          algorithm: "HS256"
+        }
+      );
       const cookieOptions = getSessionCookieOptions(req);
-      res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
-      res.status(200).json({ success: true });
+      res.cookie("auth_token", jwtToken, { ...cookieOptions, maxAge: 24 * 60 * 60 * 1e3 });
+      res.status(200).json({ success: true, token: jwtToken });
     } catch (error) {
       console.error("[Login] Login failed", error);
       res.status(500).json({ error: "Login process failed" });
@@ -363,7 +158,7 @@ function registerLoginRoutes(app) {
   });
   app.post("/api/logout", (req, res) => {
     const cookieOptions = getSessionCookieOptions(req);
-    res.clearCookie(COOKIE_NAME, cookieOptions);
+    res.clearCookie("auth_token", cookieOptions);
     res.status(200).json({ success: true });
   });
 }
@@ -376,7 +171,7 @@ import { TRPCError } from "@trpc/server";
 var TITLE_MAX_LENGTH = 1200;
 var CONTENT_MAX_LENGTH = 2e4;
 var trimValue = (value) => value.trim();
-var isNonEmptyString2 = (value) => typeof value === "string" && value.trim().length > 0;
+var isNonEmptyString = (value) => typeof value === "string" && value.trim().length > 0;
 var buildEndpointUrl = (baseUrl) => {
   const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
   return new URL(
@@ -385,13 +180,13 @@ var buildEndpointUrl = (baseUrl) => {
   ).toString();
 };
 var validatePayload = (input) => {
-  if (!isNonEmptyString2(input.title)) {
+  if (!isNonEmptyString(input.title)) {
     throw new TRPCError({
       code: "BAD_REQUEST",
       message: "Notification title is required."
     });
   }
-  if (!isNonEmptyString2(input.content)) {
+  if (!isNonEmptyString(input.content)) {
     throw new TRPCError({
       code: "BAD_REQUEST",
       message: "Notification content is required."
@@ -452,6 +247,11 @@ async function notifyOwner(payload) {
     return false;
   }
 }
+
+// shared/const.ts
+var ONE_YEAR_MS = 1e3 * 60 * 60 * 24 * 365;
+var UNAUTHED_ERR_MSG = "Please login (10001)";
+var NOT_ADMIN_ERR_MSG = "You do not have required permission (10002)";
 
 // server/_core/trpc.ts
 import { initTRPC, TRPCError as TRPCError2 } from "@trpc/server";
@@ -515,6 +315,15 @@ var systemRouter = router({
 import { z as z2 } from "zod";
 var projectRouter = router({
   list: publicProcedure.query(async () => {
+    return prisma.project.findMany({
+      where: { status: "published" },
+      orderBy: [
+        { sortOrder: "asc" },
+        { createdAt: "desc" }
+      ]
+    });
+  }),
+  adminList: adminProcedure.query(async () => {
     return prisma.project.findMany({
       orderBy: [
         { sortOrder: "asc" },
@@ -646,7 +455,7 @@ import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 var mediaRouter = router({
-  list: publicProcedure.query(async () => {
+  list: adminProcedure.query(async () => {
     return prisma.media.findMany({
       orderBy: { createdAt: "desc" }
     });
@@ -724,8 +533,10 @@ var contactRouter = router({
   })).mutation(async ({ input }) => {
     return await prisma.contactSubmission.create({ data: input });
   }),
-  list: publicProcedure.query(async () => {
-    return await prisma.contactSubmission.findMany();
+  list: adminProcedure.query(async () => {
+    return await prisma.contactSubmission.findMany({
+      orderBy: { createdAt: "desc" }
+    });
   })
 });
 
@@ -737,7 +548,7 @@ var appRouter = router({
     me: publicProcedure.query((opts) => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
-      ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      ctx.res.clearCookie("auth_token", { ...cookieOptions, maxAge: -1 });
       return {
         success: true
       };
@@ -751,12 +562,7 @@ var appRouter = router({
 
 // server/_core/context.ts
 async function createContext(opts) {
-  let user = null;
-  try {
-    user = await sdk.authenticateRequest(opts.req);
-  } catch (error) {
-    user = null;
-  }
+  const user = opts.req.user || null;
   return {
     req: opts.req,
     res: opts.res,
@@ -861,6 +667,21 @@ function serveStatic(app) {
 
 // server/_core/index.ts
 import path4 from "path";
+var jwtValidationMiddleware = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : req.headers.cookie?.includes("auth_token=") ? req.headers.cookie.split("auth_token=")[1].split(";")[0] : null;
+  if (token) {
+    try {
+      const secret = process.env.JWT_SECRET;
+      if (!secret) throw new Error("JWT_SECRET is not configured");
+      const decoded = jwt2.verify(token, secret, { algorithms: ["HS256"] });
+      req.user = decoded;
+    } catch (err) {
+      console.error("[Auth] JWT validation failed:", err.message);
+    }
+  }
+  next();
+};
 function isPortAvailable(port) {
   return new Promise((resolve) => {
     const server = net.createServer();
@@ -879,14 +700,31 @@ async function findAvailablePort(startPort = 3e3) {
   throw new Error(`No available port found starting from ${startPort}`);
 }
 async function startServer() {
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    console.error("FATAL: Environment variable JWT_SECRET is missing.");
+    process.exit(1);
+  }
   const app = express2();
+  app.set("trust proxy", 1);
   const server = createServer(app);
   app.use(express2.json({ limit: "50mb" }));
   app.use(express2.urlencoded({ limit: "50mb", extended: true }));
+  const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(",") : ["http://localhost:5173", "http://localhost:3000"];
   app.use(cors({
-    origin: process.env.FRONTEND_URL || "*",
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
     credentials: true
   }));
+  app.use(jwtValidationMiddleware);
+  app.use("/api", apiLimiter);
   const uploadDir = process.env.UPLOADS_DIR || path4.join(process.cwd(), "public", "uploads");
   app.use("/uploads", express2.static(uploadDir));
   registerLoginRoutes(app);

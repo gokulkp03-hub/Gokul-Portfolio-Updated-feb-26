@@ -47,7 +47,7 @@ export default function PortfolioLayout() {
     const filteredProjects = useMemo(() => {
         if (!dbProjects) return [];
         if (activeFilter === "all") return dbProjects;
-        return dbProjects.filter(p => p.category.toLowerCase() === activeFilter);
+        return dbProjects.filter(p => (p.category || "").toLowerCase() === activeFilter);
     }, [dbProjects, activeFilter]);
 
     const filters: { value: FilterCategory; label: string }[] = [
@@ -103,12 +103,9 @@ export default function PortfolioLayout() {
                         ))}
                     </div>
                 ) : (
-                    <motion.div
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    >
-                        <AnimatePresence mode="popLayout">
-                            {filteredProjects.map((project) => {
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <AnimatePresence>
+                            {filteredProjects.map((project, i) => {
                                 const Icon = categoryIcons[project.category?.toLowerCase()] || Play;
 
                                 return (
@@ -118,7 +115,7 @@ export default function PortfolioLayout() {
                                         initial={{ opacity: 0, y: 12, scale: 0.98 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.98 }}
-                                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                        transition={{ duration: 0.5, delay: (i % 6) * 0.05, ease: [0.16, 1, 0.3, 1] }}
                                         className="group relative"
                                     >
                                         <Link href={`/portfolio/${project.category?.toLowerCase() || 'all'}/${project.slug}`}>
@@ -156,7 +153,7 @@ export default function PortfolioLayout() {
                                 );
                             })}
                         </AnimatePresence>
-                    </motion.div>
+                    </div>
                 )}
 
                 {/* Empty State */}
