@@ -49,8 +49,10 @@ export default function Home() {
         className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 md:px-8 max-w-[1400px] mx-auto group"
         onMouseMove={handleMouseMove}
       >
-        {/* New 3D Tubes Background */}
-        <TubesBackground />
+        {/* New 3D Tubes Background - Hidden on mobile for performance */}
+        <div className="hidden md:block absolute inset-0">
+          <TubesBackground />
+        </div>
 
         {/* Existing Spotlight Effect - Keep it for extra depth but lower opacity */}
         <motion.div
@@ -82,30 +84,43 @@ export default function Home() {
           </motion.div>
 
           <h1 className="text-6xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter mb-12 text-balance uppercase max-w-4xl mx-auto leading-[0.9] flex flex-wrap justify-center overflow-hidden">
-            {Array.from("Creative &").map((char, i) => (
+            <span className="inline-block whitespace-nowrap">
+              {Array.from("Creative").map((char, i) => (
+                <motion.span
+                  key={`hw1-${i}`}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+            <span className="inline-block whitespace-nowrap px-2 md:px-4">
               <motion.span
-                key={`hw1-${i}`}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                className={char === " " ? "w-[0.3em]" : "inline-block"}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: "Creative".length * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block"
               >
-                {char}
+                &
               </motion.span>
-            ))}
+            </span>
             <br className="md:hidden basis-full h-0" />
-            <span className="w-full md:w-auto h-0 md:h-auto md:w-[0.3em] inline-block" />
-            {Array.from("Performance").map((char, i) => (
-              <motion.span
-                key={`hw2-${i}`}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: ("Creative & ".length + i) * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                className={char === " " ? "w-[0.3em]" : "inline-block"}
-              >
-                {char}
-              </motion.span>
-            ))}
+            <span className="inline-block whitespace-nowrap">
+              {Array.from("Performance").map((char, i) => (
+                <motion.span
+                  key={`hw2-${i}`}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: ("Creative ".length + i) * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           </h1>
 
           <motion.p
@@ -156,28 +171,7 @@ export default function Home() {
       {/* Proof Strip */}
       <ProofStrip />
 
-      {/* Featured Highlights */}
-      <section className="py-32 container px-4 md:px-8 max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="max-w-2xl">
-            <RevealText text="Featured Work" as="h2" className="text-4xl md:text-6xl font-display font-bold mb-4 md:mb-6 tracking-tight" />
-            <p className="text-muted-foreground text-lg md:text-xl font-light">
-              A curated selection of high-end visuals across all creative disciplines.
-            </p>
-          </div>
-          <Link href="/portfolio">
-            <a className="btn-outline rounded-full px-8 py-4 text-base hidden md:inline-flex">Explore Full Portfolio</a>
-          </Link>
-        </div>
 
-        <FeaturedWork />
-
-        <div className="mt-12 text-center md:hidden">
-          <Link href="/portfolio">
-            <a className="btn-outline rounded-full w-full py-4 text-base">Explore Full Portfolio</a>
-          </Link>
-        </div>
-      </section>
 
       {/* Brand Identity Showcase */}
       <LittleRoosterBranding />

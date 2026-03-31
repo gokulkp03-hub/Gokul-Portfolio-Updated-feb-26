@@ -3,20 +3,30 @@ import { Link } from "wouter";
 import { Play, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { videoProjects } from "@/data/video";
+import { videoProjects, type VideoProject } from "@/data/video";
 
-// Generates a reliable Cloudinary thumbnail from a video URL or public ID
-// Uses so_0 (screenshot at 0s), f_jpg, w_800, q_auto transformations
 function getCloudinaryThumb(videoUrl: string): string {
     if (!videoUrl) return "";
-    // If it's already a jpg/jpeg/webp/png, return as-is
-    if (/\.(jpg|jpeg|webp|png)(\?|$)/i.test(videoUrl)) return videoUrl;
-    // If it's a Cloudinary video URL, convert to image URL with transformations
-    if (videoUrl.includes("res.cloudinary.com")) {
-        return videoUrl
-            .replace("/video/upload/", "/video/upload/so_0,f_jpg,w_800,q_auto/")
-            .replace(/\.(mp4|webm|mov|avi)(\?.*)?$/i, ".jpg");
+    
+    // If it's already compressed, leave it
+    if (videoUrl.includes("q_auto") || videoUrl.includes("w_800")) {
+        return videoUrl;
     }
+    
+    // If it's a Cloudinary URL
+    if (videoUrl.includes("res.cloudinary.com")) {
+        // If it's a video file, get a smart auto-frame image
+        if (videoUrl.match(/\.(mp4|webm|mov|avi)(\?.*)?$/i)) {
+            const pathMatch = videoUrl.match(/upload\/(?:v\d+\/)?(.+?)\.[^.]+$/);
+            if (pathMatch && pathMatch[1]) {
+                return `https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/${pathMatch[1]}.jpg`;
+            }
+        } else {
+            // If it's an image thumb provided in the data, just compress it natively
+            return videoUrl.replace("/upload/", "/upload/w_800,q_auto/");
+        }
+    }
+    
     return videoUrl;
 }
 
@@ -59,7 +69,7 @@ const categories: Category[] = ["All", "Weddings", "Events", "Product", "Persona
 export default function VideoService() {
     const [activeCategory, setActiveCategory] = useState<Category>("All");
     const [hoveredId, setHoveredId] = useState<string | null>(null);
-    const [showModal, setShowModal] = useState(false);
+    const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
 
     // Use static videoProjects — all 31 videos, no DB merge needed (avoids duplicates)
     const allVideos = videoProjects;
@@ -119,7 +129,7 @@ export default function VideoService() {
             {/* Showreel */}
             <section id="showreel" className="py-16 relative z-10">
                 <div className="container">
-                    <motion.div layoutId="showreel-container" onClick={() => setShowModal(true)} className="relative aspect-video rounded-3xl overflow-hidden bg-muted group cursor-pointer border border-border/30">
+                    <motion.div layoutId="showreel-container" onClick={() => setSelectedVideo(showreel)} className="relative aspect-video rounded-3xl overflow-hidden bg-muted group cursor-pointer border border-border/30">
                         <div className="absolute inset-0 flex items-center justify-center z-20">
                             <motion.div layoutId="showreel-play" className="w-20 h-20 rounded-full bg-background/20 backdrop-blur-xl flex items-center justify-center border border-border group-hover:bg-blue-500 group-hover:border-blue-400 transition-colors duration-500 shadow-2xl shadow-blue-500/20">
                                 <Play className="w-8 h-8 text-white fill-current ml-1" />
@@ -143,19 +153,19 @@ export default function VideoService() {
                 </div>
             </section>
 
-            {/* Showreel Modal */}
+            {/* Video Modal */}
             <AnimatePresence>
-                {showModal && showreel && (
+                {selectedVideo && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 md:p-16">
                         <motion.div 
                             initial={{ opacity: 0 }} 
                             animate={{ opacity: 1 }} 
                             exit={{ opacity: 0 }} 
                             className="absolute inset-0 bg-black/95 backdrop-blur-sm"
-                            onClick={() => setShowModal(false)}
+                            onClick={() => setSelectedVideo(null)}
                         />
                         <button 
-                            onClick={() => setShowModal(false)} 
+                            onClick={() => setSelectedVideo(null)} 
                             className="absolute top-6 right-6 z-[60] text-white p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
                             aria-label="Close modal"
                         >
@@ -165,15 +175,15 @@ export default function VideoService() {
                         <motion.div layoutId="showreel-container" className="relative w-full max-w-7xl aspect-video rounded-2xl overflow-hidden bg-black z-50 shadow-2xl">
                             <motion.img 
                                 layoutId="showreel-thumb" 
-                                src={getCloudinaryThumb(showreel.thumbnail || showreel.videoUrl || "")} 
+                                src={getCloudinaryThumb(selectedVideo.thumbnail || selectedVideo.videoUrl || "")} 
                                 className="absolute inset-0 w-full h-full object-cover opacity-30 blur-xl" 
                             />
                             {/* Hide play button inside modal */}
                             <motion.div layoutId="showreel-play" style={{ opacity: 0 }} />
                             
-                            {showreel.videoUrl && (
+                            {selectedVideo.videoUrl && (
                                 <video 
-                                    src={showreel.videoUrl} 
+                                    src={selectedVideo.videoUrl} 
                                     className="absolute inset-0 w-full h-full object-contain"
                                     autoPlay 
                                     controls 
@@ -215,18 +225,18 @@ export default function VideoService() {
 
 
                     {/* Video grid — 16:9 thumbnails, all videos visible */}
-                    <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        <AnimatePresence mode="popLayout">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <AnimatePresence>
                             {filteredVideos.map((video, i) => (
                                 <motion.div
                                     key={video.id}
-                                    layout
                                     initial={{ opacity: 0, y: 12 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
-                                    transition={{ duration: 0.4, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                                    transition={{ duration: 0.4, delay: (i % 6) * 0.05, ease: [0.16, 1, 0.3, 1] }}
                                     onMouseEnter={() => setHoveredId(video.id)}
                                     onMouseLeave={() => setHoveredId(null)}
+                                    onClick={() => setSelectedVideo(video)}
                                     className="group relative aspect-video rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer border border-border/30 hover:border-blue-500/40 transition-colors duration-300"
                                 >
                                     {/* Thumbnail */}
@@ -237,7 +247,6 @@ export default function VideoService() {
                                             "absolute inset-0 w-full h-full object-cover transition-all duration-700",
                                             hoveredId === video.id ? "opacity-0 scale-105" : "opacity-80 group-hover:opacity-100 group-hover:scale-105"
                                         )}
-                                        loading="lazy"
                                         onError={(e) => {
                                             // Fallback: try videoUrl as thumbnail source
                                             const t = e.currentTarget;
@@ -297,19 +306,11 @@ export default function VideoService() {
                                         </div>
                                     )}
 
-                                    {/* Title — bottom */}
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                                        <h3 className="text-white font-display font-bold text-base leading-tight line-clamp-1">
-                                            {video.title}
-                                        </h3>
-                                        <p className="text-white/50 text-xs mt-0.5 line-clamp-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            {video.description}
-                                        </p>
-                                    </div>
+
                                 </motion.div>
                             ))}
                         </AnimatePresence>
-                    </motion.div>
+                    </div>
 
                     {filteredVideos.length === 0 && (
                         <div className="text-center py-24 text-muted-foreground">

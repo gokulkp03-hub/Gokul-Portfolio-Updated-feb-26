@@ -33,12 +33,63 @@ const packages = [
     }
 ];
 
+const localArchiveImages = [
+    "/assets/images/portfolio-all/1735068551568.jpg",
+    "/assets/images/portfolio-all/1744907237529.jpg",
+    "/assets/images/portfolio-all/1744907237550.jpg",
+    "/assets/images/portfolio-all/1744907237584.jpg",
+    "/assets/images/portfolio-all/1744907237603.jpg",
+    "/assets/images/portfolio-all/2-1_1767958070276.jpg",
+    "/assets/images/portfolio-all/3-1_1767958070681.jpg",
+    "/assets/images/portfolio-all/5.jpg",
+    "/assets/images/portfolio-all/AD_1_DEC.jpg",
+    "/assets/images/portfolio-all/AD_2_DEC.jpg",
+    "/assets/images/portfolio-all/Ad.jpg",
+    "/assets/images/portfolio-all/Ad_04.jpg",
+    "/assets/images/portfolio-all/Ad_08-1.jpg",
+    "/assets/images/portfolio-all/Ad_1_Residential_construction_services.jpg",
+    "/assets/images/portfolio-all/Artboard_1_1761316769324.jpg",
+    "/assets/images/portfolio-all/Cheesecake.jpg",
+    "/assets/images/portfolio-all/Childrens_Day.jpg",
+    "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg",
+    "/assets/images/portfolio-all/Copy_of_Macros_Club.jpg",
+    "/assets/images/portfolio-all/Cover_1.jpg",
+    "/assets/images/portfolio-all/DSC01510_(1).jpg",
+    "/assets/images/portfolio-all/DSC01680.jpg",
+    "/assets/images/portfolio-all/DSC01738.jpg",
+    "/assets/images/portfolio-all/DSC01768.jpg",
+    "/assets/images/portfolio-all/DSC03166.jpg",
+    "/assets/images/portfolio-all/DSC03971.jpg",
+    "/assets/images/portfolio-all/DSC04050.jpg",
+    "/assets/images/portfolio-all/DSC08771.jpg",
+    "/assets/images/portfolio-all/DSC08907.jpg",
+    "/assets/images/portfolio-all/DSC08980.jpg",
+    "/assets/images/portfolio-all/DSC09457.jpg",
+    "/assets/images/portfolio-all/DSC09598.jpg",
+    "/assets/images/portfolio-all/DSC09621.jpg",
+    "/assets/images/portfolio-all/IMG_7409.jpg",
+    "/assets/images/portfolio-all/Iced_V60.jpg",
+    "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
+    "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg",
+    "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg",
+    "/assets/images/portfolio-all/Vita_bloom.jpg",
+    "/assets/images/portfolio-all/Xmas_-_Galaxy.jpg",
+    "/assets/images/portfolio-all/acero_warrior.jpg",
+    "/assets/images/portfolio-all/ginger_shot.jpg",
+    "/assets/images/portfolio-all/jagp10.jpg",
+    "/assets/images/portfolio-all/jagp5.jpg",
+    "/assets/images/portfolio-all/xmas_2_tess.jpg"
+];
+
 export default function PhotoService() {
     const { data: dbProjects } = trpc.projects.list.useQuery();
     
     const photos = useMemo(() => {
         if (!dbProjects) return [];
-        return dbProjects.filter((p: any) => p.category.toLowerCase() === "photo" || p.category.toLowerCase() === "photography").slice(0, 9);
+        return dbProjects.filter((p: any) => 
+            (p.category.toLowerCase() === "photo" || p.category.toLowerCase() === "photography") &&
+            !p.thumbnail.includes("/assets/images/photo/") // Filter out missing local placeholders
+        ).slice(0, 9);
     }, [dbProjects]);
     
     return (
@@ -122,51 +173,50 @@ export default function PhotoService() {
                     ))}
 
                     {/* Added a placeholder for masonry layout demonstration */}
-                    <div className="break-inside-avoid p-8 rounded-2xl bg-muted/30 border border-dashed border-border flex flex-col items-center justify-center text-center aspect-[3/4]">
-                        <p className="text-muted-foreground mb-4">More collections available on request.</p>
-                        <Link href="/portfolio">
-                            <a className="btn-outline rounded-full text-sm">View Full Archive</a>
-                        </Link>
-                    </div>
+                    {photos.length === 0 && (
+                        <div className="break-inside-avoid p-8 rounded-2xl bg-muted/30 border border-dashed border-border flex flex-col items-center justify-center text-center aspect-[3/4]">
+                            <p className="text-muted-foreground mb-4">More collections available on request.</p>
+                            <Link href="/portfolio">
+                                <a className="btn-outline rounded-full text-sm">View Full Archive</a>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </section>
 
-            {/* Retouching Section */}
-            <section className="py-24 bg-muted/10 border-y border-border/50">
-                <div className="container max-w-5xl">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Professional Post-Production</h2>
-                        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            Every image undergoes rigorous color grading and retouching.
-                            I ensure the final output is flawless while maintaining natural texture.
-                        </p>
-                    </div>
-
-                    <div className="shadow-2xl shadow-orange-500/10 rounded-3xl overflow-hidden border border-border/50">
-                        <BeforeAfter
-                            beforeImage="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2000&auto=format&fit=crop&sat=-100" // Desaturated
-                            afterImage="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2000&auto=format&fit=crop" // Color
-                            labelBefore="Raw Capture"
-                            labelAfter="Final Grade"
-                        />
-                    </div>
-
-                    <div className="flex justify-center mt-8 gap-8 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-orange-500" />
-                            <span>Color Correction</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-orange-500" />
-                            <span>Skin Retouching</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-orange-500" />
-                            <span>Atmosphere</span>
-                        </div>
+            {/* Archive & Social Content Section */}
+            <section className="pb-24 container">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div>
+                        <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">Archive & Posters</h2>
+                        <p className="text-muted-foreground mt-4 text-lg">A broader selection of photography, social media posters, and creative experiments.</p>
                     </div>
                 </div>
+
+                <div className="columns-2 sm:columns-3 lg:columns-4 gap-4 space-y-4">
+                    {localArchiveImages.map((src, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: (i % 8) * 0.1 }}
+                            className="break-inside-avoid relative group rounded-xl overflow-hidden bg-muted border border-border/50"
+                        >
+                            <img
+                                src={src}
+                                alt={`Archive piece ${i + 1}`}
+                                className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <Expand className="w-8 h-8 text-white/70" />
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </section>
+
 
              {/* Pricing Section */}
             <section className="py-24 container relative z-10 border-t border-border/20">
