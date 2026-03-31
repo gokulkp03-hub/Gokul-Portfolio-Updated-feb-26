@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
     "build": "prisma generate && vite build && esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist-server",
+    "vercel-build": "vite build",
     "start:server": "NODE_ENV=production node dist-server/index.js",
     "preview": "vite preview",
     "check": "tsc --noEmit",
