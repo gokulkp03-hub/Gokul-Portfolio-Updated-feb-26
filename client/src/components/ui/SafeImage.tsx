@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { cn, getMediaUrl } from "@/lib/utils";
 
@@ -25,10 +25,20 @@ export function SafeImage({
 }: SafeImageProps) {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+    const imgRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         setError(false);
         setLoading(true);
+
+        // Check if image is already cached/complete
+        if (imgRef.current && imgRef.current.complete) {
+            if (imgRef.current.naturalWidth === 0) {
+                setError(true);
+            } else {
+                setLoading(false);
+            }
+        }
     }, [src]);
 
     const handleLoad = () => {
@@ -65,6 +75,7 @@ export function SafeImage({
                 </div>
             ) : (
                 <img
+                    ref={imgRef}
                     src={getMediaUrl(src)}
                     alt={alt}
                     loading={loadingProp}

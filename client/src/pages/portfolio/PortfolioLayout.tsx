@@ -106,61 +106,59 @@ export default function PortfolioLayout() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <AnimatePresence>
-                            {filteredProjects.map((project, i) => {
-                                const categoryString = (project.category || "").toLowerCase();
-                                const Icon = categoryIcons[categoryString] || Play;
-                                // Mixed aspect ratios for visual rhythm — every 5th card is wide, every 7th is square
-                                const aspectClass = i % 7 === 0 ? "aspect-[3/2]" : i % 5 === 0 ? "aspect-square" : "aspect-[4/5]";
+                        {filteredProjects.map((project, i) => {
+                            const categoryString = (project.category || "").toLowerCase();
+                            const Icon = categoryIcons[categoryString] || Play;
+                            // Mixed aspect ratios for visual rhythm — every 5th card is wide, every 7th is square
+                            const aspectClass = i % 7 === 0 ? "aspect-[3/2]" : i % 5 === 0 ? "aspect-square" : "aspect-[4/5]";
 
-                                return (
-                                    <motion.div
-                                        key={project.id}
-                                        initial={{ opacity: 0, y: 16 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, scale: 0.97 }}
-                                        transition={{ duration: 0.5, delay: (i % 6) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                                        className={`group relative ${i % 7 === 0 || i % 5 === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
-                                    >
-                                        <Link href={`/portfolio/${categoryString || 'all'}/${project.slug}`}>
-                                            <div className={`relative ${aspectClass} overflow-hidden rounded-3xl bg-muted border border-border/40 transition-all duration-500 cursor-pointer group-hover:border-orange-500/30 group-hover:shadow-xl group-hover:shadow-black/20`}>
-                                                <SafeImage
-                                                    src={project.thumbnail}
-                                                    alt={project.title}
-                                                    aspectRatio="portrait"
-                                                    loading={i < 6 ? "eager" : "lazy"}
-                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                                />
+                            return (
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, y: 16 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.97 }}
+                                    transition={{ duration: 0.5, delay: (i % 6) * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                                    className={`group relative ${i % 7 === 0 || i % 5 === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
+                                >
+                                    <Link href={`/portfolio/${categoryString || 'all'}/${project.slug}`}>
+                                        <div className={`relative ${aspectClass} overflow-hidden rounded-3xl bg-muted border border-border/40 transition-all duration-500 cursor-pointer group-hover:border-orange-500/30 group-hover:shadow-xl group-hover:shadow-black/20`}>
+                                            <SafeImage
+                                                src={project.thumbnail}
+                                                alt={project.title}
+                                                aspectRatio="portrait"
+                                                loading={i < 6 ? "eager" : "lazy"}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            />
 
-                                                {/* Gradient overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                            {/* Gradient overlay */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                                {/* Category chip */}
-                                                <div className="absolute top-5 left-5">
-                                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/70 backdrop-blur-md border border-white/10 text-white rounded-full text-[10px] uppercase font-bold tracking-widest">
-                                                        <Icon className="w-3 h-3 text-orange-400" />
-                                                        {project.category}
-                                                    </span>
-                                                </div>
+                                            {/* Category chip */}
+                                            <div className="absolute top-5 left-5">
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/70 backdrop-blur-md border border-white/10 text-white rounded-full text-[10px] uppercase font-bold tracking-widest">
+                                                    <Icon className="w-3 h-3 text-orange-400" />
+                                                    {project.category}
+                                                </span>
+                                            </div>
 
-                                                {/* Arrow */}
-                                                <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                                                    <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
-                                                        <ArrowUpRight className="w-4 h-4" />
-                                                    </div>
-                                                </div>
-
-                                                {/* Title slide up */}
-                                                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
-                                                    <h3 className="text-xl font-display font-bold text-white leading-tight mb-1">{project.title}</h3>
-                                                    <p className="text-sm text-white/60 font-light line-clamp-1">{project.description}</p>
+                                            {/* Arrow */}
+                                            <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                                <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
+                                                    <ArrowUpRight className="w-4 h-4" />
                                                 </div>
                                             </div>
-                                        </Link>
-                                    </motion.div>
-                                );
-                            })}
-                        </AnimatePresence>
+
+                                            {/* Title slide up */}
+                                            <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
+                                                <h3 className="text-xl font-display font-bold text-white leading-tight mb-1">{project.title}</h3>
+                                                <p className="text-sm text-white/60 font-light line-clamp-1">{project.description}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 )}
 
