@@ -1,15 +1,18 @@
-import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { prisma } from "./prisma-db";
+import { adminProcedure, router } from "./_core/trpc";
+import { db } from "./db";
+import { media } from "../drizzle/schema";
 import { z } from "zod";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
+import { eq, desc } from "drizzle-orm";
 
 export const mediaRouter = router({
     list: adminProcedure.query(async () => {
-        return prisma.media.findMany({
-            orderBy: { createdAt: "desc" },
-        });
+        return db
+            .select()
+            .from(media)
+            .orderBy(desc(media.createdAt));
     }),
 
     upload: adminProcedure
@@ -43,14 +46,16 @@ export const mediaRouter = router({
             const url = `/uploads/${uniqueName}`;
 
             // Save metadata in database
-            return prisma.media.create({
-                data: {
+            const result = await db
+                .insert(media)
+                .values({
                     url,
                     type: input.fileType,
                     width: input.width,
                     height: input.height,
-                },
-            });
+                })
+                .returning();
+            return result[0];
         }),
 
     addExternal: adminProcedure
@@ -62,23 +67,29 @@ export const mediaRouter = router({
             })
         )
         .mutation(async ({ input }) => {
-            return prisma.media.create({
-                data: {
+            const result = await db
+                .insert(media)
+                .values({
                     url: input.url,
                     type: input.type,
-                },
-            });
+                })
+                .returning();
+            return result[0];
         }),
 
     delete: adminProcedure
         .input(z.string())
         .mutation(async ({ input }) => {
-            const media = await prisma.media.findUnique({ where: { id: input } });
-            if (!media) return;
+            const item = await db
+                .select()
+                .from(media)
+                .where(eq(media.id, input))
+                .get();
+            if (!item) return;
 
             // Delete from disk if it starts with /uploads
-            if (media.url.startsWith("/uploads/")) {
-                const fileName = media.url.replace("/uploads/", "");
+            if (item.url.startsWith("/uploads/")) {
+                const fileName = item.url.replace("/uploads/", "");
                 const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
                 const filePath = path.join(uploadDir, fileName);
                 try {
@@ -88,8 +99,11 @@ export const mediaRouter = router({
                 }
             }
 
-            return prisma.media.delete({
-                where: { id: input },
-            });
+            const result = await db
+                .delete(media)
+                .where(eq(media.id, input))
+                .returning();
+            return result[0];
         }),
 });
+

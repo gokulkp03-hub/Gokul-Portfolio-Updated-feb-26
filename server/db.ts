@@ -1,7 +1,17 @@
-import { prisma } from "./prisma-db";
+import "dotenv/config";
+import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import * as schema from "../drizzle/schema";
+import { users } from "../drizzle/schema";
+import { eq } from "drizzle-orm";
+
+// Connect to SQLite Database
+const dbPath = (process.env.DATABASE_URL || "./dev.db").replace("file:", "");
+const sqlite = new Database(dbPath);
+export const db = drizzle(sqlite, { schema });
 
 export async function getDb() {
-  return prisma;
+  return db;
 }
 
 export async function upsertUser(user: {
@@ -17,20 +27,30 @@ export async function upsertUser(user: {
   }
 
   try {
-    const data: any = {
+    const data = {
       openId: user.openId,
-      name: user.name,
-      email: user.email,
-      loginMethod: user.loginMethod,
-      role: user.role,
+      name: user.name || null,
+      email: user.email || null,
+      loginMethod: user.loginMethod || null,
+      role: user.role || "user",
       lastSignedIn: user.lastSignedIn || new Date(),
     };
 
-    await prisma.user.upsert({
-      where: { openId: user.openId },
-      update: data,
-      create: data,
-    });
+    // Check if user exists
+    const existing = await db
+      .select()
+      .from(users)
+      .where(eq(users.openId, user.openId))
+      .get();
+
+    if (existing) {
+      await db
+        .update(users)
+        .set(data)
+        .where(eq(users.openId, user.openId));
+    } else {
+      await db.insert(users).values(data);
+    }
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
@@ -38,7 +58,9 @@ export async function upsertUser(user: {
 }
 
 export async function getUserByOpenId(openId: string) {
-  return prisma.user.findUnique({
-    where: { openId },
-  });
+  return db
+    .select()
+    .from(users)
+    .where(eq(users.openId, openId))
+    .get() || null;
 }

@@ -1,3 +1,9 @@
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
 // server/_core/index.ts
 import "dotenv/config";
 import express2 from "express";
@@ -35,19 +41,143 @@ var loginIdentifierLimiter = createLimiter({
   }
 });
 
-// server/prisma-db.ts
+// server/db.ts
 import "dotenv/config";
-import { PrismaClient } from "@prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
-var globalForPrisma = globalThis;
-var adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL });
-var prisma = globalForPrisma.prisma ?? new PrismaClient({
-  adapter,
-  log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"]
+import Database from "better-sqlite3";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+
+// drizzle/schema.ts
+var schema_exports = {};
+__export(schema_exports, {
+  categories: () => categories,
+  contactMessages: () => contactMessages,
+  contactSubmissions: () => contactSubmissions,
+  media: () => media,
+  projects: () => projects,
+  revisions: () => revisions,
+  siteContents: () => siteContents,
+  tags: () => tags,
+  users: () => users
 });
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
+var users = sqliteTable("users", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  openId: text("openId").notNull().unique(),
+  name: text("name"),
+  email: text("email"),
+  loginMethod: text("loginMethod"),
+  role: text("role").default("user").notNull(),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: integer("updatedAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  lastSignedIn: integer("lastSignedIn", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var projects = sqliteTable("projects", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  category: text("category").notNull(),
+  // video, photo, marketing, case-study
+  description: text("description"),
+  tags: text("tags").default("[]").notNull(),
+  // string[] (stored as JSON string)
+  client: text("client"),
+  year: integer("year"),
+  thumbnail: text("thumbnail").notNull(),
+  gallery: text("gallery").default("[]").notNull(),
+  // string[] (stored as JSON string)
+  videoUrl: text("videoUrl"),
+  videoType: text("videoType"),
+  directVideoUrl: text("directVideoUrl"),
+  summary: text("summary"),
+  problem: text("problem"),
+  solution: text("solution"),
+  results: text("results").default("[]").notNull(),
+  // string[] (stored as JSON string)
+  tools: text("tools").default("[]").notNull(),
+  // string[] (stored as JSON string)
+  credits: text("credits").default("[]").notNull(),
+  // string[] (stored as JSON string)
+  featured: integer("featured", { mode: "boolean" }).default(false).notNull(),
+  sortOrder: integer("sortOrder").default(0).notNull(),
+  status: text("status").default("draft").notNull(),
+  // draft, published, scheduled
+  publishDate: integer("publishDate", { mode: "timestamp" }),
+  metaTitle: text("metaTitle"),
+  metaDescription: text("metaDescription"),
+  ogImage: text("ogImage"),
+  views: integer("views").default(0).notNull(),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: integer("updatedAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var siteContents = sqliteTable("site_contents", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  heroTitle: text("heroTitle"),
+  heroSubtitle: text("heroSubtitle"),
+  aboutText: text("aboutText"),
+  services: text("services"),
+  // JSON string
+  skills: text("skills"),
+  // JSON string
+  socials: text("socials"),
+  // JSON string
+  contact: text("contact"),
+  // JSON string
+  sections: text("sections"),
+  // JSON string
+  updatedAt: integer("updatedAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var categories = sqliteTable("categories", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  order: integer("order").default(0).notNull()
+});
+var tags = sqliteTable("tags", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique()
+});
+var media = sqliteTable("media", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  url: text("url").notNull(),
+  type: text("type").notNull(),
+  // image/video
+  width: integer("width"),
+  height: integer("height"),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var contactMessages = sqliteTable("contact_messages", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  message: text("message").notNull(),
+  read: integer("read", { mode: "boolean" }).default(false).notNull(),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var contactSubmissions = sqliteTable("contact_submissions", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  service: text("service").notNull(),
+  details: text("details"),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var revisions = sqliteTable("revisions", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  entityType: text("entityType").notNull(),
+  // "Project", "SiteContent"
+  entityId: text("entityId").notNull(),
+  data: text("data").notNull(),
+  // JSON string representing snapshot
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
 
 // server/db.ts
+import { eq } from "drizzle-orm";
+var dbPath = (process.env.DATABASE_URL || "./dev.db").replace("file:", "");
+var sqlite = new Database(dbPath);
+var db = drizzle(sqlite, { schema: schema_exports });
 async function upsertUser(user) {
   if (!user.openId) {
     throw new Error("User openId is required for upsert");
@@ -55,17 +185,18 @@ async function upsertUser(user) {
   try {
     const data = {
       openId: user.openId,
-      name: user.name,
-      email: user.email,
-      loginMethod: user.loginMethod,
-      role: user.role,
+      name: user.name || null,
+      email: user.email || null,
+      loginMethod: user.loginMethod || null,
+      role: user.role || "user",
       lastSignedIn: user.lastSignedIn || /* @__PURE__ */ new Date()
     };
-    await prisma.user.upsert({
-      where: { openId: user.openId },
-      update: data,
-      create: data
-    });
+    const existing = await db.select().from(users).where(eq(users.openId, user.openId)).get();
+    if (existing) {
+      await db.update(users).set(data).where(eq(users.openId, user.openId));
+    } else {
+      await db.insert(users).values(data);
+    }
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
@@ -314,33 +445,19 @@ var systemRouter = router({
 
 // server/projectRouter.ts
 import { z as z2 } from "zod";
+import { eq as eq2, asc, desc } from "drizzle-orm";
 var projectRouter = router({
   list: publicProcedure.query(async () => {
-    return prisma.project.findMany({
-      where: { status: "published" },
-      orderBy: [
-        { sortOrder: "asc" },
-        { createdAt: "desc" }
-      ]
-    });
+    return db.select().from(projects).where(eq2(projects.status, "published")).orderBy(asc(projects.sortOrder), desc(projects.createdAt));
   }),
   adminList: adminProcedure.query(async () => {
-    return prisma.project.findMany({
-      orderBy: [
-        { sortOrder: "asc" },
-        { createdAt: "desc" }
-      ]
-    });
+    return db.select().from(projects).orderBy(asc(projects.sortOrder), desc(projects.createdAt));
   }),
   getById: publicProcedure.input(z2.string()).query(async ({ input }) => {
-    return prisma.project.findUnique({
-      where: { id: input }
-    });
+    return db.select().from(projects).where(eq2(projects.id, input)).get() || null;
   }),
   getBySlug: publicProcedure.input(z2.string()).query(async ({ input }) => {
-    return prisma.project.findUnique({
-      where: { slug: input }
-    });
+    return db.select().from(projects).where(eq2(projects.slug, input)).get() || null;
   }),
   create: adminProcedure.input(
     z2.object({
@@ -367,15 +484,16 @@ var projectRouter = router({
       publishDate: z2.date().optional()
     })
   ).mutation(async ({ input }) => {
-    return prisma.project.create({
-      data: {
-        ...input,
-        tags: input.tags || [],
-        gallery: input.gallery || [],
-        results: input.results || [],
-        tools: input.tools || []
-      }
-    });
+    const data = {
+      ...input,
+      tags: JSON.stringify(input.tags || []),
+      gallery: JSON.stringify(input.gallery || []),
+      results: JSON.stringify(input.results || []),
+      tools: JSON.stringify(input.tools || []),
+      credits: JSON.stringify([])
+    };
+    const result = await db.insert(projects).values(data).returning();
+    return result[0];
   }),
   update: adminProcedure.input(
     z2.object({
@@ -404,29 +522,29 @@ var projectRouter = router({
     })
   ).mutation(async ({ input }) => {
     const { id, ...data } = input;
-    return prisma.project.update({
-      where: { id },
-      data
-    });
+    const updateData = { ...data };
+    if (data.tags) updateData.tags = JSON.stringify(data.tags);
+    if (data.gallery) updateData.gallery = JSON.stringify(data.gallery);
+    if (data.results) updateData.results = JSON.stringify(data.results);
+    if (data.tools) updateData.tools = JSON.stringify(data.tools);
+    const result = await db.update(projects).set(updateData).where(eq2(projects.id, id)).returning();
+    return result[0];
   }),
   delete: adminProcedure.input(z2.string()).mutation(async ({ input }) => {
-    return prisma.project.delete({
-      where: { id: input }
-    });
+    const result = await db.delete(projects).where(eq2(projects.id, input)).returning();
+    return result[0];
   })
 });
 
 // server/contentRouter.ts
 import { z as z3 } from "zod";
+import { eq as eq3 } from "drizzle-orm";
 var contentRouter = router({
   get: publicProcedure.query(async () => {
-    let content = await prisma.siteContent.findFirst({
-      where: { id: 1 }
-    });
+    let content = await db.select().from(siteContents).where(eq3(siteContents.id, 1)).get();
     if (!content) {
-      content = await prisma.siteContent.create({
-        data: { id: 1 }
-      });
+      const result = await db.insert(siteContents).values({ id: 1 }).returning();
+      content = result[0];
     }
     return content;
   }),
@@ -442,11 +560,20 @@ var contentRouter = router({
       sections: z3.any().optional()
     })
   ).mutation(async ({ input }) => {
-    return prisma.siteContent.upsert({
-      where: { id: 1 },
-      update: input,
-      create: { id: 1, ...input }
-    });
+    const data = { ...input };
+    if (input.services) data.services = JSON.stringify(input.services);
+    if (input.skills) data.skills = JSON.stringify(input.skills);
+    if (input.socials) data.socials = JSON.stringify(input.socials);
+    if (input.contact) data.contact = JSON.stringify(input.contact);
+    if (input.sections) data.sections = JSON.stringify(input.sections);
+    const existing = await db.select().from(siteContents).where(eq3(siteContents.id, 1)).get();
+    if (existing) {
+      const result = await db.update(siteContents).set(data).where(eq3(siteContents.id, 1)).returning();
+      return result[0];
+    } else {
+      const result = await db.insert(siteContents).values({ id: 1, ...data }).returning();
+      return result[0];
+    }
   })
 });
 
@@ -454,12 +581,11 @@ var contentRouter = router({
 import { z as z4 } from "zod";
 import fs from "fs/promises";
 import path from "path";
-import crypto from "crypto";
+import crypto2 from "crypto";
+import { eq as eq4, desc as desc2 } from "drizzle-orm";
 var mediaRouter = router({
   list: adminProcedure.query(async () => {
-    return prisma.media.findMany({
-      orderBy: { createdAt: "desc" }
-    });
+    return db.select().from(media).orderBy(desc2(media.createdAt));
   }),
   upload: adminProcedure.input(
     z4.object({
@@ -474,20 +600,19 @@ var mediaRouter = router({
     const buffer = Buffer.from(input.base64Data, "base64");
     const extMatch = input.fileName.match(/\.[0-9a-z]+$/i);
     const ext = extMatch ? extMatch[0] : input.fileType.startsWith("video") ? ".mp4" : ".png";
-    const uniqueName = crypto.randomUUID() + ext;
+    const uniqueName = crypto2.randomUUID() + ext;
     const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
     await fs.mkdir(uploadDir, { recursive: true });
     const filePath = path.join(uploadDir, uniqueName);
     await fs.writeFile(filePath, buffer);
     const url = `/uploads/${uniqueName}`;
-    return prisma.media.create({
-      data: {
-        url,
-        type: input.fileType,
-        width: input.width,
-        height: input.height
-      }
-    });
+    const result = await db.insert(media).values({
+      url,
+      type: input.fileType,
+      width: input.width,
+      height: input.height
+    }).returning();
+    return result[0];
   }),
   addExternal: adminProcedure.input(
     z4.object({
@@ -497,18 +622,17 @@ var mediaRouter = router({
       title: z4.string().optional()
     })
   ).mutation(async ({ input }) => {
-    return prisma.media.create({
-      data: {
-        url: input.url,
-        type: input.type
-      }
-    });
+    const result = await db.insert(media).values({
+      url: input.url,
+      type: input.type
+    }).returning();
+    return result[0];
   }),
   delete: adminProcedure.input(z4.string()).mutation(async ({ input }) => {
-    const media = await prisma.media.findUnique({ where: { id: input } });
-    if (!media) return;
-    if (media.url.startsWith("/uploads/")) {
-      const fileName = media.url.replace("/uploads/", "");
+    const item = await db.select().from(media).where(eq4(media.id, input)).get();
+    if (!item) return;
+    if (item.url.startsWith("/uploads/")) {
+      const fileName = item.url.replace("/uploads/", "");
       const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
       const filePath = path.join(uploadDir, fileName);
       try {
@@ -517,14 +641,14 @@ var mediaRouter = router({
         console.error("Failed to delete local file:", err);
       }
     }
-    return prisma.media.delete({
-      where: { id: input }
-    });
+    const result = await db.delete(media).where(eq4(media.id, input)).returning();
+    return result[0];
   })
 });
 
 // server/contactRouter.ts
 import { z as z5 } from "zod";
+import { desc as desc3 } from "drizzle-orm";
 var contactRouter = router({
   submit: publicProcedure.input(z5.object({
     name: z5.string().min(1),
@@ -532,12 +656,11 @@ var contactRouter = router({
     service: z5.string(),
     details: z5.string().optional()
   })).mutation(async ({ input }) => {
-    return await prisma.contactSubmission.create({ data: input });
+    const result = await db.insert(contactSubmissions).values(input).returning();
+    return result[0];
   }),
   list: adminProcedure.query(async () => {
-    return await prisma.contactSubmission.findMany({
-      orderBy: { createdAt: "desc" }
-    });
+    return db.select().from(contactSubmissions).orderBy(desc3(contactSubmissions.createdAt));
   })
 });
 

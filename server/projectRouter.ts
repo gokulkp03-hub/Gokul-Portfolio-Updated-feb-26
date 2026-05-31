@@ -1,41 +1,43 @@
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { prisma } from "./prisma-db";
+import { db } from "./db";
+import { projects } from "../drizzle/schema";
 import { z } from "zod";
+import { eq, asc, desc } from "drizzle-orm";
 
 export const projectRouter = router({
     list: publicProcedure.query(async () => {
-        return prisma.project.findMany({
-            where: { status: "published" },
-            orderBy: [
-                { sortOrder: 'asc' },
-                { createdAt: 'desc' },
-            ]
-        });
+        return db
+            .select()
+            .from(projects)
+            .where(eq(projects.status, "published"))
+            .orderBy(asc(projects.sortOrder), desc(projects.createdAt));
     }),
 
     adminList: adminProcedure.query(async () => {
-        return prisma.project.findMany({
-            orderBy: [
-                { sortOrder: 'asc' },
-                { createdAt: 'desc' },
-            ]
-        });
+        return db
+            .select()
+            .from(projects)
+            .orderBy(asc(projects.sortOrder), desc(projects.createdAt));
     }),
 
     getById: publicProcedure
         .input(z.string())
         .query(async ({ input }) => {
-            return prisma.project.findUnique({
-                where: { id: input },
-            });
+            return db
+                .select()
+                .from(projects)
+                .where(eq(projects.id, input))
+                .get() || null;
         }),
 
     getBySlug: publicProcedure
         .input(z.string())
         .query(async ({ input }) => {
-            return prisma.project.findUnique({
-                where: { slug: input },
-            });
+            return db
+                .select()
+                .from(projects)
+                .where(eq(projects.slug, input))
+                .get() || null;
         }),
 
     create: adminProcedure
@@ -65,15 +67,16 @@ export const projectRouter = router({
             })
         )
         .mutation(async ({ input }) => {
-            return prisma.project.create({
-                data: {
-                    ...input,
-                    tags: input.tags || [],
-                    gallery: input.gallery || [],
-                    results: input.results || [],
-                    tools: input.tools || [],
-                },
-            });
+            const data = {
+                ...input,
+                tags: JSON.stringify(input.tags || []),
+                gallery: JSON.stringify(input.gallery || []),
+                results: JSON.stringify(input.results || []),
+                tools: JSON.stringify(input.tools || []),
+                credits: JSON.stringify([]),
+            };
+            const result = await db.insert(projects).values(data).returning();
+            return result[0];
         }),
 
     update: adminProcedure
@@ -105,17 +108,27 @@ export const projectRouter = router({
         )
         .mutation(async ({ input }) => {
             const { id, ...data } = input;
-            return prisma.project.update({
-                where: { id },
-                data,
-            });
+            const updateData: any = { ...data };
+            if (data.tags) updateData.tags = JSON.stringify(data.tags);
+            if (data.gallery) updateData.gallery = JSON.stringify(data.gallery);
+            if (data.results) updateData.results = JSON.stringify(data.results);
+            if (data.tools) updateData.tools = JSON.stringify(data.tools);
+
+            const result = await db
+                .update(projects)
+                .set(updateData)
+                .where(eq(projects.id, id))
+                .returning();
+            return result[0];
         }),
 
     delete: adminProcedure
         .input(z.string())
         .mutation(async ({ input }) => {
-            return prisma.project.delete({
-                where: { id: input },
-            });
+            const result = await db
+                .delete(projects)
+                .where(eq(projects.id, input))
+                .returning();
+            return result[0];
         }),
 });

@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Instagram, Linkedin, MessageSquare, ArrowRight, MapPin, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
+import { setSEO } from "../utils/seo";
 
 export default function Contact() {
+    useEffect(() => {
+        setSEO({
+            title: "Book a Project & Consult | Gokul KP",
+            description: "Get in touch with Gokul KP for premium commercial video production, B2C advertising campaigns, and direct-response content photography."
+        });
+    }, []);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({

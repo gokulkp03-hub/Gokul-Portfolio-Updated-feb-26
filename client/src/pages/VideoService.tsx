@@ -2,8 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Play, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { videoProjects, type VideoProject } from "@/data/video";
+import { setSEO } from "../utils/seo";
 
 function getCloudinaryThumb(videoUrl: string): string {
     if (!videoUrl) return "";
@@ -67,6 +68,13 @@ const categories: Category[] = ["All", "Weddings", "Events", "Product", "Persona
 
 
 export default function VideoService() {
+    useEffect(() => {
+        setSEO({
+            title: "Videographer & Video Editor in Dubai | Cinematic Production | Gokul KP",
+            description: "Gokul KP is a freelance videographer and video editor in Dubai & UAE. Cinematic commercial videos, social reels, brand films, and post-production."
+        });
+    }, []);
+
     const [activeCategory, setActiveCategory] = useState<Category>("All");
     const [hoveredId, setHoveredId] = useState<string | null>(null);
     const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);

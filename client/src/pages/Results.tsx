@@ -3,10 +3,18 @@ import { proof } from "@/data/proof";
 import { TrendingUp, Users, Target, BarChart3, PieChart, ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
+import { setSEO } from "../utils/seo";
 
 export default function Results() {
+    useEffect(() => {
+        setSEO({
+            title: "Proven Results & Marketing Case Studies | Gokul KP",
+            description: "Browse verified growth metrics, ROI case studies, and ad spend scaling performance across GCC client campaigns managed by Gokul KP."
+        });
+    }, []);
+
     const { data: dbProjects } = trpc.projects.list.useQuery();
     
     const campaigns = useMemo(() => {

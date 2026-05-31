@@ -46,4 +46,14 @@ export const setSEO = ({ title, description, image, url }: SEOProps) => {
         setMeta('meta[property="og:url"]', url);
         setMeta('meta[property="twitter:url"]', url);
     }
+
+    // Dynamic Canonical URL Injection
+    const canonicalUrl = url || `https://gokul-folio.vercel.app${window.location.pathname}`;
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', canonicalUrl);
 };

@@ -8,6 +8,7 @@ import { MorphBlob } from "@/components/ui/MorphBlob";
 import { RevealText } from "@/components/ui/RevealText";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { useScroll, useTransform } from "framer-motion";
+import { setSEO } from "../utils/seo";
 
 // ------- FAQ Item -------
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -237,6 +238,13 @@ const faqs = [
 ];
 
 export default function MarketingService() {
+  useEffect(() => {
+    setSEO({
+      title: "Best Digital Marketer in Dubai | Meta Ads & Growth | Gokul KP",
+      description: "Scale your B2C business with the best digital marketer in Dubai. Affordable Meta Ads campaigns, lead generation funnels, and GCC WhatsApp automation."
+    });
+  }, []);
+
   const { data: dbProjects } = trpc.projects.list.useQuery();
 
   const processRef = useRef(null);

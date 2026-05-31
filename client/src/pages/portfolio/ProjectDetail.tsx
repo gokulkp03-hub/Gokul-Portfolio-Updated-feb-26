@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Calendar, User, Wrench, CheckCircle2, Loader2 } from "lucide-react";
 import NotFound from "../NotFound";
 import { trpc } from "@/lib/trpc";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { projects as staticProjects } from "@/data/projects";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
+import { setSEO } from "../../utils/seo";
 
 interface ProjectDetailProps {
     category?: string;
@@ -89,6 +90,15 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     // Use database project if available, otherwise fallback to static
     const project = dbProject || staticProject;
+
+    useEffect(() => {
+        if (project) {
+            setSEO({
+                title: `${project.title} | Gokul KP`,
+                description: project.description || `Read detailed project study for ${project.title} by Gokul KP.`
+            });
+        }
+    }, [project]);
 
     // Static projects mapped to Prisma schema compatible structure
     const mergedStaticProjects = useMemo(() => {

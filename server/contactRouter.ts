@@ -1,6 +1,8 @@
 import { publicProcedure, adminProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { prisma } from "./prisma-db";
+import { db } from "./db";
+import { contactSubmissions } from "../drizzle/schema";
+import { desc } from "drizzle-orm";
 
 export const contactRouter = router({
   submit: publicProcedure
@@ -12,11 +14,17 @@ export const contactRouter = router({
     }))
     .mutation(async ({ input }) => {
       // Save to DB so nothing is ever lost
-      return await prisma.contactSubmission.create({ data: input });
+      const result = await db
+        .insert(contactSubmissions)
+        .values(input)
+        .returning();
+      return result[0];
     }),
   list: adminProcedure.query(async () => {
-    return await prisma.contactSubmission.findMany({
-      orderBy: { createdAt: "desc" },
-    });
+    return db
+      .select()
+      .from(contactSubmissions)
+      .orderBy(desc(contactSubmissions.createdAt));
   }),
 });
+

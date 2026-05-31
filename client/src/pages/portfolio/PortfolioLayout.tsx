@@ -6,6 +6,7 @@ import { SafeImage } from "@/components/ui/SafeImage";
 import { trpc } from "@/lib/trpc";
 import { projects as staticProjects } from "@/data/projects";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
+import { setSEO } from "../../utils/seo";
 
 type FilterCategory = "all" | "video" | "photo" | "marketing" | "case-study";
 
@@ -25,6 +26,14 @@ export default function PortfolioLayout() {
     const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
 
     const { data: dbProjects, isLoading } = trpc.projects.list.useQuery();
+
+    useEffect(() => {
+        const filterTitle = activeFilter === "all" ? "Creative Portfolio" : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1);
+        setSEO({
+            title: `${filterTitle} | Gokul KP`,
+            description: `Browse Gokul KP's premium commercial portfolio including high-impact ads, cinematic video projects, commercial photography, and B2C campaigns.`
+        });
+    }, [activeFilter]);
 
     // Sync state from URL
     useEffect(() => {
@@ -75,8 +84,8 @@ export default function PortfolioLayout() {
 
     // Merge tRPC dbProjects and static fallback
     const projectsList = useMemo(() => {
-        if (dbProjects && dbProjects.length > 0) {
-            return dbProjects;
+        if (dbProjects && (dbProjects as any).length > 0) {
+            return dbProjects as any[];
         }
         return mergedStaticProjects;
     }, [dbProjects, mergedStaticProjects]);
@@ -140,7 +149,7 @@ export default function PortfolioLayout() {
                 </div>
 
                 {/* Projects Grid */}
-                {isLoading && (!dbProjects || dbProjects.length === 0) ? (
+                {isLoading && (!dbProjects || (dbProjects as any).length === 0) ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[...Array(6)].map((_, i) => (
                             <div key={i} className="aspect-[4/5] bg-muted animate-pulse rounded-3xl" />

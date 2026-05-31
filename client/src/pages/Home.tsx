@@ -1,5 +1,6 @@
 import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { setSEO } from "../utils/seo";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { Link } from "wouter";
 import { ArrowRight, Play, Camera, TrendingUp, Quote } from "lucide-react";
@@ -20,6 +21,13 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    setSEO({
+      title: "Gokul KP | Best Digital Marketer, Video Editor & Videographer in Dubai, UAE",
+      description: "Gokul KP is an affordable freelance videographer, video editor, and B2C digital marketer in Dubai & UAE. Scale your brand with high-converting Meta ads."
+    });
+  }, []);
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: true });

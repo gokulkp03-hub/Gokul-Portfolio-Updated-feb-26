@@ -4,7 +4,8 @@ import { Camera, Layers, Zap, ArrowRight, Expand, Image, ArrowUpRight, Sparkles 
 import { cn } from "@/lib/utils";
 import { BeforeAfter } from "@/components/ui/BeforeAfter";
 import { trpc } from "@/lib/trpc";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
+import { setSEO } from "../utils/seo";
 
 const services = [
     { icon: Camera, title: "Editorial Shoots", desc: "Stylized imagery for magazines and brands." },
@@ -82,6 +83,13 @@ const localArchiveImages = [
 ];
 
 export default function PhotoService() {
+    useEffect(() => {
+        setSEO({
+            title: "Commercial Photography & Brand Visuals | Gokul KP",
+            description: "High-end product, lifestyle, and corporate photography in Dubai. Elevating B2C brand identity and engagement with premium captures."
+        });
+    }, []);
+
     const { data: dbProjects } = trpc.projects.list.useQuery();
     
     const photos = useMemo(() => {
