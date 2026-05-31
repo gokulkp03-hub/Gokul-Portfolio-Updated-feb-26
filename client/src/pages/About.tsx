@@ -1,4 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Link } from "wouter";
 import { bio, experiences, skills } from "@/data/about";
 import { Coffee, Code, Heart, Trophy, Target, Sparkles, MapPin, ArrowUpRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
@@ -25,48 +26,45 @@ function SkillBar({ name, index }: { name: string; index: number }) {
 
 export default function About() {
     const { data: content } = trpc.content.get.useQuery();
-    const { scrollY } = useScroll();
-    const photoY = useTransform(scrollY, [0, 2000], [0, 400]);
 
     const aboutTextRaw = content?.aboutText || bio.longDescription;
     const chunks = aboutTextRaw.split('\n\n');
-    const displayHeading = chunks[0] || bio.description;
+    const displayHeading = chunks[0] || "Blending cinematic art with high-conversion strategy.";
     const displayParas = chunks.slice(1).length > 0 ? chunks.slice(1) : chunks;
     return (
-        <div className="min-h-screen bg-background pt-32 md:pt-48 pb-32">
-            <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+        <div className="min-h-screen bg-background pt-40 md:pt-56 pb-32">
+            <div className="container">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
 
-                    {/* Sticky Side Info */}
+                    {/* Clean Side Info */}
                     <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-8">
-                        <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-border/50 group">
+                        <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-border/50 bg-muted/20">
                             <motion.img
                                 src="/assets/images/profile/profile.webp"
                                 alt="Gokul KP"
-                                initial={{ scale: 1.1, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                style={{ y: photoY }}
-                                transition={{ duration: 1.2, ease: "easeOut" }}
-                                className="w-full h-[120%] object-cover transition-transform duration-700 group-hover:scale-105 origin-top"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                className="w-full h-full object-cover"
                                 onError={(e) => {
                                     e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop";
                                 }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                            <div className="absolute bottom-8 left-8">
-                                <h1 className="text-3xl font-display font-bold text-foreground mb-2">Gokul KP</h1>
-                                <p className="text-orange-500 font-medium uppercase tracking-widest text-xs">Director // Strategist // Creator</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            <div className="absolute bottom-6 left-6">
+                                <h1 className="text-2xl font-display font-bold text-white mb-1">Gokul KP</h1>
+                                <p className="text-orange-500 font-bold uppercase tracking-widest text-[10px]">Director // Strategist // Creator</p>
                             </div>
                         </div>
 
                         <div className="space-y-4">
                             <div className="flex items-center gap-3 text-muted-foreground">
                                 <MapPin className="w-4 h-4 text-orange-500" />
-                                <span className="text-sm font-light">Based in United Arab Emirates</span>
+                                <span className="text-sm font-normal">Based in United Arab Emirates</span>
                             </div>
                             <div className="flex items-center gap-3 text-muted-foreground">
                                 <Sparkles className="w-4 h-4 text-orange-500" />
-                                <span className="text-sm font-light">Operating Globally</span>
+                                <span className="text-sm font-normal">Operating Globally</span>
                             </div>
                         </div>
 
@@ -104,7 +102,7 @@ export default function About() {
                                     {displayHeading}
                                 </p>
                             </div>
-                            <div className="prose prose-invert max-w-none text-muted-foreground text-xl font-light leading-relaxed">
+                            <div className="prose prose-invert max-w-none text-muted-foreground text-xl font-normal leading-relaxed">
                                 {displayParas.map((p, i) => (
                                     <p key={i} className="mb-10">{p}</p>
                                 ))}
@@ -140,7 +138,7 @@ export default function About() {
                                                 {exp.duration}
                                             </span>
                                         </div>
-                                        <p className="text-muted-foreground font-light mb-6">{exp.description}</p>
+                                        <p className="text-muted-foreground font-normal mb-6">{exp.description}</p>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div>
@@ -197,7 +195,7 @@ export default function About() {
                         <section className="bg-foreground text-background rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
                             <div className="relative z-10 max-w-2xl mx-auto">
                                 <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic">Ready to build the <br /> next chapter?</h2>
-                                <p className="text-xl text-background/80 font-light mb-12">Let's discuss how we can scale your brand's presence today.</p>
+                                <p className="text-xl text-background/90 font-normal mb-12">Let's discuss how we can scale your brand's presence today.</p>
                                 <Link href="/contact">
                                     <a className="btn bg-background text-foreground px-12 py-5 rounded-full font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">
                                         Commence Project
@@ -212,5 +210,3 @@ export default function About() {
         </div>
     );
 }
-
-import { Link } from "wouter";

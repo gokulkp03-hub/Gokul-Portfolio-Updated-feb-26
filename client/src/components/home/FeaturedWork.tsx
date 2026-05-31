@@ -1,8 +1,9 @@
 import { trpc } from "@/lib/trpc";
-import { motion } from "framer-motion";
-import { Link } from "wouter";
-import { ArrowUpRight, Play } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Play, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { Link } from "wouter";
 
 const categoryAccents: Record<string, string> = {
   video: "text-blue-400 bg-blue-500/10 border-blue-500/20",
@@ -14,118 +15,146 @@ const categoryAccents: Record<string, string> = {
 
 export function FeaturedWork() {
     const { data: dbProjects, isLoading } = trpc.projects.list.useQuery();
+    const [selectedItem, setSelectedItem] = useState<any>(null);
 
     const items = (dbProjects && (dbProjects as any[]).length > 0)
-        ? (dbProjects as any[]).filter(p => p.featured).slice(0, 5).map(p => ({
+        ? (dbProjects as any[]).filter(p => p.featured).slice(0, 6).map(p => ({
             id: p.id,
             title: p.title,
             image: p.thumbnail,
             category: p.category.toLowerCase(),
             path: `/portfolio/${p.category}/${p.slug}`,
-            isVideo: p.category.toLowerCase() === "video",
+            isVideo: p.category.toLowerCase() === "video" || !!p.videoUrl,
+            description: p.description,
+            videoUrl: p.videoUrl,
+            client: p.client
         }))
         : [];
 
     if (isLoading) {
         return (
             <div className="grid grid-cols-2 md:grid-cols-12 gap-4 auto-rows-[200px]">
-                {[...Array(5)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                     <div key={i} className={cn("bg-muted animate-pulse rounded-2xl",
-                        i === 0 ? "col-span-2 md:col-span-7 row-span-2" :
-                        i === 1 ? "col-span-1 md:col-span-5" :
-                        "col-span-1 md:col-span-4"
+                        i === 0 ? "col-span-2 md:col-span-8 row-span-2" : "col-span-1 md:col-span-4"
                     )} />
                 ))}
             </div>
         );
     }
 
-    if (items.length === 0) {
-        return (
-            <div className="text-center py-20 bg-muted/10 border border-dashed border-border/20 rounded-3xl">
-                <p className="text-muted-foreground italic">Featured work will appear here once items are published.</p>
-            </div>
-        );
-    }
-
-    // Layout pattern:
-    // [0] Large hero: col-span 7, row-span 2
-    // [1] Top right: col-span 5, row-span 1
-    // [2] Bottom right: col-span 5, row-span 1
-    // [3] Bottom left medium: col-span 4, row-span 1
-    // [4] Bottom right small: col-span 8, row-span 1
     const layouts = [
-        "col-span-2 md:col-span-7 row-span-2",
-        "col-span-1 md:col-span-5 row-span-1",
-        "col-span-1 md:col-span-5 row-span-1",
+        "col-span-2 md:col-span-8 row-span-2", // One large
         "col-span-1 md:col-span-4 row-span-1",
-        "col-span-2 md:col-span-8 row-span-1",
+        "col-span-1 md:col-span-4 row-span-1",
+        "col-span-1 md:col-span-4 row-span-1",
+        "col-span-1 md:col-span-4 row-span-1",
+        "col-span-1 md:col-span-4 row-span-1",
     ];
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-3 md:gap-4 auto-rows-[180px] md:auto-rows-[200px]">
-            {items.slice(0, 5).map((item, i) => {
-                const accent = categoryAccents[item.category] || categoryAccents.photo;
-                
-                // Determine direction based on index
-                const dirX = i === 0 ? -40 : i === 1 || i === 2 ? 40 : 0;
-                const dirY = i >= 3 ? 40 : 0;
-
-                return (
-                    <motion.div
-                        key={item.id}
-                        initial={{ opacity: 0, scale: 0.96, x: dirX, y: dirY }}
-                        whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-                        viewport={{ once: true, margin: "-40px" }}
-                        transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className={layouts[i] || "col-span-1 md:col-span-4"}
-                    >
-                        <Link href={item.path}>
-                            <div className="group relative w-full h-full overflow-hidden rounded-2xl cursor-pointer bg-muted border border-border/20 hover:border-border/60 transition-all duration-500">
-                                {/* Image */}
+        <>
+            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 auto-rows-[180px] md:auto-rows-[220px]">
+                {items.map((item, i) => {
+                    const accent = categoryAccents[item.category] || categoryAccents.photo;
+                    return (
+                        <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            className={layouts[i] || "col-span-1 md:col-span-4"}
+                            onClick={() => setSelectedItem(item)}
+                        >
+                            <div className="group relative w-full h-full overflow-hidden rounded-[2rem] cursor-pointer border border-border/20 hover:border-orange-500/30 transition-all duration-500 bg-zinc-900">
                                 <img
                                     src={item.image}
                                     alt={item.title}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    loading="lazy"
+                                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                                 />
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
-
-                                {/* Video play indicator */}
-                                {item.isVideo && (
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">
-                                            <Play className="w-5 h-5 text-white fill-current ml-1" />
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Category tag — top left */}
-                                <div className="absolute top-3 left-3">
-                                    <span className={`text-[9px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border backdrop-blur-md ${accent}`}>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+                                
+                                <div className="absolute top-6 left-6">
+                                    <span className={cn("text-[8px] font-bold uppercase tracking-[0.3em] px-3 py-1 rounded-full border backdrop-blur-md", accent)}>
                                         {item.category}
                                     </span>
                                 </div>
 
-                                {/* Arrow — top right on hover */}
-                                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                                    <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shadow-lg">
-                                        <ArrowUpRight className="w-4 h-4" />
-                                    </div>
-                                </div>
-
-                                {/* Title — only shows on first (large) item always, others on hover */}
-                                <div className={`absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent transition-all duration-300 ${i === 0 ? 'opacity-100' : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
-                                    <h3 className="text-white font-display font-bold text-sm md:text-base leading-tight line-clamp-1">
+                                <div className="absolute bottom-8 left-8 right-8">
+                                    <h3 className={cn("text-white font-display font-bold leading-tight uppercase tracking-tight", i === 0 ? "text-2xl md:text-3xl" : "text-sm md:text-lg")}>
                                         {item.title}
                                     </h3>
+                                    {i === 0 && <p className="text-white/60 text-sm mt-2 font-light line-clamp-1">{item.client}</p>}
+                                </div>
+
+                                <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                                    {item.isVideo ? <Play className="w-5 h-5 text-white fill-current" /> : <ArrowUpRight className="w-5 h-5 text-white" />}
                                 </div>
                             </div>
-                        </Link>
+                        </motion.div>
+                    );
+                })}
+            </div>
+
+            {/* Lightbox Shell */}
+            <AnimatePresence>
+                {selectedItem && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 pointer-events-auto"
+                    >
+                        <motion.div 
+                            className="absolute inset-0 bg-black/95 backdrop-blur-2xl"
+                            onClick={() => setSelectedItem(null)}
+                        />
+                        
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="relative w-full max-w-6xl aspect-video rounded-[3rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl"
+                        >
+                            {selectedItem.isVideo ? (
+                                <iframe 
+                                    src={selectedItem.videoUrl?.replace('vimeo.com', 'player.vimeo.com/video')}
+                                    className="w-full h-full"
+                                    allow="autoplay; fullscreen; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            ) : (
+                                <img src={selectedItem.image} className="w-full h-full object-cover" alt={selectedItem.title} />
+                            )}
+
+                            <div className="absolute top-8 right-8 flex gap-4">
+                                <Link href={selectedItem.path}>
+                                    <button className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform">
+                                        <ExternalLink className="w-5 h-5" />
+                                    </button>
+                                </Link>
+                                <button 
+                                    onClick={() => setSelectedItem(null)}
+                                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                                >
+                                    <X className="w-6 h-6" />
+                                </button>
+                            </div>
+
+                            <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black via-black/80 to-transparent">
+                                <span className={cn("text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block", categoryAccents[selectedItem.category])}>
+                                    {selectedItem.category} Project
+                                </span>
+                                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 uppercase tracking-tighter">
+                                    {selectedItem.title}
+                                </h2>
+                                <p className="text-white/60 text-lg font-light max-w-2xl">{selectedItem.description}</p>
+                            </div>
+                        </motion.div>
                     </motion.div>
-                );
-            })}
-        </div>
+                )}
+            </AnimatePresence>
+        </>
     );
 }

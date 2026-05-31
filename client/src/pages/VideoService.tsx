@@ -82,33 +82,39 @@ export default function VideoService() {
 
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
-            {/* Background blobs */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/20 rounded-full blur-[120px] animate-pulse-slow" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-cyan-500/20 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
+            {/* Cinematic Background - No Blobs */}
+            <div className="absolute inset-0 z-0 pointer-events-none bg-black">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.03),transparent_50%)]" />
+                <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }} />
             </div>
 
             {/* Hero */}
             <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black/60 z-10" />
-                    <img
-                        src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2000&auto=format&fit=crop"
-                        className="w-full h-full object-cover opacity-50"
-                        alt="Video Production"
-                    />
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover opacity-60"
+                        poster={getCloudinaryThumb("https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4")}
+                    >
+                        <source src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,q_auto,w_1280/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4" type="video/mp4" />
+                    </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-20" />
                 </div>
                 <div className="relative z-30 container text-center px-4">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                        <span className="inline-block py-1 px-3 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6 backdrop-blur-md">
-                            Video Production & Editing
+                        <span className="inline-block py-1 px-4 rounded-full bg-white/5 border border-white/10 text-zinc-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-8 backdrop-blur-md">
+                            Directing // Editing // Color
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tighter mb-6 text-white text-balance">
-                            Visuals that <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">captivate</span>.
+                        <h1 className="text-6xl md:text-[12rem] font-display font-bold tracking-tighter mb-8 text-white uppercase leading-[0.75] flex flex-col items-center">
+                            <span className="block">Pure</span>
+                            <span className="block text-zinc-700">Cinema.</span>
                         </h1>
-                        <p className="text-xl text-zinc-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-                            From cinematic wedding films to high-energy brand reels — stories that keep eyes on the screen.
+                        <p className="text-lg md:text-xl text-zinc-500 max-w-xl mx-auto mb-12 font-medium tracking-tight leading-relaxed">
+                            High-impact brand films and commercials designed to command attention and hold it.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a href="#works" className="btn bg-white text-black hover:bg-zinc-200 px-8 py-4 rounded-full font-semibold flex items-center gap-2 group transition-all">

@@ -93,28 +93,27 @@ export default function PhotoService() {
     }, [dbProjects]);
     
     return (
-        <div className="min-h-screen bg-background overflow-hidden relative">
-            {/* Background Texture & Ambience */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} />
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="min-h-screen bg-white text-zinc-950 overflow-hidden relative selection:bg-zinc-900 selection:text-white">
+            {/* Editorial Background - Light & Airy */}
+            <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none mix-blend-multiply" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/natural-paper.png")' }} />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-zinc-100 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Hero */}
-            <section className="relative pt-32 pb-20 container px-4 text-center z-10">
+            <section className="relative pt-48 pb-32 container px-4 text-center z-10">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1 }}
-                    className="mb-16"
+                    className="mb-24"
                 >
-                    <span className="inline-block py-1 px-3 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-medium mb-6 backdrop-blur-md">
-                        Professional Photography
+                    <span className="inline-block py-1 px-4 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-8">
+                        Editorial // Product // Lifestyle
                     </span>
-                    <h1 className="text-5xl md:text-9xl font-display font-bold tracking-tighter text-foreground mb-6 text-balance">
-                        Captured <span className="text-orange-500 italic font-serif">moments</span>.
+                    <h1 className="text-6xl md:text-[10rem] font-serif italic font-light tracking-tighter text-zinc-950 mb-12 text-balance leading-[0.8]">
+                        The <span className="font-bold not-italic">Image.</span>
                     </h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
-                        Photography that elevates perception.
-                        Focusing on light, composition, and emotion.
+                    <p className="text-xl text-zinc-500 max-w-xl mx-auto font-medium tracking-tight">
+                        A study in light, composition, and the emotional resonance of the captured frame.
                     </p>
                 </motion.div>
 
@@ -123,25 +122,26 @@ export default function PhotoService() {
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.8 }}
-                    className="w-full h-[50vh] md:h-[70vh] rounded-[2rem] overflow-hidden relative bg-muted shadow-2xl"
+                    className="w-full h-[60vh] md:h-[85vh] rounded-3xl overflow-hidden relative bg-zinc-100 shadow-sm border border-zinc-100"
                 >
                     <img
-                        src="https://images.unsplash.com/photo-1542038784424-48ed221f70d1?q=80&w=2500&auto=format&fit=crop"
+                        src="/assets/images/brands/Food-Photography/Cheesecake.jpg"
                         alt="Featured Photography"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover hover:scale-105 transition-all duration-1000"
+                        onError={(e) => { e.currentTarget.src = "/assets/images/portfolio-all/Cheesecake.jpg"; }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
 
-                    <div className="absolute bottom-8 left-8 text-left">
-                        <span className="text-white/80 text-sm uppercase tracking-widest block mb-2">Featured Series</span>
-                        <h3 className="text-3xl md:text-5xl text-white font-serif italic">Urban Solitude</h3>
+                    <div className="absolute bottom-12 left-12 text-left">
+                        <span className="text-zinc-600 text-xs font-bold uppercase tracking-[0.3em] block mb-2">Issue 01 // Dubai</span>
+                        <h3 className="text-4xl md:text-6xl text-zinc-950 font-serif italic">Urban Solitude</h3>
                     </div>
                 </motion.div>
             </section>
 
             {/* Gallery Grid */}
-            <section className="py-24 container">
-                <h2 className="text-3xl md:text-5xl font-display font-bold mb-12">Collections</h2>
+            <section className="py-32 container">
+                <h2 className="text-4xl md:text-6xl font-serif mb-16 italic text-zinc-950">Collections</h2>
 
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                     {photos.map((item: any, i: number) => (
@@ -219,36 +219,36 @@ export default function PhotoService() {
 
 
              {/* Pricing Section */}
-            <section className="py-24 container relative z-10 border-t border-border/20">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Investment</h2>
-                    <p className="text-muted-foreground text-lg">Transparent pricing for premium photography services.</p>
+            <section className="py-32 container relative z-10 border-t border-zinc-100">
+                <div className="text-center mb-20">
+                    <h2 className="text-5xl md:text-7xl font-serif text-zinc-950 mb-6">Investment</h2>
+                    <p className="text-zinc-500 text-xl font-medium tracking-tight">Tailored packages for high-end production.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {packages.map((pkg, i) => (
                         <div key={i} className={cn(
-                            "p-8 rounded-3xl border transition-all duration-300",
+                            "p-10 rounded-2xl border transition-all duration-500",
                             pkg.highlight 
-                                ? "bg-muted/30 border-orange-500/50 scale-105 shadow-xl shadow-orange-500/10" 
-                                : "bg-background border-border/50"
+                                ? "bg-zinc-50 border-zinc-200 scale-105 shadow-2xl shadow-zinc-200/50" 
+                                : "bg-white border-zinc-100"
                         )}>
-                            <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                            <div className="text-3xl font-display font-bold mb-6 text-orange-500">{pkg.price}</div>
-                            <ul className="space-y-4 mb-8">
+                            <h3 className="text-3xl font-serif italic mb-2 text-zinc-950">{pkg.name}</h3>
+                            <div className="text-2xl font-bold mb-8 text-zinc-800">{pkg.price}</div>
+                            <ul className="space-y-6 mb-12">
                                 {pkg.features.map((feat, j) => (
-                                    <li key={j} className="flex items-center gap-3 text-sm">
-                                        <Sparkles className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                                        <span>{feat}</span>
+                                    <li key={j} className="flex items-center gap-4 text-sm text-zinc-600">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-zinc-900 flex-shrink-0" />
+                                        <span className="font-medium tracking-tight">{feat}</span>
                                     </li>
                                 ))}
                             </ul>
                             <Link href="/contact">
                                 <a className={cn(
-                                    "w-full py-3 rounded-full text-center block text-sm font-semibold transition-all",
-                                    pkg.highlight ? "bg-orange-500 text-white" : "border border-border hover:bg-muted"
+                                    "w-full py-4 rounded-full text-center block text-xs font-bold uppercase tracking-widest transition-all",
+                                    pkg.highlight ? "bg-zinc-900 text-white hover:bg-black" : "border border-zinc-200 hover:bg-zinc-50 text-zinc-900"
                                 )}>
-                                    Book Now
+                                    Secure Booking
                                 </a>
                             </Link>
                         </div>

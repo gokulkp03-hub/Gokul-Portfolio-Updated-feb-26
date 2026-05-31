@@ -31,10 +31,8 @@ export default function ProjectManager() {
     const [editingProject, setEditingProject] = useState<any | null>(null);
 
     const filteredProjects = projects?.filter(p =>
-        p.category !== "marketing" && (
-            p.title.toLowerCase().includes(search.toLowerCase()) ||
-            p.category.toLowerCase().includes(search.toLowerCase())
-        )
+        p.title.toLowerCase().includes(search.toLowerCase()) ||
+        p.category.toLowerCase().includes(search.toLowerCase())
     );
 
     const handleDelete = async (id: string) => {

@@ -83,12 +83,20 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
                  <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
-            <h3 className="text-2xl font-bold mb-3 group-hover:text-emerald-500 transition-colors">{campaign.title}</h3>
-            <p className="text-muted-foreground line-clamp-3 font-light flex-1">{campaign.description}</p>
+            <h3 className="text-3xl font-bold mb-4 group-hover:text-emerald-500 transition-colors uppercase tracking-tighter leading-none">{campaign.title}</h3>
             
-            <div className="text-emerald-500 text-sm font-semibold mt-6 pt-4 border-t border-border/20 flex items-center justify-between">
-              <span>View Metrics</span>
-              <span className="text-xs text-muted-foreground font-normal">Click to flip</span>
+            <div className="grid grid-cols-2 gap-4 mt-auto">
+                {Array.isArray(parsedResults) && parsedResults.slice(0, 2).map((res: any, j: number) => (
+                    <div key={j} className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl">
+                        <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">{res.label}</div>
+                        <div className="text-xl font-bold text-emerald-500">{res.value}</div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mt-8 flex items-center justify-between">
+              <span>View Full Narrative</span>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity">Click to Reveal →</span>
             </div>
           </div>
         </div>
@@ -142,29 +150,35 @@ function MarketingHero() {
                 Performance Marketing
             </div>
 
-            <h1 className="text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 text-center leading-[1.1]">
-                Growth based on <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                data, not guesses.
-                </span>
+            <h1 className="text-white text-6xl sm:text-7xl md:text-[8rem] font-display font-bold tracking-tighter mb-12 text-center leading-[0.8] uppercase">
+                Profit <br />
+                <span className="text-emerald-500 italic">Engineering.</span>
             </h1>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full max-w-4xl mt-6 mb-16">
+            <p className="text-xl md:text-2xl text-zinc-500 max-w-2xl mx-auto mb-16 text-center font-medium tracking-tight">
+                I build performance systems that turn ad spend into scalable revenue. No fluff, just ROAS.
+            </p>
+
+            {/* Dashboard Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-800/50 border border-zinc-800/50 rounded-3xl overflow-hidden w-full max-w-5xl mb-20 shadow-2xl">
                 {stats.map((s, i) => (
                 <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
-                    className="bg-zinc-900/40 border border-zinc-800/50 backdrop-blur-md rounded-2xl p-6 text-center shadow-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 + i * 0.1 }}
+                    className="bg-zinc-950 p-10 text-center flex flex-col items-center justify-center group hover:bg-zinc-900 transition-colors"
                 >
-                    <div className="text-emerald-400 text-xl sm:text-2xl md:text-3xl font-bold tabular-nums mb-2">
-                    {s.prefix}{s.val}{s.suffix}
+                    <div className="text-emerald-500 text-4xl md:text-5xl font-bold tabular-nums mb-3 tracking-tighter">
+                        {s.prefix}{s.val}{s.suffix}
                     </div>
-                    <div className="text-zinc-400 text-[10px] md:text-xs uppercase tracking-widest">{s.label}</div>
+                    <div className="text-zinc-500 text-[10px] uppercase font-bold tracking-[0.2em]">{s.label}</div>
                 </motion.div>
                 ))}
+            </div>
+
+            <div className="text-[10px] text-zinc-600 uppercase tracking-widest text-center mt-[-30px] mb-12 select-none">
+              *All campaign spend, reach, and revenue performance are combined metrics aggregated across all managed client accounts.
             </div>
 
             {/* CTA */}
@@ -262,6 +276,9 @@ export default function MarketingService() {
                 <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</div>
               </motion.div>
             ))}
+          </div>
+          <div className="text-[10px] text-muted-foreground/40 uppercase tracking-widest text-center mt-12 select-none">
+            *Campaign statistics are consolidated lifetime performance figures across all managed customer advertising portfolios.
           </div>
         </div>
       </section>

@@ -105,7 +105,7 @@ function Scene() {
 
 export function TubesBackground() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-30">
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50">
       <Canvas
         camera={{ position: [0, 0, 15], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}

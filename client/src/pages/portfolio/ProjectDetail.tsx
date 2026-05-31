@@ -44,6 +44,17 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     const relatedProjects = (allProjects as any[])?.filter(p => p.id !== project.id && p.category === project.category).slice(0, 3) || [];
 
+    const reportUrl = useMemo(() => {
+        const s = slug?.toLowerCase();
+        if (s === "sias-group-marketing-scale" || s === "sias-group-b2b") {
+            return "/assets/images/brands/SIAS-Group/Sias Group Report.pdf";
+        }
+        if (s === "steaburg-local-seo" || s === "steaburg-seo") {
+            return "/assets/images/case-studies/steaburg/Steaburg Strategy.pdf";
+        }
+        return null;
+    }, [slug]);
+
     const formatVideoUrl = (url: string) => {
         if (!url) return "";
         if (url.includes("youtube.com/watch?v=")) {
@@ -143,7 +154,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                 </div>
 
                 {/* Case Study Story Content */}
-                {(project.problem || project.solution || results.length > 0) && (
+                {(project.problem || project.solution || results.length > 0 || reportUrl) && (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-24">
                         <div className="lg:col-span-2 space-y-16">
                             {/* Challenge Section */}
@@ -166,6 +177,33 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                 </section>
                             )}
 
+                            {/* PDF Report Embed Section */}
+                            {reportUrl && (
+                                <section className="space-y-6">
+                                    <h2 className="text-3xl font-display font-bold">Strategy PDF Report</h2>
+                                    <div className="aspect-video w-full rounded-3xl overflow-hidden border border-border/40 shadow-2xl relative bg-zinc-950">
+                                        <iframe
+                                            src={`${reportUrl}#toolbar=0&navpanes=0`}
+                                            className="w-full h-full border-0"
+                                            title={`${project.title} PDF Report`}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl bg-muted/20 border border-border/40">
+                                        <div className="text-sm text-muted-foreground">
+                                            Having trouble viewing? You can read or download the report directly in full screen.
+                                        </div>
+                                        <a
+                                            href={reportUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn-primary rounded-full px-6 py-3 text-sm font-semibold tracking-wide hover:shadow-lg transition-all"
+                                        >
+                                            Open PDF in New Tab
+                                        </a>
+                                    </div>
+                                </section>
+                            )}
+
                             {/* Execution/Results List Section */}
                             {results.length > 0 && (
                                 <section className="space-y-6">
@@ -184,8 +222,8 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
                         {/* Sidebar Metrics & Visuals */}
                         <div className="space-y-8">
-                            {/* Visuals Grid */}
-                            {gallery.length > 0 && (
+                            {/* Visuals Grid - Hidden if PDF is available to keep layout tidy */}
+                            {gallery.length > 0 && !reportUrl && (
                                 <div className="grid grid-cols-2 gap-4">
                                     {gallery.slice(0, 4).map((img: string, i: number) => (
                                         <div key={i} className="aspect-square rounded-2xl overflow-hidden bg-muted border border-border/40">

@@ -22,6 +22,7 @@ import ProjectDetail from "./pages/portfolio/ProjectDetail";
 import Results from "./pages/Results";
 import Contact from "./pages/Contact";
 import AquaCareCaseStudy from "./pages/portfolio/AquaCareCaseStudy";
+import PrepmealCaseStudy from "./pages/portfolio/PrepmealCaseStudy";
 
 function Router() {
   const [location] = useLocation();
@@ -47,6 +48,7 @@ function Router() {
               {(params) => <ProjectDetail category={params.category} slug={params.slug} />}
             </Route>
             <Route path="/marketing/aqua-care-uae" component={AquaCareCaseStudy} />
+            <Route path="/marketing/prepmeal" component={PrepmealCaseStudy} />
             <Route path="/marketing/:slug">
               {(params) => <ProjectDetail category="marketing" slug={params.slug} />}
             </Route>

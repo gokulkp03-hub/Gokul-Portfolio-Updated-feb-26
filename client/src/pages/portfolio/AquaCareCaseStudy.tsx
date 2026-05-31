@@ -76,9 +76,17 @@ export default function AquaCareCaseStudy() {
             </a>
         </Link>
 
-        <div className="aqua-tag"><span className="aqua-tag-dot"></span>Performance Marketing · Meta Ads</div>
-        <div className="aqua-hero-title">Aqua Care UAE<br/>— From zero to AED 31,743 revenue</div>
-        <div className="aqua-hero-sub">Built a full-funnel Meta ad system across 6 product lines. 3-month sprint, AED 7,131 spend, 4.45× ROAS.</div>
+        {/* Big Result Banner */}
+        <div className="bg-blue-600 text-white p-8 md:p-16 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-blue-400/50 shadow-2xl shadow-blue-500/20">
+            <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-70 italic">Verified Performance</span>
+            <h2 className="text-5xl md:text-[8rem] font-display font-bold tracking-tighter leading-none mb-6">4.45x ROAS</h2>
+            <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-xl">
+                Generated AED 31,743 in revenue from AED 7,131 spend in 90 days.
+            </p>
+        </div>
+
+        <div className="aqua-hero-title">Aqua Care UAE: <br/>The Precision Funnel.</div>
+        <div className="aqua-hero-sub text-xl font-medium text-zinc-500">I architected a full-funnel Meta system that turned a commodity product into a high-converting lead machine.</div>
 
         <div className="aqua-meta-row">
           <div className="aqua-meta-item">Client<span>Aqua Care UAE</span></div>
@@ -174,23 +182,27 @@ export default function AquaCareCaseStudy() {
 
         <hr className="aqua-divider" />
 
-        <div className="aqua-section-label">Results by product</div>
+        <div className="aqua-section-label">The Hard Numbers</div>
         <div className="aqua-results-grid">
-          <div className="aqua-result-card">
-            <div className="aqua-result-left"><h4>Shower Filter</h4><p>82 units · 3 campaigns · AED 3,127 spend</p></div>
-            <div className="aqua-result-right"><div className="aqua-result-val">5.12×</div><div className="aqua-result-sub">ROAS · AED 16,000 rev</div></div>
+          <div className="aqua-result-card bg-zinc-900 border-zinc-800 p-10">
+            <div className="aqua-result-left">
+                <h4 className="text-2xl font-bold mb-1 uppercase tracking-tighter">Shower Filter</h4>
+                <p className="text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Highest Volume Performer</p>
+            </div>
+            <div className="aqua-result-right text-right">
+                <div className="text-4xl font-black text-blue-500">5.12x</div>
+                <div className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">ROAS</div>
+            </div>
           </div>
-          <div className="aqua-result-card">
-            <div className="aqua-result-left"><h4>3 Stage Jumbo</h4><p>5 units · 2 campaigns · AED 763 spend</p></div>
-            <div className="aqua-result-right"><div className="aqua-result-val">8.19×</div><div className="aqua-result-sub">ROAS · AED 6,250 rev</div></div>
-          </div>
-          <div className="aqua-result-card">
-            <div className="aqua-result-left"><h4>Dispenser with RO</h4><p>7 units · multiple campaigns</p></div>
-            <div className="aqua-result-right"><div className="aqua-result-val">3.26×</div><div className="aqua-result-sub">ROAS · AED 6,993 rev</div></div>
-          </div>
-          <div className="aqua-result-card">
-            <div className="aqua-result-left"><h4>Dispenser without RO</h4><p>10 units · 2 campaigns · AED 510 spend</p></div>
-            <div className="aqua-result-right"><div className="aqua-result-val">4.90×</div><div className="aqua-result-sub">ROAS · AED 2,500 rev</div></div>
+          <div className="aqua-result-card bg-zinc-900 border-zinc-800 p-10">
+            <div className="aqua-result-left">
+                <h4 className="text-2xl font-bold mb-1 uppercase tracking-tighter">3 Stage Jumbo</h4>
+                <p className="text-zinc-500 font-bold uppercase tracking-widest text-[10px]">High Efficiency Scaling</p>
+            </div>
+            <div className="aqua-result-right text-right">
+                <div className="text-4xl font-black text-blue-500">8.19x</div>
+                <div className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">ROAS</div>
+            </div>
           </div>
         </div>
 

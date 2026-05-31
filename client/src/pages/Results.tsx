@@ -22,8 +22,7 @@ export default function Results() {
                         The <span className="text-orange-500">Proof</span>.
                     </h1>
                     <p className="text-lg md:text-3xl text-muted-foreground max-w-3xl font-light leading-relaxed">
-                        Concrete evidence of growth. From hyper-local SEO dominance to
-                        optimizing professional B2B pipelines.
+                        Numbers from real campaigns. Every figure here is backed by a report I can share.
                     </p>
                 </div>
 
@@ -35,10 +34,10 @@ export default function Results() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="glass-card p-8 border border-border/50"
+                            transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                            className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:bg-muted/20 hover:border-orange-500/20 transition-all duration-300"
                         >
-                            <div className="text-3xl md:text-6xl font-display font-bold text-foreground mb-2">
+                            <div className="text-3xl md:text-6xl font-display font-bold text-foreground mb-3 tabular-nums">
                                 {metric.prefix}{metric.value}{metric.suffix}
                             </div>
                             <div className="text-xs uppercase tracking-[0.2em] text-orange-500 font-bold">
@@ -146,11 +145,15 @@ export default function Results() {
                 {/* Brands Grid */}
                 <div className="mt-48 text-center">
                     <h3 className="text-sm uppercase tracking-[0.4em] text-muted-foreground mb-12">Trusted by 20+ Regional Entities</h3>
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                    <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
                         {proof.logos.map((logo, i) => (
-                            <span key={i} className="text-2xl font-display font-bold text-foreground whitespace-nowrap">
-                                {logo.name}
-                            </span>
+                            <img 
+                                key={i} 
+                                src={logo.src} 
+                                alt={logo.name} 
+                                className="h-8 md:h-12 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                                title={logo.name}
+                            />
                         ))}
                     </div>
                 </div>

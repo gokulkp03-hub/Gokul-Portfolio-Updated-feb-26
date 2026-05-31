@@ -9,26 +9,27 @@ export interface ExperienceItem {
 
 export const bio = {
     name: "Gokul KP",
-    role: "Creative Strategist",
-    description: "Performance-driven creative for brands that want results.",
-    longDescription: "3+ years scaling UAE brands through content + ads. Managed AED 185K+ quarterly spend & 20K+ conversions. Focused on the intersection of premium aesthetics and high-performance output."
+    role: "Performance Marketer & Creative Director",
+    description: "I build ads that actually convert — not just look good.",
+    longDescription: "I am a performance marketer who designs and builds high-converting ad creatives. 3+ years scaling brands across the GCC (UAE & Oman) through structured media buying and vertical content production. Focused on the intersection of data-driven funnel engineering and premium brand aesthetics."
 };
 
 export const experiences: ExperienceItem[] = [
     {
-        company: "Aqua Care",
+        company: "Aqua Care Trading LLC",
         position: "Performance Marketing Lead",
         duration: "July 2024 - Present",
-        description: "Leading the digital transformation and lead generation strategy for a premier water purification brand in the UAE.",
+        description: "Directing paid acquisition, cross-border growth, and marketing automations for a leading GCC water treatment brand.",
         responsibilities: [
-            "Architected a multi-channel lead generation funnel across Meta and Google.",
-            "Produced high-converting direct-response video assets for product launches.",
-            "Optimized CRM workflows to reduce lead response time by 40%."
+            "Architected multi-product Meta campaign structures (18 active UAE, 7 Oman campaigns) spanning RO systems, softeners, countertop dispensers, and pumps.",
+            "Produced and edited highly localized direct-response video ad variants (30+ UGC assets) for high-performance creative testing.",
+            "Built advanced Instagram-to-WhatsApp ManyChat automation loops to capture organic leads from viral educational video campaigns.",
+            "Configured custom lead distribution frameworks and optimized sales team CRM pipelines to speed up response times."
         ],
         achievements: [
-            "Generated 1,200+ qualified leads in the first 90 days of the new strategy.",
-            "Reduced Cost Per Acquisition (CPA) by 35% through creative testing.",
-            "Scaled monthly revenue attribution from social channels by 2x."
+            "Generated 1,400+ qualified leads and achieved 1.3M+ total reach in first 90 days across UAE & Oman markets.",
+            "Achieved average CPL of AED 5.73 in competitive UAE market, with optimized Oman campaigns reaching as low as AED 0.61 CPL.",
+            "Delivered verified 4.45x ROAS and AED 31,743 in attributed revenue on targeted campaigns with precise ABO/CBO budget scaling."
         ]
     },
     {

@@ -72,9 +72,11 @@ export default function PortfolioLayout() {
                         >
                             Portfolio <span className="text-orange-500 italic">Archive</span>
                         </motion.h1>
-                        <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                            A complete collection of creative work across video production, photography,
-                            social content, and performance advertising.
+                        <p className="text-xl text-muted-foreground font-normal leading-relaxed">
+                            {filteredProjects.length > 0 
+                                ? `${filteredProjects.length} ${activeFilter === "all" ? "creative projects" : activeFilter + " projects"} across video, photography, and performance marketing.`
+                                : "A complete collection across video production, photography, social content, and performance advertising."
+                            }
                         </p>
                     </div>
 
@@ -103,23 +105,26 @@ export default function PortfolioLayout() {
                         ))}
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <AnimatePresence>
                             {filteredProjects.map((project, i) => {
-                                const Icon = categoryIcons[project.category?.toLowerCase()] || Play;
+                                const categoryString = (project.category || "").toLowerCase();
+                                const Icon = categoryIcons[categoryString] || Play;
+                                // Mixed aspect ratios for visual rhythm — every 5th card is wide, every 7th is square
+                                const aspectClass = i % 7 === 0 ? "aspect-[3/2]" : i % 5 === 0 ? "aspect-square" : "aspect-[4/5]";
 
                                 return (
                                     <motion.div
                                         key={project.id}
                                         layout
-                                        initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.98 }}
-                                        transition={{ duration: 0.5, delay: (i % 6) * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                                        className="group relative"
+                                        initial={{ opacity: 0, y: 16 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.97 }}
+                                        transition={{ duration: 0.5, delay: (i % 6) * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                                        className={`group relative ${i % 7 === 0 || i % 5 === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
                                     >
-                                        <Link href={`/portfolio/${project.category?.toLowerCase() || 'all'}/${project.slug}`}>
-                                            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted border border-border/40 transition-colors cursor-pointer group-hover:border-orange-500/30">
+                                        <Link href={`/portfolio/${categoryString || 'all'}/${project.slug}`}>
+                                            <div className={`relative ${aspectClass} overflow-hidden rounded-3xl bg-muted border border-border/40 transition-all duration-500 cursor-pointer group-hover:border-orange-500/30 group-hover:shadow-xl group-hover:shadow-black/20`}>
                                                 <SafeImage
                                                     src={project.thumbnail}
                                                     alt={project.title}
@@ -127,25 +132,28 @@ export default function PortfolioLayout() {
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                                 />
 
-                                                {/* Overlays */}
-                                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                                                {/* Gradient overlay */}
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                                <div className="absolute top-6 left-6 flex flex-col gap-2">
-                                                    <span className="inline-flex items-center gap-2 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 text-white rounded-full text-[10px] uppercase font-bold tracking-widest">
-                                                        <Icon className="w-3 h-3 text-orange-500" />
+                                                {/* Category chip */}
+                                                <div className="absolute top-5 left-5">
+                                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/70 backdrop-blur-md border border-white/10 text-white rounded-full text-[10px] uppercase font-bold tracking-widest">
+                                                        <Icon className="w-3 h-3 text-orange-400" />
                                                         {project.category}
                                                     </span>
                                                 </div>
 
-                                                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                    <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                                                        <ArrowUpRight className="w-5 h-5" />
+                                                {/* Arrow */}
+                                                <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                                    <div className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
+                                                        <ArrowUpRight className="w-4 h-4" />
                                                     </div>
                                                 </div>
 
-                                                <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                                    <h3 className="text-2xl font-display font-bold text-white mb-2">{project.title}</h3>
-                                                    <p className="text-sm text-white/60 font-light line-clamp-2">{project.description}</p>
+                                                {/* Title slide up */}
+                                                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
+                                                    <h3 className="text-xl font-display font-bold text-white leading-tight mb-1">{project.title}</h3>
+                                                    <p className="text-sm text-white/60 font-light line-clamp-1">{project.description}</p>
                                                 </div>
                                             </div>
                                         </Link>

@@ -109,7 +109,7 @@ export default function Contact() {
                             >Scale.</motion.span>
                         </h1>
                         <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed mb-12 max-w-lg">
-                            Let's discuss how we can scale your brand.
+                            Tell me what you're building — I'll tell you exactly how to make it grow.
                         </p>
 
                         <div className="space-y-6 mb-16">
