@@ -116,7 +116,6 @@ export default function PortfolioLayout() {
                                 return (
                                     <motion.div
                                         key={project.id}
-                                        layout
                                         initial={{ opacity: 0, y: 16 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.97 }}
@@ -129,6 +128,7 @@ export default function PortfolioLayout() {
                                                     src={project.thumbnail}
                                                     alt={project.title}
                                                     aspectRatio="portrait"
+                                                    loading={i < 6 ? "eager" : "lazy"}
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                                 />
 

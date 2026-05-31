@@ -20,6 +20,7 @@ export function SafeImage({
     className,
     fallbackSrc,
     aspectRatio,
+    loading: loadingProp = "lazy",
     ...props
 }: SafeImageProps) {
     const [error, setError] = useState(false);
@@ -47,14 +48,18 @@ export function SafeImage({
                 className
             )}
         >
-            {loading && (
-                <div className="absolute inset-0 animate-pulse bg-white/5 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full border-2 border-orange-500/20 border-t-orange-500 animate-spin" />
-                </div>
-            )}
+            {/* Loading Overlay - fades out when loaded */}
+            <div
+                className={cn(
+                    "absolute inset-0 bg-zinc-950 flex items-center justify-center z-10 transition-opacity duration-500",
+                    loading ? "opacity-100" : "opacity-0 pointer-events-none"
+                )}
+            >
+                <div className="w-8 h-8 rounded-full border-2 border-orange-500/20 border-t-orange-500 animate-spin" />
+            </div>
 
             {error ? (
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 border border-white/5 text-muted-foreground">
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 border border-white/5 text-muted-foreground z-20">
                     <ImageIcon className="w-8 h-8 mb-2 opacity-20" />
                     <span className="text-[10px] uppercase tracking-widest font-bold opacity-30">Media Unavailable</span>
                 </div>
@@ -62,12 +67,9 @@ export function SafeImage({
                 <img
                     src={getMediaUrl(src)}
                     alt={alt}
-                    loading="lazy"
+                    loading={loadingProp}
                     decoding="async"
-                    className={cn(
-                        "w-full h-full object-cover transition-opacity duration-500",
-                        loading ? "opacity-0" : "opacity-100"
-                    )}
+                    className="w-full h-full object-cover"
                     onLoad={handleLoad}
                     onError={handleError}
                     {...props}
