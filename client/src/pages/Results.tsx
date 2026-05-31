@@ -4,13 +4,30 @@ import { TrendingUp, Users, Target, BarChart3, PieChart, ArrowUpRight } from "lu
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useMemo } from "react";
+import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 
 export default function Results() {
     const { data: dbProjects } = trpc.projects.list.useQuery();
     
     const campaigns = useMemo(() => {
-        if (!dbProjects) return [];
-        return dbProjects.filter((p: any) => p.category.toLowerCase() === "marketing");
+        if (dbProjects && dbProjects.length > 0) {
+            const dbCamps = dbProjects.filter((p: any) => p.category.toLowerCase() === "marketing");
+            if (dbCamps.length > 0) return dbCamps;
+        }
+
+        // Fallback to static marketing campaigns
+        return staticMarketing.map(m => ({
+            id: m.id,
+            title: m.title,
+            slug: m.slug,
+            client: m.client,
+            description: m.description,
+            thumbnail: m.visuals[0] || "",
+            gallery: m.visuals,
+            category: "marketing",
+            results: m.metrics.map(met => ({ label: met.label, value: met.value })),
+            tags: m.tags,
+        }));
     }, [dbProjects]);
 
     return (

@@ -7,48 +7,48 @@ datasource db {
 }
 
 model Project {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   title           String
-  slug            String   @unique
-  category        String   // enum: video, photo, marketing, case-study
+  slug            String    @unique
+  category        String
   description     String?
-  tags            Json     @default("[]") // string[]
+  tags            Json      @default("[]")
   client          String?
   year            Int?
   thumbnail       String
-  gallery         Json     @default("[]") // string[]
+  gallery         Json      @default("[]")
   videoUrl        String?
-  videoType       String?  // e.g. youtube, vimeo, cloudinary, mp4
+  videoType       String?
   directVideoUrl  String?
   summary         String?
   problem         String?
   solution        String?
-  results         Json     @default("[]") // string[]
-  tools           Json     @default("[]") // string[]
-  credits         Json     @default("[]") // string[]
-  featured        Boolean  @default(false)
-  sortOrder       Int      @default(0)
-  status          String   @default("draft") // enum: draft, published, scheduled
+  results         Json      @default("[]")
+  tools           Json      @default("[]")
+  credits         Json      @default("[]")
+  featured        Boolean   @default(false)
+  sortOrder       Int       @default(0)
+  status          String    @default("draft")
   publishDate     DateTime?
   metaTitle       String?
   metaDescription String?
   ogImage         String?
-  views           Int      @default(0)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  views           Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model SiteContent {
-  id             Int      @id @default(1)
-  heroTitle      String?
-  heroSubtitle   String?
-  aboutText      String?
-  services       Json?    // json
-  skills         Json?    // json
-  socials        Json?    // json
-  contact        Json?    // json
-  sections       Json?    // flexible sections
-  updatedAt      DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  heroTitle    String?
+  heroSubtitle String?
+  aboutText    String?
+  services     Json?
+  skills       Json?
+  socials      Json?
+  contact      Json?
+  sections     Json?
+  updatedAt    DateTime @updatedAt
 }
 
 model Category {
@@ -67,7 +67,7 @@ model Tag {
 model Media {
   id        String   @id @default(cuid())
   url       String
-  type      String   // image/video
+  type      String
   width     Int?
   height    Int?
   createdAt DateTime @default(now())
@@ -84,9 +84,9 @@ model ContactMessage {
 
 model Revision {
   id         String   @id @default(cuid())
-  entityType String   // e.g., "Project"
+  entityType String
   entityId   String
-  data       Json     // snapshot
+  data       Json
   createdAt  DateTime @default(now())
 }
 

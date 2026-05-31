@@ -4,6 +4,8 @@ import { Link, useLocation } from "wouter";
 import { Play, Camera, Edit, Share2, TrendingUp, ArrowUpRight, RotateCcw } from "lucide-react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { trpc } from "@/lib/trpc";
+import { projects as staticProjects } from "@/data/projects";
+import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 
 type FilterCategory = "all" | "video" | "photo" | "marketing" | "case-study";
 
@@ -44,11 +46,51 @@ export default function PortfolioLayout() {
         }
     };
 
+    // Static projects mapped to Prisma schema compatible structure
+    const mergedStaticProjects = useMemo(() => {
+        const mappedProjects = staticProjects.map(p => ({
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            category: p.category,
+            description: p.description,
+            thumbnail: p.thumbnail,
+            featured: p.featured || false,
+            status: "published",
+        }));
+
+        const mappedMarketing = staticMarketing.map(m => ({
+            id: m.id,
+            title: m.title,
+            slug: m.slug,
+            category: "marketing",
+            description: m.description,
+            thumbnail: m.visuals[0] || "",
+            featured: m.featured || false,
+            status: "published",
+        }));
+
+        return [...mappedProjects, ...mappedMarketing];
+    }, []);
+
+    // Merge tRPC dbProjects and static fallback
+    const projectsList = useMemo(() => {
+        if (dbProjects && dbProjects.length > 0) {
+            return dbProjects;
+        }
+        return mergedStaticProjects;
+    }, [dbProjects, mergedStaticProjects]);
+
     const filteredProjects = useMemo(() => {
-        if (!dbProjects) return [];
-        if (activeFilter === "all") return dbProjects;
-        return dbProjects.filter(p => (p.category || "").toLowerCase() === activeFilter);
-    }, [dbProjects, activeFilter]);
+        if (activeFilter === "all") return projectsList;
+        return projectsList.filter(p => {
+            const cat = (p.category || "").toLowerCase();
+            if (activeFilter === "case-study") {
+                return cat === "marketing" || cat === "case-study";
+            }
+            return cat === activeFilter;
+        });
+    }, [projectsList, activeFilter]);
 
     const filters: { value: FilterCategory; label: string }[] = [
         { value: "all", label: "All Work" },
@@ -98,7 +140,7 @@ export default function PortfolioLayout() {
                 </div>
 
                 {/* Projects Grid */}
-                {!dbProjects || isLoading ? (
+                {isLoading && (!dbProjects || dbProjects.length === 0) ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[...Array(6)].map((_, i) => (
                             <div key={i} className="aspect-[4/5] bg-muted animate-pulse rounded-3xl" />

@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowUpRight, Calendar, User, Wrench, CheckCircle2, Loader2 
 import NotFound from "../NotFound";
 import { trpc } from "@/lib/trpc";
 import { useMemo } from "react";
+import { projects as staticProjects } from "@/data/projects";
+import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 
 interface ProjectDetailProps {
     category?: string;
@@ -16,15 +18,109 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     const slug = propSlug || routeParams?.slug || marketingRouteParams?.slug;
     
-    const { data: project, isLoading, error } = trpc.projects.getBySlug.useQuery(slug as string, {
+    const { data: dbProject, isLoading, error } = trpc.projects.getBySlug.useQuery(slug as string, {
         enabled: !!slug
     });
 
     const { data: allProjects } = trpc.projects.list.useQuery(undefined, {
-        enabled: !!project
+        enabled: !!dbProject
     });
 
-    if (isLoading) {
+    // Find static project as fallback
+    const staticProject = useMemo(() => {
+        if (!slug) return null;
+
+        // Search in projects
+        const foundProj = staticProjects.find(p => p.slug === slug);
+        if (foundProj) {
+            return {
+                id: foundProj.id,
+                title: foundProj.title,
+                slug: foundProj.slug,
+                category: foundProj.category,
+                description: foundProj.description,
+                thumbnail: foundProj.thumbnail,
+                client: foundProj.client || "Confidential",
+                year: foundProj.date ? parseInt(foundProj.date) : new Date().getFullYear(),
+                featured: foundProj.featured || false,
+                videoUrl: foundProj.videoUrl,
+                videoType: foundProj.videoUrl ? "mp4" : "none",
+                directVideoUrl: foundProj.videoUrl,
+                summary: foundProj.description,
+                problem: foundProj.challenge,
+                solution: foundProj.solution,
+                results: foundProj.outcome ? [foundProj.outcome] : [],
+                tools: foundProj.tools || [],
+                tags: foundProj.tools || [],
+                gallery: foundProj.images || [],
+                status: "published",
+            };
+        }
+
+        // Search in marketingCampaigns
+        const foundMarketing = staticMarketing.find(m => m.slug === slug);
+        if (foundMarketing) {
+            return {
+                id: foundMarketing.id,
+                title: foundMarketing.title,
+                slug: foundMarketing.slug,
+                category: "marketing",
+                description: foundMarketing.description,
+                thumbnail: foundMarketing.visuals[0] || "",
+                client: foundMarketing.client,
+                year: new Date().getFullYear(),
+                featured: foundMarketing.featured || false,
+                videoUrl: undefined,
+                videoType: "none",
+                directVideoUrl: undefined,
+                summary: foundMarketing.headline,
+                problem: foundMarketing.challenge,
+                solution: foundMarketing.strategy.join("\n"),
+                results: [foundMarketing.results],
+                tools: foundMarketing.tags,
+                tags: foundMarketing.tags,
+                gallery: foundMarketing.visuals,
+                status: "published",
+            };
+        }
+
+        return null;
+    }, [slug]);
+
+    // Use database project if available, otherwise fallback to static
+    const project = dbProject || staticProject;
+
+    // Static projects mapped to Prisma schema compatible structure
+    const mergedStaticProjects = useMemo(() => {
+        const mappedProjects = staticProjects.map(p => ({
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            category: p.category,
+            description: p.description,
+            thumbnail: p.thumbnail,
+            featured: p.featured || false,
+            status: "published",
+        }));
+
+        const mappedMarketing = staticMarketing.map(m => ({
+            id: m.id,
+            title: m.title,
+            slug: m.slug,
+            category: "marketing",
+            description: m.description,
+            thumbnail: m.visuals[0] || "",
+            featured: m.featured || false,
+            status: "published",
+        }));
+
+        return [...mappedProjects, ...mappedMarketing];
+    }, []);
+
+    const projectsList = allProjects && allProjects.length > 0 ? allProjects : mergedStaticProjects;
+
+    // Only show loading if query is loading AND we don't have the static copy either
+    if (isLoading && !staticProject) {
         return (
             <div className="min-h-screen pt-32 pb-20 flex justify-center">
                 <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
@@ -32,17 +128,17 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
         );
     }
 
-    if (!project || error) return <NotFound />;
+    if (!project) return <NotFound />;
 
     const category = propCategory || routeParams?.category || project.category;
     
     // Parse JSON fields
-    const tags = Array.isArray(project.tags) ? project.tags : JSON.parse(project.tags as string || "[]");
-    const tools = Array.isArray(project.tools) ? project.tools : JSON.parse(project.tools as string || "[]");
-    const results = Array.isArray(project.results) ? project.results : JSON.parse(project.results as string || "[]");
-    const gallery = Array.isArray(project.gallery) ? project.gallery : JSON.parse(project.gallery as string || "[]");
+    const tags = Array.isArray(project.tags) ? project.tags : JSON.parse((project.tags as any) || "[]");
+    const tools = Array.isArray(project.tools) ? project.tools : JSON.parse((project.tools as any) || "[]");
+    const results = Array.isArray(project.results) ? project.results : JSON.parse((project.results as any) || "[]");
+    const gallery = Array.isArray(project.gallery) ? project.gallery : JSON.parse((project.gallery as any) || "[]");
 
-    const relatedProjects = (allProjects as any[])?.filter(p => p.id !== project.id && p.category === project.category).slice(0, 3) || [];
+    const relatedProjects = (projectsList as any[])?.filter(p => p.id !== project.id && p.category === project.category).slice(0, 3) || [];
 
     const reportUrl = useMemo(() => {
         const s = slug?.toLowerCase();
