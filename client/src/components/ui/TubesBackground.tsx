@@ -1,120 +1,140 @@
-import React, { useRef, useMemo, useState, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
-import { Float, MeshDistortMaterial, MeshWobbleMaterial } from "@react-three/drei";
-
-// Sub-component to render individual tubes
-function Tube({
-  curve,
-  color,
-  delay,
-}: {
-  curve: THREE.Curve<THREE.Vector3>;
-  color: string;
-  delay: number;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [hovered, setHovered] = useState(false);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    const time = state.clock.getElapsedTime() + delay;
-
-    // Subtle breathing animation
-    meshRef.current.position.y = Math.sin(time * 0.5) * 0.1;
-
-    // Rotation based on time
-    meshRef.current.rotation.z = time * 0.05;
-  });
-
-  return (
-    <mesh
-      ref={meshRef}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-    >
-      <tubeGeometry args={[curve, 64, 0.012, 8, false]} />
-      <meshStandardMaterial
-        color={color}
-        emissive={color}
-        emissiveIntensity={hovered ? 2 : 0.8}
-        transparent
-        opacity={0.4}
-      />
-    </mesh>
-  );
-}
-
-// Background scene manager
-function Scene() {
-  const { viewport, mouse } = useThree();
-  const groupRef = useRef<THREE.Group>(null);
-
-  // Generate random curves for the tubes
-  const tubes = useMemo(() => {
-    const tubeCount = 8; // Reduced count for performance and subtlety
-    return Array.from({ length: tubeCount }, (_, i) => {
-      const points = [];
-      const segments = 4; // Simpler curves
-      const xRange = viewport.width * 2;
-      const yRange = viewport.height * 2;
-
-      for (let j = 0; j < segments; j++) {
-        points.push(
-          new THREE.Vector3(
-            (Math.random() - 0.5) * xRange,
-            (Math.random() - 0.5) * yRange,
-            (Math.random() - 0.5) * 10 - 5
-          )
-        );
-      }
-
-      const curve = new THREE.CatmullRomCurve3(points);
-
-      // Muted Brand Palette: Deep Orange, Amber, Bronze, Charcoal
-      const colors = ["#F97316", "#EA580C", "#9A3412", "#431407", "#7C2D12"];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-
-      return { curve, color, delay: Math.random() * 20 };
-    });
-  }, [viewport]);
-
-  useFrame((state) => {
-    if (!groupRef.current) return;
-
-    // Direct cursor follow with extreme smoothing for "cinematic" feel
-    const targetX = mouse.x * (viewport.width / 6);
-    const targetY = mouse.y * (viewport.height / 6);
-
-    groupRef.current.position.x += (targetX - groupRef.current.position.x) * 0.01;
-    groupRef.current.position.y += (targetY - groupRef.current.position.y) * 0.01;
-
-    // Very slow rotation
-    groupRef.current.rotation.y += 0.0005;
-    groupRef.current.rotation.x += 0.0002;
-  });
-
-  return (
-    <group ref={groupRef}>
-      {tubes.map((tube, i) => (
-        <Tube key={i} {...tube} />
-      ))}
-    </group>
-  );
-}
+import React, { useEffect, useRef } from "react";
 
 export function TubesBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    // Track mouse coordinates
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let targetMouseX = width / 2;
+    let targetMouseY = height / 2;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetMouseX = e.clientX;
+      targetMouseY = e.clientY;
+    };
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
+    // Orbs/Lines parameters for a premium ambient flow
+    const orbs = [
+      { x: width * 0.2, y: height * 0.3, radius: 240, vx: 0.2, vy: 0.15, color: "rgba(249, 115, 22, 0.04)" },
+      { x: width * 0.8, y: height * 0.7, radius: 300, vx: -0.15, vy: 0.1, color: "rgba(234, 88, 12, 0.03)" },
+      { x: width * 0.5, y: height * 0.5, radius: 260, vx: 0.1, vy: -0.12, color: "rgba(124, 45, 18, 0.05)" },
+    ];
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Smooth mouse tracking interpolation
+      mouseX += (targetMouseX - mouseX) * 0.03;
+      mouseY += (targetMouseY - mouseY) * 0.03;
+
+      // Draw custom premium ambient glows
+      orbs.forEach((orb) => {
+        // Move orbs slowly
+        orb.x += orb.vx;
+        orb.y += orb.vy;
+
+        // Bounce on edges
+        if (orb.x < -orb.radius || orb.x > width + orb.radius) orb.vx *= -1;
+        if (orb.y < -orb.radius || orb.y > height + orb.radius) orb.vy *= -1;
+
+        // Apply dynamic mouse distortion
+        const dx = mouseX - orb.x;
+        const dy = mouseY - orb.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        let renderX = orb.x;
+        let renderY = orb.y;
+        
+        if (dist > 0) {
+          const force = Math.max(0, 400 - dist) / 400;
+          renderX = orb.x + (dx / dist) * force * 50;
+          renderY = orb.y + (dy / dist) * force * 50;
+        }
+
+        const gradient = ctx.createRadialGradient(
+          renderX,
+          renderY,
+          0,
+          renderX,
+          renderY,
+          orb.radius
+        );
+        gradient.addColorStop(0, orb.color);
+        gradient.addColorStop(1, "rgba(10, 10, 10, 0)");
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(renderX, renderY, orb.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Draw elegant cinematic accent vector lines
+      ctx.strokeStyle = "rgba(249, 115, 22, 0.02)";
+      ctx.lineWidth = 1;
+      
+      ctx.beginPath();
+      // Line 1: Soft curve across the screen reacting to mouse
+      ctx.moveTo(0, height * 0.4 + (mouseY - height / 2) * 0.05);
+      ctx.bezierCurveTo(
+        width * 0.3,
+        height * 0.2 + (mouseY - height / 2) * 0.1,
+        width * 0.7,
+        height * 0.6 + (mouseX - width / 2) * 0.1,
+        width,
+        height * 0.3 + (mouseY - height / 2) * 0.05
+      );
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(234, 88, 12, 0.015)";
+      ctx.moveTo(0, height * 0.7);
+      ctx.bezierCurveTo(
+        width * 0.4,
+        height * 0.8 + (mouseX - width / 2) * 0.05,
+        width * 0.6,
+        height * 0.5 + (mouseY - height / 2) * 0.05,
+        width,
+        height * 0.6
+      );
+      ctx.stroke();
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50">
-      <Canvas
-        camera={{ position: [0, 0, 15], fov: 45 }}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        dpr={[1, 1.5]} 
-      >
-        <Scene />
-      </Canvas>
-      {/* Vignette to soften edges and focus content */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" />
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 bg-transparent"
+    />
   );
 }
