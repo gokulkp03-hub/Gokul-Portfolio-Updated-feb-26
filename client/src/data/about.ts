@@ -18,7 +18,7 @@ export const experiences: ExperienceItem[] = [
     {
         company: "Aqua Care Trading LLC",
         position: "Performance Marketing Lead",
-        duration: "July 2024 - Present",
+        duration: "October 2025 - Present",
         description: "Directing paid acquisition, cross-border growth, and marketing automations for a leading GCC water treatment brand.",
         responsibilities: [
             "Architected multi-product Meta campaign structures (18 active UAE, 7 Oman campaigns) spanning RO systems, softeners, countertop dispensers, and pumps.",
@@ -27,7 +27,7 @@ export const experiences: ExperienceItem[] = [
             "Configured custom lead distribution frameworks and optimized sales team CRM pipelines to speed up response times."
         ],
         achievements: [
-            "Generated 1,400+ qualified leads and achieved 1.3M+ total reach in first 90 days across UAE & Oman markets.",
+            "Generated 1,232+ qualified leads and achieved 874K+ total reach in active campaigns across UAE & Oman markets.",
             "Achieved average CPL of AED 5.73 in competitive UAE market, with optimized Oman campaigns reaching as low as AED 0.61 CPL.",
             "Delivered verified 4.45x ROAS and AED 31,743 in attributed revenue on targeted campaigns with precise ABO/CBO budget scaling."
         ]
@@ -35,16 +35,16 @@ export const experiences: ExperienceItem[] = [
     {
         company: "PrepMeal",
         position: "Social Media Manager",
-        duration: "Jan 2023 - Present",
+        duration: "Jan 2023 - September 2025",
         description: "Executing the creative and growth strategy for a healthy meal prep brand, handling full-funnel marketing from organic content to paid ads.",
         responsibilities: [
             "Coordinated the full-funnel marketing strategy from identity launch to scaling.",
             "Produced 150+ vertical video assets for TikTok and Instagram reels.",
-            "Supported Meta ad accounts with AED 185,000+ quarterly spend.",
+            "Supported Meta ad accounts with AED 185,000+ spend.",
             "Implemented WhatsApp-based sales coordination increasing conversion by 25%."
         ],
         achievements: [
-            "Managed brand to 21,000+ meals delivered in the first year.",
+            "Managed brand to 21,000+ meals delivered.",
             "Contributed to a consistent 3.5x ROAS on lead generation campaigns.",
             "Grew social community with focused organic content.",
             "Successfully coordinated operational expansion across 2 regions."
@@ -88,15 +88,16 @@ export const experiences: ExperienceItem[] = [
 export const skills = {
     marketing: [
         "Meta Ads Manager",
-        "Google Ads",
-        "TikTok Ads",
         "CRM & Automation",
-        "Growth Strategy"
+        "ManyChat Flows",
+        "Growth Strategy",
+        "Competitor Intelligence"
     ],
     creative: [
         "DaVinci Resolve",
+        "CapCut",
+        "Canva",
         "Adobe After Effects",
-        "Premiere Pro",
         "Short-form Content",
         "Product Photography"
     ]

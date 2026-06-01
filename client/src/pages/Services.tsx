@@ -52,7 +52,7 @@ export default function Services() {
         "Product Commercials",
         "Advanced Post-Production & Color Grading"
       ],
-      price: "From $1,500"
+      price: "Scoped per project — let's talk"
     },
     {
       title: "Premium Brand Photography",
@@ -65,7 +65,7 @@ export default function Services() {
         "Professional Portfolios & Headshots",
         "High-End Visual Retouching"
       ],
-      price: "From $800"
+      price: "Scoped per project — let's talk"
     },
     {
       title: "Performance Marketing",
@@ -78,7 +78,20 @@ export default function Services() {
         "A/B Testing & Rapid Iteration",
         "Bi-Weekly Performance Audits"
       ],
-      price: "Custom % or Retainer"
+      price: "Scoped per project — let's talk"
+    },
+    {
+      title: "Influencer Campaign Management",
+      description: "End-to-end coordination of targeted creator campaigns that build strong social proof and expand reach.",
+      icon: <Layers className="w-8 h-8 text-orange-500" />,
+      features: [
+        "Influencer Selection & Vetting",
+        "Contract Handling & Rights",
+        "Creative & Visual Styling Direction",
+        "Deliverable Review & QC",
+        "ROI & Reach Performance Reports"
+      ],
+      price: "Scoped per project — let's talk"
     },
     {
       title: "Growth Retainers",
@@ -91,7 +104,7 @@ export default function Services() {
         "Monthly Strategy Roadmaps",
         "Priority Support & Strategy Calls"
       ],
-      price: "Monthly Retainer"
+      price: "Scoped per project — let's talk"
     }
   ];
 
@@ -104,7 +117,11 @@ export default function Services() {
       <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-24 max-w-4xl mx-auto">
+        <div className="text-center mb-24 max-w-4xl mx-auto flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-xs font-semibold uppercase tracking-widest mb-8">
+            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            Available for selective freelance projects and contract collaborations
+          </div>
           <RevealText
             text="Digital Arsenal"
             as="h1"
@@ -117,7 +134,7 @@ export default function Services() {
 
         {/* Services Grid */}
         <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-48"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-48"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
@@ -136,7 +153,7 @@ export default function Services() {
                 hidden: { opacity: 0, y: 40 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
               }}
-              className="group glass-card p-8 md:p-16 border border-border/50 rounded-[2.5rem] md:rounded-[3rem] hover:border-orange-500/20 transition-all flex flex-col"
+              className="group glass-card p-8 md:p-12 border border-border/50 rounded-[2.5rem] md:rounded-[3rem] hover:border-orange-500/20 transition-all flex flex-col"
             >
               <div className="mb-12 flex items-start justify-between">
                 <div className="p-5 rounded-3xl bg-muted/40 group-hover:bg-orange-500 group-hover:text-white transition-colors">
@@ -150,7 +167,7 @@ export default function Services() {
               <h2 className="text-3xl font-display font-bold mb-6 uppercase text-white tracking-tighter">
                 {service.title}
               </h2>
-              <p className="text-muted-foreground text-lg font-light mb-12 leading-relaxed">
+              <p className="text-muted-foreground text-base font-light mb-12 leading-relaxed h-20 overflow-hidden">
                 {service.description}
               </p>
 
@@ -164,7 +181,7 @@ export default function Services() {
               </ul>
 
               <div className="pt-8 border-t border-border/50">
-                <div className="text-3xl font-display font-bold text-white mb-8">
+                <div className="text-xl font-display font-bold text-white mb-8">
                   {service.price}
                 </div>
                 <Link href="/contact">
@@ -186,8 +203,7 @@ export default function Services() {
                 The Growth <br /> <span className="text-orange-500 italic">Arc</span>
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed mb-10 md:mb-12">
-                My process is engineered for predictable scaling.
-                We move from audit to execution in under 14 days.
+                My process is engineered for predictable scaling. Rapid turnaround — scoped per project.
               </p>
               <div className="space-y-2 relative">
                 {[
@@ -207,8 +223,8 @@ export default function Services() {
                   <BarChart className="w-24 h-24 text-orange-500 mx-auto mb-10 animate-pulse" />
                   <h3 className="text-3xl font-display font-bold text-white mb-6 uppercase tracking-tighter">100% Data Backed</h3>
                   <p className="text-muted-foreground font-light mb-10">We don't guess. We verify. Every creative asset is tested for performance before full deployment.</p>
-                  <div className="text-6xl font-display font-bold text-orange-500">+127%</div>
-                  <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground mt-2">Avg. Revenue Lift</div>
+                  <div className="text-2xl sm:text-3xl font-display font-bold text-orange-500 uppercase leading-tight">Every deliverable is tied to a report</div>
+                  <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground mt-4">No vanity metrics.</div>
                 </div>
               </div>
             </div>

@@ -7,10 +7,10 @@ export interface Metric {
 
 export const proof = {
     metrics: [
-        { label: "Ad Creatives Produced", value: "80", suffix: "+" },
-        { label: "Total Campaign Reach", value: "1.3", suffix: "M+" },
-        { label: "WhatsApp Leads Generated", value: "1,400", suffix: "+" },
-        { label: "Campaigns Managed", value: "25", suffix: "+" },
+        { label: "Average Campaign ROAS", value: "4.45", suffix: "x" },
+        { label: "WhatsApp Leads Generated", value: "1232", suffix: "+" },
+        { label: "Total Campaign Reach", value: "874", suffix: "K" },
+        { label: "Total Revenue Generated", value: "31743", prefix: "AED ", suffix: "" },
     ] as Metric[],
     logos: [
         { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.png" },

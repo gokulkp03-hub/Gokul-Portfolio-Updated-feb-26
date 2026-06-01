@@ -28,6 +28,36 @@ function Router() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith("/admin");
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: "0px 0px -50px 0px" }
+      );
+
+      const elements = document.querySelectorAll(
+        "section h2, section h3, .grid, .glass-card, .scroll-reveal"
+      );
+      elements.forEach((el) => {
+        if (!el.classList.contains("revealed")) {
+          el.classList.add("scroll-reveal-init");
+          observer.observe(el);
+        }
+      });
+
+      return () => observer.disconnect();
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
   return (
     <>
       <ScrollToTop />
@@ -113,7 +143,21 @@ import ContactManager from "./pages/admin/ContactManager";
 
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
+import { useEffect } from "react";
+
 function App() {
+  useEffect(() => {
+    const loader = document.getElementById("page-loader");
+    if (loader) {
+      loader.style.opacity = "0";
+      loader.style.visibility = "hidden";
+      const timeout = setTimeout(() => {
+        loader.remove();
+      }, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark" switchable={true}>

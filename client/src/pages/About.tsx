@@ -177,6 +177,96 @@ export default function About() {
                             </div>
                         </section>
 
+                        {/* Beyond The Ads Timeline */}
+                        <section>
+                            <h2 className="text-sm uppercase tracking-[0.4em] text-orange-500 mb-12">Beyond The Ads</h2>
+                            <div className="space-y-12">
+                                <motion.div
+                                    initial={{ opacity: 0, x: -40 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                    className="relative pl-8 border-l border-border/50"
+                                >
+                                    <div className="absolute top-0 left-[-5px] w-[9px] h-[9px] bg-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.5)] z-10">
+                                        <motion.div
+                                            animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                                            className="absolute inset-0 rounded-full bg-orange-500/50"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 className="text-2xl font-display font-bold text-foreground uppercase">GCC Competitor Database</h3>
+                                            <p className="text-orange-500 font-medium">Market Intelligence & Ad Scraping</p>
+                                        </div>
+                                        <span className="text-xs uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-4 py-2 rounded-full border border-emerald-500/20 font-bold">
+                                            45+ Competitors Tracked
+                                        </span>
+                                    </div>
+                                    <p className="text-muted-foreground font-normal mb-6 leading-relaxed">
+                                        Maintaining a real-time competitor intelligence sheet tracking every major player in the UAE & Oman water filtration, meal prep, and high-ticket service spaces. Allows us to spot new creative trends and pricing offers within 24 hours of launch.
+                                    </p>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, x: -40 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                                    className="relative pl-8 border-l border-border/50"
+                                >
+                                    <div className="absolute top-0 left-[-5px] w-[9px] h-[9px] bg-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.5)] z-10">
+                                        <motion.div
+                                            animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                                            className="absolute inset-0 rounded-full bg-orange-500/50"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 className="text-2xl font-display font-bold text-foreground uppercase">WhatsApp Lead Automations</h3>
+                                            <p className="text-orange-500 font-medium">ManyChat & Lead Distribution</p>
+                                        </div>
+                                        <span className="text-xs uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-4 py-2 rounded-full border border-emerald-500/20 font-bold">
+                                            25% CPL Decrease
+                                        </span>
+                                    </div>
+                                    <p className="text-muted-foreground font-normal mb-6 leading-relaxed">
+                                        Architecting conversational chat paths using ManyChat and custom API triggers that immediately hand off leads from Instagram comments to WhatsApp representatives. Shortens response times from hours to under 2 minutes, ensuring higher customer retention.
+                                    </p>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, x: -40 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+                                    className="relative pl-8 border-l border-border/50"
+                                >
+                                    <div className="absolute top-0 left-[-5px] w-[9px] h-[9px] bg-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.5)] z-10">
+                                        <motion.div
+                                            animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                                            className="absolute inset-0 rounded-full bg-orange-500/50"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 className="text-2xl font-display font-bold text-foreground uppercase">High-Conversion Social Calendars</h3>
+                                            <p className="text-orange-500 font-medium">Cohesive Content Matrix</p>
+                                        </div>
+                                        <span className="text-xs uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-4 py-2 rounded-full border border-emerald-500/20 font-bold">
+                                            30+ Content Hooks/Mo
+                                        </span>
+                                    </div>
+                                    <p className="text-muted-foreground font-normal mb-6 leading-relaxed">
+                                        Designing high-touch organic calendars that blend professional aesthetic branding with direct-response hooks. Ensuring social grids look like premium lifestyle magazines while simultaneously driving traffic to high-converting product funnels.
+                                    </p>
+                                </motion.div>
+                            </div>
+                        </section>
+
                         {/* Skills / Stacks */}
                         <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="p-10 rounded-[2.5rem] bg-muted/10 border border-border/50 hover:border-orange-500/20 transition-all group">
@@ -202,14 +292,22 @@ export default function About() {
                         {/* Personal CTA */}
                         <section className="bg-foreground text-background rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
                             <div className="relative z-10 max-w-2xl mx-auto">
-                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic">Ready to build the <br /> next chapter?</h2>
+                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic">Interested in working together?</h2>
                                 <p className="text-xl text-background/90 font-normal mb-12">Let's discuss how we can scale your brand's presence today.</p>
-                                <Link href="/contact">
-                                    <a className="btn bg-background text-foreground px-12 py-5 rounded-full font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">
-                                        Commence Project
-                                        <ArrowUpRight className="w-5 h-5" />
-                                    </a>
-                                </Link>
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                    <Link href="/services">
+                                        <a className="btn bg-background text-foreground px-12 py-5 rounded-full font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">
+                                            Work With Me
+                                            <ArrowUpRight className="w-5 h-5" />
+                                        </a>
+                                    </Link>
+                                    <Link href="/contact">
+                                        <a className="text-background/80 hover:text-background font-medium inline-flex items-center gap-1 transition-colors">
+                                            Agency Recruiters: Let's Connect
+                                            <ArrowUpRight className="w-4 h-4" />
+                                        </a>
+                                    </Link>
+                                </div>
                             </div>
                         </section>
                     </div>

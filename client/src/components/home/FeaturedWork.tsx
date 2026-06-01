@@ -1,100 +1,101 @@
-import { trpc } from "@/lib/trpc";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Play, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Link } from "wouter";
 
-const categoryAccents: Record<string, string> = {
-  video: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-  photo: "text-orange-400 bg-orange-500/10 border-orange-500/20",
-  marketing: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-  ads: "text-purple-400 bg-purple-500/10 border-purple-500/20",
-  social: "text-pink-400 bg-pink-500/10 border-pink-500/20",
-};
+const FEATURED_ITEMS = [
+    {
+        id: "aqua-care-featured",
+        title: "Aqua Care Meta Ads",
+        client: "Aqua Care UAE",
+        category: "Performance Ads",
+        metric: "4.45x ROAS",
+        image: "/assets/images/case-studies/placeholder.jpg",
+        path: "/marketing/aqua-care-uae",
+        isVideo: false,
+        videoUrl: "",
+        description: "Built a full-funnel Meta ad system across 6 water treatment product lines. AED 7,131 spend, 4.45× ROAS, AED 31,743 revenue.",
+        accentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
+    },
+    {
+        id: "gobeyondcars-featured",
+        title: "GoBeyondCars Lead Engine",
+        client: "Beyond Cars UAE",
+        category: "Video & Paid Ads",
+        metric: "2.8x ROAS",
+        image: "/assets/images/brands/Beyond-Cars/beyondcarsin.webp",
+        path: "/portfolio/video/beyond-cars-video-showcase",
+        isVideo: true,
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4",
+        description: "High-performance lead generation for luxury car rentals in Dubai. Video-first campaigns driving high-quality inbound conversions.",
+        accentClass: "text-blue-400 bg-blue-500/10 border-blue-500/20"
+    },
+    {
+        id: "galaxystar-featured",
+        title: "GalaxyStar Perfumes",
+        client: "Galaxy Star Perfumes",
+        category: "E-Commerce",
+        metric: "1.8% CVR",
+        image: "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+        path: "/portfolio",
+        isVideo: false,
+        videoUrl: "",
+        description: "Built a premium storefront e-commerce experience with high-contrast luxury photography and optimized user flows.",
+        accentClass: "text-orange-400 bg-orange-500/10 border-orange-500/20"
+    }
+];
 
 export function FeaturedWork() {
-    const { data: dbProjects, isLoading } = trpc.projects.list.useQuery();
     const [selectedItem, setSelectedItem] = useState<any>(null);
-
-    const items = (dbProjects && (dbProjects as any[]).length > 0)
-        ? (dbProjects as any[]).filter(p => p.featured).slice(0, 6).map(p => ({
-            id: p.id,
-            title: p.title,
-            image: p.thumbnail,
-            category: p.category.toLowerCase(),
-            path: `/portfolio/${p.category}/${p.slug}`,
-            isVideo: p.category.toLowerCase() === "video" || !!p.videoUrl,
-            description: p.description,
-            videoUrl: p.videoUrl,
-            client: p.client
-        }))
-        : [];
-
-    if (isLoading) {
-        return (
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 auto-rows-[200px]">
-                {[...Array(6)].map((_, i) => (
-                    <div key={i} className={cn("bg-muted animate-pulse rounded-2xl",
-                        i === 0 ? "col-span-2 md:col-span-8 row-span-2" : "col-span-1 md:col-span-4"
-                    )} />
-                ))}
-            </div>
-        );
-    }
-
-    const layouts = [
-        "col-span-2 md:col-span-8 row-span-2", // One large
-        "col-span-1 md:col-span-4 row-span-1",
-        "col-span-1 md:col-span-4 row-span-1",
-        "col-span-1 md:col-span-4 row-span-1",
-        "col-span-1 md:col-span-4 row-span-1",
-        "col-span-1 md:col-span-4 row-span-1",
-    ];
 
     return (
         <>
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 auto-rows-[180px] md:auto-rows-[220px]">
-                {items.map((item, i) => {
-                    const accent = categoryAccents[item.category] || categoryAccents.photo;
-                    return (
-                        <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className={layouts[i] || "col-span-1 md:col-span-4"}
-                            onClick={() => setSelectedItem(item)}
-                        >
-                            <div className="group relative w-full h-full overflow-hidden rounded-[2rem] cursor-pointer border border-border/20 hover:border-orange-500/30 transition-all duration-500 bg-zinc-900">
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
-                                
-                                <div className="absolute top-6 left-6">
-                                    <span className={cn("text-[8px] font-bold uppercase tracking-[0.3em] px-3 py-1 rounded-full border backdrop-blur-md", accent)}>
-                                        {item.category}
-                                    </span>
-                                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {FEATURED_ITEMS.map((item, i) => (
+                    <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.6 }}
+                        className="group relative h-[450px] overflow-hidden rounded-[2.5rem] cursor-pointer border border-border/20 hover:border-orange-500/30 transition-all duration-500 bg-zinc-900 shadow-lg"
+                        onClick={() => setSelectedItem(item)}
+                    >
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                            onError={(e) => {
+                                e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
+                            }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                        
+                        <div className="absolute top-6 left-6 flex justify-between w-[calc(100%-3rem)] items-center">
+                            <span className={cn("text-[9px] font-bold uppercase tracking-[0.3em] px-3.5 py-1.5 rounded-full border backdrop-blur-md", item.accentClass)}>
+                                {item.category}
+                            </span>
+                            <span className="text-white/60 text-xs font-semibold uppercase tracking-widest bg-black/40 px-3 py-1 rounded-full backdrop-blur-md border border-white/5">
+                                {item.metric}
+                            </span>
+                        </div>
 
-                                <div className="absolute bottom-8 left-8 right-8">
-                                    <h3 className={cn("text-white font-display font-bold leading-tight uppercase tracking-tight", i === 0 ? "text-2xl md:text-3xl" : "text-sm md:text-lg")}>
-                                        {item.title}
-                                    </h3>
-                                    {i === 0 && <p className="text-white/60 text-sm mt-2 font-light line-clamp-1">{item.client}</p>}
-                                </div>
+                        <div className="absolute bottom-8 left-8 right-8 transition-all duration-500 group-hover:translate-y-[-10px]">
+                            <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">{item.client}</p>
+                            <h3 className="text-white text-2xl font-display font-black leading-tight uppercase tracking-tight">
+                                {item.title}
+                            </h3>
+                            <p className="text-white/60 text-xs mt-3 font-light line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                {item.description}
+                            </p>
+                        </div>
 
-                                <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                                    {item.isVideo ? <Play className="w-5 h-5 text-white fill-current" /> : <ArrowUpRight className="w-5 h-5 text-white" />}
-                                </div>
-                            </div>
-                        </motion.div>
-                    );
-                })}
+                        <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0 shadow-lg">
+                            {item.isVideo ? <Play className="w-5 h-5 fill-current" /> : <ArrowUpRight className="w-5 h-5" />}
+                        </div>
+                    </motion.div>
+                ))}
             </div>
 
             {/* Lightbox Shell */}
@@ -104,7 +105,7 @@ export function FeaturedWork() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 pointer-events-auto"
+                        className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-12 pointer-events-auto"
                     >
                         <motion.div 
                             className="absolute inset-0 bg-black/95 backdrop-blur-2xl"
@@ -112,44 +113,46 @@ export function FeaturedWork() {
                         />
                         
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            initial={{ scale: 0.96, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="relative w-full max-w-6xl aspect-video rounded-[3rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl"
+                            exit={{ scale: 0.96, opacity: 0, y: 20 }}
+                            className="relative w-full max-w-4xl aspect-video rounded-[2.5rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl z-10"
                         >
                             {selectedItem.isVideo ? (
-                                <iframe 
-                                    src={selectedItem.videoUrl?.replace('vimeo.com', 'player.vimeo.com/video')}
-                                    className="w-full h-full"
-                                    allow="autoplay; fullscreen; picture-in-picture"
-                                    allowFullScreen
+                                <video 
+                                    src={selectedItem.videoUrl}
+                                    className="w-full h-full object-contain"
+                                    controls
+                                    autoPlay
                                 />
                             ) : (
-                                <img src={selectedItem.image} className="w-full h-full object-cover" alt={selectedItem.title} />
+                                <img src={selectedItem.image} className="w-full h-full object-cover" alt={selectedItem.title} onError={(e) => {
+                                    e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
+                                }} />
                             )}
 
-                            <div className="absolute top-8 right-8 flex gap-4">
+                            <div className="absolute top-6 right-6 flex gap-3">
                                 <Link href={selectedItem.path}>
-                                    <button className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform">
-                                        <ExternalLink className="w-5 h-5" />
-                                    </button>
+                                    <span className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform cursor-pointer shadow-lg" onClick={() => setSelectedItem(null)}>
+                                        <ExternalLink className="w-4 h-4" />
+                                    </span>
                                 </Link>
                                 <button 
                                     onClick={() => setSelectedItem(null)}
-                                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors shadow-lg"
                                 >
-                                    <X className="w-6 h-6" />
+                                    <X className="w-5 h-5" />
                                 </button>
                             </div>
 
-                            <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-black via-black/80 to-transparent">
-                                <span className={cn("text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block", categoryAccents[selectedItem.category])}>
-                                    {selectedItem.category} Project
+                            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+                                <span className={cn("text-[9px] font-bold uppercase tracking-[0.4em] mb-2 block", selectedItem.accentClass)}>
+                                    {selectedItem.category} Project • {selectedItem.metric}
                                 </span>
-                                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 uppercase tracking-tighter">
+                                <h2 className="text-2xl md:text-3xl font-display font-black text-white mb-2 uppercase tracking-tighter">
                                     {selectedItem.title}
                                 </h2>
-                                <p className="text-white/60 text-lg font-light max-w-2xl">{selectedItem.description}</p>
+                                <p className="text-white/60 text-sm font-light max-w-xl">{selectedItem.description}</p>
                             </div>
                         </motion.div>
                     </motion.div>

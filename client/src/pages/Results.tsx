@@ -116,12 +116,12 @@ export default function Results() {
                                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 leading-tight">
                                         {camp.title}
                                     </h2>
-                                    <p className="text-lg text-muted-foreground mb-12 font-light leading-relaxed line-clamp-4">
+                                    <p className="text-lg text-muted-foreground mb-8 font-light leading-relaxed line-clamp-4">
                                         {camp.description}
                                     </p>
 
                                     {Array.isArray(parsedResults) && parsedResults.length > 0 && (
-                                        <div className="grid grid-cols-2 gap-8 mb-12">
+                                        <div className="grid grid-cols-2 gap-8 mb-8">
                                             {parsedResults.slice(0, 4).map((m: any, mi: number) => (
                                                 <div key={mi} className="border-l-2 border-orange-500/30 pl-6">
                                                     <div className="text-3xl font-display font-bold text-foreground mb-1">
@@ -135,12 +135,22 @@ export default function Results() {
                                         </div>
                                     )}
 
-                                    <Link href={`/marketing/${camp.slug}`}>
-                                        <a className="btn bg-white text-black px-8 py-4 rounded-full font-bold group inline-flex items-center gap-2">
-                                            View Strategy
-                                            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                        </a>
-                                    </Link>
+                                    <div className="flex flex-wrap gap-4 mt-8 items-center">
+                                        <Link href={`/portfolio?filter=${
+                                            camp.id === "aqua-care-uae" || camp.id === "beyondcars-leads" || camp.id === "acero-b2b" ? "ads" :
+                                            camp.id === "prepmeal-growth" || camp.id === "steaburg-seo" || camp.id === "sias-group-seo" ? "social" :
+                                            camp.id === "galaxy-star-perfumes" ? "photo" : "all"
+                                        }`}>
+                                            <span className="btn bg-orange-500 text-white px-8 py-4 rounded-full font-bold group inline-flex items-center gap-2 cursor-pointer shadow-lg hover:shadow-orange-500/10 transition-all duration-300">
+                                                View Creative →
+                                            </span>
+                                        </Link>
+                                        <Link href={`/marketing/${camp.slug}`}>
+                                            <span className="text-sm font-semibold text-muted-foreground hover:text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
+                                                View Strategy →
+                                            </span>
+                                        </Link>
+                                    </div>
                                 </motion.div>
 
                                 <motion.div
@@ -149,17 +159,28 @@ export default function Results() {
                                     viewport={{ once: true }}
                                     className={i % 2 === 0 ? "order-2" : "order-2 lg:order-1"}
                                 >
-                                    <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-border group">
-                                        {mainImage ? (
-                                            <img
-                                                src={mainImage}
-                                                alt={camp.client || camp.title}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                            />
+                                    <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-border group bg-zinc-950 flex justify-center items-center">
+                                        {camp.id === "beyondcars-leads" ? (
+                                            <div className="w-full h-full bg-zinc-950 border border-white/5 rounded-3xl flex flex-col justify-center items-center p-12 text-center min-h-[300px]">
+                                                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-500 mb-3">AUTOMOTIVE CLIENT</span>
+                                                <h3 className="text-xl font-display font-black text-white uppercase mb-2">DUBAI SUPERCAR RENTALS</h3>
+                                                <p className="text-white/40 text-xs font-light max-w-xs leading-relaxed">Lead generation engine scaled via direct-response cinematic creatives.</p>
+                                            </div>
+                                        ) : mainImage ? (
+                                            <>
+                                                <img
+                                                    src={mainImage}
+                                                    alt={camp.client || camp.title}
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                    onError={(e) => {
+                                                        e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
+                                                    }}
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                            </>
                                         ) : (
                                             <div className="w-full h-full bg-muted/20" />
                                         )}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                     </div>
                                 </motion.div>
                             </div>

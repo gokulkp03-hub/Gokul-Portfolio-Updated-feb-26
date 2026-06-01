@@ -1,5 +1,5 @@
-import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { setSEO } from "../utils/seo";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { Link } from "wouter";
@@ -48,8 +48,26 @@ export default function Home() {
     }
   }
 
+  const [showScrollArrow, setShowScrollArrow] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollArrow(window.scrollY < 200);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const wordRevealVariants = {
+    hidden: { clipPath: "inset(0 100% 0 0)", opacity: 0, x: -10 },
+    show: { clipPath: "inset(0 0% 0 0)", opacity: 1, x: 0 }
+  };
+
   return (
     <div className="min-h-screen bg-background selection:bg-accent selection:text-white overflow-hidden relative">
+      {/* Background grain texture */}
+      <div className="bg-grain hidden md:dark:block" />
+
       <motion.div 
         className="fixed inset-0 pointer-events-none bg-orange-500/10 z-0 mix-blend-screen" 
         style={{ opacity: ctaAuraOpacity }} 
@@ -57,7 +75,7 @@ export default function Home() {
 
       {/* Hero / Router Section */}
       <section
-        className="relative pt-40 pb-20 md:pt-56 md:pb-32 px-4 md:px-8 max-w-[1600px] mx-auto group"
+        className="relative pt-36 pb-20 md:pt-48 md:pb-28 px-4 md:px-8 max-w-[1600px] mx-auto group min-h-[90vh] flex flex-col justify-center"
         onMouseMove={handleMouseMove}
       >
         {/* New 3D Tubes Background - Hidden on mobile for performance */}
@@ -65,12 +83,12 @@ export default function Home() {
           <TubesBackground />
         </div>
 
-        {/* Existing Spotlight Effect - Keep it for extra depth but lower opacity */}
+        {/* Spot Light Effect */}
         <motion.div
           className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-40 z-0"
           style={{
             background: useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, var(--color-accent) 0%, transparent 60%)`,
-            mixBlendMode: "screen" // subtle blend
+            mixBlendMode: "screen"
           }}
         />
 
@@ -78,38 +96,75 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#f9731615,transparent_70%)]" />
 
         {/* Header Text */}
-        <div className="text-center mb-20 md:mb-32 relative z-10 max-w-[900px] mx-auto px-4">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tight mb-8 text-balance uppercase leading-[0.9] flex flex-col items-center justify-center">
-            <motion.span
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              I create content that builds
-            </motion.span>
-            <motion.span
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-orange-500 italic block"
-            >
-              brands and drives results.
-            </motion.span>
+        <div className="text-center relative z-10 max-w-[1000px] mx-auto px-4 mt-6">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight mb-8 text-balance uppercase leading-[0.95] flex flex-col items-center justify-center text-center">
+            {/* Line 1 */}
+            <span className="block mb-2 overflow-hidden flex justify-center gap-x-3 sm:gap-x-4 flex-wrap">
+              {["I", "BUILD", "THE", "CREATIVE."].map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  variants={wordRevealVariants}
+                  initial="hidden"
+                  animate="show"
+                  transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block text-foreground"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
+            
+            {/* Line 2 */}
+            <span className="block mb-2 overflow-hidden flex justify-center gap-x-3 sm:gap-x-4 flex-wrap">
+              {["RUN", "THE", "CAMPAIGN."].map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  variants={wordRevealVariants}
+                  initial="hidden"
+                  animate="show"
+                  transition={{ duration: 0.6, delay: 0.32 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block text-foreground"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
+            
+            {/* Line 3 */}
+            <span className="block overflow-hidden flex justify-center gap-x-3 sm:gap-x-4 flex-wrap">
+              {["PROVE", "THE", "RESULTS."].map((word, idx) => (
+                <motion.span
+                  key={idx}
+                  variants={wordRevealVariants}
+                  initial="hidden"
+                  animate="show"
+                  transition={{ duration: 0.6, delay: 0.56 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block text-[var(--accent-color)]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
           </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col items-center gap-10"
-          >
-            <p className="text-lg md:text-xl text-muted-foreground font-light tracking-tight leading-relaxed max-w-2xl">
+          <div className="flex flex-col items-center gap-8">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="text-lg md:text-xl text-muted-foreground font-light tracking-tight leading-relaxed max-w-2xl text-center"
+            >
               Digital marketing + video + design — built for real business growth, not just visuals.
-            </p>
+            </motion.p>
             
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[10px] uppercase tracking-[0.4em] text-orange-500/80 font-bold">Identity</span>
-              <div className="text-sm font-medium tracking-widest text-foreground uppercase flex flex-wrap justify-center gap-x-4 gap-y-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+              className="flex flex-col items-center gap-2"
+            >
+              <span className="text-[10px] uppercase tracking-[0.4em] text-orange-500 font-bold">Identity</span>
+              <div className="text-xs font-semibold tracking-widest text-muted-foreground uppercase flex flex-wrap justify-center gap-x-4 gap-y-2">
                 <span>Digital Marketer</span>
                 <span className="text-muted-foreground/30">•</span>
                 <span>Videographer</span>
@@ -118,87 +173,168 @@ export default function Home() {
                 <span className="text-muted-foreground/30">•</span>
                 <span>Photographer</span>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.6 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2"
+            >
               <MagneticButton>
                 <Link href="/portfolio">
-                  <a className="btn-primary rounded-full px-10 py-5 text-base md:text-lg">View Work</a>
+                  <span className="btn-primary rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer">View Work</span>
                 </Link>
               </MagneticButton>
               <MagneticButton>
                 <Link href="/contact">
-                  <a className="btn-outline rounded-full px-10 py-5 text-base md:text-lg">Start a Project</a>
+                  <span className="btn-outline rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer">Let's Talk</span>
                 </Link>
               </MagneticButton>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
+
+        {/* Scroll Arrow Indicator */}
+        <AnimatePresence>
+          {showScrollArrow && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none"
+            >
+              <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/60">Scroll to Explore</span>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="text-xl text-[var(--accent-color)]"
+              >
+                ↓
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
 
-      {/* 🔮 3. What I Do Section */}
+      {/* 🔮 What I Do Section */}
       <section className="section bg-muted/10 border-y border-border/10">
         <div className="container">
-          <div className="mb-16 md:mb-24">
+          <div className="mb-16 md:mb-24 text-center md:text-left">
             <span className="text-xs font-bold uppercase tracking-[0.4em] text-orange-500 mb-6 block">Capabilities</span>
             <h2 className="text-4xl md:text-5xl font-display font-bold">Strategic <span className="text-orange-500 italic">Expertise</span></h2>
           </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Marketing */}
-            <div className="space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
-                <TrendingUp className="w-8 h-8" />
+            {/* Card 1: Performance Marketing */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              style={{ borderTop: "3px solid var(--accent-color)" }}
+            >
+              <div className="space-y-6">
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Performance Marketing</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                  Meta Ads, Campaign Strategy, Performance Content. I build funnels that turn passive scrollers into customers, with every campaign tracked to exact ROAS.
+                </p>
               </div>
-              <h3 className="text-2xl font-display font-bold uppercase tracking-tight">1. Marketing</h3>
-              <p className="text-muted-foreground leading-relaxed font-light">
-                Meta Ads, Campaign Strategy, Performance Content. I build funnels that turn passive scrollers into customers.
-              </p>
-            </div>
-            {/* Video & Content */}
-            <div className="space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
-                <Play className="w-8 h-8" />
+              <div className="mt-8 pt-4">
+                <Link href="/portfolio">
+                  <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
+                    View Campaigns <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
               </div>
-              <h3 className="text-2xl font-display font-bold uppercase tracking-tight">2. Video & Content</h3>
-              <p className="text-muted-foreground leading-relaxed font-light">
-                Shoot + Edit, Reels, Ads, Brand Videos. Cinematic production tailored for digital-first conversion.
-              </p>
-            </div>
-            {/* Design */}
-            <div className="space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
-                <Camera className="w-8 h-8" />
+            </motion.div>
+
+            {/* Card 2: Video Production */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              style={{ borderTop: "3px solid var(--accent-color)" }}
+            >
+              <div className="space-y-6">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
+                  <Play className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Video Production</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                  Shoot + Edit, Reels, TikToks, high-impact Ad Creatives. Cinematic high-retention video production tailored specifically for organic reach and paid conversion.
+                </p>
               </div>
-              <h3 className="text-2xl font-display font-bold uppercase tracking-tight">3. Design</h3>
-              <p className="text-muted-foreground leading-relaxed font-light">
-                Social Media Creatives, Branding, Visual Systems. Designing the visual language of high-growth entities.
-              </p>
-            </div>
+              <div className="mt-8 pt-4">
+                <Link href="/portfolio">
+                  <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
+                    Watch Reels <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Ad Creatives & Social */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              style={{ borderTop: "3px solid var(--accent-color)" }}
+            >
+              <div className="space-y-6">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                  <Camera className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Ad Creatives & Social</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                  Social Media Creatives, Copywriting, Branding, Visual Systems. Designing high-click-through ad designs and visual content that communicates premium brand authority.
+                </p>
+              </div>
+              <div className="mt-8 pt-4">
+                <Link href="/portfolio">
+                  <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
+                    See Creatives <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 🎯 4. Results & Performance Section */}
+      {/* 📊 Proof Strip section */}
+      <ProofStrip />
+
+      {/* 🎯 Results & Performance Section */}
       <PerformanceProof />
 
-      {/* 🧱 6. Featured Work Section */}
+      {/* 🧱 Featured Work Section */}
       <section className="section overflow-hidden">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl">
+            <div className="max-w-2xl text-center md:text-left">
               <RevealText text="Featured Work" as="h2" className="text-4xl md:text-6xl font-display font-bold mb-4 md:mb-6 tracking-tight" />
               <p className="text-muted-foreground text-lg md:text-xl font-light">
                 A curated selection of high-end visuals across all creative disciplines.
               </p>
             </div>
             <Link href="/portfolio">
-              <a className="btn-outline rounded-full px-8 py-4 text-base hidden md:inline-flex">Explore Full Portfolio</a>
+              <span className="btn-outline rounded-full px-8 py-4 text-base hidden md:inline-flex cursor-pointer">Explore Full Portfolio</span>
             </Link>
           </div>
           <FeaturedWork />
           <div className="mt-12 text-center md:hidden">
             <Link href="/portfolio">
-              <a className="btn-outline rounded-full w-full py-4 text-base">Explore Full Portfolio</a>
+              <span className="btn-outline rounded-full w-full py-4 text-base block cursor-pointer">Explore Full Portfolio</span>
             </Link>
           </div>
         </div>
@@ -207,9 +343,35 @@ export default function Home() {
       {/* Brand Identity Showcase */}
       <LittleRoosterBranding />
 
+      {/* Workflow Process Strip */}
+      <section className="py-24 bg-zinc-900/60 border-y border-border/20 overflow-hidden relative">
+        <div className="container">
+          <div className="text-center mb-16">
+            <span className="text-xs font-bold uppercase tracking-[0.4em] text-orange-500 mb-4 block">The Workflow</span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tight text-white">THE ACCELERATION PROCESS</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 relative">
+            {[
+              { step: "01", title: "CRAWL", desc: "Audit existing funnel metrics, study competitor positioning, and trace high-intent opportunities." },
+              { step: "02", title: "BUILD", desc: "Produce high-converting direct-response creatives and configure core Meta ad campaigns." },
+              { step: "03", title: "RUN", desc: "Launch live ad sets, isolate top creatives, and optimize target audience profiles." },
+              { step: "04", title: "SCALE", desc: "Integrate WhatsApp Comment-to-DM triggers and scale spend aggressively to double ROAS." }
+            ].map((proc, index) => (
+              <div key={index} className="p-8 rounded-3xl bg-zinc-950/40 border border-white/5 relative hover:border-orange-500/20 transition-all duration-300">
+                <div className="text-5xl font-display font-black text-orange-500/10 absolute top-4 right-6">{proc.step}</div>
+                <h3 className="text-xl font-display font-bold text-white mb-3 tracking-wide">{proc.title}</h3>
+                <p className="text-white/40 text-xs font-light leading-relaxed">{proc.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Growth Engine Section */}
       <GrowthEngine />
 
+      {/* Testimonials */}
       <section className="section container border-t border-border/10">
         <div className="flex items-center justify-between mb-16">
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Client <span className="text-orange-500 italic">Feedback</span></h2>
@@ -240,30 +402,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 💰 8. Final CTA section */}
+      {/* 💰 Final CTA Section */}
       <section ref={ctaRef} className="section container border-t border-border/10">
         <div className="bg-foreground text-background rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold mb-8 tracking-tighter uppercase italic leading-none">
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic leading-none">
               Let's build something <br /> that actually grows <br /> your brand.
             </h2>
+            <p className="text-background/60 text-base md:text-lg mb-10 font-light max-w-xl mx-auto">
+              Ready to scale your leads and revenue with verified performance marketing and cinematic media? Let's connect.
+            </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mt-12">
+              <MagneticButton>
+                <Link href="/contact">
+                  <span className="btn bg-orange-500 text-white hover:bg-orange-600 px-10 py-5 rounded-full text-xl font-bold w-full sm:w-auto shadow-xl transition-all block cursor-pointer">
+                    Let's Talk
+                  </span>
+                </Link>
+              </MagneticButton>
               <MagneticButton>
                 <a 
                   href="https://wa.me/971545264632" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="btn bg-orange-500 text-white hover:bg-orange-600 px-10 py-5 rounded-full text-xl font-bold w-full sm:w-auto shadow-xl transition-all transform hover:-translate-y-1"
+                  className="btn border border-background/20 hover:bg-background/10 text-background px-10 py-5 rounded-full text-xl w-full sm:w-auto transition-all block text-center"
                 >
                   WhatsApp
-                </a>
-              </MagneticButton>
-              <MagneticButton>
-                <a 
-                  href="mailto:contact@gokulkp.com"
-                  className="btn border border-background/20 hover:bg-background/10 text-background px-10 py-5 rounded-full text-xl w-full sm:w-auto transition-all"
-                >
-                  Email
                 </a>
               </MagneticButton>
             </div>

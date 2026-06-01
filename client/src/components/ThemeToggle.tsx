@@ -10,7 +10,7 @@ export function ThemeToggle() {
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="rounded-full w-9 h-9 border border-border/40 hover:bg-muted transition-colors"
+            className="theme-toggle rounded-full w-9 h-9 flex items-center justify-center"
             title="Toggle theme"
             disabled={!toggleTheme}
         >

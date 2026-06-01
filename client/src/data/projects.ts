@@ -510,6 +510,26 @@ export const projects: Project[] = [
             { label: "Ad Spend Scaled", value: "AED 18K → AED 185K" },
             { label: "CTR", value: "3.8%" }
         ]
+    },
+    {
+        id: "little-rooster-branding",
+        slug: "little-rooster-branding",
+        title: "Little Rooster Branding",
+        category: "ads",
+        subcategory: "Brand Identity",
+        thumbnail: "/assets/images/brands/Little-Rooster/Little Rooster Social Media Post.jpeg",
+        description: "Full visual brand identity system — logo, color palette, apparel, and premium packaging for a specialty chicken eatery.",
+        client: "Little Rooster UAE",
+        role: "Brand Designer & Strategist",
+        date: "2024",
+        featured: true,
+        images: [
+            "/assets/images/brands/Little-Rooster/Little Rooster Logo.png",
+            "/assets/images/brands/Little-Rooster/Tshirt Mockup.jpg",
+            "/assets/images/brands/Little-Rooster/Cap Mockup.jpg",
+            "/assets/images/brands/Little-Rooster/paperbag.jpg",
+            "/assets/images/brands/Little-Rooster/shopping_bag_mockup.jpg"
+        ]
     }
 ];
 

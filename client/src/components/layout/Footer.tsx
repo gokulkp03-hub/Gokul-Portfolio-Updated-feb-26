@@ -16,58 +16,84 @@ export default function Footer() {
     return (
         <footer className="bg-foreground text-background py-16 border-t border-background/10">
             <div className="container px-4">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
 
-                    {/* Brand */}
-                    <div>
-                        <Link href="/" className="text-2xl font-display font-bold tracking-tighter mb-4 inline-block hover:opacity-80 transition-opacity">
-                            Gokul KP.
-                        </Link>
-                        <p className="text-background/60 text-sm max-w-xs">
-                            Crafting digital experiences through video, photography, and strategy.
+                    {/* Column 1: Brand & Services Tags */}
+                    <div className="space-y-6">
+                        <div>
+                            <Link href="/" className="text-3xl font-display font-bold tracking-tighter uppercase mb-4 inline-block hover:opacity-80 transition-opacity">
+                                Gokul KP.
+                            </Link>
+                            <p className="text-background/60 text-sm max-w-xs leading-relaxed">
+                                Full-funnel digital strategist scaling brand aesthetics and performance metrics across the GCC.
+                            </p>
+                        </div>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">Video Production</span>
+                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">UGC Creative</span>
+                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">Paid Acquisition</span>
+                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">ManyChat Flows</span>
+                        </div>
+                    </div>
+
+                    {/* Column 2: Navigation & Services */}
+                    <div className="grid grid-cols-2 gap-8 w-full">
+                        <div className="space-y-4">
+                            <h4 className="text-xs uppercase tracking-widest text-background/40 font-bold">Navigation</h4>
+                            <div className="flex flex-col gap-2">
+                                <Link href="/" className="text-sm font-medium hover:text-orange-400 transition-colors">Home</Link>
+                                <Link href="/portfolio" className="text-sm font-medium hover:text-orange-400 transition-colors">Work</Link>
+                                <Link href="/about" className="text-sm font-medium hover:text-orange-400 transition-colors">About</Link>
+                                <Link href="/results" className="text-sm font-medium hover:text-orange-400 transition-colors">Results</Link>
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <h4 className="text-xs uppercase tracking-widest text-background/40 font-bold">Work With Me</h4>
+                            <div className="flex flex-col gap-2">
+                                <Link href="/services" className="text-sm font-medium hover:text-orange-400 transition-colors">Services & Pricing</Link>
+                                <Link href="/contact" className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</Link>
+                                <a href={`mailto:${contactEmail}`} className="text-sm font-medium hover:text-orange-400 transition-colors">Direct Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Column 3: Connect & Socials */}
+                    <div className="space-y-6 md:justify-self-end">
+                        <div>
+                            <h4 className="text-xs uppercase tracking-widest text-background/40 font-bold mb-4">Connect</h4>
+                            <div className="flex gap-3">
+                                {[
+                                    { icon: Instagram, href: instagramLink },
+                                    { icon: Linkedin, href: linkedinLink },
+                                    { icon: Twitter, href: twitterLink },
+                                    { icon: Palette, href: behanceLink },
+                                    { icon: Mail, href: `mailto:${contactEmail}` },
+                                ].map((social, i) => (
+                                    <a
+                                        key={i}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="p-3 bg-background/10 rounded-full hover:bg-background/20 transition-colors"
+                                    >
+                                        <social.icon className="w-5 h-5" />
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                        <p className="text-xs text-background/60 leading-relaxed">
+                            Based in Dubai, UAE.<br />Operating across GCC region.
                         </p>
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-8 md:gap-12">
-                        <div className="flex flex-col gap-3">
-                            <Link href="/video" className="text-sm font-medium hover:text-orange-400 transition-colors">Video</Link>
-                            <Link href="/photo" className="text-sm font-medium hover:text-orange-400 transition-colors">Photo</Link>
-                            <Link href="/marketing" className="text-sm font-medium hover:text-orange-400 transition-colors">Marketing</Link>
-                        </div>
-                        <div className="flex flex-col gap-3">
-                            <Link href="/portfolio" className="text-sm font-medium hover:text-orange-400 transition-colors">Case Studies</Link>
-                            <Link href="/about" className="text-sm font-medium hover:text-orange-400 transition-colors">About</Link>
-                            <a href={`mailto:${contactEmail}`} className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</a>
-                        </div>
-                    </div>
-
-                    {/* Socials */}
-                    <div className="flex gap-4">
-                        {[
-                            { icon: Instagram, href: instagramLink },
-                            { icon: Linkedin, href: linkedinLink },
-                            { icon: Twitter, href: twitterLink },
-                            { icon: Palette, href: behanceLink },
-                            { icon: Mail, href: `mailto:${contactEmail}` },
-                        ].map((social, i) => (
-                            <a
-                                key={i}
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-3 bg-background/10 rounded-full hover:bg-background/20 transition-colors"
-                            >
-                                <social.icon className="w-5 h-5" />
-                            </a>
-                        ))}
                     </div>
 
                 </div>
 
                 <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-background/40 text-center md:text-left">
-                    <p>© {year} Gokul KP. All rights reserved.</p>
-                    <p>Designed with <span className="text-red-500">♥</span> in {year}.</p>
+                    <p>© 2026 Gokul KP. All rights reserved.</p>
+                    <div className="flex items-center gap-2">
+                        <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="uppercase font-semibold tracking-wider text-[10px]">Dubai, United Arab Emirates</span>
+                    </div>
                 </div>
             </div>
         </footer>

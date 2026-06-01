@@ -21,7 +21,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            setScrolled(window.scrollY > 50);
         };
 
         const handleClickOutside = (event: MouseEvent) => {
@@ -79,7 +79,6 @@ const Navbar = () => {
                 { name: "Marketing", href: "/marketing", icon: "trending", accent: "text-emerald-400" },
             ]
         },
-        { name: "Services", href: "/services", activeColor: "text-orange-500" },
         { name: "About", href: "/about", activeColor: "text-orange-500" },
         { name: "Results", href: "/results", activeColor: "text-orange-500" },
     ];
@@ -136,9 +135,9 @@ const Navbar = () => {
                                                     transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                                                     className="absolute top-full left-0 mt-3 z-50 min-w-[260px] rounded-2xl overflow-hidden"
                                                     style={{
-                                                        background: "hsl(var(--background))",
-                                                        border: "1px solid hsl(var(--border))",
-                                                        boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)",
+                                                        background: "var(--bg-card)",
+                                                        border: "1px solid var(--border-color)",
+                                                        boxShadow: "var(--card-shadow)",
                                                     }}
                                                 >
                                                     {/* Header Panel */}
@@ -201,7 +200,7 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center gap-4">
                         <ThemeToggle />
                         <Link href="/contact" className="btn-primary rounded-full px-5 py-2 text-sm">
-                            Let's work
+                            Let's Talk
                         </Link>
                     </div>
 
@@ -223,15 +222,37 @@ const Navbar = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="fixed inset-0 z-[110] md:hidden bg-background w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto"
                     >
-                        <div className="flex flex-col space-y-8">
+                        <motion.div 
+                            variants={{
+                                hidden: { opacity: 0 },
+                                show: {
+                                    opacity: 1,
+                                    transition: {
+                                        staggerChildren: 0.08,
+                                        delayChildren: 0.05
+                                    }
+                                }
+                            }}
+                            initial="hidden"
+                            animate="show"
+                            className="flex flex-col space-y-6"
+                        >
                             {navLinks.map((link) => (
-                                <div key={link.name} className="space-y-3">
+                                <motion.div 
+                                    key={link.name}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 15 },
+                                        show: { opacity: 1, y: 0 }
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className="space-y-2"
+                                >
                                     <Link
                                         href={link.href}
                                         className={cn(
@@ -243,12 +264,12 @@ const Navbar = () => {
                                         {link.name}
                                     </Link>
                                     {link.dropdown && (
-                                        <div className="flex flex-col gap-4 pl-4 mt-2 border-l border-border/20">
+                                        <div className="flex flex-col gap-3 pl-4 mt-1 border-l border-border/20">
                                             {link.dropdown.map((item) => (
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
-                                                    className={cn("block text-xl hover:text-orange-500 transition-colors py-1", item.accent || "text-muted-foreground")}
+                                                    className={cn("block text-lg hover:text-orange-500 transition-colors py-1", item.accent || "text-muted-foreground")}
                                                     onClick={() => setIsOpen(false)}
                                                 >
                                                     {item.name}
@@ -256,23 +277,28 @@ const Navbar = () => {
                                             ))}
                                         </div>
                                     )}
-                                </div>
+                                </motion.div>
                             ))}
-                        </div>
-
-                        <div className="mt-auto pt-10">
-                            <Link
-                                href="/contact"
-                                className="btn-primary w-full text-center py-4 text-base rounded-full"
-                                onClick={() => setIsOpen(false)}
+                            <motion.div
+                                variants={{
+                                    hidden: { opacity: 0, y: 15 },
+                                    show: { opacity: 1, y: 0 }
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="pt-4"
                             >
-                                Start a Project
-                            </Link>
-                        </div>
+                                <Link
+                                    href="/contact"
+                                    className="btn-primary w-full text-center py-4 text-base rounded-full"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Let's Talk
+                                </Link>
+                            </motion.div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
-
         </>
     );
 };

@@ -7,6 +7,7 @@ export function AnimatedCounter({
   prefix = "",
   suffix = "",
   duration = 2,
+  decimals = 0,
   className,
 }: {
   from?: number;
@@ -14,6 +15,7 @@ export function AnimatedCounter({
   prefix?: string;
   suffix?: string;
   duration?: number;
+  decimals?: number;
   className?: string;
 }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -23,7 +25,7 @@ export function AnimatedCounter({
   useEffect(() => {
     if (!nodeRef.current) return;
     if (prefersReducedMotion) {
-      nodeRef.current.textContent = `${prefix}${to.toLocaleString()}${suffix}`;
+      nodeRef.current.textContent = `${prefix}${to.toFixed(decimals)}${suffix}`;
       return;
     }
     
@@ -34,16 +36,19 @@ export function AnimatedCounter({
       ease: "easeOut",
       onUpdate(value) {
         if (nodeRef.current) {
-          nodeRef.current.textContent = `${prefix}${Math.floor(value).toLocaleString()}${suffix}`;
+          const displayValue = decimals > 0 
+            ? value.toFixed(decimals)
+            : Math.floor(value).toLocaleString();
+          nodeRef.current.textContent = `${prefix}${displayValue}${suffix}`;
         }
       },
     });
     return () => controls.stop();
-  }, [inView, from, to, prefix, suffix, duration, prefersReducedMotion]);
+  }, [inView, from, to, prefix, suffix, duration, prefersReducedMotion, decimals]);
 
   return (
     <span ref={nodeRef} className={className}>
-      {prefix}{prefersReducedMotion ? to.toLocaleString() : "0"}{suffix}
+      {prefix}{prefersReducedMotion ? to.toFixed(decimals) : "0"}{suffix}
     </span>
   );
 }
