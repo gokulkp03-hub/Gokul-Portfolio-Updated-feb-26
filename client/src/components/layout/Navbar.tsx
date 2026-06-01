@@ -96,7 +96,7 @@ const Navbar = () => {
                 <div className="container flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="text-xl font-display font-bold tracking-tighter hover:opacity-80 transition-opacity">
-                        Gokul KP<span className="text-accent">.</span>
+                        GokulKP<span className="text-accent">.</span>
                     </Link>
 
                     {/* Desktop Nav */}

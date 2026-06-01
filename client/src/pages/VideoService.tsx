@@ -131,7 +131,7 @@ export default function VideoService() {
                             </a>
                             <Link href="/contact">
                                 <a className="btn border border-border hover:bg-muted text-foreground px-8 py-4 rounded-full font-medium transition-all">
-                                    Start a Project
+                                    Let's Talk
                                 </a>
                             </Link>
                         </div>

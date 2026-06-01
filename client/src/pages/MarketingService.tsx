@@ -302,7 +302,7 @@ export default function MarketingService() {
             ))}
             {campaigns.length === 0 && (
               <div className="col-span-full text-center py-20 text-muted-foreground border border-dashed border-border/30 rounded-2xl">
-                Case studies are being published. <Link href="/contact"><a className="text-emerald-500 underline">Start a project</a></Link>
+                Case studies are being published. <Link href="/contact"><a className="text-emerald-500 underline">Let's Talk</a></Link>
               </div>
             )}
           </div>

@@ -22,10 +22,10 @@ export default function Footer() {
                     <div className="space-y-6">
                         <div>
                             <Link href="/" className="text-3xl font-display font-bold tracking-tighter uppercase mb-4 inline-block hover:opacity-80 transition-opacity">
-                                Gokul KP.
+                                GokulKP.
                             </Link>
                             <p className="text-background/60 text-sm max-w-xs leading-relaxed">
-                                Full-funnel digital strategist scaling brand aesthetics and performance metrics across the GCC.
+                                Performance Marketing. Video Production. Ad Creatives.
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-2 pt-2">
