@@ -11,7 +11,6 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProofStrip } from "@/components/home/ProofStrip";
 import { proof } from "@/data/proof";
-import { LittleRoosterBranding } from "@/components/home/LittleRoosterBranding";
 import { GrowthEngine } from "@/components/home/GrowthEngine";
 import { MouseEvent } from "react";
 import { trpc } from "@/lib/trpc";
@@ -340,9 +339,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Brand Identity Showcase */}
-      <LittleRoosterBranding />
-
       {/* Workflow Process Strip */}
       <section className="py-24 bg-zinc-900/60 border-y border-border/20 overflow-hidden relative">
         <div className="container">
@@ -370,37 +366,6 @@ export default function Home() {
 
       {/* Growth Engine Section */}
       <GrowthEngine />
-
-      {/* Testimonials */}
-      <section className="section container border-t border-border/10">
-        <div className="flex items-center justify-between mb-16">
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Client <span className="text-orange-500 italic">Feedback</span></h2>
-          <div className="flex gap-2">
-            <button onClick={scrollPrev} className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center hover:bg-muted/60 transition-colors">
-              <ArrowRight className="w-4 h-4 rotate-180" />
-            </button>
-            <button onClick={scrollNext} className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center hover:bg-muted/60 transition-colors">
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-        <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-          <div className="flex gap-8">
-            {proof.testimonials.map((t) => (
-              <div key={t.id} className="flex-[0_0_100%] md:flex-[0_0_40%] lg:flex-[0_0_33.333%] min-w-0">
-                <div className="p-8 rounded-3xl bg-muted/20 border border-border/50 relative glass-card hover:border-orange-500/20 transition-colors h-full flex flex-col justify-between">
-                  <Quote className="w-10 h-10 text-orange-500/10 absolute top-8 right-8" />
-                  <p className="text-lg text-foreground/90 font-normal italic mb-8 relative z-10 leading-relaxed">"{t.text}"</p>
-                  <div>
-                    <p className="font-bold text-foreground">{t.author}</p>
-                    <p className="text-sm text-orange-500">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 💰 Final CTA Section */}
       <section ref={ctaRef} className="section container border-t border-border/10">

@@ -47,8 +47,14 @@ function Router() {
       );
       elements.forEach((el) => {
         if (!el.classList.contains("revealed")) {
-          el.classList.add("scroll-reveal-init");
-          observer.observe(el);
+          const rect = el.getBoundingClientRect();
+          const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+          if (inViewport) {
+            el.classList.add("revealed");
+          } else {
+            el.classList.add("scroll-reveal-init");
+            observer.observe(el);
+          }
         }
       });
 
