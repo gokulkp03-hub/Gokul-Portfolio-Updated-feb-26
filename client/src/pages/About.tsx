@@ -48,20 +48,28 @@ export default function About() {
                     <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-8">
                         <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-border/50 bg-muted/20">
                             <motion.img
-                                src="/assets/images/profile/profile.webp"
-                                alt="Gokul KP"
+                                src="/assets/images/profile/gokul-kp-performance-marketer-dubai.webp"
+                                alt="Gokul KP - Best Performance Marketer & Video Producer in Dubai, UAE"
+                                title="Gokul KP | Performance Marketer & Creative Director Dubai"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 1 }}
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
-                                    e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop";
+                                    e.currentTarget.src = "/assets/images/profile/profile.webp";
                                 }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                             <div className="absolute bottom-6 left-6">
                                 <h1 className="text-2xl font-display font-bold text-white mb-1">Gokul KP</h1>
                                 <p className="text-orange-500 font-bold uppercase tracking-widest text-[10px]">Director // Strategist // Creator</p>
+                            </div>
+                            
+                            {/* Hidden Image Assets for Google Image Search SEO Indexing */}
+                            <div className="sr-only" aria-hidden="true" style={{ display: "none" }}>
+                                <img src="/assets/images/profile/gokul-kp-video-editor-uae.webp" alt="Gokul KP - Video Editor and Creative Director in Dubai, UAE" />
+                                <img src="/assets/images/profile/gokul-kp-videographer-dubai.webp" alt="Gokul KP - Freelance Videographer and Photographer in Dubai, UAE" />
+                                <img src="/assets/images/profile/gokul-kp-ad-creative-specialist.webp" alt="Gokul KP - Ad Creative and Performance Marketing Specialist UAE" />
                             </div>
                         </div>
 

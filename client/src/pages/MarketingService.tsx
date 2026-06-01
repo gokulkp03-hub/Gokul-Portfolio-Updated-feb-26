@@ -9,6 +9,7 @@ import { RevealText } from "@/components/ui/RevealText";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { useScroll, useTransform } from "framer-motion";
 import { setSEO } from "../utils/seo";
+import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 
 // ------- FAQ Item -------
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -251,8 +252,19 @@ export default function MarketingService() {
   const { scrollYProgress: processProgress } = useScroll({ target: processRef, offset: ["start center", "end center"] });
 
   const campaigns = useMemo(() => {
-    if (!dbProjects) return [];
-    return (dbProjects as any[]).filter((p) => p.category.toLowerCase() === "marketing");
+    if (dbProjects && (dbProjects as any[]).length > 0) {
+      const dbCamps = (dbProjects as any[]).filter((p) => p.category.toLowerCase() === "marketing");
+      if (dbCamps.length > 0) return dbCamps;
+    }
+    // Fallback to static marketing data
+    return staticMarketing.map((m) => ({
+      id: m.id,
+      slug: m.slug,
+      title: m.title,
+      results: JSON.stringify(m.metrics.map((met) => ({ label: met.label, value: met.value }))),
+      tags: JSON.stringify(m.tags),
+      category: "marketing",
+    }));
   }, [dbProjects]);
 
   return (
