@@ -58,6 +58,24 @@ export function ProjectForm({ initialData, onSuccess, onCancel, defaultCategory 
         sortOrder: 0,
     });
 
+    const parseArrayField = (val: any): string[] => {
+        if (!val) return [];
+        if (Array.isArray(val)) return val;
+        if (typeof val === "string") {
+            try {
+                const parsed = JSON.parse(val);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch {
+                // Fallback for comma separated tags or strings
+                if (val.trim()) {
+                    return val.split(",").map(t => t.trim()).filter(Boolean);
+                }
+                return [];
+            }
+        }
+        return [];
+    };
+
     useEffect(() => {
         if (initialData) {
             setFormData({
@@ -75,9 +93,9 @@ export function ProjectForm({ initialData, onSuccess, onCancel, defaultCategory 
                 status: ["draft", "published", "scheduled"].includes(initialData.status?.toLowerCase())
                     ? (initialData.status.toLowerCase() as "draft" | "published" | "scheduled")
                     : "draft",
-                tags: initialData.tags || [],
-                gallery: initialData.gallery || [],
-                tools: initialData.tools || [],
+                tags: parseArrayField(initialData.tags),
+                gallery: parseArrayField(initialData.gallery),
+                tools: parseArrayField(initialData.tools),
                 featured: initialData.featured || false,
                 sortOrder: initialData.sortOrder || 0,
             });
