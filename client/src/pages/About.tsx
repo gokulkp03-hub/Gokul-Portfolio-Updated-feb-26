@@ -68,7 +68,7 @@ export default function About() {
                             {/* Hidden Image Assets for Google Image Search SEO Indexing */}
                             <div className="sr-only" aria-hidden="true" style={{ display: "none" }}>
                                 <img src="/assets/images/profile/gokul-kp-video-editor-uae.webp" alt="Gokul KP - Video Editor and Creative Director in Dubai, UAE" />
-                                <img src="/assets/images/profile/gokul-kp-videographer-dubai.webp" alt="Gokul KP - Freelance Videographer and Photographer in Dubai, UAE" />
+                                <img src="/assets/images/profile/gokul-kp-videographer-dubai.webp" alt="Gokul KP - Premium Video Producer and Photographer in Dubai, UAE" />
                                 <img src="/assets/images/profile/gokul-kp-ad-creative-specialist.webp" alt="Gokul KP - Ad Creative and Performance Marketing Specialist UAE" />
                             </div>
                         </div>

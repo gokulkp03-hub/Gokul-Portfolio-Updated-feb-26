@@ -71,7 +71,7 @@ export default function VideoService() {
     useEffect(() => {
         setSEO({
             title: "Videographer & Video Editor in Dubai | Cinematic Production | Gokul KP",
-            description: "Gokul KP is a freelance videographer and video editor in Dubai & UAE. Cinematic commercial videos, social reels, brand films, and post-production."
+            description: "Gokul KP is a premium video producer and commercial editor in Dubai & UAE. Cinematic brand films, high-converting social reels, and creative post-production."
         });
     }, []);
 
