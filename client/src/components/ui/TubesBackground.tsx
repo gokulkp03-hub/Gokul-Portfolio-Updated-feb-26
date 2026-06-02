@@ -89,6 +89,52 @@ export function TubesBackground() {
         ctx.fill();
       });
 
+      // Draw elegant background grid lines
+      const gridSize = 100;
+      const gridOpacity = 0.015; // Very subtle
+      ctx.strokeStyle = `rgba(249, 115, 22, ${gridOpacity})`;
+      ctx.lineWidth = 0.5;
+
+      // Draw vertical lines
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+
+      // Draw horizontal lines
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Draw glowing intersection nodes reacting to mouse proximity
+      for (let x = 0; x < width; x += gridSize) {
+        for (let y = 0; y < height; y += gridSize) {
+          const dx = mouseX - x;
+          const dy = mouseY - y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 250) {
+            const nodeOpacity = (1 - dist / 250) * 0.15;
+            ctx.fillStyle = `rgba(249, 115, 22, ${nodeOpacity})`;
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Tiny outer glow rings for active nodes
+            if (dist < 100) {
+              ctx.strokeStyle = `rgba(249, 115, 22, ${nodeOpacity * 0.4})`;
+              ctx.beginPath();
+              ctx.arc(x, y, 6, 0, Math.PI * 2);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
       // Draw elegant cinematic accent vector lines
       ctx.strokeStyle = "rgba(249, 115, 22, 0.02)";
       ctx.lineWidth = 1;

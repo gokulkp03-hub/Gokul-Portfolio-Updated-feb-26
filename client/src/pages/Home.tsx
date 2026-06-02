@@ -22,8 +22,8 @@ import { useCallback } from "react";
 export default function Home() {
   useEffect(() => {
     setSEO({
-      title: "Gokul KP | Best Digital Marketer, Video Editor & Videographer in Dubai, UAE",
-      description: "Gokul KP is an affordable freelance videographer, video editor, and B2C digital marketer in Dubai & UAE. Scale your brand with high-converting Meta ads."
+      title: "Gokul KP | Premium Video Producer & Growth Strategist in Dubai, UAE",
+      description: "Gokul KP is a premium video producer, commercial editor, and B2C/B2B growth marketer scaling brands across the GCC. Get high-converting Meta ads campaigns."
     });
   }, []);
 
@@ -153,7 +153,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 1.2 }}
               className="text-lg md:text-xl text-muted-foreground font-light tracking-tight leading-relaxed max-w-2xl text-center"
             >
-              Digital marketing + video + design — built for real business growth, not just visuals.
+              Performance-driven marketing campaigns, premium commercial video production, and high-converting ad creatives built to scale GCC brands.
             </motion.p>
             
             <motion.div

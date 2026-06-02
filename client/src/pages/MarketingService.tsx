@@ -241,8 +241,8 @@ const faqs = [
 export default function MarketingService() {
   useEffect(() => {
     setSEO({
-      title: "Best Digital Marketer in Dubai | Meta Ads & Growth | Gokul KP",
-      description: "Scale your B2C business with the best digital marketer in Dubai. Affordable Meta Ads campaigns, lead generation funnels, and GCC WhatsApp automation."
+      title: "Premium B2C & B2B Performance Marketer Dubai | Meta Ads | Gokul KP",
+      description: "Scale your revenue with a premium performance marketer in Dubai. High-ticket Meta Ads campaigns, B2B lead generation funnels, and GCC WhatsApp automation."
     });
   }, []);
 
@@ -273,35 +273,7 @@ export default function MarketingService() {
       {/* ---- Marketing Hero ---- */}
       <MarketingHero />
 
-      {/* ---- Stats Strip ---- */}
-      <section className="py-16 border-y border-border/20 bg-muted/10">
-        <div className="container max-w-5xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { to: 500, suffix: "K+", prefix: "AED ", label: "Ad Spend Managed" },
-              { to: 2, suffix: "M+", prefix: "AED ", label: "Revenue Generated" },
-              { to: 42, suffix: "x", prefix: "4.", label: "Avg ROAS" },
-              { to: 150, suffix: "+", prefix: "", label: "Campaigns Run" },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-              >
-                <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-2 tabular-nums">
-                  <AnimatedCounter to={stat.to} prefix={stat.prefix} suffix={stat.suffix} />
-                </div>
-                <div className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-[10px] text-muted-foreground/40 uppercase tracking-widest text-center mt-12 select-none">
-            *Campaign statistics are consolidated lifetime performance figures across all managed customer advertising portfolios.
-          </div>
-        </div>
-      </section>
+
 
       {/* ---- Case Studies ---- */}
       <section className="py-24 relative overflow-hidden">

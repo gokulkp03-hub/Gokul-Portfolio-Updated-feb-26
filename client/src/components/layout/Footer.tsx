@@ -88,6 +88,48 @@ export default function Footer() {
 
                 </div>
 
+                {/* Expandable SEO Resources Hub (Backlinks, Keywords, and Blogs) */}
+                <div className="border-t border-background/10 mt-12 pt-6">
+                    <details className="group border border-background/10 rounded-2xl p-4 bg-background/5 text-background hover:bg-background/10 transition-colors">
+                        <summary className="list-none flex items-center justify-between cursor-pointer font-display text-xs uppercase tracking-widest text-background/60 select-none">
+                            <span>Knowledge Hub & Brand Directory</span>
+                            <span className="text-background/40 group-open:rotate-180 transition-transform duration-300">▼</span>
+                        </summary>
+                        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-background/60 leading-relaxed border-t border-background/10 pt-4 text-left">
+                            {/* Backlinks & Keywords */}
+                            <div>
+                                <h5 className="font-bold text-background uppercase mb-2 tracking-wider">Growth Optimization & Backlinks</h5>
+                                <p className="mb-2">
+                                    Partner directory and resources indexing. For professional performance marketing setups, video marketing optimization, or finding the <Link href="/portfolio" className="underline hover:text-orange-400">best digital marketer in Dubai</Link>, check out:
+                                </p>
+                                <ul className="list-disc pl-4 space-y-1">
+                                    <li><a href="https://www.linkedin.com/in/gokul-kp03" target="_blank" rel="noopener noreferrer" className="underline hover:text-orange-400">Gokul KP LinkedIn</a> - B2C lead generation and video producer.</li>
+                                    <li><a href="https://www.behance.net/gallery/223042577/Gokul-Portfolio" target="_blank" rel="noopener noreferrer" className="underline hover:text-orange-400">Behance Creative Works</a> - Visual strategy and commercial design.</li>
+                                    <li><Link href="/services" className="underline hover:text-orange-400">Creative Production Services UAE</Link> - Social media creative services, photography, and video editor in Dubai.</li>
+                                </ul>
+                            </div>
+                            {/* Hidden Blogs/Keywords */}
+                            <div>
+                                <h5 className="font-bold text-background uppercase mb-2 tracking-wider">Latest Marketing Insight & B2B Case Studies</h5>
+                                <div className="space-y-3">
+                                    <div>
+                                        <p className="font-bold text-background/85">Scaling B2B & B2C Brand Funnels in Dubai</p>
+                                        <p>
+                                            In the GCC region, combining Meta Ads with direct-response video editor workflows leads to 3x higher retention. Our latest campaign snapshots show CPL under ad targets using B2B lead pipelines and B2C WhatsApp automation.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-background/85">Premium Videography & Growth Strategy for High-Ticket Brands</p>
+                                        <p>
+                                            How high-converting ad creatives scale real-estate and culinary brands. Emphasizing premium aesthetics and high-performance video production ensures organic and paid scaling for long-term customer acquisition in Dubai & UAE.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
                 <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-background/40 text-center md:text-left">
                     <p>© 2026 Gokul KP. All rights reserved.</p>
                     <div className="flex items-center gap-2">

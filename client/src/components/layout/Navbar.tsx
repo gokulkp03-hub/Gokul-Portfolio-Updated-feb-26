@@ -226,7 +226,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[110] md:hidden bg-background w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto"
+                        className="fixed inset-0 z-[110] md:hidden bg-background/95 backdrop-blur-md w-full h-full min-h-screen flex flex-col pt-28 pb-10 px-6 overflow-y-auto"
                     >
                         <motion.div 
                             variants={{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://gokul-folio.vercel.app/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -11,6 +11,26 @@
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://gokul-folio.vercel.app/assets/images/profile/gokul-kp-performance-marketer-dubai.webp</image:loc>
+      <image:title>Gokul KP - Premium Performance Marketer &amp; Video Producer Dubai</image:title>
+      <image:caption>Gokul KP is a performance marketer and creative director in Dubai scaling brands across the GCC.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gokul-folio.vercel.app/assets/images/profile/gokul-kp-video-editor-uae.webp</image:loc>
+      <image:title>Gokul KP - Professional Video Editor Dubai</image:title>
+      <image:caption>Cinematic video editing and vertical reels production for high-growth B2B and B2C brands in UAE.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gokul-folio.vercel.app/assets/images/profile/gokul-kp-videographer-dubai.webp</image:loc>
+      <image:title>Gokul KP - Commercial Videographer Dubai</image:title>
+      <image:caption>Premium commercial videography and photography for brands in the GCC region.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gokul-folio.vercel.app/assets/images/profile/gokul-kp-ad-creative-specialist.webp</image:loc>
+      <image:title>Gokul KP - Ad Creative Specialist UAE</image:title>
+      <image:caption>High-converting paid ad creative design and full-funnel lead generation in UAE and Oman.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://gokul-folio.vercel.app/video</loc>

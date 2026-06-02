@@ -9,9 +9,9 @@ export interface ExperienceItem {
 
 export const bio = {
     name: "Gokul KP",
-    role: "Performance Marketer & Creative Director",
-    description: "I build ads that actually convert — not just look good.",
-    longDescription: "I am a performance marketer who designs and builds high-converting ad creatives. 3+ years scaling brands across the GCC (UAE & Oman) through structured media buying and vertical content production. Focused on the intersection of data-driven funnel engineering and premium brand aesthetics."
+    role: "Premium Video Producer & Growth Strategist",
+    description: "I build ads that convert — not just look good.",
+    longDescription: "Blending cinematic art with high-conversion performance marketing.\n\nI am a premium performance marketer and video producer scaling brands across the GCC (UAE & Oman) through structured media buying, vertical content production, and advanced marketing automation. I focus on the intersection of data-driven funnel engineering and premium brand aesthetics, generating qualified leads and attributed revenue for both B2B commercial entities and B2C retail brands."
 };
 
 export const experiences: ExperienceItem[] = [

@@ -85,12 +85,12 @@ export default function AquaCareCaseStudy() {
             </p>
         </div>
 
-        <div className="aqua-hero-title">Aqua Care UAE: <br/>The Precision Funnel.</div>
-        <div className="aqua-hero-sub text-xl font-medium text-zinc-500">I architected a full-funnel Meta system that turned a commodity product into a high-converting lead machine.</div>
+        <div className="aqua-hero-title">Aqua Care UAE: <br/>The B2B &amp; B2C Growth Arc.</div>
+        <div className="aqua-hero-sub text-xl font-medium text-zinc-500">I architected a multi-tiered Meta campaign system targeting both B2C residential homeowners and B2B commercial building procurement.</div>
 
         <div className="aqua-meta-row">
           <div className="aqua-meta-item">Client<span>Aqua Care UAE</span></div>
-          <div className="aqua-meta-item">Industry<span>Water Treatment</span></div>
+          <div className="aqua-meta-item">Industry<span>Water Treatment (B2B &amp; B2C)</span></div>
           <div className="aqua-meta-item">Platform<span>Meta Ads</span></div>
           <div className="aqua-meta-item">Duration<span>Dec 2025 – Mar 2026</span></div>
           <div className="aqua-meta-item">Market<span>UAE & Oman</span></div>
@@ -120,11 +120,11 @@ export default function AquaCareCaseStudy() {
         <div className="aqua-two-col">
           <div className="aqua-context-card">
             <h4>The brief</h4>
-            <p>Generate direct sales and qualified leads for 6 water treatment products across UAE market — from low-ticket filters (AED 150) to high-ticket softeners (AED 5,000) — using Meta Ads only.</p>
+            <p>Generate direct sales and qualified leads for water treatment systems across the UAE — spanning residential B2C products (shower filters, water dispensers) and premium B2B commercial filtration contracts (offices, villas, and building-scale water softeners).</p>
           </div>
           <div className="aqua-context-card">
             <h4>The challenge</h4>
-            <p>Wide price range required entirely different funnel strategies per product. Budget was limited, so every dirham needed to do specific work — awareness, consideration, or conversion.</p>
+            <p>Capturing both residential B2C buyers and commercial B2B procurement managers. Since low-ticket filters and high-ticket softeners have entirely different sales cycle timelines, we had to isolate audiences and build customized conversion funnels.</p>
           </div>
         </div>
 
