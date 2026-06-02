@@ -51,6 +51,7 @@ export const mediaRouter = router({
                 .values({
                     url,
                     type: input.fileType,
+                    name: input.fileName,
                     width: input.width,
                     height: input.height,
                 })
@@ -72,6 +73,7 @@ export const mediaRouter = router({
                 .values({
                     url: input.url,
                     type: input.type,
+                    name: input.title || 'Embedded Video',
                 })
                 .returning();
             return result[0];

@@ -108,6 +108,7 @@ export const media = sqliteTable("media", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   url: text("url").notNull(),
   type: text("type").notNull(), // image/video
+  name: text("name"),
   width: integer("width"),
   height: integer("height"),
   createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),

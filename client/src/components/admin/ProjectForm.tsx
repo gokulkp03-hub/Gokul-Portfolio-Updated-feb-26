@@ -138,12 +138,23 @@ export function ProjectForm({ initialData, onSuccess, onCancel, defaultCategory 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
+        // Clean status value and ensure it is lowercase and valid
+        const cleanStatus = (formData.status || "draft").toLowerCase().trim();
+        const finalStatus = ["draft", "published", "scheduled"].includes(cleanStatus)
+            ? (cleanStatus as "draft" | "published" | "scheduled")
+            : "draft";
+
+        const submitData = {
+            ...formData,
+            status: finalStatus,
+        };
+
         try {
             if (isEditing) {
-                await updateMutation.mutateAsync({ id: initialData.id, ...formData });
+                await updateMutation.mutateAsync({ id: initialData.id, ...submitData });
                 toast.success("Project updated!");
             } else {
-                await createMutation.mutateAsync(formData);
+                await createMutation.mutateAsync(submitData);
                 toast.success("Project created!");
             }
             onSuccess();

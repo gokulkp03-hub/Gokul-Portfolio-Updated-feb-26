@@ -14,7 +14,8 @@ import {
     CheckCircle2,
     XCircle,
     Plus,
-    CheckSquare
+    CheckSquare,
+    Copy
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -125,7 +126,11 @@ export default function MediaLibrary() {
     };
 
     const copyUrl = (url: string) => {
-        navigator.clipboard.writeText(url);
+        const resolved = getMediaUrl(url);
+        const absoluteUrl = resolved.startsWith("http")
+            ? resolved
+            : `${window.location.origin}${resolved.startsWith("/") ? "" : "/"}${resolved}`;
+        navigator.clipboard.writeText(absoluteUrl);
         toast.success("URL copied to clipboard");
     };
 
@@ -246,6 +251,13 @@ export default function MediaLibrary() {
                                             </div>
                                             <span className="text-[10px] text-neutral-500 uppercase font-bold tracking-widest">Video</span>
                                         </div>
+                                    ) : (item.type === "application/pdf" || item.url.toLowerCase().endsWith(".pdf")) ? (
+                                        <div className="flex flex-col items-center gap-2">
+                                            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
+                                                <FileIcon className="w-6 h-6 text-red-500" />
+                                            </div>
+                                            <span className="text-[10px] text-red-500 uppercase font-bold tracking-widest">PDF Document</span>
+                                        </div>
                                     ) : (
                                         <div className="flex flex-col items-center gap-2">
                                             <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center">
@@ -257,16 +269,21 @@ export default function MediaLibrary() {
 
                                     {/* Overlay Actions */}
                                     <div className="absolute inset-0 bg-neutral-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
-                                        <Button size="icon" variant="secondary" className="bg-white/10 hover:bg-white text-white hover:text-black rounded-lg w-9 h-9" onClick={() => copyUrl(item.url)}>
+                                        <Button size="icon" variant="secondary" className="bg-white/10 hover:bg-white text-white hover:text-black rounded-lg w-9 h-9" onClick={() => window.open(getMediaUrl(item.url), "_blank")} title="Open File">
                                             <ExternalLink className="w-4 h-4" />
                                         </Button>
-                                        <Button size="icon" variant="destructive" className="bg-red-500/20 hover:bg-red-500 text-red-500 hover:text-white rounded-lg w-9 h-9 border border-red-500/30" onClick={() => handleDelete(item.id)}>
+                                        <Button size="icon" variant="secondary" className="bg-white/10 hover:bg-white text-white hover:text-black rounded-lg w-9 h-9" onClick={() => copyUrl(item.url)} title="Copy Link">
+                                            <Copy className="w-4 h-4" />
+                                        </Button>
+                                        <Button size="icon" variant="destructive" className="bg-red-500/20 hover:bg-red-500 text-red-500 hover:text-white rounded-lg w-9 h-9 border border-red-500/30" onClick={() => handleDelete(item.id)} title="Delete Asset">
                                             <Trash2 className="w-4 h-4" />
                                         </Button>
                                     </div>
                                 </div>
-                                <div className="p-3 border-t border-neutral-800 bg-neutral-900/50">
-                                    <p className="text-[10px] text-neutral-500 font-mono truncate">{item.url.split('/').pop()}</p>
+                                <div className="p-3 border-t border-neutral-800 bg-neutral-900/50 min-h-[48px] flex items-center">
+                                    <p className="text-[10px] text-neutral-400 font-mono break-all line-clamp-2 w-full" title={(item as any).name || item.url.split('/').pop()}>
+                                        {(item as any).name || item.url.split('/').pop()}
+                                    </p>
                                 </div>
                             </div>
                         ))}

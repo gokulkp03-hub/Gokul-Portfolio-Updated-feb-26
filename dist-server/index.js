@@ -143,6 +143,7 @@ var media = sqliteTable("media", {
   url: text("url").notNull(),
   type: text("type").notNull(),
   // image/video
+  name: text("name"),
   width: integer("width"),
   height: integer("height"),
   createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
@@ -478,7 +479,7 @@ var projectRouter = router({
       solution: z2.string().optional(),
       results: z2.array(z2.string()).optional(),
       tools: z2.array(z2.string()).optional(),
-      status: z2.enum(["draft", "published", "scheduled"]).default("draft"),
+      status: z2.preprocess((val) => typeof val === "string" ? val.toLowerCase().trim() : val, z2.enum(["draft", "published", "scheduled"])).default("draft"),
       featured: z2.boolean().default(false),
       sortOrder: z2.number().default(0),
       publishDate: z2.date().optional()
@@ -515,7 +516,7 @@ var projectRouter = router({
       solution: z2.string().optional(),
       results: z2.array(z2.string()).optional(),
       tools: z2.array(z2.string()).optional(),
-      status: z2.enum(["draft", "published", "scheduled"]).optional(),
+      status: z2.preprocess((val) => typeof val === "string" ? val.toLowerCase().trim() : val, z2.enum(["draft", "published", "scheduled"])).optional(),
       featured: z2.boolean().optional(),
       sortOrder: z2.number().optional(),
       publishDate: z2.date().optional()
@@ -609,6 +610,7 @@ var mediaRouter = router({
     const result = await db.insert(media).values({
       url,
       type: input.fileType,
+      name: input.fileName,
       width: input.width,
       height: input.height
     }).returning();
@@ -624,7 +626,8 @@ var mediaRouter = router({
   ).mutation(async ({ input }) => {
     const result = await db.insert(media).values({
       url: input.url,
-      type: input.type
+      type: input.type,
+      name: input.title || "Embedded Video"
     }).returning();
     return result[0];
   }),
