@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Play, Camera, TrendingUp, LayoutGrid } from "lucide-react";
+import { Menu, X, ChevronDown, Play, Camera, TrendingUp, LayoutGrid, MessageCircle } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -205,12 +205,22 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile Toggle */}
-                    <div className="flex items-center gap-4 md:hidden">
+                    <div className="flex items-center gap-3 md:hidden">
                         <ThemeToggle />
+                        <a
+                            href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-9 h-9 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-500"
+                            aria-label="Chat on WhatsApp"
+                        >
+                            <MessageCircle className="w-4 h-4" fill="currentColor" />
+                        </a>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="text-foreground p-2 relative z-[120]"
                             aria-label="Toggle menu"
+                            aria-expanded={isOpen}
                         >
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -45,7 +44,7 @@
   --color-marketing: hsl(var(--marketing-accent));
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Outfit", "SF Pro Display", "Inter", sans-serif;
+  --font-display: "Clash Display", "Outfit", "SF Pro Display", "Inter", sans-serif;
 }
 
 @layer base {
@@ -319,6 +318,20 @@
 
   50% {
     opacity: 0.5;
+  }
+}
+
+/* =============================================
+   ACCESSIBILITY: Reduced Motion
+   Respects users with vestibular disorders.
+   Disables all CSS animations + transitions.
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

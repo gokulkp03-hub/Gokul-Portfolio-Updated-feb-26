@@ -33,7 +33,7 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
 export function GrowthEngine() {
     // Select the key case studies for the homepage
     const keyCaseStudies = marketingCampaigns.filter(c =>
-        ["prepmeal-launch", "beyondcars-lead-engine", "sias-group-b2b", "steaburg-local-seo"].includes(c.slug)
+        ["prepmeal-launch", "beyondcars-lead-engine", "sias-group-marketing-scale", "steaburg-local-seo"].includes(c.slug)
     );
 
     return (
@@ -63,8 +63,24 @@ export function GrowthEngine() {
                                     transition={{ delay: i * 0.1, duration: 0.6 }}
                                     className="group relative glass-card p-8 md:p-12 border border-border/50 hover:border-orange-500/30 transition-all cursor-pointer overflow-hidden"
                                 >
+                                {/* Background Case Study Image */}
+                                {study.visuals && study.visuals[0] && (
+                                    <div className="absolute inset-0 z-0 overflow-hidden">
+                                        <img
+                                            src={study.visuals[0]}
+                                            alt={`${study.client} Preview`}
+                                            className="w-full h-full object-cover opacity-15 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                                            loading="lazy"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
+                                            }}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/40" />
+                                    </div>
+                                )}
+
                                 {/* Background Accent */}
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-3xl group-hover:bg-orange-500/10 transition-colors" />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-3xl group-hover:bg-orange-500/10 transition-colors z-0" />
 
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-3 mb-6">

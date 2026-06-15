@@ -9,6 +9,8 @@ import { AmbientParticles } from "@/components/ui/AmbientParticles";
 import { RevealText } from "@/components/ui/RevealText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
+import { WorkPreviewStrip } from "@/components/home/WorkPreviewStrip";
+import { TestimonialsStrip } from "@/components/home/TestimonialsStrip";
 import { ProofStrip } from "@/components/home/ProofStrip";
 import { proof } from "@/data/proof";
 import { GrowthEngine } from "@/components/home/GrowthEngine";
@@ -80,6 +82,21 @@ export default function Home() {
         {/* New 3D Tubes Background - Hidden on mobile for performance */}
         <div className="hidden md:block absolute inset-0">
           <TubesBackground />
+        </div>
+
+        {/* Looping Cinematic Background Video */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover opacity-15 filter grayscale contrast-125"
+          >
+            <source src="https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
         </div>
 
         {/* Spot Light Effect */}
@@ -159,35 +176,17 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="flex flex-col items-center gap-2"
-            >
-              <span className="text-[10px] uppercase tracking-[0.4em] text-orange-500 font-bold">Identity</span>
-              <div className="text-xs font-semibold tracking-widest text-muted-foreground uppercase flex flex-wrap justify-center gap-x-4 gap-y-2">
-                <span>Digital Marketer</span>
-                <span className="text-muted-foreground/30">•</span>
-                <span>Videographer</span>
-                <span className="text-muted-foreground/30">•</span>
-                <span>Editor</span>
-                <span className="text-muted-foreground/30">•</span>
-                <span>Photographer</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.6 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2"
             >
               <MagneticButton>
-                <Link href="/portfolio">
-                  <span className="btn-primary rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer">View Work</span>
+                <Link href="/contact">
+                  <span className="btn-primary rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer bg-orange-500 border-orange-500 hover:bg-orange-600">Let's Talk</span>
                 </Link>
               </MagneticButton>
               <MagneticButton>
-                <Link href="/contact">
-                  <span className="btn-outline rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer">Let's Talk</span>
+                <Link href="/portfolio">
+                  <span className="btn-outline rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer">View Work</span>
                 </Link>
               </MagneticButton>
             </motion.div>
@@ -232,19 +231,30 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-6 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
-                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
-                  <TrendingUp className="w-6 h-6" />
+                <div className="aspect-video w-full rounded-2xl overflow-hidden relative border border-border/50">
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop"
+                    alt="Performance Marketing Analytics"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-orange-500/10 backdrop-blur-md border border-orange-500/20 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Performance Marketing</h3>
-                <p className="text-muted-foreground leading-relaxed font-light text-sm">
-                  Meta Ads, Campaign Strategy, Performance Content. I build funnels that turn passive scrollers into customers, with every campaign tracked to exact ROAS.
-                </p>
+                <div>
+                  <h3 className="text-2xl font-display font-bold uppercase tracking-tight mb-3">Performance Marketing</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                    Meta Ads, Campaign Strategy, Performance Content. I build funnels that turn passive scrollers into customers, with every campaign tracked to exact ROAS.
+                  </p>
+                </div>
               </div>
-              <div className="mt-8 pt-4">
+              <div className="mt-8 pt-4 border-t border-border/50">
                 <Link href="/portfolio">
                   <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
                     View Campaigns <ArrowRight className="w-3.5 h-3.5" />
@@ -259,19 +269,30 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-6 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
-                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
-                  <Play className="w-6 h-6" />
+                <div className="aspect-video w-full rounded-2xl overflow-hidden relative border border-border/50">
+                  <img
+                    src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop"
+                    alt="Video Production Camera"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-blue-500/10 backdrop-blur-md border border-blue-500/20 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
+                    <Play className="w-5 h-5 fill-current" />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Video Production</h3>
-                <p className="text-muted-foreground leading-relaxed font-light text-sm">
-                  Shoot + Edit, Reels, TikToks, high-impact Ad Creatives. Cinematic high-retention video production tailored specifically for organic reach and paid conversion.
-                </p>
+                <div>
+                  <h3 className="text-2xl font-display font-bold uppercase tracking-tight mb-3">Video Production</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                    Shoot + Edit, Reels, TikToks, high-impact Ad Creatives. Cinematic high-retention video production tailored specifically for organic reach and paid conversion.
+                  </p>
+                </div>
               </div>
-              <div className="mt-8 pt-4">
+              <div className="mt-8 pt-4 border-t border-border/50">
                 <Link href="/portfolio">
                   <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
                     Watch Reels <ArrowRight className="w-3.5 h-3.5" />
@@ -286,19 +307,30 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-6 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
-                  <Camera className="w-6 h-6" />
+                <div className="aspect-video w-full rounded-2xl overflow-hidden relative border border-border/50">
+                  <img
+                    src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop"
+                    alt="Creative Ad Design"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                    <Camera className="w-5 h-5" />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Ad Creatives & Social</h3>
-                <p className="text-muted-foreground leading-relaxed font-light text-sm">
-                  Social Media Creatives, Copywriting, Branding, Visual Systems. Designing high-click-through ad designs and visual content that communicates premium brand authority.
-                </p>
+                <div>
+                  <h3 className="text-2xl font-display font-bold uppercase tracking-tight mb-3">Ad Creatives & Social</h3>
+                  <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                    Social Media Creatives, Copywriting, Branding, Visual Systems. Designing high-click-through ad designs and visual content that communicates premium brand authority.
+                  </p>
+                </div>
               </div>
-              <div className="mt-8 pt-4">
+              <div className="mt-8 pt-4 border-t border-border/50">
                 <Link href="/portfolio">
                   <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
                     See Creatives <ArrowRight className="w-3.5 h-3.5" />
@@ -315,6 +347,9 @@ export default function Home() {
 
       {/* 🎯 Results & Performance Section */}
       <PerformanceProof />
+
+      {/* 💬 Testimonials — social proof break */}
+      <TestimonialsStrip />
 
       {/* 🧱 Featured Work Section */}
       <section className="section overflow-hidden">
@@ -339,6 +374,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 🎬 Video & Photo Work Preview */}
+      <WorkPreviewStrip />
+
       {/* Workflow Process Strip */}
       <section className="py-24 bg-zinc-900/60 border-y border-border/20 overflow-hidden relative">
         <div className="container">
@@ -357,7 +395,7 @@ export default function Home() {
               <div key={index} className="p-8 rounded-3xl bg-zinc-950/40 border border-white/5 relative hover:border-orange-500/20 transition-all duration-300">
                 <div className="text-5xl font-display font-black text-orange-500/10 absolute top-4 right-6">{proc.step}</div>
                 <h3 className="text-xl font-display font-bold text-white mb-3 tracking-wide">{proc.title}</h3>
-                <p className="text-white/40 text-xs font-light leading-relaxed">{proc.desc}</p>
+                <p className="text-white/60 text-xs font-light leading-relaxed">{proc.desc}</p>
               </div>
             ))}
           </div>

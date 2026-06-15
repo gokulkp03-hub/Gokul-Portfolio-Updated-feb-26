@@ -24,7 +24,7 @@ const RESULTS = [
         metric: "20k+ Conversions",
         result: "AED 180 CPL",
         label: "Conversion Funnel",
-        image: "/assets/images/brands/Food-Photography/Cheesecake.jpg"
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg"
     }
 ];
 
@@ -98,10 +98,15 @@ export default function PerformanceProof() {
                             <p className="text-white/40 text-sm font-light mt-1">Detailed breakdown of strategy, targeting, and ROI metrics.</p>
                         </div>
                     </div>
-                    <button className="btn-primary rounded-full px-8 py-4 text-sm group flex items-center gap-2">
+                    <a
+                        href="/assets/SteaburgStrategy.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary rounded-full px-8 py-4 text-sm group flex items-center gap-2 cursor-pointer"
+                    >
                         Download Full Report
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>

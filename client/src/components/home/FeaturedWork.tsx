@@ -43,6 +43,45 @@ const FEATURED_ITEMS = [
         videoUrl: "",
         description: "Built a premium storefront e-commerce experience with high-contrast luxury photography and optimized user flows.",
         accentClass: "text-orange-400 bg-orange-500/10 border-orange-500/20"
+    },
+    {
+        id: "prepmeal-featured",
+        title: "PrepMeal Social Growth",
+        client: "PrepMeal",
+        category: "Growth & Content",
+        metric: "3.5x Growth",
+        image: "/assets/images/case-studies/prepmeal/Mockup.png",
+        path: "/marketing/prepmeal",
+        isVideo: false,
+        videoUrl: "",
+        description: "Establishing digital presence in the UAE. Content planning, reels coordination, and WhatsApp lead flow scaling.",
+        accentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20"
+    },
+    {
+        id: "entrepreneur-mindset-featured",
+        title: "The Entrepreneur Mindset",
+        client: "Social Media Campaign",
+        category: "Personal Branding",
+        metric: "100K+ Views",
+        image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.jpg",
+        path: "/portfolio/video/entrepreneur-mindset",
+        isVideo: true,
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.mp4",
+        description: "High-impact narrative brand story for a Dubai-based entrepreneur, building credibility and personal brand authority.",
+        accentClass: "text-pink-400 bg-pink-500/10 border-pink-500/20"
+    },
+    {
+        id: "steaburg-brand-film-featured",
+        title: "Steaburg Brand Film",
+        client: "Steaburg",
+        category: "Video Production",
+        metric: "Cinematic Product",
+        image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.jpg",
+        path: "/portfolio/video/steaburg-brand-film",
+        isVideo: true,
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.mp4",
+        description: "Cinematic brand film for Steaburg showcasing the food, the premium atmosphere, and the brand identity.",
+        accentClass: "text-amber-400 bg-amber-500/10 border-amber-500/20"
     }
 ];
 

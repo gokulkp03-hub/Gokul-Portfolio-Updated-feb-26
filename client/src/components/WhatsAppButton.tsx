@@ -6,16 +6,8 @@ export default function WhatsAppButton() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const toggleVisibility = () => {
-            if (window.scrollY > 300) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
-
-        window.addEventListener("scroll", toggleVisibility);
-        return () => window.removeEventListener("scroll", toggleVisibility);
+        // Show immediately — always visible, no scroll threshold
+        setIsVisible(true);
     }, []);
 
     return (
@@ -29,7 +21,7 @@ export default function WhatsAppButton() {
                         className="pointer-events-auto flex items-center gap-2 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-full p-2 pr-6 shadow-2xl md:hidden"
                     >
                         <a 
-                            href="https://wa.me/971545264632" 
+                            href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
@@ -42,9 +34,8 @@ export default function WhatsAppButton() {
                         </div>
                     </motion.div>
 
-                    {/* Desktop Floating Button */}
                     <motion.a
-                        href="https://wa.me/971545264632"
+                        href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
                         target="_blank"
                         rel="noopener noreferrer"
                         initial={{ scale: 0, opacity: 0 }}
@@ -52,17 +43,24 @@ export default function WhatsAppButton() {
                         exit={{ scale: 0, opacity: 0 }}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="hidden md:flex pointer-events-auto w-16 h-16 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors items-center justify-center cursor-pointer relative group"
+                        className="hidden md:flex pointer-events-auto w-16 h-16 bg-green-500 text-white rounded-full shadow-2xl hover:bg-green-600 transition-colors items-center justify-center cursor-pointer relative group"
                         aria-label="Chat on WhatsApp"
                     >
                         <MessageCircle size={28} fill="currentColor" />
+                        {/* Pulse ring 1 */}
                         <motion.div
-                            animate={{ scale: [1, 1.6], opacity: [0.3, 0] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                            animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
                             className="absolute inset-0 rounded-full bg-green-500"
                         />
-                        <span className="absolute right-full mr-4 px-4 py-2 bg-black text-white rounded-xl text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-white/10">
-                            Chat on WhatsApp
+                        {/* Pulse ring 2 — offset */}
+                        <motion.div
+                            animate={{ scale: [1, 2.2], opacity: [0.3, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
+                            className="absolute inset-0 rounded-full bg-green-500"
+                        />
+                        <span className="absolute right-full mr-4 px-4 py-2 bg-black text-white rounded-xl text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-white/10 shadow-xl">
+                            💬 Chat on WhatsApp
                         </span>
                     </motion.a>
                 </div>
