@@ -298,19 +298,22 @@ export default function About() {
                         </section>
 
                         {/* Personal CTA */}
-                        <section className="bg-foreground text-background rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+                        <section className="glass-card text-foreground rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-border/50 hover:border-orange-500/20 transition-colors duration-500">
+                            {/* Background Accent */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-500/5 blur-[100px] rounded-full pointer-events-none" />
+
                             <div className="relative z-10 max-w-2xl mx-auto">
-                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic">Interested in working together?</h2>
-                                <p className="text-xl text-background/90 font-normal mb-12">Let's discuss how we can scale your brand's presence today.</p>
+                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic text-white">Interested in working together?</h2>
+                                <p className="text-xl text-muted-foreground font-light mb-12">Let's discuss how we can scale your brand's presence today.</p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                                     <Link href="/services">
-                                        <a className="btn bg-background text-foreground px-12 py-5 rounded-full font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">
+                                        <a className="btn bg-orange-500 text-white px-12 py-5 rounded-full font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">
                                             Work With Me
                                             <ArrowUpRight className="w-5 h-5" />
                                         </a>
                                     </Link>
                                     <Link href="/contact">
-                                        <a className="text-background/80 hover:text-background font-medium inline-flex items-center gap-1 transition-colors">
+                                        <a className="text-muted-foreground hover:text-white font-medium inline-flex items-center gap-1 transition-colors">
                                             Agency Recruiters: Let's Connect
                                             <ArrowUpRight className="w-4 h-4" />
                                         </a>

@@ -231,28 +231,17 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="p-6 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
-                <div className="aspect-video w-full rounded-2xl overflow-hidden relative border border-border/50">
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop"
-                    alt="Performance Marketing Analytics"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-orange-500/10 backdrop-blur-md border border-orange-500/20 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
-                    <TrendingUp className="w-5 h-5" />
-                  </div>
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                  <TrendingUp className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-display font-bold uppercase tracking-tight mb-3">Performance Marketing</h3>
-                  <p className="text-muted-foreground leading-relaxed font-light text-sm">
-                    Meta Ads, Campaign Strategy, Performance Content. I build funnels that turn passive scrollers into customers, with every campaign tracked to exact ROAS.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Performance Marketing</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                  Meta Ads, Campaign Strategy, Performance Content. I build funnels that turn passive scrollers into customers, with every campaign tracked to exact ROAS.
+                </p>
               </div>
               <div className="mt-8 pt-4 border-t border-border/50">
                 <Link href="/portfolio">
@@ -269,28 +258,17 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-6 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
-                <div className="aspect-video w-full rounded-2xl overflow-hidden relative border border-border/50">
-                  <img
-                    src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop"
-                    alt="Video Production Camera"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-blue-500/10 backdrop-blur-md border border-blue-500/20 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">
-                    <Play className="w-5 h-5 fill-current" />
-                  </div>
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                  <Play className="w-6 h-6 fill-current ml-0.5" />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-display font-bold uppercase tracking-tight mb-3">Video Production</h3>
-                  <p className="text-muted-foreground leading-relaxed font-light text-sm">
-                    Shoot + Edit, Reels, TikToks, high-impact Ad Creatives. Cinematic high-retention video production tailored specifically for organic reach and paid conversion.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Video Production</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                  Shoot + Edit, Reels, TikToks, high-impact Ad Creatives. Cinematic high-retention video production tailored specifically for organic reach and paid conversion.
+                </p>
               </div>
               <div className="mt-8 pt-4 border-t border-border/50">
                 <Link href="/portfolio">
@@ -307,28 +285,17 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="p-6 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
-                <div className="aspect-video w-full rounded-2xl overflow-hidden relative border border-border/50">
-                  <img
-                    src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop"
-                    alt="Creative Ad Design"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
-                    <Camera className="w-5 h-5" />
-                  </div>
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500">
+                  <Camera className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-display font-bold uppercase tracking-tight mb-3">Ad Creatives & Social</h3>
-                  <p className="text-muted-foreground leading-relaxed font-light text-sm">
-                    Social Media Creatives, Copywriting, Branding, Visual Systems. Designing high-click-through ad designs and visual content that communicates premium brand authority.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-display font-bold uppercase tracking-tight">Ad Creatives & Social</h3>
+                <p className="text-muted-foreground leading-relaxed font-light text-sm">
+                  Social Media Creatives, Copywriting, Branding, Visual Systems. Designing high-click-through ad designs and visual content that communicates premium brand authority.
+                </p>
               </div>
               <div className="mt-8 pt-4 border-t border-border/50">
                 <Link href="/portfolio">
@@ -347,9 +314,6 @@ export default function Home() {
 
       {/* 🎯 Results & Performance Section */}
       <PerformanceProof />
-
-      {/* 💬 Testimonials — social proof break */}
-      <TestimonialsStrip />
 
       {/* 🧱 Featured Work Section */}
       <section className="section overflow-hidden">
@@ -407,12 +371,15 @@ export default function Home() {
 
       {/* 💰 Final CTA Section */}
       <section ref={ctaRef} className="section container border-t border-border/10">
-        <div className="bg-foreground text-background rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
+        <div className="glass-card text-foreground rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden border border-border/50 hover:border-orange-500/20 transition-colors duration-500">
+          {/* Background Accent */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
+
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic leading-none">
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic leading-none text-white">
               Let's build something <br /> that actually grows <br /> your brand.
             </h2>
-            <p className="text-background/60 text-base md:text-lg mb-10 font-light max-w-xl mx-auto">
+            <p className="text-muted-foreground text-base md:text-lg mb-10 font-light max-w-xl mx-auto">
               Ready to scale your leads and revenue with verified performance marketing and cinematic media? Let's connect.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mt-12">
@@ -425,10 +392,10 @@ export default function Home() {
               </MagneticButton>
               <MagneticButton>
                 <a 
-                  href="https://wa.me/971545264632" 
+                  href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project." 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="btn border border-background/20 hover:bg-background/10 text-background px-10 py-5 rounded-full text-xl w-full sm:w-auto transition-all block text-center"
+                  className="btn border border-border/50 hover:bg-white/5 text-foreground px-10 py-5 rounded-full text-xl w-full sm:w-auto transition-all block text-center"
                 >
                   WhatsApp
                 </a>
