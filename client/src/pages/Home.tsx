@@ -66,8 +66,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background selection:bg-accent selection:text-white overflow-hidden relative">
-      {/* Background grain texture */}
-      <div className="bg-grain hidden md:dark:block" />
 
       <motion.div 
         className="fixed inset-0 pointer-events-none bg-orange-500/10 z-0 mix-blend-screen" 

@@ -170,6 +170,7 @@ function App() {
         <TooltipProvider>
           <CustomCursor />
           <Toaster />
+          <div className="bg-grain" />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
