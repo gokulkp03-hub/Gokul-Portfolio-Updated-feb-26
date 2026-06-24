@@ -374,7 +374,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/5 blur-[120px] rounded-full pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic leading-none text-white">
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic leading-none dark:text-white text-foreground">
               Let's build something <br /> that actually grows <br /> your brand.
             </h2>
             <p className="text-muted-foreground text-base md:text-lg mb-10 font-light max-w-xl mx-auto">

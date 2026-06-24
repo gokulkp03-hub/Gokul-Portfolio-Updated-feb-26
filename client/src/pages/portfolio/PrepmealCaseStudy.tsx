@@ -166,6 +166,64 @@ export default function PrepmealCaseStudy() {
                     </p>
                 </div>
             </section>
+
+            {/* Influencer Collaborations */}
+            <section className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-border/40 pt-20">
+                <div className="md:col-span-4">
+                    <h2 className="text-2xl font-display font-bold text-foreground uppercase tracking-tight">Influencer Collaborations</h2>
+                    <p className="text-sm text-muted-foreground mt-3 leading-relaxed font-light">
+                        We collaborated with local fitness and lifestyle content creators to build organic social proof and drive subscription signups in the UAE.
+                    </p>
+                </div>
+                <div className="md:col-span-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="bg-muted/10 border border-border/40 hover:border-emerald-500/20 transition-all rounded-3xl overflow-hidden p-4 flex flex-col gap-4 shadow-lg">
+                            <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-border/30">
+                                <iframe
+                                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=PrepMeal_Influencer_Collab_gina_fitnfab__vj6whx"
+                                    className="w-full h-full border-0"
+                                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
+                            <div className="px-1">
+                                <h4 className="text-sm font-bold text-foreground mb-1 uppercase tracking-tight">Gina Fit & Fab</h4>
+                                <p className="text-muted-foreground text-xs leading-relaxed font-light">Macro-friendly meal prep walkthrough and taste test.</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-muted/10 border border-border/40 hover:border-emerald-500/20 transition-all rounded-3xl overflow-hidden p-4 flex flex-col gap-4 shadow-lg">
+                            <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-border/30">
+                                <iframe
+                                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Prepmeal_Influencer_Collab_1_aa1lkx"
+                                    className="w-full h-full border-0"
+                                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
+                            <div className="px-1">
+                                <h4 className="text-sm font-bold text-foreground mb-1 uppercase tracking-tight">Daily Routine</h4>
+                                <p className="text-muted-foreground text-xs leading-relaxed font-light">Day-in-the-life sharing nutrition routine and meal scheduling.</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-muted/10 border border-border/40 hover:border-emerald-500/20 transition-all rounded-3xl overflow-hidden p-4 flex flex-col gap-4 shadow-lg">
+                            <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-border/30">
+                                <iframe
+                                    src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=PrepMeal_Influencer_Collab_u3txhn"
+                                    className="w-full h-full border-0"
+                                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
+                            <div className="px-1">
+                                <h4 className="text-sm font-bold text-foreground mb-1 uppercase tracking-tight">UGC Taste Test</h4>
+                                <p className="text-muted-foreground text-xs leading-relaxed font-light">Unboxing and food quality review highlighting freshness.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
       </div>
     </div>

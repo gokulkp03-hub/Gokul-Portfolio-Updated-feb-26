@@ -123,7 +123,7 @@ export default function PortfolioLayout() {
                 return cat === "video" || id === "beyond-cars-showcase" || id === "wedding-highlight-1" || id === "boss-branding-1" || id === "product-showcase-1" || id === "steaburg-brand-film" || id === "steaburg-reel-social";
             }
             if (activeFilter === "photo") {
-                return cat === "photo" || id === "galaxy-star-perfumes" || id === "food-pancakes-1" || id === "food-cheesecake-1" || id === "product-photo-1";
+                return cat === "photo" || id === "food-pancakes-1" || id === "food-cheesecake-1" || id === "product-photo-1";
             }
             if (activeFilter === "social") {
                 return cat === "social" || id === "prepmeal-growth" || id === "steaburg-seo" || id === "instagram-reels-1";
@@ -308,12 +308,21 @@ export default function PortfolioLayout() {
                             className="relative w-full max-w-4xl aspect-video rounded-[2.5rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl z-10"
                         >
                             {selectedItem.videoUrl ? (
-                                <video 
-                                    src={selectedItem.videoUrl}
-                                    className="w-full h-full object-contain"
-                                    controls
-                                    autoPlay
-                                />
+                                selectedItem.videoUrl.includes("embed") || selectedItem.videoUrl.includes("player.cloudinary.com") ? (
+                                    <iframe 
+                                        src={selectedItem.videoUrl}
+                                        className="w-full h-full border-0 rounded-[2rem]"
+                                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <video 
+                                        src={selectedItem.videoUrl}
+                                        className="w-full h-full object-contain"
+                                        controls
+                                        autoPlay
+                                    />
+                                )
                             ) : (
                                 <img 
                                     src={selectedItem.thumbnail} 

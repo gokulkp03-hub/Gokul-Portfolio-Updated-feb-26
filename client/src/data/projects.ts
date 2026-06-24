@@ -2,7 +2,7 @@ export interface Project {
     id: string;
     slug: string;
     title: string;
-    category: "video" | "photo" | "editing" | "social" | "ads";
+    category: "video" | "photo" | "editing" | "social" | "ads" | "influencer";
     subcategory?: string;
     thumbnail: string;
     description: string;
@@ -238,20 +238,6 @@ export const projects: Project[] = [
     },
 
     {
-        id: "video-2025-07",
-        slug: "creative-reel-2025",
-        title: "Creative Reel 2025",
-        category: "video",
-        subcategory: "Reels",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.mp4",
-        cloudinaryId: "VIDEO-2025-07-07-20-47-02_qynv0d",
-        description: "A dynamic showcase of creative projects from 2025.",
-        client: "Portfolio",
-        role: "Creator",
-        date: "2025"
-    },
-    {
         id: "wedding-film-5",
         slug: "wedding-highlights-5",
         title: "Wedding Highlights — 5",
@@ -425,7 +411,7 @@ export const projects: Project[] = [
         title: "Premium Product Photography",
         category: "photo",
         subcategory: "Product",
-        thumbnail: "/assets/images/photo/product-1.jpg",
+        thumbnail: "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg",
         description: "High-end product photography for e-commerce and marketing.",
         client: "E-commerce Brand",
         role: "Product Photographer",
@@ -433,9 +419,9 @@ export const projects: Project[] = [
         date: "2024",
         featured: true,
         images: [
-            "/assets/images/photo/product-1.jpg",
-            "/assets/images/photo/product-2.jpg",
-            "/assets/images/photo/product-3.jpg"
+            "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg",
+            "/assets/images/brands/Galaxy-Star/Galaxy 2.jpg",
+            "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg"
         ],
         challenge: "Create consistent, high-quality product images that drive conversions.",
         solution: "Developed a standardized lighting setup and post-processing workflow for brand consistency.",
@@ -452,15 +438,15 @@ export const projects: Project[] = [
         title: "Executive Portraits",
         category: "photo",
         subcategory: "Portraits",
-        thumbnail: "/assets/images/photo/portrait-1.jpg",
+        thumbnail: "/assets/images/brands/Food-Photography/Cheesecake.jpg",
         description: "Professional headshots and portraits for corporate clients.",
         client: "Tech Company",
         role: "Portrait Photographer",
         tools: ["Lightroom", "Photoshop", "Natural Light"],
         date: "2024",
         images: [
-            "/assets/images/photo/portrait-1.jpg",
-            "/assets/images/photo/portrait-2.jpg"
+            "/assets/images/brands/Food-Photography/Cheesecake.jpg",
+            "/assets/images/brands/Food-Photography/Pancakes.jpg"
         ]
     },
 
@@ -471,7 +457,7 @@ export const projects: Project[] = [
         title: "Viral Reels Campaign",
         category: "social",
         subcategory: "Instagram Reels",
-        thumbnail: "/assets/images/social/reel-1.jpg",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/steaburgsharjah_1749307530_3649778156913339989_51220232024_u3srac.jpg",
         description: "High-performing Instagram Reels that drove massive engagement.",
         client: "Fashion Brand",
         role: "Content Creator & Editor",
@@ -495,7 +481,7 @@ export const projects: Project[] = [
         title: "High-Converting Meta Ads",
         category: "ads",
         subcategory: "Meta Ads",
-        thumbnail: "/assets/images/ads/meta-1.jpg",
+        thumbnail: "/assets/images/brands/SIAS-Group/full_layout.png",
         description: "Performance-driven ad creatives that scaled revenue.",
         client: "E-commerce Store",
         role: "Creative Strategist",
@@ -530,6 +516,164 @@ export const projects: Project[] = [
             "/assets/images/brands/Little-Rooster/paperbag.jpg",
             "/assets/images/brands/Little-Rooster/shopping_bag_mockup.jpg"
         ]
+    },
+    // AQUA CARE INFLUENCER COLLABORATIONS
+    {
+        id: "aqua-care-influencer-1",
+        slug: "aqua-care-influencer-collab-1",
+        title: "Influencer Collaboration - Filter Showcase",
+        category: "influencer",
+        subcategory: "Influencer Campaign",
+        thumbnail: "/assets/images/brands/Aqua-Care/Vita bloom.jpg",
+        description: "A lifestyle influencer showcasing the health benefits of Aqua Care shower filters.",
+        client: "Aqua Care UAE",
+        role: "Creative & Media Strategy",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_influencer_marketing_2_bwuudf.mp4",
+        featured: false
+    },
+    {
+        id: "aqua-care-influencer-2",
+        slug: "aqua-care-influencer-collab-2",
+        title: "Influencer Collaboration - Clean Water Campaign",
+        category: "influencer",
+        subcategory: "Influencer Campaign",
+        thumbnail: "/assets/images/brands/Aqua-Care/Filters 2.jpg",
+        description: "Collaboration highlighting the importance of filtered water in daily routines.",
+        client: "Aqua Care UAE",
+        role: "Creative & Media Strategy",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_care_influencer_marketing_ytgetc.mp4",
+        featured: false
+    },
+    // PREPMEAL INFLUENCER COLLABORATIONS
+    {
+        id: "prepmeal-influencer-1",
+        slug: "prepmeal-influencer-collab-1",
+        title: "Influencer Collab - Gina Fit & Fab",
+        category: "influencer",
+        subcategory: "Influencer Campaign",
+        thumbnail: "/assets/images/case-studies/prepmeal/Mockup.png",
+        description: "Fitness influencer Gina showcasing PrepMeal's nutrition and convenience.",
+        client: "PrepMeal",
+        role: "Creative Strategy",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/PrepMeal_Influencer_Collab_gina_fitnfab__vj6whx.mp4",
+        featured: false
+    },
+    {
+        id: "prepmeal-influencer-2",
+        slug: "prepmeal-influencer-collab-2",
+        title: "Influencer Collab - Daily Meal Plan",
+        category: "influencer",
+        subcategory: "Influencer Campaign",
+        thumbnail: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg",
+        description: "Review and day-in-the-life sharing daily nutrition with PrepMeal.",
+        client: "PrepMeal",
+        role: "Creative Strategy",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Prepmeal_Influencer_Collab_1_aa1lkx.mp4",
+        featured: false
+    },
+    {
+        id: "prepmeal-influencer-3",
+        slug: "prepmeal-influencer-collab-3",
+        title: "Influencer Collab - Subscription Unboxing",
+        category: "influencer",
+        subcategory: "Influencer Campaign",
+        thumbnail: "/assets/images/case-studies/prepmeal/Mockup.png",
+        description: "Unboxing and review of PrepMeal subscription food plans.",
+        client: "PrepMeal",
+        role: "Creative Strategy",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/PrepMeal_Influencer_Collab_u3txhn.mp4",
+        featured: false
+    },
+    // AQUA CARE AD CREATIVES
+    {
+        id: "aqua-care-ad-dispenser",
+        slug: "aqua-care-dispenser-cinematic",
+        title: "Aqua Care Dispenser Cinematic Ad",
+        category: "ads",
+        subcategory: "Ad Creative",
+        thumbnail: "/assets/images/brands/Aqua-Care/new.jpg",
+        description: "High-end cinematic commercial for Aqua Care's premium hot/cold water dispensers.",
+        client: "Aqua Care UAE",
+        role: "Director & Editor",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_Dispenser_Cinematic_kwhxvr.mp4",
+        featured: true
+    },
+    {
+        id: "aqua-care-ad-ai-product",
+        slug: "aqua-care-ai-product-video",
+        title: "Aqua Care AI Product Video",
+        category: "ads",
+        subcategory: "AI Video",
+        thumbnail: "/assets/images/brands/Aqua-Care/Filters 2.jpg",
+        description: "A fully AI-generated product showcase video illustrating filtration tech in action.",
+        client: "Aqua Care UAE",
+        role: "AI Creative Strategist",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_fully_AI_Product_Video_qc6l39.mp4",
+        featured: true
+    },
+    {
+        id: "aqua-care-ad-ramadan-dispenser",
+        slug: "aqua-care-ramadan-dispenser-ai",
+        title: "Ramadan Dispenser AI Campaign",
+        category: "ads",
+        subcategory: "AI Video",
+        thumbnail: "/assets/images/brands/Aqua-Care/Oman National Day.jpg",
+        description: "AI-assisted campaign targeting hot water usage during Ramadan meal prep.",
+        client: "Aqua Care UAE",
+        role: "AI Creative Strategist",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_Ramadan_Dispenser_Hot_water_use_AI_Video_yh60pz.mp4",
+        featured: true
+    },
+    {
+        id: "aqua-care-ad-softener-ai",
+        slug: "aqua-care-softener-system-ai",
+        title: "Water Softener System AI Video",
+        category: "ads",
+        subcategory: "AI Video",
+        thumbnail: "/assets/images/brands/Aqua-Care/new.jpg",
+        description: "AI product demonstration illustrating the benefits of scale prevention and soft water.",
+        client: "Aqua Care UAE",
+        role: "AI Creative Strategist",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_Water_softener_system_AI_Video_fmcm0l.mp4",
+        featured: true
+    },
+    // ADDITIONAL VIDEO PRODUCTIONS
+    {
+        id: "little-rooster-creative-video",
+        slug: "little-rooster-creative-video",
+        title: "Little Rooster Brand Video",
+        category: "video",
+        subcategory: "Commercial",
+        thumbnail: "/assets/images/brands/Little-Rooster/Little Rooster Social Media Post.jpeg",
+        description: "Cinematic brand advertisement for specialty chicken eatery Little Rooster.",
+        client: "Little Rooster UAE",
+        role: "Videographer & Editor",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Little_Rooster_creative_ampr17.mp4",
+        featured: true
+    },
+    {
+        id: "healthymeals-creative-video",
+        slug: "healthymeals-creative-video",
+        title: "Healthy Meals Promo Video",
+        category: "video",
+        subcategory: "Commercial",
+        thumbnail: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg",
+        description: "Appetizing promotional video for Healthy Meals subscription food delivery.",
+        client: "Healthy Meals",
+        role: "Videographer & Editor",
+        date: "2024",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Healthymeals_creative_fpdhft.mp4",
+        featured: true
     }
 ];
 

@@ -94,37 +94,51 @@ function Router() {
             {/* Admin Routes */}
             <Route path="/admin">
               <AdminProtectedRoute>
-                <AdminDashboard />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <AdminDashboard />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
             <Route path="/admin/projects">
               <AdminProtectedRoute>
-                <ProjectManager />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <ProjectManager />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
             <Route path="/admin/media">
               <AdminProtectedRoute>
-                <MediaLibrary />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <MediaLibrary />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
             <Route path="/admin/content">
               <AdminProtectedRoute>
-                <ContentManager />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <ContentManager />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
             <Route path="/admin/marketing">
               <AdminProtectedRoute>
-                <MarketingManager />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <MarketingManager />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
             <Route path="/admin/settings">
               <AdminProtectedRoute>
-                <Settings />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <Settings />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
             <Route path="/admin/contact">
               <AdminProtectedRoute>
-                <ContactManager />
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <ContactManager />
+                </Suspense>
               </AdminProtectedRoute>
             </Route>
 
@@ -139,13 +153,15 @@ function Router() {
 }
 
 import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
-import AdminDashboard from "./pages/admin/Dashboard";
-import ProjectManager from "./pages/admin/ProjectManager";
-import MediaLibrary from "./pages/admin/MediaLibrary";
-import ContentManager from "./pages/admin/ContentManager";
-import MarketingManager from "./pages/admin/MarketingManager";
-import Settings from "./pages/admin/Settings";
-import ContactManager from "./pages/admin/ContactManager";
+import { lazy, Suspense } from "react";
+
+const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
+const ProjectManager = lazy(() => import("./pages/admin/ProjectManager"));
+const MediaLibrary = lazy(() => import("./pages/admin/MediaLibrary"));
+const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
+const MarketingManager = lazy(() => import("./pages/admin/MarketingManager"));
+const Settings = lazy(() => import("./pages/admin/Settings"));
+const ContactManager = lazy(() => import("./pages/admin/ContactManager"));
 
 import { CustomCursor } from "@/components/ui/CustomCursor";
 

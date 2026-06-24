@@ -77,7 +77,7 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
         <div className="backface-hidden absolute inset-0 glass-card p-6 md:p-8 border border-border/20 group-hover:border-emerald-500/30 transition-colors overflow-hidden rounded-2xl flex flex-col justify-between bg-card">
           <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-colors pointer-events-none" />
           <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-4">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500">
                 {industry}
               </span>
@@ -85,7 +85,16 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
                  <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
-            <h3 className="text-3xl font-bold mb-4 group-hover:text-emerald-500 transition-colors uppercase tracking-tighter leading-none">{campaign.title}</h3>
+            
+            <div className="mb-3">
+              <span className="text-xs font-bold text-emerald-500 uppercase tracking-wider block mb-0.5">
+                {campaign.client || "Client Campaign"}
+              </span>
+              <span className="text-[10px] text-zinc-400 font-semibold uppercase tracking-widest block">
+                {campaign.platform || "Performance Marketing"}
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-emerald-500 transition-colors uppercase tracking-tighter leading-none">{campaign.title}</h3>
             
             <div className="grid grid-cols-2 gap-4 mt-auto">
                 {Array.isArray(parsedResults) && parsedResults.slice(0, 2).map((res: any, j: number) => (
@@ -152,12 +161,12 @@ function MarketingHero() {
                 Performance Marketing
             </div>
 
-            <h1 className="text-white text-6xl sm:text-7xl md:text-[8rem] font-display font-bold tracking-tighter mb-12 text-center leading-[0.8] uppercase">
+            <h1 className="text-white text-5xl sm:text-7xl md:text-[8rem] font-display font-bold tracking-tighter mb-12 text-center leading-[0.8] uppercase">
                 Profit <br />
                 <span className="text-emerald-500 italic">Engineering.</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-zinc-500 max-w-2xl mx-auto mb-16 text-center font-medium tracking-tight">
+            <p className="text-lg md:text-2xl text-zinc-500 max-w-2xl mx-auto mb-16 text-center font-medium tracking-tight px-4">
                 I build performance systems that turn ad spend into scalable revenue. No fluff, just ROAS.
             </p>
 
@@ -169,9 +178,9 @@ function MarketingHero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 + i * 0.1 }}
-                    className="bg-zinc-950 p-10 text-center flex flex-col items-center justify-center group hover:bg-zinc-900 transition-colors"
+                    className="bg-zinc-950 p-6 sm:p-10 text-center flex flex-col items-center justify-center group hover:bg-zinc-900 transition-colors"
                 >
-                    <div className="text-emerald-500 text-4xl md:text-5xl font-bold tabular-nums mb-3 tracking-tighter">
+                    <div className="text-emerald-500 text-3xl sm:text-4xl md:text-5xl font-bold tabular-nums mb-3 tracking-tighter">
                         {s.prefix}{s.val}{s.suffix}
                     </div>
                     <div className="text-zinc-500 text-[10px] uppercase font-bold tracking-[0.2em]">{s.label}</div>
@@ -261,6 +270,8 @@ export default function MarketingService() {
       id: m.id,
       slug: m.slug,
       title: m.title,
+      client: m.client,
+      platform: m.platform,
       results: JSON.stringify(m.metrics.map((met) => ({ label: met.label, value: met.value }))),
       tags: JSON.stringify(m.tags),
       category: "marketing",
@@ -353,8 +364,8 @@ export default function MarketingService() {
       </section>
 
       {/* ---- CTA ---- */}
-      <section id="contact" className="py-32 container text-center">
-        <div className="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 rounded-[3rem] p-8 md:p-20 text-white overflow-hidden shadow-2xl shadow-emerald-900/30">
+      <section id="contact" className="py-32 container text-center px-4">
+        <div className="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 rounded-3xl md:rounded-[3rem] p-8 md:p-20 text-white overflow-hidden shadow-2xl shadow-emerald-900/30">
           <MorphBlob color="emerald-500" size={500} opacity={0.12} blur={100} className="left-0 top-0" animDuration={10} />
           <div className="relative z-10 max-w-2xl mx-auto">
             <RevealText text="Scale your revenue." as="h2" className="text-4xl md:text-7xl font-display font-black mb-8 uppercase italic tracking-tighter" />

@@ -303,7 +303,7 @@ export default function About() {
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-500/5 blur-[100px] rounded-full pointer-events-none" />
 
                             <div className="relative z-10 max-w-2xl mx-auto">
-                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic text-white">Interested in working together?</h2>
+                                <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 uppercase tracking-tighter italic dark:text-white text-foreground">Interested in working together?</h2>
                                 <p className="text-xl text-muted-foreground font-light mb-12">Let's discuss how we can scale your brand's presence today.</p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                                     <Link href="/services">
