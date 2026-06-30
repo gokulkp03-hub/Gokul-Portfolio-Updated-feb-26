@@ -9,7 +9,6 @@ import { AmbientParticles } from "@/components/ui/AmbientParticles";
 import { RevealText } from "@/components/ui/RevealText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
-import { WorkPreviewStrip } from "@/components/home/WorkPreviewStrip";
 import { TestimonialsStrip } from "@/components/home/TestimonialsStrip";
 import { ProofStrip } from "@/components/home/ProofStrip";
 import { proof } from "@/data/proof";
@@ -331,8 +330,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🎬 Video & Photo Work Preview */}
-      <WorkPreviewStrip />
 
       {/* Workflow Process Strip */}
       <section className="py-24 bg-zinc-900/60 border-y border-border/20 overflow-hidden relative">

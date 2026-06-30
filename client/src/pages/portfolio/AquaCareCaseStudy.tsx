@@ -289,7 +289,7 @@ export default function AquaCareCaseStudy() {
           <div className="w-full aspect-[9/16] max-w-[320px] mx-auto mb-20 bg-zinc-950 border border-zinc-900 rounded-3xl overflow-hidden relative group shadow-2xl">
             {playReel ? (
               <iframe
-                src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=Aqua_Care_influencer_marketing_2_bwuudf&autoplay=true"
+                src="https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=aqua_care_100_k_reel_uwnvct&autoplay=true"
                 className="w-full h-full border-0"
                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
                 allowFullScreen
