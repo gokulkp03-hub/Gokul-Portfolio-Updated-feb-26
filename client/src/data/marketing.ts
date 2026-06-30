@@ -131,6 +131,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Phone Calls", value: "+40%", trend: "up" }
         ],
         visuals: [
+            "/assets/images/case-studies/steaburg/Steaburg.jpeg",
             "/assets/images/case-studies/steaburg/audit.png",
             "/assets/images/case-studies/steaburg/strategy.png",
             "/assets/images/case-studies/steaburg/works.png"

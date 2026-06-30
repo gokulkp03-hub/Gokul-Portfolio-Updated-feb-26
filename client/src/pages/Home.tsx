@@ -13,7 +13,6 @@ import { WorkPreviewStrip } from "@/components/home/WorkPreviewStrip";
 import { TestimonialsStrip } from "@/components/home/TestimonialsStrip";
 import { ProofStrip } from "@/components/home/ProofStrip";
 import { proof } from "@/data/proof";
-import { GrowthEngine } from "@/components/home/GrowthEngine";
 import { MouseEvent } from "react";
 import { trpc } from "@/lib/trpc";
 import { TubesBackground } from "@/components/ui/TubesBackground";
@@ -360,8 +359,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Growth Engine Section */}
-      <GrowthEngine />
 
       {/* 💰 Final CTA Section */}
       <section ref={ctaRef} className="section container border-t border-border/10">

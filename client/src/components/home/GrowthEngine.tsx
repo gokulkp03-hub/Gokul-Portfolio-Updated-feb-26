@@ -33,7 +33,7 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
 export function GrowthEngine() {
     // Select the key case studies for the homepage
     const keyCaseStudies = marketingCampaigns.filter(c =>
-        ["prepmeal-launch", "beyondcars-lead-engine", "sias-group-marketing-scale", "steaburg-local-seo"].includes(c.slug)
+        ["prepmeal", "sias-group-marketing-scale", "steaburg-local-seo", "galaxy-star-ecommerce"].includes(c.slug)
     );
 
     return (

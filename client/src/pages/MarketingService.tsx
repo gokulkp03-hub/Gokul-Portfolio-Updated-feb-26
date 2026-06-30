@@ -10,6 +10,7 @@ import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { useScroll, useTransform } from "framer-motion";
 import { setSEO } from "../utils/seo";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
+import { GrowthEngine } from "@/components/home/GrowthEngine";
 
 // ------- FAQ Item -------
 function FAQItem({ question, answer }: { question: string; answer: string }) {
@@ -426,6 +427,9 @@ export default function MarketingService() {
           </div>
         </div>
       </section>
+
+      {/* ---- Detailed Narratives ---- */}
+      <GrowthEngine />
 
       {/* ---- Process ---- */}
       <section className="py-24 border-t border-border/20">

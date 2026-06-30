@@ -1,4 +1,4 @@
-import { useRoute, Link } from "wouter";
+import { useRoute, Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Calendar, User, Wrench, CheckCircle2, Loader2 } from "lucide-react";
 import NotFound from "../NotFound";
@@ -14,6 +14,7 @@ interface ProjectDetailProps {
 }
 
 export default function ProjectDetail({ category: propCategory, slug: propSlug }: ProjectDetailProps) {
+    const [, setLocation] = useLocation();
     const [, routeParams] = useRoute("/portfolio/:category/:slug");
     const [, marketingRouteParams] = useRoute("/marketing/:slug");
 
@@ -99,6 +100,17 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
             });
         }
     }, [project]);
+
+    useEffect(() => {
+        const lowerCategory = (category || propCategory || "").toLowerCase();
+        if (lowerCategory === "marketing") {
+            if (slug === "aqua-care-uae") {
+                setLocation("/marketing/aqua-care-uae");
+            } else if (slug === "prepmeal" || slug === "prepmeal-launch") {
+                setLocation("/marketing/prepmeal");
+            }
+        }
+    }, [slug, category, propCategory, setLocation]);
 
     // Static projects mapped to Prisma schema compatible structure
     const mergedStaticProjects = useMemo(() => {
