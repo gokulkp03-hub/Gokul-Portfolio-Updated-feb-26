@@ -149,13 +149,20 @@ export default function VideoService() {
                                 <Play className="w-8 h-8 text-white fill-current ml-1" />
                             </motion.div>
                         </div>
-                        {showreel && (
-                            <motion.img
-                                layoutId="showreel-thumb"
-                                src={getCloudinaryThumb(showreel.thumbnail || showreel.videoUrl || "")}
-                                alt="Showreel"
-                                className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105 transition-transform"
-                                onError={(e) => { e.currentTarget.style.display = "none"; }}
+                        {showreel && showreel.videoUrl && (
+                            <video
+                                src={showreel.videoUrl}
+                                preload="metadata"
+                                playsInline
+                                muted
+                                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105 transition-transform"
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.play().catch(() => {});
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.pause();
+                                    e.currentTarget.currentTime = 0;
+                                }}
                             />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
@@ -253,43 +260,27 @@ export default function VideoService() {
                                     onClick={() => setSelectedVideo(video)}
                                     className="group relative aspect-video rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer border border-border/30 hover:border-blue-500/40 transition-colors duration-300"
                                 >
-                                    {/* Thumbnail */}
-                                    <img
-                                        src={getCloudinaryThumb(video.thumbnail || video.videoUrl || "")}
-                                        alt={video.title}
-                                        className={cn(
-                                            "absolute inset-0 w-full h-full object-cover transition-all duration-700",
-                                            hoveredId === video.id ? "opacity-0 scale-105" : "opacity-80 group-hover:opacity-100 group-hover:scale-105"
-                                        )}
-                                        onError={(e) => {
-                                            // Fallback: try videoUrl as thumbnail source
-                                            const t = e.currentTarget;
-                                            if (video.videoUrl && t.src !== getCloudinaryThumb(video.videoUrl)) {
-                                                t.src = getCloudinaryThumb(video.videoUrl);
-                                            } else {
-                                                // Final fallback: solid dark bg (hide broken img)
-                                                t.style.display = "none";
-                                            }
-                                        }}
-                                    />
-
-                                    {/* Video Preview */}
-                                    <AnimatePresence>
-                                        {hoveredId === video.id && video.videoUrl && (
-                                            <motion.video
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{ duration: 0.5 }}
-                                                src={video.videoUrl}
-                                                className="absolute inset-0 w-full h-full object-cover"
-                                                autoPlay
-                                                muted
-                                                loop
-                                                playsInline
-                                            />
-                                        )}
-                                    </AnimatePresence>
+                                    {/* Video Thumbnail / Preview */}
+                                    {video.videoUrl && (
+                                        <video
+                                            src={video.videoUrl}
+                                            preload="metadata"
+                                            playsInline
+                                            muted
+                                            loop
+                                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                                            ref={(el) => {
+                                                if (el) {
+                                                    if (hoveredId === video.id) {
+                                                        el.play().catch(() => {});
+                                                    } else {
+                                                        el.pause();
+                                                        el.currentTime = 0;
+                                                    }
+                                                }
+                                            }}
+                                        />
+                                    )}
 
                                     {/* Dark gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
