@@ -91,6 +91,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     // Use database project if available, otherwise fallback to static
     const project = dbProject || staticProject;
+    const category = propCategory || routeParams?.category || project?.category || "";
 
     useEffect(() => {
         if (project) {
@@ -152,7 +153,6 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     if (!project) return <NotFound />;
 
-    const category = propCategory || routeParams?.category || project.category;
     
     // Parse JSON fields
     const tags = Array.isArray(project.tags) ? project.tags : JSON.parse((project.tags as any) || "[]");

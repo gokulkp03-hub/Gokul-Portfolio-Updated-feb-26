@@ -6,6 +6,7 @@ import { BeforeAfter } from "@/components/ui/BeforeAfter";
 import { trpc } from "@/lib/trpc";
 import { useMemo, useEffect } from "react";
 import { setSEO } from "../utils/seo";
+import { projects as staticProjects } from "@/data/projects";
 
 const services = [
     { icon: Camera, title: "Editorial Shoots", desc: "Stylized imagery for magazines and brands." },
@@ -90,15 +91,20 @@ export default function PhotoService() {
         });
     }, []);
 
-    const { data: dbProjects } = trpc.projects.list.useQuery();
-    
     const photos = useMemo(() => {
-        if (!dbProjects) return [];
-        return dbProjects.filter((p: any) => 
-            (p.category.toLowerCase() === "photo" || p.category.toLowerCase() === "photography") &&
-            !p.thumbnail.includes("/assets/images/photo/") // Filter out missing local placeholders
-        ).slice(0, 9);
-    }, [dbProjects]);
+        // Use clean static photography projects directly to prevent broken/blank thumbnails
+        return staticProjects.filter(p => 
+            p.category.toLowerCase() === "photo" || p.category.toLowerCase() === "photography"
+        ).map(p => ({
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            category: p.category,
+            description: p.description,
+            thumbnail: p.thumbnail,
+            images: p.images || []
+        })).slice(0, 9);
+    }, []);
     
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden relative selection:bg-accent/30 selection:text-white">

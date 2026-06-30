@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Play, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 const FEATURED_ITEMS = [
     {
@@ -103,6 +103,7 @@ const FEATURED_ITEMS = [
 
 export function FeaturedWork() {
     const [selectedItem, setSelectedItem] = useState<any>(null);
+    const [, navigate] = useLocation();
 
     return (
         <>
@@ -115,7 +116,13 @@ export function FeaturedWork() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.6 }}
                         className={cn("group relative h-[450px] overflow-hidden rounded-[2.5rem] cursor-pointer border border-border/20 transition-all duration-500 bg-zinc-900 shadow-lg", item.hoverBorderClass || "hover:border-orange-500/30")}
-                        onClick={() => setSelectedItem(item)}
+                        onClick={() => {
+                            if (!item.isVideo && item.path) {
+                                navigate(item.path);
+                            } else {
+                                setSelectedItem(item);
+                            }
+                        }}
                     >
                         <img
                             src={item.image}

@@ -102,13 +102,10 @@ export default function PortfolioLayout() {
         return [...mappedProjects, ...mappedMarketing];
     }, []);
 
-    // Merge tRPC dbProjects and static fallback
+    // Use static fallback as the primary source of truth to ensure clean visuals and no wedding content
     const projectsList = useMemo(() => {
-        if (dbProjects && (dbProjects as any).length > 0) {
-            return dbProjects as any[];
-        }
         return mergedStaticProjects;
-    }, [dbProjects, mergedStaticProjects]);
+    }, [mergedStaticProjects]);
 
     const filteredProjects = useMemo(() => {
         if (activeFilter === "all") return projectsList;
