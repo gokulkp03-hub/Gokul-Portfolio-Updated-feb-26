@@ -71,14 +71,6 @@ export const videoProjects: VideoProject[] = [
         description: "Official ceremony and ribbon cutting highlights for a major launch."
     },
     {
-        id: "wedding-highlight-1",
-        title: "Cinematic Wedding Memories",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.mp4",
-        description: "Capturing the pure emotion and timeless moments of a beautiful wedding day."
-    },
-    {
         id: "game-street-reel",
         title: "Game Street Showcase",
         category: "Events",
@@ -111,22 +103,6 @@ export const videoProjects: VideoProject[] = [
         description: "Nostalgic event highlights with a cinematic retro feel."
     },
     {
-        id: "wedding-film-2",
-        title: "Timeless Union",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_uccbkl.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_uccbkl.mp4",
-        description: "A beautiful cinematic journey of two souls coming together."
-    },
-    {
-        id: "wedding-film-6",
-        title: "Elegant Moments",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_yeqql7.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_yeqql7.mp4",
-        description: "Sophisticated wedding highlights with emotional depth."
-    },
-    {
         id: "burj-aerial",
         title: "Burj Khalifa Aerial",
         category: "Events",
@@ -135,109 +111,12 @@ export const videoProjects: VideoProject[] = [
         description: "Breathtaking aerial views of the iconic Burj Khalifa."
     },
     {
-        id: "anu-save-date",
-        title: "Anu Save the Date",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu_Save_the_date_wm3qle.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu_Save_the_date_wm3qle.mp4",
-        description: "A beautiful cinematic save-the-date film."
-    },
-    {
-        id: "wedding-film-7",
-        title: "Timeless Celebration",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/7_t4fw2q.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/7_t4fw2q.mp4",
-        description: "Capturing the essence of a beautiful wedding union."
-    },
-    {
-        id: "wedding-film-12",
-        title: "Vibrant Vows",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/12_zhg9oi.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/12_zhg9oi.mp4",
-        description: "Emotional highlights from a vibrant wedding celebration."
-    },
-    {
-        id: "wedding-film-10",
-        title: "Golden Hour Memories",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/10_exc2jg.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/10_exc2jg.mp4",
-        description: "Cinematic wedding highlights captured during the golden hour."
-    },
-    {
-        id: "wedding-film-15",
-        title: "Eternal Bond",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/15_vn0m4b.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/15_vn0m4b.mp4",
-        description: "A soulful wedding film capturing every precious moment."
-    },
-    {
-        id: "anu-2",
-        title: "Anu's Story",
-        category: "Personal Branding",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu-_2_ziwvlp.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu-_2_ziwvlp.mp4",
-        description: "Personal branding story highlighting growth and vision."
-    },
-    {
         id: "video-2025-07",
         title: "Creative Reel 2025",
         category: "Reels",
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/VIDEO-2025-07-07-20-47-02_qynv0d.mp4",
         description: "A dynamic showcase of creative projects from 2025."
-    },
-    {
-        id: "wedding-film-5",
-        title: "Wedding Highlights — 5",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/5_t1jx9h.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/5_t1jx9h.mp4",
-        description: "Cinematic wedding highlights filled with intimate moments and emotion.",
-        featured: true
-    },
-    {
-        id: "wedding-film-14",
-        title: "Wedding Highlights — 14",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/14_ijw1ew.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/14_ijw1ew.mp4",
-        description: "Timeless wedding film capturing every cherished moment of the celebration."
-    },
-    {
-        id: "wedding-film-4",
-        title: "Wedding Highlights — 4",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/4_s3azf8.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/4_s3azf8.mp4",
-        description: "A heartfelt wedding film with sweeping visuals and emotional moments."
-    },
-    {
-        id: "wedding-film-6b",
-        title: "Wedding Film — 6",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/6_ci2fz2.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_ci2fz2.mp4",
-        description: "A beautifully edited wedding highlight reel with cinematic colour grading."
-    },
-    {
-        id: "wedding-film-1",
-        title: "Wedding Highlights — 1",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/1_fljmrg.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/1_fljmrg.mp4",
-        description: "Cinematic wedding film capturing the magic of the first day together."
-    },
-    {
-        id: "ziya-wedding-5",
-        title: "Ziya — Wedding Film",
-        category: "Weddings",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Ziya_5_easwfm.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Ziya_5_easwfm.mp4",
-        description: "A soulful wedding film for Ziya — cinematic, emotional, and timeless."
     },
     {
         id: "steaburg-reel-social",

@@ -14,7 +14,7 @@ export default function Footer() {
     const behanceLink = sections.socialBehance || "https://behance.net";
 
     return (
-        <footer className="bg-foreground text-background py-16 border-t border-background/10">
+        <footer className="bg-card text-foreground py-16 border-t border-border/40">
             <div className="container px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
 
@@ -24,22 +24,22 @@ export default function Footer() {
                             <Link href="/" className="text-3xl font-display font-bold tracking-tighter uppercase mb-4 inline-block hover:opacity-80 transition-opacity">
                                 GokulKP.
                             </Link>
-                            <p className="text-background/60 text-sm max-w-xs leading-relaxed">
+                            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
                                 Performance Marketing. Video Production. Ad Creatives.
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-2 pt-2">
-                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">Video Production</span>
-                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">UGC Creative</span>
-                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">Paid Acquisition</span>
-                            <span className="px-3 py-1 bg-background/10 rounded-full text-[10px] text-background/80 uppercase font-semibold tracking-wider">ManyChat Flows</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">Video Production</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">UGC Creative</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">Paid Acquisition</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">ManyChat Flows</span>
                         </div>
                     </div>
 
                     {/* Column 2: Navigation & Services */}
                     <div className="grid grid-cols-2 gap-8 w-full">
                         <div className="space-y-4">
-                            <h4 className="text-xs uppercase tracking-widest text-background/40 font-bold">Navigation</h4>
+                            <h4 className="text-xs uppercase tracking-widest text-muted-foreground/60 font-bold">Navigation</h4>
                             <div className="flex flex-col gap-2">
                                 <Link href="/" className="text-sm font-medium hover:text-orange-400 transition-colors">Home</Link>
                                 <Link href="/portfolio" className="text-sm font-medium hover:text-orange-400 transition-colors">Work</Link>
@@ -48,7 +48,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="space-y-4">
-                            <h4 className="text-xs uppercase tracking-widest text-background/40 font-bold">Work With Me</h4>
+                            <h4 className="text-xs uppercase tracking-widest text-muted-foreground/60 font-bold">Work With Me</h4>
                             <div className="flex flex-col gap-2">
                                 <Link href="/services" className="text-sm font-medium hover:text-orange-400 transition-colors">Services & Pricing</Link>
                                 <Link href="/contact" className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</Link>
@@ -60,7 +60,7 @@ export default function Footer() {
                     {/* Column 3: Connect & Socials */}
                     <div className="space-y-6 md:justify-self-end">
                         <div>
-                            <h4 className="text-xs uppercase tracking-widest text-background/40 font-bold mb-4">Connect</h4>
+                            <h4 className="text-xs uppercase tracking-widest text-muted-foreground/60 font-bold mb-4">Connect</h4>
                             <div className="flex gap-3">
                                 {[
                                     { icon: Instagram, href: instagramLink },
@@ -74,14 +74,14 @@ export default function Footer() {
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-3 bg-background/10 rounded-full hover:bg-background/20 transition-colors"
+                                        className="p-3 bg-muted rounded-full hover:bg-muted/80 transition-colors"
                                     >
                                         <social.icon className="w-5 h-5" />
                                     </a>
                                 ))}
                             </div>
                         </div>
-                        <p className="text-xs text-background/60 leading-relaxed">
+                        <p className="text-xs text-muted-foreground leading-relaxed">
                             Based in Dubai, UAE.<br />Operating across GCC region.
                         </p>
                     </div>
@@ -89,11 +89,11 @@ export default function Footer() {
                 </div>
 
                 {/* Availability signal */}
-                <div className="border-t border-background/10 mt-12 pt-6">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-background/5 border border-background/10">
+                <div className="border-t border-border/40 mt-12 pt-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-muted/30 border border-border/40">
                         <div className="flex items-center gap-3">
                             <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-                            <span className="text-sm text-background/80 font-medium">Available for new projects — GCC &amp; remote</span>
+                            <span className="text-sm text-foreground/80 font-medium">Available for new projects — GCC &amp; remote</span>
                         </div>
                         <a
                             href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
@@ -106,7 +106,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-background/40 text-center md:text-left">
+                <div className="border-t border-border/40 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground/50 text-center md:text-left">
                     <p>© 2026 Gokul KP. All rights reserved.</p>
                     <div className="flex items-center gap-2">
                         <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

@@ -24,6 +24,7 @@ export interface MarketingCampaign {
     role: string;
     duration: string;
     reportUrl?: string;
+    logoUrl?: string;
 }
 
 export const marketingCampaigns: MarketingCampaign[] = [
@@ -52,17 +53,18 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Active campaigns", value: "16", trend: "up" }
         ],
         visuals: [
-            "/assets/images/case-studies/placeholder.jpg"
+            "/assets/images/brands/Aqua-Care/new.jpg"
         ],
         learnings: [],
         tags: ["Performance Marketing", "Meta Ads"],
         featured: true,
         role: "Performance Marketer",
-        duration: "Dec 2025 – Mar 2026"
+        duration: "Dec 2025 – Mar 2026",
+        logoUrl: "/assets/images/logos/Aquacare logo.png"
     },
     {
         id: "prepmeal-growth",
-        slug: "prepmeal-launch",
+        slug: "prepmeal",
         client: "PrepMeal",
         industry: "Health & Wellness",
         platform: "Instagram / Meta Ads",
@@ -98,86 +100,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
         tags: ["Social Media Management", "Content Planning", "Coordination"],
         featured: true,
         role: "Social Media Manager",
-        duration: "18 Months"
-    },
-    {
-        id: "beyondcars-leads",
-        slug: "beyondcars-lead-engine",
-        client: "BeyondCars",
-        industry: "Automotive Rental",
-        platform: "Meta Ads / Google Search",
-        title: "High-Performance Lead Engine",
-        headline: "Scaling Lead Generation for Luxury Fleet",
-        description: "Scalable lead generation for a luxury car rental service through high-performance Meta Ads and creative optimization.",
-        objective: "Lower Cost Per Lead (CPL) by 40% while doubling monthly lead volume.",
-        challenge: "Extremely high competition in the Dubai luxury rental market with rising CPCs.",
-        strategy: [
-            "Video-first ad sets showcasing the 'lifestyle' of supercar rental.",
-            "Dynamic retargeting based on fleet page visits.",
-            "Lead form optimization to improve lead quality over quantity."
-        ],
-        execution: [
-            "Produced cinematic video ads for the Porsche and Lamborghini fleet.",
-            "A/B tested 20+ different ad hooks and headlines.",
-            "Integrated CRM automation for instant lead follow-up."
-        ],
-        results: "Drastically lowered CPA while increasing lead quality. The company hit target utilization rates for the entire fleet for 3 consecutive months.",
-        metrics: [
-            { label: "Quality Leads", value: "150+", trend: "up" },
-            { label: "ROAS Increase", value: "2.8x", trend: "up" },
-            { label: "CPA Reduction", value: "45%", trend: "down" }
-        ],
-        visuals: [
-            "/assets/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.jpg",
-            "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg"
-        ],
-        learnings: [
-            "Lifestyle-oriented video content drives 3x more engagement than static car photos.",
-            "Quick follow-up automation is critical for B2C luxury services."
-        ],
-        tags: ["Lead Gen", "Meta Ads", "Creative Optimization"],
-        featured: true,
-        role: "Marketing Strategist",
-        duration: "Ongoing"
-    },
-    {
-        id: "acero-b2b",
-        slug: "acero-steel-b2b",
-        client: "Acero Steel",
-        industry: "Manufacturing",
-        platform: "LinkedIn / SEO",
-        title: "B2B Brand Authority",
-        headline: "Generating High-Value Manufacturing Leads",
-        description: "Establishing Acero as a leader in metal fabrication through strategic LinkedIn presence and targeted ads.",
-        objective: "Position Acero as the premium choose for high-end hospitality and construction projects.",
-        challenge: "B2B sales cycle for structural steel is long and traditionally offline.",
-        strategy: [
-            "B2B content strategy focusing on engineering expertise and completed projects.",
-            "Targeted LinkedIn ads for project managers and architects.",
-            "SEO optimization for industrial fabrication keywords."
-        ],
-        execution: [
-            "Published whitepapers and case studies on engineering marvels.",
-            "Ran targeted ad campaigns for 5 major construction expos.",
-            "Revamped website to focus on B2B lead capture."
-        ],
-        results: "Successfully reached key decision makers in the construction and fabrication industry. Generated 45 high-value project inquiries within the first quarter.",
-        metrics: [
-            { label: "Qualified Leads", value: "45", trend: "up" },
-            { label: "Brand Reach", value: "100k+", trend: "up" },
-            { label: "Conversion Rate", value: "22%", trend: "up" }
-        ],
-        visuals: [
-            "/assets/images/brands/Acero/Ad 01.png",
-            "/assets/images/brands/Acero/Acero 2-1.jpg"
-        ],
-        learnings: [
-            "Trust is built through detailed project proofs rather than typical sales talk.",
-            "LinkedIn is significantly more effective for structural fabrication than Meta."
-        ],
-        tags: ["B2B Marketing", "LinkedIn Ads", "Lead Generation"],
-        role: "Digital Consultant",
-        duration: "12 Months"
+        duration: "18 Months",
+        logoUrl: "/assets/images/logos/prepmeal.png"
     },
     {
         id: "steaburg-seo",
@@ -298,6 +222,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         tags: ["Ecommerce", "UI/UX", "Brand Digitalization"],
         role: "E-com Strategist",
-        duration: "8 Months"
+        duration: "8 Months",
+        logoUrl: "/assets/images/logos/Galaxy Star Perfumes.png"
     }
 ];

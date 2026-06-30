@@ -78,12 +78,21 @@ export default function AquaCareCaseStudy() {
         </Link>
 
         {/* Big Result Banner */}
-        <div className="bg-blue-600 text-white p-8 md:p-16 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-blue-400/50 shadow-2xl shadow-blue-500/20">
-            <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-70 italic">Verified Performance</span>
-            <h2 className="text-5xl md:text-[8rem] font-display font-bold tracking-tighter leading-none mb-6">4.45x ROAS</h2>
-            <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-xl">
-                Generated AED 31,743 in revenue from AED 7,131 spend in 90 days.
-            </p>
+        <div className="relative overflow-hidden p-8 md:p-16 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-emerald-500/30 shadow-2xl shadow-emerald-500/10 min-h-[300px] bg-zinc-950">
+            {/* Background Image with Overlay */}
+            <div 
+                className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity pointer-events-none"
+                style={{ backgroundImage: `url('/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.jpg')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-transparent to-zinc-950/90 pointer-events-none" />
+            
+            <div className="relative z-10">
+                <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 text-emerald-400 block">Verified Performance</span>
+                <h2 className="text-5xl md:text-[8rem] font-display font-bold tracking-tighter leading-none mb-6 text-white">4.45x ROAS</h2>
+                <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-xl text-emerald-100/90">
+                    Generated AED 31,743 in revenue from AED 7,131 spend in 90 days.
+                </p>
+            </div>
         </div>
 
         <div className="aqua-hero-title">Aqua Care UAE: <br/>The B2B &amp; B2C Growth Arc.</div>
@@ -97,12 +106,12 @@ export default function AquaCareCaseStudy() {
           <div className="aqua-meta-item">Market<span>UAE & Oman</span></div>
         </div>
 
-        <div className="aqua-hero-img aqua-img-placeholder">
-          <div className="aqua-img-icon">
-            <svg width="14" height="14" fill="none" stroke="#333" strokeWidth="1.5"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M1 9l3-3 2 2 3-4 4 5"/></svg>
-          </div>
-          <div style={{color: "#2a2a2a", fontSize: "13px", fontWeight: "500"}}>Hero image</div>
-          <div>Product photo or campaign creative · full bleed, dark background</div>
+        <div className="aqua-hero-img rounded-2xl overflow-hidden border border-border/20 shadow-xl">
+          <img
+            src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg"
+            alt="Countertop Dispenser Banner"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <hr className="aqua-divider" />
@@ -159,26 +168,13 @@ export default function AquaCareCaseStudy() {
 
         <hr className="aqua-divider" />
 
-        <div className="aqua-section-label">Images to include — campaign screenshots</div>
-        <div className="aqua-three-col">
-          <div className="aqua-img-placeholder" style={{height: "130px"}}>
-            <div className="aqua-img-icon">
-              <svg width="14" height="14" fill="none" stroke="#333" strokeWidth="1.5"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M1 9l3-3 2 2 3-4 4 5"/></svg>
-            </div>
-            <div style={{color: "#2a2a2a", fontSize: "11px"}}>Meta Ads Manager<br/>campaign structure screenshot</div>
-          </div>
-          <div className="aqua-img-placeholder" style={{height: "130px"}}>
-            <div className="aqua-img-icon">
-              <svg width="14" height="14" fill="none" stroke="#333" strokeWidth="1.5"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M1 9l3-3 2 2 3-4 4 5"/></svg>
-            </div>
-            <div style={{color: "#2a2a2a", fontSize: "11px"}}>Ad creatives<br/>(best performing visuals)</div>
-          </div>
-          <div className="aqua-img-placeholder" style={{height: "130px"}}>
-            <div className="aqua-img-icon">
-              <svg width="14" height="14" fill="none" stroke="#333" strokeWidth="1.5"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M1 9l3-3 2 2 3-4 4 5"/></svg>
-            </div>
-            <div style={{color: "#2a2a2a", fontSize: "11px"}}>Results dashboard<br/>spend + ROAS overview</div>
-          </div>
+        <div className="aqua-section-label">Campaign Screenshots</div>
+        <div className="w-full rounded-2xl overflow-hidden border border-border/20 shadow-xl bg-zinc-950/40 p-1">
+          <img
+            src="/assets/images/brands/Aqua-Care/Aqua Care meta ads campaigns screen shot.png"
+            alt="Meta Ads Campaign Structure"
+            className="w-full h-auto object-contain rounded-xl"
+          />
         </div>
 
         <hr className="aqua-divider" />

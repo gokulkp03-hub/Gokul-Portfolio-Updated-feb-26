@@ -44,9 +44,103 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+const CAMPAIGN_THEMES: Record<string, {
+  color: string;
+  badgeBg: string;
+  badgeBorder: string;
+  badgeText: string;
+  hoverBorder: string;
+  hoverGlow: string;
+  arrowHover: string;
+  backBg: string;
+  backBorder: string;
+  backList: string;
+  backBtn: string;
+}> = {
+  "aqua-care-uae": {
+    color: "teal",
+    badgeBg: "bg-teal-500/10",
+    badgeBorder: "border-teal-500/20",
+    badgeText: "text-teal-400",
+    hoverBorder: "group-hover:border-teal-500/40",
+    hoverGlow: "group-hover:shadow-teal-500/10",
+    arrowHover: "group-hover:border-teal-500/50 group-hover:text-teal-400",
+    backBg: "bg-teal-950/20",
+    backBorder: "border-teal-500/30",
+    backList: "border-teal-500",
+    backBtn: "bg-teal-500 hover:bg-teal-400 text-black"
+  },
+  "prepmeal-growth": {
+    color: "orange",
+    badgeBg: "bg-orange-500/10",
+    badgeBorder: "border-orange-500/20",
+    badgeText: "text-orange-400",
+    hoverBorder: "group-hover:border-orange-500/40",
+    hoverGlow: "group-hover:shadow-orange-500/10",
+    arrowHover: "group-hover:border-orange-500/50 group-hover:text-orange-400",
+    backBg: "bg-orange-950/20",
+    backBorder: "border-orange-500/30",
+    backList: "border-orange-500",
+    backBtn: "bg-orange-500 hover:bg-orange-400 text-black"
+  },
+  "steaburg-seo": {
+    color: "amber",
+    badgeBg: "bg-amber-500/10",
+    badgeBorder: "border-amber-500/20",
+    badgeText: "text-amber-400",
+    hoverBorder: "group-hover:border-amber-500/40",
+    hoverGlow: "group-hover:shadow-amber-500/10",
+    arrowHover: "group-hover:border-amber-500/50 group-hover:text-amber-400",
+    backBg: "bg-amber-950/20",
+    backBorder: "border-amber-500/30",
+    backList: "border-amber-500",
+    backBtn: "bg-amber-500 hover:bg-amber-400 text-black"
+  },
+  "sias-group-seo": {
+    color: "indigo",
+    badgeBg: "bg-indigo-500/10",
+    badgeBorder: "border-indigo-500/20",
+    badgeText: "text-indigo-400",
+    hoverBorder: "group-hover:border-indigo-500/40",
+    hoverGlow: "group-hover:shadow-indigo-500/10",
+    arrowHover: "group-hover:border-indigo-500/50 group-hover:text-indigo-400",
+    backBg: "bg-indigo-950/20",
+    backBorder: "border-indigo-500/30",
+    backList: "border-indigo-500",
+    backBtn: "bg-indigo-500 hover:bg-indigo-400 text-white"
+  },
+  "galaxy-star-perfumes": {
+    color: "purple",
+    badgeBg: "bg-purple-500/10",
+    badgeBorder: "border-purple-500/20",
+    badgeText: "text-purple-400",
+    hoverBorder: "group-hover:border-purple-500/40",
+    hoverGlow: "group-hover:shadow-purple-500/10",
+    arrowHover: "group-hover:border-purple-500/50 group-hover:text-purple-400",
+    backBg: "bg-purple-950/20",
+    backBorder: "border-purple-500/30",
+    backList: "border-purple-500",
+    backBtn: "bg-purple-500 hover:bg-purple-400 text-black"
+  }
+};
+
 // ------- Case Study Flip Card -------
 function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const theme = CAMPAIGN_THEMES[campaign.id] || {
+    color: "emerald",
+    badgeBg: "bg-emerald-500/10",
+    badgeBorder: "border-emerald-500/20",
+    badgeText: "text-emerald-400",
+    hoverBorder: "group-hover:border-emerald-500/40",
+    hoverGlow: "group-hover:shadow-emerald-500/10",
+    arrowHover: "group-hover:border-emerald-500/50 group-hover:text-emerald-400",
+    backBg: "bg-emerald-950/20",
+    backBorder: "border-emerald-500/30",
+    backList: "border-emerald-500",
+    backBtn: "bg-emerald-500 hover:bg-emerald-400 text-black"
+  };
 
   let parsedResults: any[] = [];
   try {
@@ -59,6 +153,13 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
     if (Array.isArray(tags) && tags[0]) industry = tags[0];
   } catch {}
 
+  const blobColor = theme.color === 'teal' ? 'rgba(20, 184, 166, 0.05)' :
+                    theme.color === 'orange' ? 'rgba(249, 115, 22, 0.05)' :
+                    theme.color === 'amber' ? 'rgba(245, 158, 11, 0.05)' :
+                    theme.color === 'indigo' ? 'rgba(99, 102, 241, 0.05)' :
+                    theme.color === 'purple' ? 'rgba(168, 85, 247, 0.05)' :
+                    'rgba(16, 185, 129, 0.05)';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -70,27 +171,46 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-        className="w-full h-full relative cursor-pointer group rounded-2xl shadow-xl transform-style-3d"
+        className={`w-full h-full relative cursor-pointer group rounded-2xl shadow-xl transition-all duration-500 ${theme.hoverGlow}`}
+        style={{ transformStyle: "preserve-3d" }}
         onClick={() => setIsFlipped(!isFlipped)}
       >
         {/* Front Face */}
-        <div className="backface-hidden absolute inset-0 glass-card p-6 md:p-8 border border-border/20 group-hover:border-emerald-500/30 transition-colors overflow-hidden rounded-2xl flex flex-col justify-between bg-card">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-colors pointer-events-none" />
+        <div 
+          className={`absolute inset-0 glass-card p-6 md:p-8 border border-border/20 ${theme.hoverBorder} transition-all duration-500 overflow-hidden rounded-2xl flex flex-col justify-between bg-card`}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(0deg)"
+          }}
+        >
+          <div className="absolute top-0 right-0 w-40 h-40 blur-3xl pointer-events-none" style={{ backgroundColor: blobColor }} />
           <div className="relative z-10 flex flex-col h-full">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500">
+              <span className={`text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 border rounded-full transition-all duration-500 ${theme.badgeBg} ${theme.badgeBorder} ${theme.badgeText}`}>
                 {industry}
               </span>
-              <div className="p-2 rounded-full border border-border/50 group-hover:border-emerald-500/50 text-muted-foreground group-hover:text-emerald-500 transition-colors">
+              <div className={`p-2 rounded-full border border-border/50 text-muted-foreground transition-all duration-500 ${theme.arrowHover}`}>
                  <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
             
-            <div className="mb-3">
-              <span className="text-xs font-bold text-emerald-500 uppercase tracking-wider block mb-0.5">
-                {campaign.client || "Client Campaign"}
-              </span>
-              <span className="text-[10px] text-zinc-400 font-semibold uppercase tracking-widest block">
+            <div className="mb-3 flex items-center gap-3">
+              {campaign.logoUrl ? (
+                <img 
+                  src={campaign.logoUrl} 
+                  alt={campaign.client} 
+                  className="h-8 max-w-[120px] object-contain opacity-90 group-hover:opacity-100 transition-opacity" 
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              ) : (
+                <span className={`text-sm font-bold uppercase tracking-wider block mb-0.5 ${theme.badgeText}`}>
+                  {campaign.client || "Client Campaign"}
+                </span>
+              )}
+              <span className="text-[10px] text-zinc-400 font-semibold uppercase tracking-widest ml-auto">
                 {campaign.platform || "Performance Marketing"}
               </span>
             </div>
@@ -100,7 +220,7 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
                 {Array.isArray(parsedResults) && parsedResults.slice(0, 2).map((res: any, j: number) => (
                     <div key={j} className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl">
                         <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">{res.label}</div>
-                        <div className="text-xl font-bold text-emerald-500">{res.value}</div>
+                        <div className={`text-xl font-bold ${theme.badgeText}`}>{res.value}</div>
                     </div>
                 ))}
             </div>
@@ -113,19 +233,26 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
         </div>
         
         {/* Back Face */}
-        <div className="backface-hidden [transform:rotateY(180deg)] absolute inset-0 glass-card p-6 md:p-8 border border-emerald-500/30 bg-emerald-950/20 overflow-hidden rounded-2xl flex flex-col justify-between">
-           <h3 className="text-xl font-bold text-white mb-6 border-b border-emerald-500/20 pb-4">Campaign Metrics</h3>
+        <div 
+          className={`absolute inset-0 glass-card p-6 md:p-8 border transition-all duration-500 overflow-hidden rounded-2xl flex flex-col justify-between ${theme.backBg} ${theme.backBorder}`}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)"
+          }}
+        >
+           <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">Campaign Metrics</h3>
            <div className="flex-1 space-y-4">
               {Array.isArray(parsedResults) && parsedResults.map((res: any, j: number) => (
-                <div key={j} className="flex justify-between items-center border-l-2 border-emerald-500 pl-4 py-1">
-                  <span className="text-xs uppercase tracking-wider text-emerald-100/60">{res.label}</span>
-                  <span className="text-xl font-bold text-emerald-400">{res.value}</span>
+                <div key={j} className={`flex justify-between items-center border-l-2 pl-4 py-1 ${theme.backList}`}>
+                  <span className="text-xs uppercase tracking-wider text-white/60">{res.label}</span>
+                  <span className={`text-xl font-bold ${theme.badgeText}`}>{res.value}</span>
                 </div>
               ))}
            </div>
            
            <Link href={`/marketing/${campaign.slug}`}>
-               <a className="mt-6 text-center block w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl transition-colors" onClick={(e) => e.stopPropagation()}>
+               <a className={`mt-6 text-center block w-full py-3.5 font-bold rounded-xl transition-all duration-300 shadow-md ${theme.backBtn}`} onClick={(e) => e.stopPropagation()}>
                   Read Full Study
                </a>
            </Link>
@@ -261,22 +388,18 @@ export default function MarketingService() {
   const { scrollYProgress: processProgress } = useScroll({ target: processRef, offset: ["start center", "end center"] });
 
   const campaigns = useMemo(() => {
-    if (dbProjects && (dbProjects as any[]).length > 0) {
-      const dbCamps = (dbProjects as any[]).filter((p) => p.category.toLowerCase() === "marketing");
-      if (dbCamps.length > 0) return dbCamps;
-    }
-    // Fallback to static marketing data
     return staticMarketing.map((m) => ({
       id: m.id,
       slug: m.slug,
       title: m.title,
       client: m.client,
       platform: m.platform,
+      logoUrl: m.logoUrl,
       results: JSON.stringify(m.metrics.map((met) => ({ label: met.label, value: met.value }))),
       tags: JSON.stringify(m.tags),
       category: "marketing",
     }));
-  }, [dbProjects]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background overflow-hidden relative">

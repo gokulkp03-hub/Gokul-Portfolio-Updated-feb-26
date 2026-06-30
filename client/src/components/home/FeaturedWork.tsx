@@ -11,12 +11,15 @@ const FEATURED_ITEMS = [
         client: "Aqua Care UAE",
         category: "Performance Ads",
         metric: "4.45x ROAS",
-        image: "/assets/images/case-studies/placeholder.jpg",
+        image: "/assets/images/brands/Aqua-Care/new.jpg",
         path: "/marketing/aqua-care-uae",
         isVideo: false,
         videoUrl: "",
         description: "Built a full-funnel Meta ad system across 6 water treatment product lines. AED 7,131 spend, 4.45× ROAS, AED 31,743 revenue.",
-        accentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20"
+        accentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+        hoverBorderClass: "hover:border-emerald-500/40 hover:shadow-emerald-500/10",
+        btnBgClass: "bg-emerald-500 text-black",
+        logo: "/assets/images/logos/Aquacare logo.png"
     },
     {
         id: "gobeyondcars-featured",
@@ -29,7 +32,10 @@ const FEATURED_ITEMS = [
         isVideo: true,
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4",
         description: "High-performance lead generation for luxury car rentals in Dubai. Video-first campaigns driving high-quality inbound conversions.",
-        accentClass: "text-blue-400 bg-blue-500/10 border-blue-500/20"
+        accentClass: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+        hoverBorderClass: "hover:border-blue-500/40 hover:shadow-blue-500/10",
+        btnBgClass: "bg-blue-500 text-white",
+        logo: "/assets/images/logos/beyondcars.png"
     },
     {
         id: "galaxystar-featured",
@@ -42,7 +48,10 @@ const FEATURED_ITEMS = [
         isVideo: false,
         videoUrl: "",
         description: "Built a premium storefront e-commerce experience with high-contrast luxury photography and optimized user flows.",
-        accentClass: "text-orange-400 bg-orange-500/10 border-orange-500/20"
+        accentClass: "text-orange-400 bg-orange-500/10 border-orange-500/20",
+        hoverBorderClass: "hover:border-orange-500/40 hover:shadow-orange-500/10",
+        btnBgClass: "bg-orange-500 text-black",
+        logo: "/assets/images/logos/Galaxy Star Perfumes.png"
     },
     {
         id: "prepmeal-featured",
@@ -55,7 +64,10 @@ const FEATURED_ITEMS = [
         isVideo: false,
         videoUrl: "",
         description: "Establishing digital presence in the UAE. Content planning, reels coordination, and WhatsApp lead flow scaling.",
-        accentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20"
+        accentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+        hoverBorderClass: "hover:border-purple-500/40 hover:shadow-purple-500/10",
+        btnBgClass: "bg-purple-500 text-white",
+        logo: "/assets/images/logos/prepmeal.png"
     },
     {
         id: "entrepreneur-mindset-featured",
@@ -68,7 +80,9 @@ const FEATURED_ITEMS = [
         isVideo: true,
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.mp4",
         description: "High-impact narrative brand story for a Dubai-based entrepreneur, building credibility and personal brand authority.",
-        accentClass: "text-pink-400 bg-pink-500/10 border-pink-500/20"
+        accentClass: "text-pink-400 bg-pink-500/10 border-pink-500/20",
+        hoverBorderClass: "hover:border-pink-500/40 hover:shadow-pink-500/10",
+        btnBgClass: "bg-pink-500 text-white"
     },
     {
         id: "steaburg-brand-film-featured",
@@ -81,7 +95,9 @@ const FEATURED_ITEMS = [
         isVideo: true,
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.mp4",
         description: "Cinematic brand film for Steaburg showcasing the food, the premium atmosphere, and the brand identity.",
-        accentClass: "text-amber-400 bg-amber-500/10 border-amber-500/20"
+        accentClass: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+        hoverBorderClass: "hover:border-amber-500/40 hover:shadow-amber-500/10",
+        btnBgClass: "bg-amber-500 text-black"
     }
 ];
 
@@ -98,7 +114,7 @@ export function FeaturedWork() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.6 }}
-                        className="group relative h-[450px] overflow-hidden rounded-[2.5rem] cursor-pointer border border-border/20 hover:border-orange-500/30 transition-all duration-500 bg-zinc-900 shadow-lg"
+                        className={cn("group relative h-[450px] overflow-hidden rounded-[2.5rem] cursor-pointer border border-border/20 transition-all duration-500 bg-zinc-900 shadow-lg", item.hoverBorderClass || "hover:border-orange-500/30")}
                         onClick={() => setSelectedItem(item)}
                     >
                         <img
@@ -121,7 +137,18 @@ export function FeaturedWork() {
                         </div>
 
                         <div className="absolute bottom-8 left-8 right-8 transition-all duration-500 group-hover:translate-y-[-10px]">
-                            <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">{item.client}</p>
+                            {item.logo ? (
+                                <img 
+                                    src={item.logo} 
+                                    alt={item.client} 
+                                    className="h-6 max-w-[120px] object-contain opacity-60 group-hover:opacity-90 transition-opacity mb-2"
+                                    onError={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                    }}
+                                />
+                            ) : (
+                                <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">{item.client}</p>
+                            )}
                             <h3 className="text-white text-2xl font-display font-black leading-tight uppercase tracking-tight">
                                 {item.title}
                             </h3>
@@ -130,7 +157,7 @@ export function FeaturedWork() {
                             </p>
                         </div>
 
-                        <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0 shadow-lg">
+                        <div className={cn("absolute bottom-8 right-8 w-12 h-12 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0 shadow-lg", item.btnBgClass || "bg-orange-500 text-white")}>
                             {item.isVideo ? <Play className="w-5 h-5 fill-current" /> : <ArrowUpRight className="w-5 h-5" />}
                         </div>
                     </motion.div>

@@ -29,7 +29,7 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
     {
         id: "prepmeal-growth",
-        slug: "prepmeal-launch",
+        slug: "prepmeal",
         client: "PrepMeal",
         industry: "Direct-to-Consumer / Health",
         headline: "Scaling Social Presence for PrepMeal",
@@ -57,70 +57,6 @@ export const caseStudies: CaseStudy[] = [
             "/assets/images/brands/Q4/Ad 9.jpg"
         ],
         tags: ["Social Media Management", "Content Planning", "Coordination"],
-        featured: true
-    },
-    {
-        id: "beyondcars-leads",
-        slug: "beyondcars-lead-engine",
-        client: "BeyondCars",
-        industry: "Automotive Rental",
-        headline: "Scaling Lead Generation for Luxury Fleet",
-        description: "Scalable lead generation for a luxury car rental service through high-performance Meta Ads and creative optimization.",
-        challenge: "Extremely high competition in the Dubai luxury rental market with rising CPCs.",
-        strategy: [
-            "Video-first ad sets showcasing the 'lifestyle' of supercar rental.",
-            "Dynamic retargeting based on fleet page visits.",
-            "Lead form optimization to improve lead quality over quantity."
-        ],
-        execution: [
-            "Produced cinematic video ads for the Porsche and Lamborghini fleet.",
-            "A/B tested 20+ different ad hooks and headlines.",
-            "Integrated CRM automation for instant lead follow-up."
-        ],
-        results: "Drastically lowered CPA while increasing lead quality. The company hit target utilization rates for the entire fleet for 3 consecutive months.",
-        metrics: [
-            { label: "Quality Leads", value: "150+", trend: "up" },
-            { label: "ROAS Increase", value: "2.8x", trend: "up" },
-            { label: "CPA Reduction", value: "45%", trend: "down" }
-        ],
-        image: "/assets/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.jpg",
-        visuals: [
-            "/assets/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.jpg",
-            "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg"
-        ],
-        tags: ["Lead Gen", "Meta Ads", "Creative Optimization"],
-        featured: true
-    },
-    {
-        id: "acero-b2b",
-        slug: "acero-steel-b2b",
-        client: "Acero Steel",
-        industry: "Manufacturing",
-        headline: "Generating High-Value Manufacturing Leads",
-        description: "Establishing Acero as a leader in metal fabrication through strategic LinkedIn presence and targeted ads.",
-        challenge: "B2B sales cycle for structural steel is long and traditionally offline.",
-        strategy: [
-            "B2B content strategy focusing on engineering expertise and completed projects.",
-            "Targeted LinkedIn ads for project managers and architects.",
-            "SEO optimization for industrial fabrication keywords."
-        ],
-        execution: [
-            "Published whitepapers and case studies on engineering marvels.",
-            "Ran targeted ad campaigns for 5 major construction expos.",
-            "Revamped website to focus on B2B lead capture."
-        ],
-        results: "Successfully reached key decision makers in the construction and fabrication industry. Generated 45 high-value project inquiries within the first quarter.",
-        metrics: [
-            { label: "Qualified Leads", value: "45", trend: "up" },
-            { label: "Brand Reach", value: "100k+", trend: "up" },
-            { label: "Conversion Rate", value: "22%", trend: "up" }
-        ],
-        image: "/assets/images/brands/Acero/Acero 2-1.jpg",
-        visuals: [
-            "/assets/images/brands/Acero/Ad 01.png",
-            "/assets/images/brands/Acero/Acero 2-1.jpg"
-        ],
-        tags: ["B2B Marketing", "LinkedIn Ads", "Lead Generation"],
         featured: true
     },
     {

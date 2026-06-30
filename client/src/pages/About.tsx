@@ -148,7 +148,18 @@ export default function About() {
                                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                                             <div>
                                                 <h3 className="text-2xl font-display font-bold text-foreground uppercase">{exp.position}</h3>
-                                                <p className="text-orange-500 font-medium">{exp.company}</p>
+                                                {exp.companyUrl ? (
+                                                    <a 
+                                                        href={exp.companyUrl} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer" 
+                                                        className="text-orange-500 font-medium hover:underline inline-flex items-center gap-1 cursor-pointer"
+                                                    >
+                                                        {exp.company}
+                                                    </a>
+                                                ) : (
+                                                    <p className="text-orange-500 font-medium">{exp.company}</p>
+                                                )}
                                             </div>
                                             <span className="text-xs uppercase tracking-widest text-muted-foreground bg-muted/30 px-4 py-2 rounded-full border border-border/50">
                                                 {exp.duration}

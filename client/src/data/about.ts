@@ -1,5 +1,6 @@
 export interface ExperienceItem {
     company: string;
+    companyUrl?: string;
     position: string;
     duration: string;
     description: string;
@@ -51,7 +52,8 @@ export const experiences: ExperienceItem[] = [
         ]
     },
     {
-        company: "100 Designs",
+        company: "Ecom 100",
+        companyUrl: "https://ecom100.in/",
         position: "Head of Content Creation",
         duration: "Feb 2022 - Dec 2023",
         description: "Led the creative team in delivering high-impact visual assets for premium corporate and lifestyle clients in the Middle East.",

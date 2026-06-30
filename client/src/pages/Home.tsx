@@ -16,7 +16,6 @@ import { proof } from "@/data/proof";
 import { GrowthEngine } from "@/components/home/GrowthEngine";
 import { MouseEvent } from "react";
 import { trpc } from "@/lib/trpc";
-import PerformanceProof from "@/components/PerformanceProof";
 import { TubesBackground } from "@/components/ui/TubesBackground";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
@@ -309,9 +308,6 @@ export default function Home() {
 
       {/* 📊 Proof Strip section */}
       <ProofStrip />
-
-      {/* 🎯 Results & Performance Section */}
-      <PerformanceProof />
 
       {/* 🧱 Featured Work Section */}
       <section className="section overflow-hidden">
