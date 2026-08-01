@@ -65,29 +65,29 @@ export const marketingCampaigns: MarketingCampaign[] = [
     {
         id: "prepmeal-growth",
         slug: "prepmeal",
-        client: "PrepMeal",
-        industry: "Health & Wellness",
-        platform: "Instagram / Meta Ads",
-        title: "Social Growth Strategy",
-        headline: "Establishing Digital Presence in UAE",
-        description: "Coordinated social media growth and content strategy, helping the brand establish a strong digital foothold.",
-        objective: "Build a consistent social presence and coordinate content production during the launch phase.",
-        challenge: "New market entry with a need for hyper-local social proof and high-volume content production.",
+        client: "PrepMeal UAE",
+        industry: "F&B / Subscription",
+        platform: "Meta Ads (IG & FB)",
+        title: "Performance & Lead Generation",
+        headline: "Scaling Meta Ads & WhatsApp Lead Funnels",
+        description: "Full-funnel Meta Ads strategy for a UAE food & meal-prep startup. Scaled WhatsApp lead generation to 6,100+ conversations.",
+        objective: "Drive high-intent WhatsApp & Messenger leads for subscription meal plans.",
+        challenge: "High customer acquisition costs in the competitive UAE meal prep market.",
         strategy: [
-            "Vertical video strategy focusing on food quality and prep transparency.",
-            "Coordination of brand-aligned social content for daily engagement.",
-            "WhatsApp-based customer service coordination for higher retention."
+            "Localized UGC video ad production focused on unboxing and nutrition.",
+            "Direct WhatsApp & Messenger conversation campaign architecture.",
+            "Offer testing & creative optimization (achieved 10.3% CTR on promo ads)."
         ],
         execution: [
-            "Produced 150+ vertical video assets for TikTok and Instagram reels.",
-            "Supported Meta ad accounts with creative strategy and coordination.",
-            "Implemented WhatsApp-based sales coordination increasing conversion by 25%."
+            "Managed AED 159.5K+ in spend across 50 campaigns.",
+            "Produced short-form video UGC assets for Meta Reels and Stories.",
+            "Optimized cost-per-conversation down to AED 3.72 on top promo campaigns."
         ],
-        results: "Successfully managed the brand's social growth, establishing it as a credible player in the health niche.",
+        results: "Generated 6,133 messaging conversations and 4.4M+ impressions across UAE.",
         metrics: [
-            { label: "Meals Delivered", value: "21k+", trend: "up" },
-            { label: "Community Growth", value: "3.5x", trend: "up" },
-            { label: "Ad Spend Supported", value: "AED 300K+", trend: "up" }
+            { label: "Messaging Leads", value: "6,133", trend: "up" },
+            { label: "Ad Spend Managed", value: "AED 159.5K", trend: "up" },
+            { label: "Total Impressions", value: "4.44M", trend: "up" }
         ],
         visuals: [
             "/assets/images/case-studies/prepmeal/Mockup.png",

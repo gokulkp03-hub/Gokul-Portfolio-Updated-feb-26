@@ -25,29 +25,28 @@ export default function PrepmealCaseStudy() {
         <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-emerald-500 text-black p-8 md:p-16 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-emerald-400/50 shadow-2xl shadow-emerald-500/20"
+            className="bg-emerald-500 text-black p-8 md:p-14 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-emerald-400/50 shadow-2xl shadow-emerald-500/20"
         >
-            <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-70 italic">Verified Performance</span>
-            <h2 className="text-5xl md:text-[8rem] font-display font-bold tracking-tighter leading-none mb-6">3.8x ROAS</h2>
-            <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-xl">
-                Scaled a meal-prep startup to 21,000+ meals delivered in 12 months.
+            <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-80 italic">Verified Performance (Meta Ads Lifetime)</span>
+            <h2 className="text-5xl md:text-[7rem] font-display font-bold tracking-tighter leading-none mb-6">6,133 Leads</h2>
+            <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-2xl">
+                Generated 6,133 messaging conversations from 4.4M+ impressions & AED 159.5K spend.
             </p>
         </motion.div>
 
         <h1 className="text-4xl md:text-6xl font-display font-bold leading-[1.1] mb-6 tracking-tight">
-            Prepmeal: The Growth Engine.
+            Prepmeal: Performance Marketing & Scale.
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mb-16 font-medium leading-relaxed">
-            I built the acquisition system that turned a ghost kitchen into a local powerhouse. 
-            Strategy, Creatives, and Media Buying — all synced for profit.
+            Full-funnel Meta Ads strategy for a UAE food & meal-prep startup. Managed AED 159.5K+ in spend across 50 campaigns to scale WhatsApp lead generation and subscription growth.
         </p>
 
         {/* Meta */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 border-y border-border/40 py-8">
-          <div><div className="text-sm font-medium text-foreground">Client</div><div className="text-sm text-muted-foreground mt-1">Prepmeal</div></div>
+          <div><div className="text-sm font-medium text-foreground">Client</div><div className="text-sm text-muted-foreground mt-1">Prepmeal UAE</div></div>
           <div><div className="text-sm font-medium text-foreground">Industry</div><div className="text-sm text-muted-foreground mt-1">F&B / Subscription</div></div>
-          <div><div className="text-sm font-medium text-foreground">Platform</div><div className="text-sm text-muted-foreground mt-1">Meta Ads & Google Ads</div></div>
-          <div><div className="text-sm font-medium text-foreground">Role</div><div className="text-sm text-muted-foreground mt-1">Creative & Performance Strategy</div></div>
+          <div><div className="text-sm font-medium text-foreground">Platform</div><div className="text-sm text-muted-foreground mt-1">Meta Ads (IG & FB)</div></div>
+          <div><div className="text-sm font-medium text-foreground">Role</div><div className="text-sm text-muted-foreground mt-1">Performance & Creative Strategy</div></div>
         </div>
 
         {/* Hero Image */}
@@ -57,27 +56,85 @@ export default function PrepmealCaseStudy() {
         </div>
 
         {/* Results Grid */}
-        <div className="mb-8">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-8">Overview</h2>
+        <div className="mb-16">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-8">Lifetime Meta Ads Performance (Jul 2023 – Aug 2026)</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-emerald-500 mb-2">35%</div>
-                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Decrease in CPA</div>
+                    <div className="text-3xl font-bold text-emerald-500 mb-2">6,133</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Conversations Started</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-foreground mb-2">3.8x</div>
-                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Average ROAS</div>
+                    <div className="text-3xl font-bold text-foreground mb-2">AED 159.5K</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Total Ad Spend</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-foreground mb-2">10k+</div>
-                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Conversions</div>
+                    <div className="text-3xl font-bold text-foreground mb-2">4.44M</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Total Impressions</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-foreground mb-2">AED 50k</div>
-                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Quarterly Spend</div>
+                    <div className="text-3xl font-bold text-emerald-500 mb-2">AED 3.72</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Lowest CPL (Promo)</div>
                 </div>
             </div>
         </div>
+
+        {/* Campaign Breakdown Table & Key Insights */}
+        <section className="mb-20 p-8 md:p-10 rounded-3xl bg-muted/20 border border-border/50">
+            <h2 className="text-2xl font-display font-bold text-foreground mb-3">Meta Ads Campaign Performance Breakdown</h2>
+            <p className="text-sm text-muted-foreground mb-8 font-light">Analysis of top-performing Meta campaigns driving high-intent messaging leads and subscriptions across the GCC.</p>
+            
+            <div className="space-y-4">
+                <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-black uppercase">Top Efficiency Spike</span>
+                            <h3 className="font-bold text-foreground">July Promo – Messages</h3>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1">AED 3,395 spend · 10.3% CTR (9x account avg)</p>
+                    </div>
+                    <div className="text-right flex md:flex-col justify-between items-center md:items-end">
+                        <span className="text-2xl font-bold text-emerald-400">913 Leads</span>
+                        <span className="text-xs font-semibold text-muted-foreground">AED 3.72 / Conv</span>
+                    </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-card border border-border/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-muted text-muted-foreground uppercase">Volume Leader</span>
+                            <h3 className="font-bold text-foreground">Whatsapp Messenger Camp (Retro)</h3>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1">AED 11,351 spend · High-converting chat flow</p>
+                    </div>
+                    <div className="text-right flex md:flex-col justify-between items-center md:items-end">
+                        <span className="text-2xl font-bold text-foreground">1,243 Leads</span>
+                        <span className="text-xs font-semibold text-muted-foreground">AED 9.13 / Conv</span>
+                    </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-card border border-border/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 className="font-bold text-foreground">Whatsapp Messenger Camp (Retro) Video</h3>
+                        <p className="text-xs text-muted-foreground mt-1">AED 12,523 spend · Short-form video UGC</p>
+                    </div>
+                    <div className="text-right flex md:flex-col justify-between items-center md:items-end">
+                        <span className="text-2xl font-bold text-foreground">655 Leads</span>
+                        <span className="text-xs font-semibold text-muted-foreground">AED 19.12 / Conv</span>
+                    </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-card border border-border/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 className="font-bold text-foreground">April PrepMeal Campaign</h3>
+                        <p className="text-xs text-muted-foreground mt-1">AED 24,413 spend · Broad demographic retargeting</p>
+                    </div>
+                    <div className="text-right flex md:flex-col justify-between items-center md:items-end">
+                        <span className="text-2xl font-bold text-foreground">675 Leads</span>
+                        <span className="text-xs font-semibold text-muted-foreground">AED 36.17 / Conv</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <div className="space-y-24 mt-24">
             {/* The Challenge */}
@@ -90,7 +147,7 @@ export default function PrepmealCaseStudy() {
                         The UAE meal prep market is highly saturated with established players holding massive market share. Prepmeal needed to launch as a premium, health-focused alternative but lacked initial brand awareness and faced high customer acquisition costs (CAC) typical of subscription models.
                     </p>
                     <p className="text-lg text-muted-foreground font-light leading-relaxed mt-4">
-                        We were tasked with not only building their visual identity and creative positioning from scratch but also creating a cost-effective acquisition funnel that would generate immediate revenue without burning through budget.
+                        We were tasked with building a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp & Messenger leads at scale while continuously optimizing cost-per-conversation.
                     </p>
                 </div>
             </section>
@@ -104,15 +161,15 @@ export default function PrepmealCaseStudy() {
                     <div className="space-y-8">
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
                             <h3 className="text-lg font-bold text-emerald-500 mb-3">1. Foundational Creatives</h3>
-                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, we directed a localized photoshoot emphasizing freshness, macro-nutrients, and lifestyle convenience tailored to busy Dubai professionals.</p>
+                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, we directed localized UGC-style video shoots emphasizing freshness, macro-nutrients, and lifestyle convenience tailored to busy Dubai professionals.</p>
                         </div>
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">2. Two-Tier Funnel Approach</h3>
-                            <p className="text-muted-foreground font-light">We deployed broad awareness campaigns (video views) to build retargeting audiences at low cost, followed by aggressive conversion campaigns (lead generation & direct sales) aimed at users who engaged.</p>
+                            <h3 className="text-lg font-bold text-emerald-500 mb-3">2. Direct Messaging Lead Funnel</h3>
+                            <p className="text-muted-foreground font-light">Engineered WhatsApp & Messenger direct chat campaigns, lowering friction for potential subscribers and enabling real-time meal plan consultations.</p>
                         </div>
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">3. Offer Engineering</h3>
-                            <p className="text-muted-foreground font-light">Tested multiple entry-offers against each other—"First Week 50% Off" vs "Free Consultation"—and scaled the winner rapidly using dynamic creative optimization.</p>
+                            <h3 className="text-lg font-bold text-emerald-500 mb-3">3. Offer Engineering & Optimization</h3>
+                            <p className="text-muted-foreground font-light">Tested high-converting promotional hooks. The stand-out "July Promo" campaign unlocked an incredible 10.3% CTR and reduced lead costs down to AED 3.72 per conversation.</p>
                         </div>
                     </div>
                 </div>
@@ -127,19 +184,19 @@ export default function PrepmealCaseStudy() {
                     <ul className="space-y-4 text-muted-foreground font-light text-lg">
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Produced 20+ short-form UGC-style video ads focusing on unboxing and taste tests.</span>
+                            <span>Managed AED 159.5K+ in spend across 50 campaigns on Meta Ads (Instagram & Facebook).</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Configured Meta Pixel and Conversions API for precise tracking despite iOS14 limitations.</span>
+                            <span>Produced 20+ short-form UGC video ads focusing on unboxing, meal taste tests, and nutritional breakdowns.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>A/B tested 4 different landing pages, optimizing for mobile checkout speed.</span>
+                            <span>Scaled WhatsApp messenger campaigns, delivering 6,133 total direct customer conversations.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Implemented a WhatsApp automation flow to recover abandoned carts, capturing an extra 12% in revenue.</span>
+                            <span>Continuously audited account metrics to eliminate underperforming budget allocation and scale top-converting ads.</span>
                         </li>
                     </ul>
                 </div>
@@ -153,16 +210,16 @@ export default function PrepmealCaseStudy() {
                 <div className="md:col-span-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
                         <div className="p-8 rounded-3xl bg-emerald-950/30 border border-emerald-500/20">
-                            <div className="text-5xl font-bold text-emerald-500 mb-2">35%</div>
-                            <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest">CPA Drop in 90 Days</div>
+                            <div className="text-5xl font-bold text-emerald-500 mb-2">6,133</div>
+                            <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Total Messaging Leads</div>
                         </div>
                         <div className="p-8 rounded-3xl bg-emerald-950/30 border border-emerald-500/20">
-                            <div className="text-5xl font-bold text-emerald-500 mb-2">21K+</div>
-                            <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Total Deliveries</div>
+                            <div className="text-5xl font-bold text-emerald-500 mb-2">AED 3.72</div>
+                            <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Best Cost Per Lead</div>
                         </div>
                     </div>
                     <p className="text-xl text-muted-foreground font-medium leading-relaxed italic">
-                        "The combination of high-impact video ads and precise Meta retargeting allowed us to scale without losing efficiency. We didn't just grow awareness; we built a revenue machine."
+                        "The combination of high-impact video ads, offer testing, and direct WhatsApp lead funnels enabled us to reach 1.5M+ users and drive over 6,100 high-intent customer conversations across the UAE."
                     </p>
                 </div>
             </section>
