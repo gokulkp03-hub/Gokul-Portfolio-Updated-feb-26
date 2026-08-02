@@ -281,6 +281,61 @@ export default function PrepmealCaseStudy() {
                     </div>
                 </div>
             </section>
+
+            {/* Food & Creative Content Gallery */}
+            <section className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-border/40 pt-20">
+                <div className="md:col-span-4">
+                    <h2 className="text-2xl font-display font-bold text-foreground uppercase tracking-tight">Culinary & Brand Visuals</h2>
+                    <p className="text-sm text-muted-foreground mt-3 leading-relaxed font-light">
+                        High-converting food photography and lifestyle content produced for Meta ad creative testing and social media acquisition.
+                    </p>
+                </div>
+                <div className="md:col-span-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                            <img src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" alt="Chicken Pesto Meal Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                                <span className="text-xs font-semibold text-white">Chicken Pesto Macro Meal</span>
+                            </div>
+                        </div>
+
+                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                            <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                                <span className="text-xs font-semibold text-white">Sourdough & Labneh Prep</span>
+                            </div>
+                        </div>
+
+                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                            <img src="/assets/images/case-studies/prepmeal/Acai Smoothie.jpg" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                                <span className="text-xs font-semibold text-white">Fresh Organic Acai</span>
+                            </div>
+                        </div>
+
+                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                            <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                                <span className="text-xs font-semibold text-white">High-Protein Burrito</span>
+                            </div>
+                        </div>
+
+                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                            <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                                <span className="text-xs font-semibold text-white">Fitness Protein Pancakes</span>
+                            </div>
+                        </div>
+
+                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                            <img src="/assets/images/case-studies/prepmeal/Macros Club.jpg" alt="Prepmeal Plan Menu" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }} />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+                                <span className="text-xs font-semibold text-white">Macro Meal Card</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
       </div>
     </div>
