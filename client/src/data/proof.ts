@@ -8,9 +8,9 @@ export interface Metric {
 export const proof = {
     metrics: [
         { label: "Average Campaign ROAS", value: "4.45", suffix: "x" },
-        { label: "WhatsApp Leads Generated", value: "1232", suffix: "+" },
-        { label: "Total Campaign Reach", value: "874", suffix: "K" },
-        { label: "Total Revenue Generated", value: "31743", prefix: "AED ", suffix: "" },
+        { label: "WhatsApp & Messaging Leads", value: "7300", suffix: "+" },
+        { label: "Total Campaign Reach", value: "2.3", suffix: "M+" },
+        { label: "Total Managed Ad Spend", value: "166000", prefix: "AED ", suffix: "+" },
     ] as Metric[],
     logos: [
         { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.png" },

@@ -79,6 +79,13 @@ export default function VideoService() {
     const [hoveredId, setHoveredId] = useState<string | null>(null);
     const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
 
+    useEffect(() => {
+        setSEO({
+            title: "Gokul KP — Commercial Video Producer & Director | Dubai, UAE",
+            description: "Commercial video producer and director in Dubai. High-impact brand films, music videos, and high-retention Reels built for paid acquisition and brand authority."
+        });
+    }, []);
+
     // Use static videoProjects — all 31 videos, no DB merge needed (avoids duplicates)
     const allVideos = videoProjects;
 

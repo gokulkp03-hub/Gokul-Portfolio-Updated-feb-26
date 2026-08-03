@@ -86,8 +86,8 @@ const localArchiveImages = [
 export default function PhotoService() {
     useEffect(() => {
         setSEO({
-            title: "Commercial Photography & Brand Visuals | Gokul KP",
-            description: "High-end product, lifestyle, and corporate photography in Dubai. Elevating B2C brand identity and engagement with premium captures."
+            title: "Gokul KP — Commercial & Brand Photography | Dubai, UAE",
+            description: "Commercial product photography, culinary macro visuals, and high-end editorial shoots in Dubai, UAE."
         });
     }, []);
 

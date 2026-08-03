@@ -21,8 +21,8 @@ import { useCallback } from "react";
 export default function Home() {
   useEffect(() => {
     setSEO({
-      title: "Gokul KP | Premium Video Producer & Growth Strategist in Dubai, UAE",
-      description: "Gokul KP is a premium video producer, commercial editor, and B2C/B2B growth marketer scaling brands across the GCC. Get high-converting Meta ads campaigns."
+      title: "Gokul KP — Performance Marketer & Video Producer | Dubai, UAE",
+      description: "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS."
     });
   }, []);
 

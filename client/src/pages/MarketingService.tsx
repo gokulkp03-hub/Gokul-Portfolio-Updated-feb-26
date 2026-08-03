@@ -266,10 +266,10 @@ function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
 // ------- Marketing Hero -------
 function MarketingHero() {
   const stats = [
-    { val: 500, suffix: "K+", prefix: "AED ", label: "Ad Spend Managed" },
-    { val: 2, suffix: "M+", prefix: "AED ", label: "Revenue Generated" },
-    { val: 4.2, suffix: "x", prefix: "", label: "Avg ROAS" },
-    { val: 150, suffix: "+", prefix: "", label: "Campaigns Run" },
+    { val: 166, suffix: "K+", prefix: "AED ", label: "Ad Spend Managed" },
+    { val: 7.3, suffix: "K+", prefix: "", label: "WhatsApp Leads" },
+    { val: 4.45, suffix: "x", prefix: "", label: "Avg ROAS" },
+    { val: 2.3, suffix: "M+", prefix: "", label: "Campaign Reach" },
   ];
 
   return (
@@ -378,8 +378,8 @@ const faqs = [
 export default function MarketingService() {
   useEffect(() => {
     setSEO({
-      title: "Premium B2C & B2B Performance Marketer Dubai | Meta Ads | Gokul KP",
-      description: "Scale your revenue with a premium performance marketer in Dubai. High-ticket Meta Ads campaigns, B2B lead generation funnels, and GCC WhatsApp automation."
+      title: "Gokul KP — Performance Marketing & Meta Ads | Dubai, UAE",
+      description: "Data-driven Meta Ads management, lead generation funnels, and GCC WhatsApp automation. Managed AED 166K+ spend, 7,300+ leads, up to 4.45x ROAS."
     });
   }, []);
 

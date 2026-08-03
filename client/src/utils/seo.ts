@@ -48,7 +48,7 @@ export const setSEO = ({ title, description, image, url }: SEOProps) => {
     }
 
     // Dynamic Canonical URL Injection
-    const canonicalUrl = url || `https://gokul-folio.vercel.app${window.location.pathname}`;
+    const canonicalUrl = url || `https://www.gokulkp.com${window.location.pathname}`;
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
         canonicalLink = document.createElement('link');
