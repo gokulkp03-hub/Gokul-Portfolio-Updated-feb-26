@@ -13,14 +13,14 @@ export const proof = {
         { label: "Total Managed Ad Spend", value: "166000", prefix: "AED ", suffix: "+" },
     ] as Metric[],
     logos: [
-        { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.png" },
+        { name: "Aqua Care UAE", src: "/assets/images/logos/Aquacare logo.png" },
+        { name: "Beyond Cars", src: "/assets/images/logos/beyondcars.png" },
+        { name: "PrepMeal UAE", src: "/assets/images/logos/prepmeal.png" },
+        { name: "Galaxy Star Perfumes", src: "/assets/images/logos/galaxy-star.png" },
         { name: "Acero Steel", src: "/assets/images/logos/acero.png" },
-        { name: "Galaxy Star", src: "/assets/images/logos/galaxy-star.png" },
         { name: "Suncore", src: "/assets/images/logos/suncore.png" },
         { name: "Q4 Clean Home", src: "/assets/images/logos/q4c.png" },
-        { name: "Ecom 100", src: "/assets/images/logos/ecom-100.png" },
-        { name: "PrepMeal", src: "/assets/images/logos/prepmeal.png" },
-        { name: "Healthy Meals", src: "/assets/images/logos/healthy-meals.png" }
+        { name: "Ecom 100", src: "/assets/images/logos/ecom-100.png" }
     ],
     testimonials: [
         {
