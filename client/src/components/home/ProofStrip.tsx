@@ -20,22 +20,22 @@ export function ProofStrip() {
                 </div>
 
                 {/* Infinite Scroll Logos - Row 1 Left */}
-                <div className="marquee-container mb-6 overflow-hidden">
-                    <div className="animate-marquee">
-                        {[...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos].map((logo, i) => (
-                            <div key={`row1-${i}`} className="flex-shrink-0 mx-8 md:mx-16 opacity-40 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 duration-300 pointer-events-auto">
-                                <img src={logo.src} alt={logo.name} className="h-8 md:h-12 w-auto object-contain dark:invert" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                <div className="marquee-container mb-8 overflow-hidden">
+                    <div className="animate-marquee flex items-center">
+                        {[...row1Logos, ...row1Logos, ...row1Logos].map((logo, i) => (
+                            <div key={`row1-${i}`} className="flex-shrink-0 mx-8 md:mx-12 opacity-80 hover:opacity-100 transition-opacity pointer-events-auto">
+                                <img src={logo.src} alt={logo.name} className="h-8 md:h-10 w-auto object-contain brightness-110" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Infinite Scroll Logos - Row 2 Right */}
-                <div className="marquee-container mb-24 overflow-hidden">
-                    <div className="animate-marquee-right">
-                        {[...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos].map((logo, i) => (
-                            <div key={`row2-${i}`} className="flex-shrink-0 mx-8 md:mx-16 opacity-40 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 duration-300 pointer-events-auto">
-                                <img src={logo.src} alt={logo.name} className="h-8 md:h-12 w-auto object-contain dark:invert" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                <div className="marquee-container mb-20 overflow-hidden">
+                    <div className="animate-marquee-right flex items-center">
+                        {[...row2Logos, ...row2Logos, ...row2Logos].map((logo, i) => (
+                            <div key={`row2-${i}`} className="flex-shrink-0 mx-8 md:mx-12 opacity-80 hover:opacity-100 transition-opacity pointer-events-auto">
+                                <img src={logo.src} alt={logo.name} className="h-8 md:h-10 w-auto object-contain brightness-110" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                             </div>
                         ))}
                     </div>
