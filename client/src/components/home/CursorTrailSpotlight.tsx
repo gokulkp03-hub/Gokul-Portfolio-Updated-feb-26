@@ -36,7 +36,7 @@ export const CursorTrailSpotlight: React.FC = () => {
     };
   }, []);
 
-  // 1. Canvas2D Spring Cursor Trail Physics
+// 1. Canvas2D Spring Cursor Trail Physics with Magnetic Snap to Cards
   useEffect(() => {
     if (!isDesktop || !canvasRef.current) return;
 
@@ -55,7 +55,7 @@ export const CursorTrailSpotlight: React.FC = () => {
     window.addEventListener("resize", handleResize);
 
     // Trail Physics Nodes (Spring/Lag Trail)
-    const NUM_POINTS = 16;
+    const NUM_POINTS = 18;
     const trailPoints = Array.from({ length: NUM_POINTS }, () => ({
       x: width / 2,
       y: height / 2,
@@ -64,13 +64,39 @@ export const CursorTrailSpotlight: React.FC = () => {
     }));
 
     let mousePos = { x: width / 2, y: height / 2 };
+    let targetPos = { x: width / 2, y: height / 2 };
     let isMouseMoving = false;
+    let snapTimeout: any = null;
 
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
+      targetPos.x = e.clientX;
+      targetPos.y = e.clientY;
       isMouseMoving = true;
+
+      // Magnetic snap test: check if pointer passes near any background card
+      const cards = document.querySelectorAll(".ambient-glass-card");
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenterX = rect.left + rect.width / 2;
+        const cardCenterY = rect.top + rect.height / 2;
+        const dist = Math.hypot(e.clientX - cardCenterX, e.clientY - cardCenterY);
+
+        if (dist < 140) {
+          // Magnetically pull spring target towards card center for 220ms
+          targetPos.x = cardCenterX;
+          targetPos.y = cardCenterY;
+
+          card.classList.add("ring-1", "ring-[#B83A1A]/40", "scale-[1.03]");
+          if (snapTimeout) clearTimeout(snapTimeout);
+          snapTimeout = setTimeout(() => {
+            card.classList.remove("ring-1", "ring-[#B83A1A]/40", "scale-[1.03]");
+          }, 250);
+        }
+      });
     };
+
     window.addEventListener("mousemove", handleMouseMove);
 
     let animId: number;
@@ -79,9 +105,9 @@ export const CursorTrailSpotlight: React.FC = () => {
       ctx.clearRect(0, 0, width, height);
 
       if (isMouseMoving) {
-        // Lead point follows mouse directly
-        trailPoints[0].x += (mousePos.x - trailPoints[0].x) * 0.35;
-        trailPoints[0].y += (mousePos.y - trailPoints[0].y) * 0.35;
+        // Lead point follows target with spring inertia
+        trailPoints[0].x += (targetPos.x - trailPoints[0].x) * 0.38;
+        trailPoints[0].y += (targetPos.y - trailPoints[0].y) * 0.38;
 
         // Subsequent points spring-follow predecessor
         for (let i = 1; i < NUM_POINTS; i++) {
@@ -91,10 +117,10 @@ export const CursorTrailSpotlight: React.FC = () => {
           const dx = prev.x - pt.x;
           const dy = prev.y - pt.y;
 
-          pt.vx += dx * 0.08;
-          pt.vy += dy * 0.08;
-          pt.vx *= 0.72; // Damping
-          pt.vy *= 0.72;
+          pt.vx += dx * 0.09;
+          pt.vy += dy * 0.09;
+          pt.vx *= 0.70; // Friction Damping
+          pt.vy *= 0.70;
 
           pt.x += pt.vx;
           pt.y += pt.vy;
@@ -110,13 +136,13 @@ export const CursorTrailSpotlight: React.FC = () => {
           ctx.quadraticCurveTo(trailPoints[i].x, trailPoints[i].y, xc, yc);
         }
 
-        // Styling: Glowing Terracotta Ribbon
-        ctx.strokeStyle = "rgba(184, 58, 26, 0.4)";
-        ctx.lineWidth = 3;
+        // Styling: Terracotta Glowing Spring Ribbon
+        ctx.strokeStyle = "rgba(184, 58, 26, 0.45)";
+        ctx.lineWidth = 2.5;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.shadowColor = "#B83A1A";
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 14;
         ctx.stroke();
       }
 
@@ -129,6 +155,7 @@ export const CursorTrailSpotlight: React.FC = () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
+      if (snapTimeout) clearTimeout(snapTimeout);
     };
   }, [isDesktop]);
 
@@ -200,7 +227,7 @@ export const CursorTrailSpotlight: React.FC = () => {
           <motion.div
             key={idx}
             style={{ opacity: cardOpacity, scale: cardScale }}
-            className={`absolute z-0 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-2xl text-white pointer-events-none ${card.className}`}
+            className={`ambient-glass-card absolute z-0 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-2xl text-white pointer-events-none transition-all duration-300 ${card.className}`}
           >
             <div className="w-9 h-9 rounded-xl bg-[#B83A1A]/15 border border-[#B83A1A]/30 flex items-center justify-center text-[#B83A1A]">
               <IconComponent className="w-4 h-4" />
