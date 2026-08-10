@@ -15,6 +15,7 @@ import { proof } from "@/data/proof";
 import { MouseEvent } from "react";
 import { trpc } from "@/lib/trpc";
 import { TubesBackground } from "@/components/ui/TubesBackground";
+import { ScrollCurvePath } from "@/components/home/ScrollCurvePath";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
 
@@ -63,6 +64,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background selection:bg-accent selection:text-white overflow-hidden relative">
+
+      {/* Background Scroll-Following Animated Curve & Ambient Glass Cards */}
+      <ScrollCurvePath />
 
       <motion.div 
         className="fixed inset-0 pointer-events-none bg-orange-500/10 z-0 mix-blend-screen" 
