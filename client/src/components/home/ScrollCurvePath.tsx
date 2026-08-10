@@ -85,33 +85,57 @@ export const ScrollCurvePath: React.FC = () => {
     >
       {/* Background SVG Curve */}
       <svg
-        className="w-full h-full absolute inset-0 text-[#F97316] opacity-30 filter drop-shadow-[0_0_12px_rgba(249,115,22,0.3)]"
+        className="w-full h-full absolute inset-0 text-[#B83A1A] filter drop-shadow-[0_0_16px_rgba(184,58,26,0.35)] blur-[1px]"
         preserveAspectRatio="none"
         viewBox={`0 0 1400 ${pageHeight}`}
       >
         <defs>
-          <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#F97316" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#EA580C" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#C2410C" stopOpacity="0.2" />
+          <linearGradient id="curveGradientPrimary" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#B83A1A" stopOpacity="0.25" />
+            <stop offset="35%" stopColor="#FF5226" stopOpacity="0.65" />
+            <stop offset="70%" stopColor="#B83A1A" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#B83A1A" stopOpacity="0.1" />
+          </linearGradient>
+
+          <linearGradient id="curveGradientSecondary" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#FF5226" stopOpacity="0.15" />
+            <stop offset="50%" stopColor="#B83A1A" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#FF5226" stopOpacity="0.05" />
           </linearGradient>
         </defs>
 
-        {/* Dynamic Multi-Curve Weaving Path */}
+        {/* Primary Curve Path weaving through section focal points */}
         <motion.path
           ref={pathRef}
           d={`
-            M 700 150
-            C 1100 600, 200 1200, 700 1800
-            C 1200 2400, 300 3000, 700 3600
-            C 1000 4200, 500 4800, 700 ${pageHeight - 200}
+            M 700 200
+            C 1150 700, 150 1400, 850 2100
+            C 1300 2800, 200 3500, 750 4100
+            C 1100 4700, 450 5300, 700 ${pageHeight - 250}
           `}
           fill="none"
-          stroke="url(#curveGradient)"
-          strokeWidth="2.5"
+          stroke="url(#curveGradientPrimary)"
+          strokeWidth="2.8"
           strokeDasharray={pathLength}
           style={{ strokeDashoffset }}
           strokeLinecap="round"
+        />
+
+        {/* Secondary Offset Parallel Accent Line */}
+        <motion.path
+          d={`
+            M 720 220
+            C 1170 720, 170 1420, 870 2120
+            C 1320 2820, 220 3520, 770 4120
+            C 1120 4720, 470 5320, 720 ${pageHeight - 230}
+          `}
+          fill="none"
+          stroke="url(#curveGradientSecondary)"
+          strokeWidth="1.5"
+          strokeDasharray={pathLength}
+          style={{ strokeDashoffset }}
+          strokeLinecap="round"
+          strokeDashoffset={strokeDashoffset}
         />
       </svg>
 
