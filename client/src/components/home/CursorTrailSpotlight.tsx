@@ -132,35 +132,28 @@ export const CursorTrailSpotlight: React.FC = () => {
     };
   }, [isDesktop]);
 
-  // Ambient Glass Cards data driven by Spotlight Progress
+  // Ambient Glass Cards data driven by Spotlight Progress (positioned outside ProofStrip to avoid redundancy)
   const backgroundCards = [
     {
-      topProgress: 0.20,
+      topProgress: 0.15, // Capabilities section
       icon: TrendingUp,
-      stat: "4.45x Avg ROAS",
-      label: "GCC Tracked Return",
-      className: "top-[20%] right-[6%] sm:right-[12%]"
+      stat: "Direct-Response Meta Ads",
+      label: "GCC Campaign Strategy",
+      className: "top-[15%] right-[6%] sm:right-[12%]"
     },
     {
-      topProgress: 0.42,
-      icon: Zap,
-      stat: "7,300+ Leads",
-      label: "Direct WhatsApp Funnel",
-      className: "top-[42%] left-[5%] sm:left-[10%]"
-    },
-    {
-      topProgress: 0.65,
+      topProgress: 0.58, // Featured Work section
       icon: Award,
-      stat: "AED 166K+",
-      label: "Managed Ad Budget",
-      className: "top-[65%] right-[6%] sm:right-[12%]"
+      stat: "4.45x Average ROAS",
+      label: "Tracked Return",
+      className: "top-[58%] right-[6%] sm:right-[12%]"
     },
     {
-      topProgress: 0.85,
+      topProgress: 0.82, // Acceleration Process / CTA
       icon: CheckCircle2,
       stat: "208x Peak Spike",
       label: "Flood-Pump Campaign",
-      className: "top-[85%] left-[6%] sm:left-[12%]"
+      className: "top-[82%] left-[6%] sm:left-[12%]"
     }
   ];
 
