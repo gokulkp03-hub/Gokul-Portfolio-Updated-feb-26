@@ -16,6 +16,7 @@ import { MouseEvent } from "react";
 import { trpc } from "@/lib/trpc";
 import { TubesBackground } from "@/components/ui/TubesBackground";
 import { CursorTrailSpotlight } from "@/components/home/CursorTrailSpotlight";
+import { CampaignDataTerrainSingle } from "@/components/home/CampaignDataTerrainSingle";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
 
@@ -307,6 +308,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 3D Campaign Data Terrain Section (Aqua Care ROAS Data Geometry) */}
+      <CampaignDataTerrainSingle />
 
       {/* 📊 Proof Strip section */}
       <ProofStrip />
