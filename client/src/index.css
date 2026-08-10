@@ -48,6 +48,8 @@
 }
 
 @layer base {
+  /* Gokul KP Portfolio — Clean Baseline Styles */
+  /* Cache Purge: 2024-05-20 */
   :root, .dark {
     scroll-padding-top: 100px;
 
