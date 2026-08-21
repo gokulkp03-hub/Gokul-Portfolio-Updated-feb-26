@@ -34,6 +34,7 @@ const photographyStills = [
 ];
 
 const graphicAdDesigns = [
+    { src: "/assets/images/portfolio-all/steaburg-design.webp", title: "Steaburg Culinary Brand Key Visual", tag: "Social Promo Design" },
     { src: "/assets/images/portfolio-all/AD_1_DEC.jpg", title: "Holiday Meta Ad Creative", tag: "Direct-Response Ad" },
     { src: "/assets/images/portfolio-all/AD_2_DEC.jpg", title: "Festive Campaign Offer Graphic", tag: "Social Promo Design" },
     { src: "/assets/images/portfolio-all/Ad.jpg", title: "Aqua Care Product Feature Graphic", tag: "E-Commerce Poster" },
