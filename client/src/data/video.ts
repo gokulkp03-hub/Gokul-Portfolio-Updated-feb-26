@@ -4,6 +4,7 @@ export interface VideoProject {
     category: "Weddings" | "Events" | "Product" | "Personal Branding" | "Reels" | "Motion Graphics";
     thumbnail: string;
     videoUrl?: string; // Cloudinary or Vimeo/YouTube link
+    cloudinaryEmbedId?: string;
     description: string;
     featured?: boolean;
 }
@@ -134,6 +135,86 @@ export const videoProjects: VideoProject[] = [
         thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Steaburg_sjl6ik.jpg",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.mp4",
         description: "Cinematic brand film for Steaburg showcasing the food, the atmosphere, and the brand story.",
+        featured: true
+    },
+    {
+        id: "aqua-care-ai-product-video",
+        title: "Aqua Care — AI Product Video",
+        category: "Product",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Aqua_Care_fully_AI_Product_Video_qc6l39.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_fully_AI_Product_Video_qc6l39.mp4",
+        cloudinaryEmbedId: "Aqua_Care_fully_AI_Product_Video_qc6l39",
+        description: "Fully AI-generated high-converting commercial product showcase for Aqua Care UAE.",
+        featured: true
+    },
+    {
+        id: "aqua-care-ramadan-dispenser-ai",
+        title: "Aqua Care — Ramadan Dispenser AI",
+        category: "Product",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Aqua_Care_Ramadan_Dispenser_Hot_water_use_AI_Video_yh60pz.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_Ramadan_Dispenser_Hot_water_use_AI_Video_yh60pz.mp4",
+        cloudinaryEmbedId: "Aqua_Care_Ramadan_Dispenser_Hot_water_use_AI_Video_yh60pz",
+        description: "AI-driven Ramadan campaign video featuring hot water dispenser use-case storytelling.",
+        featured: true
+    },
+    {
+        id: "little-rooster-creative",
+        title: "Little Rooster — Creative Film",
+        category: "Product",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Little_Rooster_creative_ampr17.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Little_Rooster_creative_ampr17.mp4",
+        cloudinaryEmbedId: "Little_Rooster_creative_ampr17",
+        description: "High-retention creative promo video for Little Rooster culinary brand.",
+        featured: true
+    },
+    {
+        id: "prepmeal-creative",
+        title: "PrepMeal — Creative Campaign",
+        category: "Product",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/PrepMeal_Creative_gq7ntm.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/PrepMeal_Creative_gq7ntm.mp4",
+        cloudinaryEmbedId: "PrepMeal_Creative_gq7ntm",
+        description: "Direct-response creative video ad driving WhatsApp leads across Dubai & Muscat.",
+        featured: true
+    },
+    {
+        id: "retro-5-event",
+        title: "Retro 5 — Event Film",
+        category: "Events",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Retro_5_wukctg.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Retro_5_wukctg.mp4",
+        cloudinaryEmbedId: "Retro_5_wukctg",
+        description: "Cinematic retro-themed event highlight reel in Dubai.",
+        featured: true
+    },
+    {
+        id: "prepmeal-motion-graphics-ad",
+        title: "PrepMeal — Motion Graphics Ad",
+        category: "Motion Graphics",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Prepmeal_AD_Creative_1_Motion_graphics_v8bmz1.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Prepmeal_AD_Creative_1_Motion_graphics_v8bmz1.mp4",
+        cloudinaryEmbedId: "Prepmeal_AD_Creative_1_Motion_graphics_v8bmz1",
+        description: "Dynamic motion graphics ad creative optimized for social conversions.",
+        featured: true
+    },
+    {
+        id: "rj-aswaathy-kannan-branding",
+        title: "RJ Aswathy Kannan — Personal Brand",
+        category: "Personal Branding",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/rj.aswaathy.kannan_uwhygl.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/rj.aswaathy.kannan_uwhygl.mp4",
+        cloudinaryEmbedId: "rj.aswaathy.kannan_uwhygl",
+        description: "Personal branding story and media reel for RJ Aswathy Kannan.",
+        featured: true
+    },
+    {
+        id: "anu-creative-reel",
+        title: "Anu — Personal Branding Reel",
+        category: "Personal Branding",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,f_jpg,w_800,q_auto/v1/Anu-_3_xhk16i.jpg",
+        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu-_3_xhk16i.mp4",
+        cloudinaryEmbedId: "Anu-_3_xhk16i",
+        description: "Cinematic personal branding and lifestyle video production.",
         featured: true
     }
 ];

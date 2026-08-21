@@ -209,7 +209,15 @@ export default function VideoService() {
                             {/* Hide play button inside modal */}
                             <motion.div layoutId="showreel-play" style={{ opacity: 0 }} />
                             
-                            {selectedVideo.videoUrl && (
+                            {selectedVideo.cloudinaryEmbedId ? (
+                                <iframe
+                                    src={`https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${selectedVideo.cloudinaryEmbedId}`}
+                                    className="absolute inset-0 w-full h-full border-0"
+                                    style={{ height: "100%", width: "100%" }}
+                                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            ) : selectedVideo.videoUrl && (
                                 <video 
                                     src={selectedVideo.videoUrl} 
                                     className="absolute inset-0 w-full h-full object-contain"
@@ -329,6 +337,70 @@ export default function VideoService() {
                             <p className="text-lg">No videos in this category yet.</p>
                         </div>
                     )}
+                </div>
+            </section>
+            {/* Cloudinary Player Embed Showcase Section */}
+            <section id="interactive-embeds" className="py-24 bg-zinc-950 border-t border-border/20 relative z-10">
+                <div className="container">
+                    <div className="mb-14">
+                        <span className="text-xs font-mono tracking-[0.4em] text-blue-400 uppercase block mb-3">
+                            Featured Player Embeds
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-display font-bold text-white tracking-tight">
+                            Interactive <span className="text-zinc-500 italic">Cloudinary Showcase</span>
+                        </h2>
+                        <p className="text-zinc-400 text-sm font-light mt-2 max-w-xl">
+                            High-definition streaming embeds featuring AI product videos, commercial ads, Ramadan campaigns, and motion graphics.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {[
+                            { title: "Aqua Care — Fully AI Product Video", publicId: "Aqua_Care_fully_AI_Product_Video_qc6l39", tag: "AI Commercial" },
+                            { title: "Aqua Care — Ramadan Hot Water Dispenser AI", publicId: "Aqua_Care_Ramadan_Dispenser_Hot_water_use_AI_Video_yh60pz", tag: "AI Campaign" },
+                            { title: "Little Rooster — Creative Film", publicId: "Little_Rooster_creative_ampr17", tag: "Culinary Creative" },
+                            { title: "PrepMeal — Creative Direct-Response Campaign", publicId: "PrepMeal_Creative_gq7ntm", tag: "Ad Creative" },
+                            { title: "Retro 5 — Event Memories", publicId: "Retro_5_wukctg", tag: "Event Highlight" },
+                            { title: "PrepMeal — Motion Graphics AD Creative 1", publicId: "Prepmeal_AD_Creative_1_Motion_graphics_v8bmz1", tag: "Motion Graphics" },
+                            { title: "RJ Aswathy Kannan — Personal Brand Reel", publicId: "rj.aswaathy.kannan_uwhygl", tag: "Personal Brand" },
+                            { title: "Anu — Personal Branding Reel 3", publicId: "Anu-_3_xhk16i", tag: "Personal Brand" }
+                        ].map((embed, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: (idx % 2) * 0.1 }}
+                                className="group rounded-2xl overflow-hidden bg-zinc-900 border border-border/40 hover:border-blue-500/40 shadow-2xl transition-all duration-300 flex flex-col"
+                            >
+                                <div className="relative w-full aspect-video bg-black overflow-hidden">
+                                    <iframe
+                                        src={`https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${embed.publicId}`}
+                                        width="640"
+                                        height="360"
+                                        style={{ height: "100%", width: "100%", aspectRatio: "640 / 360" }}
+                                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                        allowFullScreen
+                                        frameBorder="0"
+                                        className="w-full h-full border-0 block"
+                                    />
+                                </div>
+                                <div className="p-5 bg-zinc-900/90 border-t border-border/30 flex items-center justify-between">
+                                    <div>
+                                        <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest block mb-1">
+                                            {embed.tag}
+                                        </span>
+                                        <h3 className="text-base font-bold text-white group-hover:text-blue-300 transition-colors">
+                                            {embed.title}
+                                        </h3>
+                                    </div>
+                                    <span className="text-xs font-mono text-zinc-500 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                                        Embed #{String(idx + 1).padStart(2, '0')}
+                                    </span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </div>
