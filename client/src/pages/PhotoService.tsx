@@ -86,8 +86,8 @@ export default function PhotoService() {
             
             {/* 1. WebGL Three.js Hero Shader */}
             <PhotoShaderHero
-                imageSrc="/assets/images/portfolio-all/Sourdough_Avocado.jpg"
-                fallbackSrc="/assets/images/portfolio-all/Sourdough_Avocado.jpg"
+                imageSrc="/assets/images/photography/photo-hero-camera.jpg"
+                fallbackSrc="/assets/images/photography/photo-hero-camera.jpg"
                 headlineLine1="Food & Product"
                 headlineLine2="Photography"
                 sublabel="Dubai — Commercial & Editorial Photography"
