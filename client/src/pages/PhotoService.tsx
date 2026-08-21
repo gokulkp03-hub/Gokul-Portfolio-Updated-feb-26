@@ -55,19 +55,16 @@ const graphicAdDesigns = [
 const packages = [
     {
         name: "Culinary & Editorial Session",
-        price: "AED 3,500",
         features: ["Half-Day Studio / On-Location Shoot", "20 High-End Retouched Stills", "Lighting & Styling Direction", "Commercial Digital Usage Rights"],
         highlight: false
     },
     {
         name: "Commercial Brand Content Day",
-        price: "AED 6,500",
         features: ["Full-Day Comprehensive Production", "50+ Retouched Product & Food Assets", "Direct-Response Meta Ad Formats", "Global Commercial Usage Rights"],
         highlight: true
     },
     {
         name: "Custom Campaign Retainer",
-        price: "Custom",
         features: ["Multi-Day Commercial Shoot", "Studio Rental & Art Direction", "Dedicated Food Stylist", "Full Retouching & Asset Distribution"],
         highlight: false
     }
@@ -230,8 +227,7 @@ export default function PhotoService() {
                                             </span>
                                         )}
                                     </div>
-                                    <div className="text-3xl font-mono font-bold text-amber-400">{pkg.price}</div>
-                                    
+
                                     <ul className="space-y-4 border-t border-neutral-800 pt-6">
                                         {pkg.features.map((feat, j) => (
                                             <li key={j} className="flex items-center gap-3 text-xs text-neutral-300 font-mono">

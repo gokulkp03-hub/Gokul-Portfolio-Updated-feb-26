@@ -41,21 +41,18 @@ const services = [
 const packages = [
     {
         name: "Starter",
-        price: "From AED 5,000",
         desc: "Perfect for social media content and short ads.",
         features: ["1 Day Filming", "2 Social Edits (15s)", "Basic Color Grading", "Licensed Music"],
         highlight: false,
     },
     {
         name: "Growth",
-        price: "From AED 12,000",
         desc: "High-quality brand storytelling and commercials.",
         features: ["2 Days Filming", "1 Brand Film (60s)", "3 Social Cutdowns", "Advanced Sound Design", "Professional Voiceover"],
         highlight: true,
     },
     {
         name: "Production",
-        price: "Custom",
         desc: "Full-scale production for TV and major campaigns.",
         features: ["Full Crew & Equipment", "Scripting & Storyboard", "Casting & Locations", "Cinema-Grade Post Production"],
         highlight: false,
