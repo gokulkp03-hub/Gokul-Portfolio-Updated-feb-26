@@ -9,23 +9,47 @@ import { Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const localArchiveImages = [
-    "/assets/images/portfolio-all/1735068551568.jpg",
-    "/assets/images/portfolio-all/1744907237529.jpg",
-    "/assets/images/portfolio-all/1744907237550.jpg",
-    "/assets/images/portfolio-all/1744907237584.jpg",
-    "/assets/images/portfolio-all/1744907237603.jpg",
-    "/assets/images/portfolio-all/2-1_1767958070276.jpg",
-    "/assets/images/portfolio-all/3-1_1767958070681.jpg",
-    "/assets/images/portfolio-all/5.jpg",
+const photographyStills = [
+    "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
+    "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg",
     "/assets/images/portfolio-all/Cheesecake.jpg",
     "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg",
     "/assets/images/portfolio-all/Iced_V60.jpg",
-    "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
     "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg",
-    "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg",
+    "/assets/images/portfolio-all/ginger_shot.jpg",
     "/assets/images/portfolio-all/Vita_bloom.jpg",
-    "/assets/images/portfolio-all/ginger_shot.jpg"
+    "/assets/images/portfolio-all/DSC01510_(1).jpg",
+    "/assets/images/portfolio-all/DSC01680.jpg",
+    "/assets/images/portfolio-all/DSC01738.jpg",
+    "/assets/images/portfolio-all/DSC01768.jpg",
+    "/assets/images/portfolio-all/DSC03166.jpg",
+    "/assets/images/portfolio-all/DSC03971.jpg",
+    "/assets/images/portfolio-all/DSC04050.jpg",
+    "/assets/images/portfolio-all/DSC08771.jpg",
+    "/assets/images/portfolio-all/DSC08907.jpg",
+    "/assets/images/portfolio-all/DSC08980.jpg",
+    "/assets/images/portfolio-all/DSC09457.jpg",
+    "/assets/images/portfolio-all/DSC09598.jpg",
+    "/assets/images/portfolio-all/DSC09621.jpg"
+];
+
+const graphicAdDesigns = [
+    { src: "/assets/images/portfolio-all/AD_1_DEC.jpg", title: "Holiday Meta Ad Creative", tag: "Direct-Response Ad" },
+    { src: "/assets/images/portfolio-all/AD_2_DEC.jpg", title: "Festive Campaign Offer Graphic", tag: "Social Promo Design" },
+    { src: "/assets/images/portfolio-all/Ad.jpg", title: "Aqua Care Product Feature Graphic", tag: "E-Commerce Poster" },
+    { src: "/assets/images/portfolio-all/Ad_04.jpg", title: "Aqua Care RO Filter Campaign", tag: "High-ROAS Meta Banner" },
+    { src: "/assets/images/portfolio-all/Ad_08-1.jpg", title: "Water System Performance Ad", tag: "Conversion Graphic" },
+    { src: "/assets/images/portfolio-all/Ad_1_Residential_construction_services.jpg", title: "Residential Construction Lead Ad", tag: "B2B Meta Ad Design" },
+    { src: "/assets/images/portfolio-all/Artboard_1_1761316769324.jpg", title: "Brand Identity & Artboard Layout", tag: "Visual Identity" },
+    { src: "/assets/images/portfolio-all/Childrens_Day.jpg", title: "Seasonal Campaign Creative", tag: "Social Poster Design" },
+    { src: "/assets/images/portfolio-all/Copy_of_Macros_Club.jpg", title: "Macros Club Fitness Graphic", tag: "Subscription Ad" },
+    { src: "/assets/images/portfolio-all/Cover_1.jpg", title: "Brand Cover & Banner Asset", tag: "Editorial Header Design" },
+    { src: "/assets/images/portfolio-all/Xmas_-_Galaxy.jpg", title: "Galaxy Star Perfumes Luxury Graphic", tag: "Campaign Key Visual" },
+    { src: "/assets/images/portfolio-all/acero_warrior.jpg", title: "Acero Warrior Poster", tag: "Brand Graphic" },
+    { src: "/assets/images/portfolio-all/xmas_2_tess.jpg", title: "Seasonal Retail Offer Banner", tag: "Promo Creative" },
+    { src: "/assets/images/portfolio-all/jagp10.jpg", title: "Brand Identity Design Asset 01", tag: "Graphical Poster" },
+    { src: "/assets/images/portfolio-all/jagp5.jpg", title: "Brand Identity Design Asset 02", tag: "Graphical Poster" },
+    { src: "/assets/images/portfolio-all/IMG_7409.jpg", title: "Social Feed Poster Graphic", tag: "Direct-Response Ad" }
 ];
 
 const packages = [
@@ -75,25 +99,25 @@ export default function PhotoService() {
             {/* 3. Numbered Shoot Index with Hover Preview & Expandable Modal */}
             <PhotoShootIndex />
 
-            {/* 4. Full Photography Archive Grid */}
+            {/* 4. Full Photography Stills Archive Grid */}
             <section className="py-28 bg-neutral-950 border-t border-neutral-800 text-white">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
                         <div>
                             <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-3">
-                                Visual Archive
+                                Editorial Archive
                             </span>
                             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
-                                Stills & <span className="italic text-neutral-400">Editorial Details</span>
+                                Stills & <span className="italic text-neutral-400">Culinary Details</span>
                             </h2>
                         </div>
                         <p className="text-neutral-400 text-sm font-light max-w-md leading-relaxed">
-                            A broader view into commercial food textures, beverage lighting, and product composition.
+                            A broader view into commercial food textures, beverage lighting, macro angles, and product composition.
                         </p>
                     </div>
 
                     <div className="columns-2 sm:columns-3 lg:columns-4 gap-6 space-y-6">
-                        {localArchiveImages.map((src, i) => (
+                        {photographyStills.map((src, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
@@ -111,6 +135,58 @@ export default function PhotoService() {
                                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                     <span className="text-[11px] font-mono text-white/90 uppercase tracking-widest">
                                         Frame {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. Separate Dedicated Section: Graphic Ad Creatives & Campaign Posters */}
+            <section className="py-28 bg-neutral-900/60 border-t border-neutral-800 text-white">
+                <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
+                        <div>
+                            <span className="text-xs font-mono tracking-[0.4em] text-orange-500 uppercase block mb-3">
+                                Direct-Response Assets
+                            </span>
+                            <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
+                                Graphic Ad Creatives & <span className="italic text-neutral-400">Social Posters</span>
+                            </h2>
+                        </div>
+                        <p className="text-neutral-400 text-sm font-light max-w-md leading-relaxed">
+                            High-converting paid Meta ad posters, campaign promotional graphics, and brand marketing artwork engineered to drive clicks and client leads across GCC.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {graphicAdDesigns.map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 25 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
+                                className="group relative rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800 hover:border-orange-500/40 shadow-xl transition-all duration-300 flex flex-col justify-between"
+                            >
+                                <div className="aspect-[4/5] overflow-hidden bg-neutral-900 relative">
+                                    <img
+                                        src={item.src}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                    <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[10px] font-mono text-orange-400 uppercase tracking-wider">
+                                        {item.tag}
+                                    </div>
+                                </div>
+                                <div className="p-4 bg-neutral-950/90 border-t border-neutral-800/80 space-y-1">
+                                    <h3 className="text-sm font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
+                                        {item.title}
+                                    </h3>
+                                    <span className="text-[10px] font-mono text-neutral-500 block uppercase tracking-wider">
+                                        GCC Campaign Asset #{String(i + 1).padStart(2, '0')}
                                     </span>
                                 </div>
                             </motion.div>
