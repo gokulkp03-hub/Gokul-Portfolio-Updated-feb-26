@@ -1,9 +1,10 @@
 {
   "installCommand": "pnpm install --ignore-scripts",
-  "buildCommand": "vite build",
+  "buildCommand": "pnpm run vercel-build",
   "outputDirectory": "dist",
   "framework": "vite",
   "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/((?!api/|assets/|.*\\..*).*)",

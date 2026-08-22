@@ -65,7 +65,10 @@ if (!fs.existsSync(distDir)) {
 }
 
 const templatePath = path.join(distDir, 'index.html');
-const template = fs.readFileSync(templatePath, 'utf-8');
+let template = fs.readFileSync(templatePath, 'utf-8');
+
+// Remove injected analytics placeholder from vite-plugin-manus-runtime
+template = template.replace(/<script[^>]*%VITE_ANALYTICS_ENDPOINT%[^>]*><\/script>/, '');
 
 routes.forEach(route => {
   let html = template;
