@@ -47,6 +47,11 @@ const routes = [
     description: 'A UAE meal-prep case study covering Meta Ads, WhatsApp lead generation, creative production, spend, impressions, and campaign learning.'
   },
   {
+    path: '/marketing/steaburg-local-seo',
+    title: 'Steaburg Sharjah Local SEO Case Study | Gokul KP',
+    description: 'How Google Business Profile optimization and a review system supported stronger local visibility and phone-call growth for Steaburg.'
+  },
+  {
     path: '/portfolio/video',
     title: 'Commercial Video Production in Dubai | Gokul KP',
     description: 'Cinematic brand films, high-retention social media reels, and commercial video production for UAE brands.'
