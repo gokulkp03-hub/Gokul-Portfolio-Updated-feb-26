@@ -170,7 +170,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 1.2 }}
               className="text-lg md:text-xl text-muted-foreground font-light tracking-tight leading-relaxed max-w-2xl text-center"
             >
-              Performance-driven marketing campaigns, premium commercial video production, and high-converting ad creatives built to scale GCC brands.
+              I partner with GCC brands and marketing teams to scale revenue and qualified leads through full-funnel Meta Ads and high-converting performance creative.
             </motion.p>
             
             <motion.div
@@ -181,7 +181,7 @@ export default function Home() {
             >
               <MagneticButton>
                 <Link href="/contact">
-                  <span className="btn-primary rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer bg-orange-500 border-orange-500 hover:bg-orange-600">Let's Talk</span>
+                  <span className="btn-primary rounded-full px-10 py-5 text-base md:text-lg block cursor-pointer bg-orange-500 border-orange-500 hover:bg-orange-600">Request a Growth Audit</span>
                 </Link>
               </MagneticButton>
               <MagneticButton>

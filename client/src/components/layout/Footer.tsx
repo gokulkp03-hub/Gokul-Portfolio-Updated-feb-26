@@ -10,8 +10,7 @@ export default function Footer() {
     const contactEmail = sections.contactEmail || "gokulkp03@gmail.com";
     const instagramLink = sections.socialInstagram || "https://www.instagram.com/__agotime/";
     const linkedinLink = sections.socialLinkedIn || "https://www.linkedin.com/in/gokul-kp03";
-    const twitterLink = sections.socialTwitter || "https://twitter.com";
-    const behanceLink = sections.socialBehance || "https://behance.net";
+    const behanceLink = sections.socialBehance || "https://www.behance.net/gallery/223042577/Gokul-Portfolio";
 
     return (
         <footer className="bg-card text-foreground py-16 border-t border-border/40">
@@ -50,7 +49,7 @@ export default function Footer() {
                         <div className="space-y-4">
                             <h4 className="text-xs uppercase tracking-widest text-muted-foreground/60 font-bold">Work With Me</h4>
                             <div className="flex flex-col gap-2">
-                                <Link href="/services" className="text-sm font-medium hover:text-orange-400 transition-colors">Services & Pricing</Link>
+                                <Link href="/services" className="text-sm font-medium hover:text-orange-400 transition-colors">Services</Link>
                                 <Link href="/contact" className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</Link>
                                 <a href={`mailto:${contactEmail}`} className="text-sm font-medium hover:text-orange-400 transition-colors">Direct Email</a>
                             </div>
@@ -65,7 +64,6 @@ export default function Footer() {
                                 {[
                                     { icon: Instagram, href: instagramLink },
                                     { icon: Linkedin, href: linkedinLink },
-                                    { icon: Twitter, href: twitterLink },
                                     { icon: Palette, href: behanceLink },
                                     { icon: Mail, href: `mailto:${contactEmail}` },
                                 ].map((social, i) => (

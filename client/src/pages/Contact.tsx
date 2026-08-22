@@ -258,6 +258,9 @@ export default function Contact() {
                                                 </>
                                             )}
                                         </button>
+                                        <p className="text-xs text-muted-foreground text-center mt-4">
+                                            I usually reply within 24 business hours. Your information is kept strictly confidential.
+                                        </p>
                                     </form>
                                 </>
                             )}
