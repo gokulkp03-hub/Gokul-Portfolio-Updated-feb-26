@@ -24,23 +24,19 @@
       "destination": "/api/sitemap"
     },
     {
-      "source": "/blogs/:slug",
+      "source": "/blogs/(.*)",
       "destination": "/api/seo-injector"
     },
     {
-      "source": "/portfolio/:category/:slug",
+      "source": "/portfolio/(.*)",
       "destination": "/api/seo-injector"
     },
     {
-      "source": "/marketing/:slug",
+      "source": "/marketing/(.*)",
       "destination": "/api/seo-injector"
     },
     {
-      "source": "/api/trpc/:trpc*",
-      "destination": "/api/trpc/[trpc]"
-    },
-    {
-      "source": "/((?!api/|assets/|.*\\..*).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
