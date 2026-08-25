@@ -1,17 +1,15 @@
-import { Request, Response } from "express";
-import { db } from "./db";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { db } from "../server/db";
 import { projects, blogs } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-export async function generateSitemap(req: Request, res: Response) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const baseUrl = "https://www.gokulkp.com";
     
-    // Fetch dynamic content
     const allProjects = await db.select().from(projects).where(eq(projects.status, "published"));
     const allBlogs = await db.select().from(blogs).where(eq(blogs.published, true));
     
-    // Base static routes
     const routes = [
       { url: "/", changefreq: "weekly", priority: 1.0 },
       { url: "/marketing", changefreq: "monthly", priority: 0.8 },
@@ -23,26 +21,16 @@ export async function generateSitemap(req: Request, res: Response) {
       { url: "/blogs", changefreq: "weekly", priority: 0.8 },
     ];
     
-    // Add dynamic projects
     allProjects.forEach(project => {
       let routeUrl = `/portfolio/${project.category}/${project.slug}`;
       if (project.category === "marketing") {
         routeUrl = `/marketing/${project.slug}`;
       }
-      routes.push({
-        url: routeUrl,
-        changefreq: "monthly",
-        priority: 0.7
-      });
+      routes.push({ url: routeUrl, changefreq: "monthly", priority: 0.7 });
     });
     
-    // Add dynamic blogs
     allBlogs.forEach(blog => {
-      routes.push({
-        url: `/blogs/${blog.slug}`,
-        changefreq: "monthly",
-        priority: 0.7
-      });
+      routes.push({ url: `/blogs/${blog.slug}`, changefreq: "monthly", priority: 0.7 });
     });
 
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -58,10 +46,10 @@ export async function generateSitemap(req: Request, res: Response) {
     
     sitemap += `</urlset>`;
 
-    res.header("Content-Type", "application/xml");
-    res.send(sitemap);
+    res.setHeader("Content-Type", "application/xml");
+    return res.status(200).send(sitemap);
   } catch (error) {
     console.error("Error generating sitemap:", error);
-    res.status(500).end();
+    return res.status(500).end();
   }
 }

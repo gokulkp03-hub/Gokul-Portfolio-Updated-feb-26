@@ -1,14 +1,19 @@
 import "dotenv/config";
-import Database from "better-sqlite3";
-import { drizzle } from "drizzle-orm/better-sqlite3";
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
 import * as schema from "../drizzle/schema";
 import { users } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-// Connect to SQLite Database
-const dbPath = (process.env.DATABASE_URL || "./dev.db").replace("file:", "");
-const sqlite = new Database(dbPath);
-export const db = drizzle(sqlite, { schema });
+const url = process.env.DATABASE_URL || "file:./dev.db";
+const authToken = process.env.DATABASE_AUTH_TOKEN;
+
+const client = createClient({
+  url,
+  authToken,
+});
+
+export const db = drizzle(client, { schema });
 
 export async function getDb() {
   return db;
