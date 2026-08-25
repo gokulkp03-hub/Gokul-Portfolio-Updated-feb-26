@@ -49,6 +49,7 @@ import { drizzle } from "drizzle-orm/better-sqlite3";
 // drizzle/schema.ts
 var schema_exports = {};
 __export(schema_exports, {
+  blogs: () => blogs,
   categories: () => categories,
   contactMessages: () => contactMessages,
   contactSubmissions: () => contactSubmissions,
@@ -172,6 +173,22 @@ var revisions = sqliteTable("revisions", {
   data: text("data").notNull(),
   // JSON string representing snapshot
   createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
+});
+var blogs = sqliteTable("blogs", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  content: text("content"),
+  // Markdown/Rich Text
+  excerpt: text("excerpt"),
+  thumbnail: text("thumbnail"),
+  published: integer("published", { mode: "boolean" }).default(false).notNull(),
+  views: integer("views").default(0).notNull(),
+  metaTitle: text("metaTitle"),
+  metaDescription: text("metaDescription"),
+  publishDate: integer("publishDate", { mode: "timestamp" }),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: integer("updatedAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull()
 });
 
 // server/db.ts
@@ -667,6 +684,73 @@ var contactRouter = router({
   })
 });
 
+// server/blogRouter.ts
+import { z as z6 } from "zod";
+import { eq as eq5, desc as desc4 } from "drizzle-orm";
+var blogRouter = router({
+  list: publicProcedure.input(
+    z6.object({
+      includeUnpublished: z6.boolean().optional()
+    }).optional()
+  ).query(async ({ input, ctx }) => {
+    const isAdmin = !!ctx.user;
+    const query = db.select().from(blogs).orderBy(desc4(blogs.createdAt));
+    const results = await query;
+    if (!isAdmin || !input?.includeUnpublished) {
+      return results.filter((b) => b.published);
+    }
+    return results;
+  }),
+  getBySlug: publicProcedure.input(z6.string()).query(async ({ input }) => {
+    const result = await db.select().from(blogs).where(eq5(blogs.slug, input)).get();
+    if (result) {
+      db.update(blogs).set({ views: (result.views || 0) + 1 }).where(eq5(blogs.id, result.id)).run();
+    }
+    return result;
+  }),
+  create: protectedProcedure.input(
+    z6.object({
+      title: z6.string(),
+      slug: z6.string(),
+      content: z6.string().optional(),
+      excerpt: z6.string().optional(),
+      thumbnail: z6.string().optional(),
+      published: z6.boolean().optional(),
+      metaTitle: z6.string().optional(),
+      metaDescription: z6.string().optional(),
+      publishDate: z6.date().optional()
+    })
+  ).mutation(async ({ input }) => {
+    const result = await db.insert(blogs).values({
+      ...input,
+      publishDate: input.publishDate || /* @__PURE__ */ new Date()
+    }).returning().get();
+    return result;
+  }),
+  update: protectedProcedure.input(
+    z6.object({
+      id: z6.string(),
+      title: z6.string().optional(),
+      slug: z6.string().optional(),
+      content: z6.string().optional(),
+      excerpt: z6.string().optional(),
+      thumbnail: z6.string().optional(),
+      published: z6.boolean().optional(),
+      metaTitle: z6.string().optional(),
+      metaDescription: z6.string().optional(),
+      publishDate: z6.date().optional()
+    })
+  ).mutation(async ({ input }) => {
+    const { id, ...data } = input;
+    const result = await db.update(blogs).set({ ...data, updatedAt: /* @__PURE__ */ new Date() }).where(eq5(blogs.id, id)).returning().get();
+    return result;
+  }),
+  delete: protectedProcedure.input(z6.string()).mutation(async ({ input }) => {
+    await db.delete(blogs).where(eq5(blogs.id, input)).run();
+    return { success: true };
+  })
+});
+
 // server/routers.ts
 var appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -684,7 +768,8 @@ var appRouter = router({
   projects: projectRouter,
   content: contentRouter,
   media: mediaRouter,
-  contact: contactRouter
+  contact: contactRouter,
+  blogs: blogRouter
 });
 
 // server/_core/context.ts
@@ -743,6 +828,57 @@ var vite_config_default = defineConfig({
   }
 });
 
+// server/_core/seoInjector.ts
+import { eq as eq6 } from "drizzle-orm";
+async function injectDynamicSEO(url, html) {
+  try {
+    let title = "";
+    let description = "";
+    let image = "";
+    const blogMatch = url.match(/^\/blogs\/([^\/]+)$/);
+    const projectMatch = url.match(/^\/portfolio\/[^\/]+\/([^\/]+)$/) || url.match(/^\/marketing\/([^\/]+)$/);
+    if (blogMatch) {
+      const slug = blogMatch[1];
+      const blog = await db.select().from(blogs).where(eq6(blogs.slug, slug)).get();
+      if (blog) {
+        title = blog.metaTitle || `${blog.title} | Gokul KP`;
+        description = blog.metaDescription || blog.excerpt || "";
+        image = blog.thumbnail || "";
+      }
+    } else if (projectMatch) {
+      const slug = projectMatch[1];
+      const project = await db.select().from(projects).where(eq6(projects.slug, slug)).get();
+      if (project) {
+        title = project.metaTitle || `${project.title} | Gokul KP`;
+        description = project.metaDescription || project.description || "";
+        image = project.ogImage || project.thumbnail || "";
+      }
+    }
+    if (!title && !description && !image) {
+      return html;
+    }
+    let modifiedHtml = html;
+    if (title) {
+      modifiedHtml = modifiedHtml.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
+      modifiedHtml = modifiedHtml.replace(/<meta property="og:title" content=".*?"\s*\/>/, `<meta property="og:title" content="${title}" />`);
+      modifiedHtml = modifiedHtml.replace(/<meta name="twitter:title" content=".*?"\s*\/>/, `<meta name="twitter:title" content="${title}" />`);
+    }
+    if (description) {
+      modifiedHtml = modifiedHtml.replace(/<meta name="description" content=".*?"\s*\/>/, `<meta name="description" content="${description}" />`);
+      modifiedHtml = modifiedHtml.replace(/<meta property="og:description" content=".*?"\s*\/>/, `<meta property="og:description" content="${description}" />`);
+      modifiedHtml = modifiedHtml.replace(/<meta name="twitter:description" content=".*?"\s*\/>/, `<meta name="twitter:description" content="${description}" />`);
+    }
+    if (image) {
+      modifiedHtml = modifiedHtml.replace(/<meta property="og:image" content=".*?"\s*\/>/, `<meta property="og:image" content="${image}" />`);
+      modifiedHtml = modifiedHtml.replace(/<meta name="twitter:image" content=".*?"\s*\/>/, `<meta name="twitter:image" content="${image}" />`);
+    }
+    return modifiedHtml;
+  } catch (error) {
+    console.error("Error injecting dynamic SEO:", error);
+    return html;
+  }
+}
+
 // server/_core/vite.ts
 async function setupVite(app, server) {
   const serverOptions = {
@@ -771,6 +907,7 @@ async function setupVite(app, server) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`
       );
+      template = await injectDynamicSEO(url, template);
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
@@ -787,13 +924,82 @@ function serveStatic(app) {
     );
   }
   app.use(express.static(distPath));
-  app.use("*", (_req, res) => {
-    res.sendFile(path3.resolve(distPath, "index.html"));
+  app.use("*", async (req, res) => {
+    try {
+      let template = await fs2.promises.readFile(path3.resolve(distPath, "index.html"), "utf-8");
+      template = await injectDynamicSEO(req.originalUrl, template);
+      res.status(200).set({ "Content-Type": "text/html" }).send(template);
+    } catch (e) {
+      console.error("Error serving index.html:", e);
+      res.status(500).end();
+    }
   });
 }
 
 // server/_core/index.ts
 import path4 from "path";
+
+// server/sitemap.ts
+import { eq as eq7 } from "drizzle-orm";
+async function generateSitemap(req, res) {
+  try {
+    const baseUrl = "https://www.gokulkp.com";
+    const allProjects = await db.select().from(projects).where(eq7(projects.status, "published"));
+    const allBlogs = await db.select().from(blogs).where(eq7(blogs.published, true));
+    const routes = [
+      { url: "/", changefreq: "weekly", priority: 1 },
+      { url: "/marketing", changefreq: "monthly", priority: 0.8 },
+      { url: "/portfolio/video", changefreq: "monthly", priority: 0.8 },
+      { url: "/portfolio/photo", changefreq: "monthly", priority: 0.8 },
+      { url: "/services", changefreq: "monthly", priority: 0.7 },
+      { url: "/about", changefreq: "monthly", priority: 0.6 },
+      { url: "/contact", changefreq: "yearly", priority: 0.5 },
+      { url: "/blogs", changefreq: "weekly", priority: 0.8 }
+    ];
+    allProjects.forEach((project) => {
+      let routeUrl = `/portfolio/${project.category}/${project.slug}`;
+      if (project.category === "marketing") {
+        routeUrl = `/marketing/${project.slug}`;
+      }
+      routes.push({
+        url: routeUrl,
+        changefreq: "monthly",
+        priority: 0.7
+      });
+    });
+    allBlogs.forEach((blog) => {
+      routes.push({
+        url: `/blogs/${blog.slug}`,
+        changefreq: "monthly",
+        priority: 0.7
+      });
+    });
+    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+`;
+    sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
+    routes.forEach((route) => {
+      sitemap += `  <url>
+`;
+      sitemap += `    <loc>${baseUrl}${route.url}</loc>
+`;
+      sitemap += `    <changefreq>${route.changefreq}</changefreq>
+`;
+      sitemap += `    <priority>${route.priority}</priority>
+`;
+      sitemap += `  </url>
+`;
+    });
+    sitemap += `</urlset>`;
+    res.header("Content-Type", "application/xml");
+    res.send(sitemap);
+  } catch (error) {
+    console.error("Error generating sitemap:", error);
+    res.status(500).end();
+  }
+}
+
+// server/_core/index.ts
 var jwtValidationMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : req.headers.cookie?.includes("auth_token=") ? req.headers.cookie.split("auth_token=")[1].split(";")[0] : null;
@@ -855,6 +1061,7 @@ async function startServer() {
   const uploadDir = process.env.UPLOADS_DIR || path4.join(process.cwd(), "public", "uploads");
   app.use("/uploads", express2.static(uploadDir));
   registerLoginRoutes(app);
+  app.get("/sitemap.xml", generateSitemap);
   app.use(
     "/api/trpc",
     createExpressMiddleware({

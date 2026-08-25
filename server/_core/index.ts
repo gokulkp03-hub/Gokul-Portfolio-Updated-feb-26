@@ -11,6 +11,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import path from "path";
+import { generateSitemap } from "../sitemap";
 
 // 2. JWT Validation Middleware: validates token on each request
 const jwtValidationMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -95,6 +96,9 @@ async function startServer() {
 
   // Local login route under /api/login
   registerLoginRoutes(app);
+  // Sitemap dynamic generation
+  app.get("/sitemap.xml", generateSitemap);
+
   // tRPC API
   app.use(
     "/api/trpc",

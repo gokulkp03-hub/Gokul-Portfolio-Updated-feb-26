@@ -21,6 +21,8 @@ import PortfolioLayout from "./pages/portfolio/PortfolioLayout";
 import ProjectDetail from "./pages/portfolio/ProjectDetail";
 import Results from "./pages/Results";
 import Contact from "./pages/Contact";
+import Blogs from "./pages/Blogs";
+import BlogPost from "./pages/BlogPost";
 import AquaCareCaseStudy from "./pages/portfolio/AquaCareCaseStudy";
 import PrepmealCaseStudy from "./pages/portfolio/PrepmealCaseStudy";
 
@@ -91,12 +93,23 @@ function Router() {
             </Route>
             <Route path="/results" component={Results} />
             <Route path="/contact" component={Contact} />
+            <Route path="/blogs" component={Blogs} />
+            <Route path="/blogs/:slug">
+              {(params) => <BlogPost slug={params.slug} />}
+            </Route>
 
             {/* Admin Routes */}
             <Route path="/admin">
               <AdminProtectedRoute>
                 <Suspense fallback={<div className="min-h-screen bg-background" />}>
                   <AdminDashboard />
+                </Suspense>
+              </AdminProtectedRoute>
+            </Route>
+                        <Route path="/admin/blogs">
+              <AdminProtectedRoute>
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <BlogManager />
                 </Suspense>
               </AdminProtectedRoute>
             </Route>
@@ -163,6 +176,7 @@ const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
 const MarketingManager = lazy(() => import("./pages/admin/MarketingManager"));
 const Settings = lazy(() => import("./pages/admin/Settings"));
 const ContactManager = lazy(() => import("./pages/admin/ContactManager"));
+const BlogManager = lazy(() => import("./pages/admin/BlogManager"));
 
 import { CustomCursor } from "@/components/ui/CustomCursor";
 

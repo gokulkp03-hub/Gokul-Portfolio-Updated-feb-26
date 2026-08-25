@@ -1,10 +1,10 @@
+import { SEO } from "@/components/SEO";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Link } from "wouter";
 import { bio, experiences, skills } from "@/data/about";
 import { Coffee, Code, Heart, Trophy, Target, Sparkles, MapPin, ArrowUpRight } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useRef, useEffect } from "react";
-import { setSEO } from "../utils/seo";
 
 function SkillBar({ name, index }: { name: string; index: number }) {
     const ref = useRef(null);
@@ -12,6 +12,7 @@ function SkillBar({ name, index }: { name: string; index: number }) {
 
     return (
         <div ref={ref} className="flex items-center justify-between border-b border-border/50 pb-2">
+            <SEO title="About Gokul KP | Performance Marketer & Creative Director" description="Learn more about Gokul KP's 3+ years scaling B2C brands across GCC (UAE & Oman) with paid ads, UGC creatives, and conversion copywriting." />
             <span className="text-muted-foreground font-light">{name}</span>
             <div className="w-12 h-1 bg-orange-500/20 rounded-full overflow-hidden flex items-center">
                 <motion.div
@@ -26,13 +27,7 @@ function SkillBar({ name, index }: { name: string; index: number }) {
 }
 
 export default function About() {
-    useEffect(() => {
-        setSEO({
-            title: "About Gokul KP | Performance Marketer & Creative Director",
-            description: "Learn more about Gokul KP's 3+ years scaling B2C brands across GCC (UAE & Oman) with paid ads, UGC creatives, and conversion copywriting."
-        });
-    }, []);
-
+    
     const { data: content } = trpc.content.get.useQuery();
 
     const aboutTextRaw = content?.aboutText || bio.longDescription;

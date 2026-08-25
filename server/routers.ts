@@ -6,6 +6,7 @@ import { projectRouter } from "./projectRouter";
 import { contentRouter } from "./contentRouter";
 import { mediaRouter } from "./mediaRouter";
 import { contactRouter } from "./contactRouter";
+import { blogRouter } from "./blogRouter";
 
 export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -25,6 +26,7 @@ export const appRouter = router({
   content: contentRouter,
   media: mediaRouter,
   contact: contactRouter,
+  blogs: blogRouter,
 });
 
 export type AppRouter = typeof appRouter;

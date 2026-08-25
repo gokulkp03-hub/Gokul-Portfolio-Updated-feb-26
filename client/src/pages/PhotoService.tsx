@@ -1,5 +1,5 @@
+import { SEO } from "@/components/SEO";
 import { useEffect } from "react";
-import { setSEO } from "../utils/seo";
 import { PhotoShaderHero } from "@/components/photography/PhotoShaderHero";
 import { PhotoPointOfView } from "@/components/photography/PhotoPointOfView";
 import { PhotoShootIndex } from "@/components/photography/PhotoShootIndex";
@@ -72,15 +72,10 @@ const packages = [
 ];
 
 export default function PhotoService() {
-    useEffect(() => {
-        setSEO({
-            title: "Gokul KP — Commercial Food & Product Photography | Dubai",
-            description: "Cinematic commercial food photography, luxury product stills, and high-converting campaign visuals in Dubai, UAE."
-        });
-    }, []);
-
+    
     return (
         <div className="min-h-screen bg-neutral-950 text-white selection:bg-amber-400 selection:text-black">
+            <SEO title="Gokul KP — Commercial Food & Product Photography | Dubai" description="Cinematic commercial food photography, luxury product stills, and high-converting campaign visuals in Dubai, UAE." />
             
             {/* 1. WebGL Three.js Hero Shader */}
             <PhotoShaderHero

@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Instagram, Linkedin, Mail, Twitter, Palette } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { trackEvent } from "@/utils/analytics";
 
 export default function Footer() {
     const year = new Date().getFullYear();
@@ -51,7 +52,7 @@ export default function Footer() {
                             <div className="flex flex-col gap-2">
                                 <Link href="/services" className="text-sm font-medium hover:text-orange-400 transition-colors">Services</Link>
                                 <Link href="/contact" className="text-sm font-medium hover:text-orange-400 transition-colors">Contact</Link>
-                                <a href={`mailto:${contactEmail}`} className="text-sm font-medium hover:text-orange-400 transition-colors">Direct Email</a>
+                                <a href={`mailto:${contactEmail}`} className="text-sm font-medium hover:text-orange-400 transition-colors" onClick={() => trackEvent('email_click')}>Direct Email</a>
                             </div>
                         </div>
                     </div>
@@ -63,16 +64,20 @@ export default function Footer() {
                             <div className="flex gap-3">
                                 {[
                                     { icon: Instagram, href: instagramLink },
-                                    { icon: Linkedin, href: linkedinLink },
+                                    { icon: Linkedin, href: linkedinLink, type: 'linkedin' },
                                     { icon: Palette, href: behanceLink },
-                                    { icon: Mail, href: `mailto:${contactEmail}` },
+                                    { icon: Mail, href: `mailto:${contactEmail}`, type: 'email' },
                                 ].map((social, i) => (
                                     <a
                                         key={i}
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-3 bg-muted rounded-full hover:bg-muted/80 transition-colors"
+                                        onClick={() => {
+                                            if (social.type === 'linkedin') trackEvent('linkedin_click');
+                                            if (social.type === 'email') trackEvent('email_click');
+                                        }}
+                                        className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all hover:scale-110"
                                     >
                                         <social.icon className="w-5 h-5" />
                                     </a>

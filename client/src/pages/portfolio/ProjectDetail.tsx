@@ -6,8 +6,7 @@ import { trpc } from "@/lib/trpc";
 import { useMemo, useEffect } from "react";
 import { projects as staticProjects } from "@/data/projects";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
-import { setSEO } from "../../utils/seo";
-
+import { SEO } from "@/components/SEO";
 interface ProjectDetailProps {
     category?: string;
     slug?: string;
@@ -89,18 +88,8 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
         return null;
     }, [slug]);
 
-    // Use database project if available, otherwise fallback to static
     const project = dbProject || staticProject;
     const category = propCategory || routeParams?.category || project?.category || "";
-
-    useEffect(() => {
-        if (project) {
-            setSEO({
-                title: `${project.title} | Gokul KP`,
-                description: project.description || `Read detailed project study for ${project.title} by Gokul KP.`
-            });
-        }
-    }, [project]);
 
     useEffect(() => {
         const lowerCategory = (category || propCategory || "").toLowerCase();
@@ -189,6 +178,10 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     return (
         <div className="min-h-screen pt-24 pb-20">
+            <SEO 
+                title={`${project.title} | Gokul KP`}
+                description={project.description || `Read detailed project study for ${project.title} by Gokul KP.`}
+            />
             <div className="container">
                 {/* Back Link */}
                 <button onClick={() => window.history.back()} className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-12 group cursor-pointer">

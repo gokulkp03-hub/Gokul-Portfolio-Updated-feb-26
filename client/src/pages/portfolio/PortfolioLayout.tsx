@@ -6,7 +6,8 @@ import { SafeImage } from "@/components/ui/SafeImage";
 import { trpc } from "@/lib/trpc";
 import { projects as staticProjects } from "@/data/projects";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
-import { setSEO } from "../../utils/seo";
+import { SEO } from "@/components/SEO";
+import { trackEvent } from "@/utils/analytics";
 
 type FilterCategory = "all" | "ads" | "video" | "photo" | "social" | "influencer";
 
@@ -29,11 +30,7 @@ export default function PortfolioLayout() {
     const { data: dbProjects, isLoading } = trpc.projects.list.useQuery();
 
     useEffect(() => {
-        const filterTitle = activeFilter === "all" ? "Creative Portfolio" : activeFilter.toUpperCase();
-        setSEO({
-            title: `${filterTitle} | Gokul KP`,
-            description: `Browse Gokul's creative commercial portfolio including performance ads, cinematic video projects, luxury photography, and B2C campaigns.`
-        });
+        // dynamic SEO title handled by SEO component in render
     }, [activeFilter]);
 
     // Handle Escape key to close lightbox
@@ -143,6 +140,10 @@ export default function PortfolioLayout() {
 
     return (
         <div className="min-h-screen bg-background pt-32 pb-20">
+            <SEO 
+                title={`${activeFilter === "all" ? "Creative Portfolio" : activeFilter.toUpperCase()} | Gokul KP`}
+                description="Browse Gokul's creative commercial portfolio including performance ads, cinematic video projects, luxury photography, and B2C campaigns."
+            />
             {/* Background grain texture */}
             <div className="bg-grain hidden md:dark:block" />
 
@@ -205,14 +206,17 @@ export default function PortfolioLayout() {
                             return (
                                 <motion.div
                                     key={project.id}
-                                    initial={{ opacity: 0, y: 16 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.97 }}
-                                    transition={{ duration: 0.5, delay: (i % 6) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                                    className="group relative"
-                                    onClick={() => setSelectedItem(project)}
+                                    transition={{ duration: 0.4 }}
+                                    className="group relative cursor-pointer"
+                                    onClick={() => {
+                                        trackEvent('case_study_view', { project: project.title });
+                                        setSelectedItem(project);
+                                    }}
                                 >
-                                    <div className={`relative ${aspectClass} overflow-hidden rounded-[2.5rem] bg-muted border border-border/40 transition-all duration-500 cursor-pointer hover:border-orange-500/30 shadow-lg hover:shadow-2xl hover:shadow-orange-500/5`}>
+                                    <div className={`relative w-full overflow-hidden rounded-[2.5rem] border ${isLiveCampaign ? 'border-red-500/50' : isPaidAd ? 'border-orange-500/30' : 'border-white/5'} aspect-[4/5] bg-zinc-900 shadow-lg hover:shadow-2xl hover:shadow-orange-500/5`}>
                                         {project.videoUrl ? (
                                             <video
                                                 src={project.videoUrl}

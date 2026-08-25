@@ -1,3 +1,4 @@
+import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 import { proof } from "@/data/proof";
 import { TrendingUp, Users, Target, BarChart3, PieChart, ArrowUpRight } from "lucide-react";
@@ -5,16 +6,9 @@ import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useMemo, useEffect } from "react";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
-import { setSEO } from "../utils/seo";
 
 export default function Results() {
-    useEffect(() => {
-        setSEO({
-            title: "Proven Results & Marketing Case Studies | Gokul KP",
-            description: "Browse verified growth metrics, ROI case studies, and ad spend scaling performance across GCC client campaigns managed by Gokul KP."
-        });
-    }, []);
-
+    
     const { data: dbProjects } = trpc.projects.list.useQuery();
     
     const campaigns = useMemo(() => {
@@ -40,6 +34,7 @@ export default function Results() {
 
     return (
         <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
+            <SEO title="Proven Results & Marketing Case Studies | Gokul KP" description="Browse verified growth metrics, ROI case studies, and ad spend scaling performance across GCC client campaigns managed by Gokul KP." />
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
                 {/* Header */}
                 <div className="mb-16 md:mb-20">

@@ -1,26 +1,29 @@
+import { SEO } from "@/components/SEO";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Instagram, Linkedin, MessageSquare, ArrowRight, MapPin, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
-import { setSEO } from "../utils/seo";
+import { trackEvent } from "@/utils/analytics";
 
 export default function Contact() {
-    useEffect(() => {
-        setSEO({
-            title: "Book a Project & Consult | Gokul KP",
-            description: "Get in touch with Gokul KP for premium commercial video production, B2C advertising campaigns, and direct-response content photography."
-        });
-    }, []);
-
+    
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [hasTrackedFormStart, setHasTrackedFormStart] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         service: "High-End Video Production",
         details: ""
     });
+
+    const handleFormInteraction = () => {
+        if (!hasTrackedFormStart) {
+            trackEvent('form_start');
+            setHasTrackedFormStart(true);
+        }
+    };
 
     const { data: content } = trpc.content.get.useQuery();
     const sections = (content?.sections as any) || {};
@@ -36,21 +39,24 @@ export default function Contact() {
             label: "Email",
             value: contactEmail,
             href: `mailto:${contactEmail}`,
-            color: "text-blue-500"
+            color: "text-blue-500",
+            onClick: () => trackEvent('email_click')
         },
         {
             icon: <MessageSquare className="w-6 h-6" />,
             label: "WhatsApp",
             value: "+971545264632",
             href: "https://wa.me/971545264632",
-            color: "text-emerald-500"
+            color: "text-emerald-500",
+            onClick: () => trackEvent('whatsapp_click')
         },
         {
             icon: <Linkedin className="w-6 h-6" />,
             label: "LinkedIn",
             value: "gokul-kp03",
             href: linkedinLink,
-            color: "text-blue-600"
+            color: "text-blue-600",
+            onClick: () => trackEvent('linkedin_click')
         },
         {
             icon: <Instagram className="w-6 h-6" />,
@@ -75,6 +81,7 @@ export default function Contact() {
 
         try {
             await submitContact.mutateAsync(formData);
+            trackEvent('form_submit_success', { service: formData.service });
             setSubmitted(true);
             toast.success("Message sent successfully! I'll get back to you soon.");
 
@@ -98,6 +105,7 @@ export default function Contact() {
 
     return (
         <div className="min-h-screen bg-background pt-32 pb-20">
+            <SEO title="Book a Project & Consult | Gokul KP" description="Get in touch with Gokul KP for premium commercial video production, B2C advertising campaigns, and direct-response content photography." />
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
                     {/* Left: Info */}
@@ -125,6 +133,9 @@ export default function Contact() {
                                 <motion.a
                                     key={i}
                                     href={method.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={method.onClick}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.1 }}
@@ -185,7 +196,11 @@ export default function Contact() {
                                                         type="text"
                                                         required
                                                         value={formData.name}
-                                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                        onChange={(e) => {
+                                                            handleFormInteraction();
+                                                            setFormData({ ...formData, name: e.target.value });
+                                                        }}
+                                                        onFocus={handleFormInteraction}
                                                         disabled={isSubmitting}
                                                         className="w-full bg-transparent px-5 py-4 outline-none transition-colors disabled:opacity-50 peer z-10 relative"
                                                         placeholder="John Doe"

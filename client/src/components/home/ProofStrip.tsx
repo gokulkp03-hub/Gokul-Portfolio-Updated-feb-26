@@ -14,28 +14,25 @@ export function ProofStrip() {
     return (
         <section ref={sectionRef} className="py-24 border-y border-border/40 bg-muted/10 relative overflow-hidden">
             <div className="container">
-                <div className="mb-16 text-center">
+                <div className="mb-12 text-center max-w-3xl mx-auto">
                     <span className="text-xs font-bold uppercase tracking-[0.4em] text-orange-500 mb-4 block">Proven Track Record</span>
-                    <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tight">TRUSTED BY LEADING BRANDS</h2>
+                    <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tight mb-4">TRUSTED BY LEADING BRANDS</h2>
+                    <p className="text-muted-foreground text-sm md:text-base font-light">
+                        Selected brands and campaigns I've helped grow across the GCC.
+                    </p>
                 </div>
 
-                {/* Infinite Scroll Logos - Row 1 Left */}
-                <div className="marquee-container mb-8 overflow-hidden">
-                    <div className="animate-marquee flex items-center">
-                        {[...row1Logos, ...row1Logos, ...row1Logos].map((logo, i) => (
-                            <div key={`row1-${i}`} className="flex-shrink-0 mx-8 md:mx-12 opacity-80 hover:opacity-100 transition-opacity pointer-events-auto">
-                                <img src={logo.src} alt={logo.name} className="h-8 md:h-10 w-auto object-contain brightness-110" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Infinite Scroll Logos - Row 2 Right */}
-                <div className="marquee-container mb-20 overflow-hidden">
-                    <div className="animate-marquee-right flex items-center">
-                        {[...row2Logos, ...row2Logos, ...row2Logos].map((logo, i) => (
-                            <div key={`row2-${i}`} className="flex-shrink-0 mx-8 md:mx-12 opacity-80 hover:opacity-100 transition-opacity pointer-events-auto">
-                                <img src={logo.src} alt={logo.name} className="h-8 md:h-10 w-auto object-contain brightness-110" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                {/* Brands Grid Panel */}
+                <div className="bg-zinc-900/40 rounded-3xl p-8 md:p-12 border border-white/5 shadow-2xl backdrop-blur-sm max-w-5xl mx-auto mb-20 relative z-10">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 items-center justify-items-center">
+                        {proof.logos.map((logo, i) => (
+                            <div key={`brand-${i}`} className="flex items-center justify-center pointer-events-auto">
+                                <img 
+                                    src={logo.src} 
+                                    alt={`${logo.name} logo`} 
+                                    className="h-10 md:h-12 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-500" 
+                                    onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                                />
                             </div>
                         ))}
                     </div>

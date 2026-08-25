@@ -12,7 +12,8 @@ import {
     FileText,
     MessageSquare,
     Menu,
-    X
+    X,
+    Edit3
 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ import { useState } from "react";
 const NAV_ITEMS = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/projects", label: "Projects", icon: Briefcase },
+    { href: "/admin/blogs", label: "Blogs", icon: Edit3 },
     { href: "/admin/media", label: "Media Library", icon: ImageIcon },
     { href: "/admin/marketing", label: "Marketing Assets", icon: TrendingUp },
     { href: "/admin/content", label: "Pages / Content", icon: FileText },

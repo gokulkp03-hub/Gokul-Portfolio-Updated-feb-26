@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { TrendingUp, Award, Zap, CheckCircle2 } from "lucide-react";
 
 export const CursorTrailSpotlight: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -159,31 +158,6 @@ export const CursorTrailSpotlight: React.FC = () => {
     };
   }, [isDesktop]);
 
-  // Ambient Glass Cards data driven by Spotlight Progress (positioned outside ProofStrip to avoid redundancy)
-  const backgroundCards = [
-    {
-      topProgress: 0.15, // Capabilities section
-      icon: TrendingUp,
-      stat: "Direct-Response Meta Ads",
-      label: "GCC Campaign Strategy",
-      className: "top-[15%] right-[6%] sm:right-[12%]"
-    },
-    {
-      topProgress: 0.58, // Featured Work section
-      icon: Award,
-      stat: "4.45x Average ROAS",
-      label: "Tracked Return",
-      className: "top-[58%] right-[6%] sm:right-[12%]"
-    },
-    {
-      topProgress: 0.82, // Acceleration Process / CTA
-      icon: CheckCircle2,
-      stat: "208x Peak Spike",
-      label: "Flood-Pump Campaign",
-      className: "top-[82%] left-[6%] sm:left-[12%]"
-    }
-  ];
-
   return (
     <div
       ref={containerRef}
@@ -206,39 +180,6 @@ export const CursorTrailSpotlight: React.FC = () => {
           className="fixed inset-0 w-full h-full pointer-events-none z-[2] filter blur-[0.5px]"
         />
       )}
-
-      {/* 3. Ambient Glass Cards Positioned across Page (Spotlight Illuminated) */}
-      {backgroundCards.map((card, idx) => {
-        // Fade in / Scale up when Scroll Spotlight reaches Card position
-        const cardOpacity = useTransform(
-          scrollYProgress,
-          [card.topProgress - 0.12, card.topProgress, card.topProgress + 0.12],
-          [0.1, 0.85, 0.1]
-        );
-        const cardScale = useTransform(
-          scrollYProgress,
-          [card.topProgress - 0.12, card.topProgress, card.topProgress + 0.12],
-          [0.92, 1.04, 0.92]
-        );
-
-        const IconComponent = card.icon;
-
-        return (
-          <motion.div
-            key={idx}
-            style={{ opacity: cardOpacity, scale: cardScale }}
-            className={`ambient-glass-card absolute z-0 hidden md:flex items-center gap-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-2xl text-white pointer-events-none transition-all duration-300 ${card.className}`}
-          >
-            <div className="w-9 h-9 rounded-xl bg-[#B83A1A]/15 border border-[#B83A1A]/30 flex items-center justify-center text-[#B83A1A]">
-              <IconComponent className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-sm font-bold font-display text-white tracking-wide">{card.stat}</div>
-              <div className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">{card.label}</div>
-            </div>
-          </motion.div>
-        );
-      })}
     </div>
   );
 };

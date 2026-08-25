@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "@/utils/analytics";
 
 export default function WhatsAppButton() {
     const [isVisible, setIsVisible] = useState(false);
@@ -24,6 +25,7 @@ export default function WhatsAppButton() {
                             href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => trackEvent('whatsapp_click')}
                             className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
                         >
                             <MessageCircle size={24} fill="currentColor" />
@@ -38,6 +40,7 @@ export default function WhatsAppButton() {
                         href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackEvent('whatsapp_click')}
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}

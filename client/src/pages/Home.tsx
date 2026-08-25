@@ -20,14 +20,9 @@ import { CampaignDataTerrainSingle } from "@/components/home/CampaignDataTerrain
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
 
-export default function Home() {
-  useEffect(() => {
-    setSEO({
-      title: "Gokul KP — Performance Marketer & Video Producer | Dubai, UAE",
-      description: "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS."
-    });
-  }, []);
+import { SEO } from "@/components/SEO";
 
+export default function Home() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: true });
@@ -65,6 +60,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background selection:bg-accent selection:text-white overflow-hidden relative">
+      <SEO />
 
       {/* Background Layer: Dynamic Spring Cursor Trail + Scroll-Driven Spotlight */}
       <CursorTrailSpotlight />
@@ -231,7 +227,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-colors duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
@@ -258,7 +254,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-colors duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
@@ -285,7 +281,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
+              className="p-8 rounded-3xl bg-muted/20 border border-border/50 hover:border-orange-500/30 transition-colors duration-500 hover:shadow-xl relative flex flex-col justify-between h-full group"
               style={{ borderTop: "3px solid var(--accent-color)" }}
             >
               <div className="space-y-6">
@@ -319,21 +315,43 @@ export default function Home() {
       <section className="section overflow-hidden">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl text-center md:text-left">
+            <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0">
               <RevealText text="Featured Work" as="h2" className="text-4xl md:text-6xl font-display font-bold mb-4 md:mb-6 tracking-tight" />
               <p className="text-muted-foreground text-lg md:text-xl font-light">
                 A curated selection of high-end visuals across all creative disciplines.
               </p>
             </div>
-            <Link href="/portfolio">
-              <span className="btn-outline rounded-full px-8 py-4 text-base hidden md:inline-flex cursor-pointer">Explore Full Portfolio</span>
-            </Link>
           </div>
+          
           <FeaturedWork />
-          <div className="mt-12 text-center md:hidden">
-            <Link href="/portfolio">
-              <span className="btn-outline rounded-full w-full py-4 text-base block cursor-pointer">Explore Full Portfolio</span>
-            </Link>
+          
+          <div className="mt-20 flex flex-col items-center text-center">
+            <p className="text-muted-foreground text-base md:text-lg mb-8 font-light max-w-xl">
+              See the full case studies, campaigns, films, and photography work.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <MagneticButton>
+                <Link href="/portfolio">
+                  <span className="btn bg-orange-500 text-white hover:bg-orange-600 px-8 py-4 rounded-full text-lg font-bold shadow-xl transition-all block cursor-pointer flex items-center gap-2">
+                    Explore Full Portfolio <ArrowRight className="w-5 h-5" />
+                  </span>
+                </Link>
+              </MagneticButton>
+            </div>
+            
+            <div className="flex items-center gap-6 mt-8">
+              <Link href="/portfolio/video">
+                <span className="text-sm font-semibold text-muted-foreground hover:text-white transition-colors cursor-pointer flex items-center gap-1.5">
+                  View Video Portfolio <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </Link>
+              <span className="w-1 h-1 rounded-full bg-border" />
+              <Link href="/portfolio/photo">
+                <span className="text-sm font-semibold text-muted-foreground hover:text-white transition-colors cursor-pointer flex items-center gap-1.5">
+                  View Photo Portfolio <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

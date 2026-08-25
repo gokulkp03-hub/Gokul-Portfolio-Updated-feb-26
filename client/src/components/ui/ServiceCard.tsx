@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { Link } from "wouter";
+import { trackEvent } from "@/utils/analytics";
 import { ArrowUpRight, Play, Camera, TrendingUp, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
@@ -52,12 +53,12 @@ function VideoCard({ title, description, href, videoSrc, imageSrc, index }: Serv
             style={{ perspective: 1000, y: yParallax }}
             className="md:col-span-2"
         >
-            <Link href={href}>
+            <Link href={href} onClick={() => trackEvent("service_cta_click", { service: title })}>
                 <motion.div
                     onMouseMove={onMouseMove}
                     onMouseLeave={onMouseLeave}
                     style={{ rotateX, rotateY, transformStyle: "preserve-3d", height: "420px" }}
-                    className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-blue-500/40 transition-all duration-500 bg-zinc-950"
+                    className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-blue-500/40 transition-colors duration-500 bg-zinc-950"
                 >
                     {/* Full background video */}
                     {videoSrc ? (
@@ -116,12 +117,12 @@ function PhotoCard({ title, description, href, imageSrc, index }: ServiceCardPro
             transition={{ delay: (index || 0) * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: 1000, y: yParallax }}
         >
-            <Link href={href}>
+            <Link href={href} onClick={() => trackEvent("service_cta_click", { service: title })}>
                 <motion.div
                     onMouseMove={onMouseMove}
                     onMouseLeave={onMouseLeave}
                     style={{ rotateX, rotateY, transformStyle: "preserve-3d", height: "420px" }}
-                    className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-orange-500/40 transition-all duration-500 bg-zinc-900"
+                    className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-orange-500/40 transition-colors duration-500 bg-zinc-900"
                 >
                     {imageSrc && (
                         <img src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90" />
@@ -177,12 +178,12 @@ function MarketingCard({ title, description, href, imageSrc, index }: ServiceCar
             transition={{ delay: (index || 0) * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: 1000, y: yParallax }}
         >
-            <Link href={href}>
+            <Link href={href} onClick={() => trackEvent("service_cta_click", { service: title })}>
                 <motion.div
                     onMouseMove={onMouseMove}
                     onMouseLeave={onMouseLeave}
                     style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-                    className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-emerald-500/40 transition-all duration-500 bg-zinc-950 min-h-[300px] md:min-h-[320px]"
+                    className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-emerald-500/40 transition-colors duration-500 bg-zinc-950 min-h-[300px] md:min-h-[320px]"
                 >
                     {/* Background image very dark */}
                     {imageSrc && (
@@ -267,7 +268,7 @@ export function ServiceCard(props: ServiceCardProps) {
             transition={{ delay: (props.index || 0) * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: 1000 }}
         >
-            <Link href={props.href}>
+            <Link href={props.href} onClick={() => trackEvent("service_cta_click", { service: props.title })}>
                 <motion.div
                     onMouseMove={onMouseMove}
                     onMouseLeave={onMouseLeave}

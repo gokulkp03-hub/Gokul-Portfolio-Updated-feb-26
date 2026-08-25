@@ -160,3 +160,25 @@ export const revisions = sqliteTable("revisions", {
 
 export type Revision = typeof revisions.$inferSelect;
 export type InsertRevision = typeof revisions.$inferInsert;
+
+/**
+ * Blogs table.
+ */
+export const blogs = sqliteTable("blogs", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  content: text("content"), // Markdown/Rich Text
+  excerpt: text("excerpt"),
+  thumbnail: text("thumbnail"),
+  published: integer("published", { mode: "boolean" }).default(false).notNull(),
+  views: integer("views").default(0).notNull(),
+  metaTitle: text("metaTitle"),
+  metaDescription: text("metaDescription"),
+  publishDate: integer("publishDate", { mode: "timestamp" }),
+  createdAt: integer("createdAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  updatedAt: integer("updatedAt", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+});
+
+export type Blog = typeof blogs.$inferSelect;
+export type InsertBlog = typeof blogs.$inferInsert;

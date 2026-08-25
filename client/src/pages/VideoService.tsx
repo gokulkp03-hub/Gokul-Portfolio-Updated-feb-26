@@ -64,24 +64,12 @@ type Category = "All" | "Weddings" | "Events" | "Product" | "Personal Branding" 
 const categories: Category[] = ["All", "Weddings", "Events", "Product", "Personal Branding", "Reels"];
 
 
-export default function VideoService() {
-    useEffect(() => {
-        setSEO({
-            title: "Videographer & Video Editor in Dubai | Cinematic Production | Gokul KP",
-            description: "Gokul KP is a premium video producer and commercial editor in Dubai & UAE. Cinematic brand films, high-converting social reels, and creative post-production."
-        });
-    }, []);
+import { SEO } from "@/components/SEO";
 
+export default function VideoService() {
     const [activeCategory, setActiveCategory] = useState<Category>("All");
     const [hoveredId, setHoveredId] = useState<string | null>(null);
     const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
-
-    useEffect(() => {
-        setSEO({
-            title: "Gokul KP — Commercial Video Producer & Director | Dubai, UAE",
-            description: "Commercial video producer and director in Dubai. High-impact brand films, music videos, and high-retention Reels built for paid acquisition and brand authority."
-        });
-    }, []);
 
     // Use static videoProjects — all 31 videos, no DB merge needed (avoids duplicates)
     const allVideos = videoProjects;
@@ -94,6 +82,11 @@ export default function VideoService() {
 
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
+            <SEO 
+                title="Gokul KP — Commercial Video Producer & Director | Dubai, UAE"
+                description="Commercial video producer and director in Dubai. High-impact brand films, music videos, and high-retention Reels built for paid acquisition and brand authority."
+                url="/portfolio/video"
+            />
             {/* Cinematic Background - No Blobs */}
             <div className="absolute inset-0 z-0 pointer-events-none bg-black">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.03),transparent_50%)]" />

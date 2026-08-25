@@ -1,3 +1,4 @@
+import { SEO } from "@/components/SEO";
 "use client";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Link } from "wouter";
@@ -8,7 +9,6 @@ import { MorphBlob } from "@/components/ui/MorphBlob";
 import { RevealText } from "@/components/ui/RevealText";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { useScroll, useTransform } from "framer-motion";
-import { setSEO } from "../utils/seo";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 import { GrowthEngine } from "@/components/home/GrowthEngine";
 
@@ -18,7 +18,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const prefersReducedMotion = useReducedMotion();
   
   return (
-    <div className="border-b border-border/40 py-4">
+        <div className="border-b border-border/40 py-4">
+            <SEO title="Gokul KP — Performance Marketing & Meta Ads | Dubai, UAE" description="Data-driven Meta Ads management, lead generation funnels, and GCC WhatsApp automation. Managed AED 166K+ spend, 7,300+ leads, up to 4.45x ROAS." />
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full text-left font-medium text-lg hover:text-emerald-500 transition-colors"
@@ -376,13 +377,7 @@ const faqs = [
 ];
 
 export default function MarketingService() {
-  useEffect(() => {
-    setSEO({
-      title: "Gokul KP — Performance Marketing & Meta Ads | Dubai, UAE",
-      description: "Data-driven Meta Ads management, lead generation funnels, and GCC WhatsApp automation. Managed AED 166K+ spend, 7,300+ leads, up to 4.45x ROAS."
-    });
-  }, []);
-
+  
   const { data: dbProjects } = trpc.projects.list.useQuery();
 
   const processRef = useRef(null);

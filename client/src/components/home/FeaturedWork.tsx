@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Play, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { trackEvent } from "@/utils/analytics";
 import { Link, useLocation } from "wouter";
 
 const FEATURED_ITEMS = [
@@ -115,8 +116,9 @@ export function FeaturedWork() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.6 }}
-                        className={cn("group relative h-[450px] overflow-hidden rounded-[2.5rem] cursor-pointer border border-border/20 transition-all duration-500 bg-zinc-900 shadow-lg", item.hoverBorderClass || "hover:border-orange-500/30")}
+                        className={cn("group relative h-[450px] overflow-hidden rounded-[2.5rem] cursor-pointer border border-border/20 transition-colors duration-500 bg-zinc-900 shadow-lg", item.hoverBorderClass || "hover:border-orange-500/30")}
                         onClick={() => {
+                            trackEvent('case_study_view', { project: item.title });
                             if (!item.isVideo && item.path) {
                                 navigate(item.path);
                             } else {
