@@ -60,7 +60,7 @@ const FEATURED_ITEMS = [
         client: "PrepMeal",
         category: "Growth & Content",
         metric: "3.5x Growth",
-        image: "/assets/images/case-studies/prepmeal/Mockup.png",
+        image: "/assets/images/brands/Prepmeal.webp",
         path: "/marketing/prepmeal",
         isVideo: false,
         videoUrl: "",
@@ -213,7 +213,7 @@ export function FeaturedWork() {
                             initial={{ scale: 0.96, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.96, opacity: 0, y: 20 }}
-                            className="relative w-full max-w-4xl aspect-video rounded-[2.5rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl z-10"
+                            className="relative w-full max-w-4xl aspect-square md:aspect-video rounded-[2.5rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl z-10"
                         >
                             {selectedItem.isVideo ? (
                                 <video 

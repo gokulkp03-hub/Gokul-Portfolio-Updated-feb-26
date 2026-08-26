@@ -90,7 +90,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Total Impressions", value: "4.44M", trend: "up" }
         ],
         visuals: [
-            "/assets/images/case-studies/prepmeal/Mockup.png",
+            "/assets/images/brands/Prepmeal.webp",
             "/assets/images/brands/Q4/Ad 9.jpg"
         ],
         learnings: [

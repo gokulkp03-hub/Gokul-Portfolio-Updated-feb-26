@@ -329,7 +329,7 @@ export default function PortfolioLayout() {
                             initial={{ scale: 0.96, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.96, opacity: 0, y: 20 }}
-                            className="relative w-full max-w-4xl aspect-video rounded-[2.5rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl z-10"
+                            className="relative w-full max-w-4xl aspect-square md:aspect-video rounded-[2.5rem] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl z-10"
                         >
                             {selectedItem.videoUrl ? (
                                 selectedItem.videoUrl.includes("embed") || selectedItem.videoUrl.includes("player.cloudinary.com") ? (
