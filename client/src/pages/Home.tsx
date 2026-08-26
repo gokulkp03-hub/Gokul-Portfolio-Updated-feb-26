@@ -306,7 +306,9 @@ export default function Home() {
       </section>
 
       {/* 3D Campaign Data Terrain Section (Aqua Care ROAS Data Geometry) */}
-      <CampaignDataTerrainSingle />
+      <section className="container py-12 md:py-20">
+        <CampaignDataTerrainSingle />
+      </section>
 
       {/* 📊 Proof Strip section */}
       <ProofStrip />
