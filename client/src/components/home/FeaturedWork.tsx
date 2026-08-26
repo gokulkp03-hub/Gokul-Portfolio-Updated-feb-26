@@ -126,14 +126,36 @@ export function FeaturedWork() {
                             }
                         }}
                     >
-                        <img
-                            src={item.image}
-                            alt={item.title}
-                            className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
-                            onError={(e) => {
-                                e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
-                            }}
-                        />
+                        {item.isVideo && item.videoUrl ? (
+                            <video
+                                src={item.videoUrl}
+                                preload="none"
+                                poster={item.image}
+                                playsInline
+                                muted
+                                loop
+                                className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                                onMouseEnter={(e) => {
+                                    if (window.innerWidth >= 768) {
+                                        e.currentTarget.play().catch(() => {});
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    if (window.innerWidth >= 768) {
+                                        e.currentTarget.pause();
+                                    }
+                                }}
+                            />
+                        ) : (
+                            <img
+                                src={item.image}
+                                alt={item.title}
+                                className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                                onError={(e) => {
+                                    e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
+                                }}
+                            />
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                         
                         <div className="absolute top-6 left-6 flex justify-between w-[calc(100%-3rem)] items-center">

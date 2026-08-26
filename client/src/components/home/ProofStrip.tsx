@@ -30,7 +30,7 @@ export function ProofStrip() {
                                 <img 
                                     src={logo.src} 
                                     alt={`${logo.name} logo`} 
-                                    className="h-10 md:h-12 w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-500" 
+                                    className="h-10 md:h-12 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-all duration-500" 
                                     onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                                 />
                             </div>

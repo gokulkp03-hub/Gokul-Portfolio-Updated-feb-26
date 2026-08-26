@@ -9,14 +9,17 @@ import { Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const photographyStills = [
+const foodStills = [
     "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
     "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg",
     "/assets/images/portfolio-all/Cheesecake.jpg",
     "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg",
     "/assets/images/portfolio-all/Iced_V60.jpg",
     "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg",
-    "/assets/images/portfolio-all/ginger_shot.jpg",
+    "/assets/images/portfolio-all/ginger_shot.jpg"
+];
+
+const lifestyleStills = [
     "/assets/images/portfolio-all/Vita_bloom.jpg",
     "/assets/images/portfolio-all/DSC01510_(1).jpg",
     "/assets/images/portfolio-all/DSC01680.jpg",
@@ -86,31 +89,25 @@ export default function PhotoService() {
                 sublabel="Dubai — Commercial & Editorial Photography"
             />
 
-            {/* 2. Point of View Strip */}
-            <PhotoPointOfView />
-
-            {/* 3. Numbered Shoot Index with Hover Preview & Expandable Modal */}
-            <PhotoShootIndex />
-
-            {/* 4. Full Photography Stills Archive Grid */}
+            {/* 2. Food & Culinary Stills Archive Grid */}
             <section className="py-28 bg-neutral-950 border-t border-neutral-800 text-white">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
                         <div>
                             <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-3">
-                                Editorial Archive
+                                Culinary Archive
                             </span>
                             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
-                                Stills & <span className="italic text-neutral-400">Culinary Details</span>
+                                Food & <span className="italic text-neutral-400">Beverage Stills</span>
                             </h2>
                         </div>
                         <p className="text-neutral-400 text-sm font-light max-w-md leading-relaxed">
-                            A broader view into commercial food textures, beverage lighting, macro angles, and product composition.
+                            A curated view into commercial food textures, beverage lighting, macro angles, and culinary composition.
                         </p>
                     </div>
 
                     <div className="columns-2 sm:columns-3 lg:columns-4 gap-6 space-y-6">
-                        {photographyStills.map((src, i) => (
+                        {foodStills.map((src, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
@@ -121,7 +118,7 @@ export default function PhotoService() {
                             >
                                 <img
                                     src={src}
-                                    alt={`Photography archive frame ${i + 1}`}
+                                    alt={`Food photography archive frame ${i + 1}`}
                                     className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
                                     loading="lazy"
                                 />
@@ -136,12 +133,56 @@ export default function PhotoService() {
                 </div>
             </section>
 
-            {/* 5. Separate Dedicated Section: Graphic Ad Creatives & Campaign Posters */}
+            {/* 3. Product & Lifestyle Stills Archive Grid */}
             <section className="py-28 bg-neutral-900/60 border-t border-neutral-800 text-white">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
                         <div>
                             <span className="text-xs font-mono tracking-[0.4em] text-orange-500 uppercase block mb-3">
+                                Lifestyle Archive
+                            </span>
+                            <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
+                                Product & <span className="italic text-neutral-400">Lifestyle Stills</span>
+                            </h2>
+                        </div>
+                        <p className="text-neutral-400 text-sm font-light max-w-md leading-relaxed">
+                            A broader view into commercial product lighting, lifestyle environments, and brand storytelling.
+                        </p>
+                    </div>
+
+                    <div className="columns-2 sm:columns-3 lg:columns-4 gap-6 space-y-6">
+                        {lifestyleStills.map((src, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: (i % 6) * 0.08 }}
+                                className="break-inside-avoid relative group rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800/80 shadow-lg"
+                            >
+                                <img
+                                    src={src}
+                                    alt={`Lifestyle photography archive frame ${i + 1}`}
+                                    className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <span className="text-[11px] font-mono text-white/90 uppercase tracking-widest">
+                                        Frame {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. Separate Dedicated Section: Graphic Ad Creatives & Campaign Posters */}
+            <section className="py-28 bg-neutral-950 border-t border-neutral-800 text-white">
+                <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
+                        <div>
+                            <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-3">
                                 Direct-Response Assets
                             </span>
                             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
@@ -187,6 +228,12 @@ export default function PhotoService() {
                     </div>
                 </div>
             </section>
+
+            {/* 5. Point of View Strip */}
+            <PhotoPointOfView />
+
+            {/* 6. Numbered Shoot Index with Hover Preview & Expandable Modal */}
+            <PhotoShootIndex />
 
             {/* 5. Editorial Investment / Pricing Packages */}
             <section className="py-32 bg-neutral-950 border-t border-neutral-800 text-white relative">

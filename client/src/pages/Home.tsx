@@ -240,7 +240,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-border/50">
-                <Link href="/portfolio">
+                <Link href="/marketing">
                   <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
                     View Campaigns <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -267,7 +267,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-border/50">
-                <Link href="/portfolio">
+                <Link href="/video">
                   <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
                     Watch Reels <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -294,7 +294,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-border/50">
-                <Link href="/portfolio">
+                <Link href="/photo">
                   <span className="text-xs font-semibold text-orange-500 hover:underline flex items-center gap-1.5 cursor-pointer">
                     See Creatives <ArrowRight className="w-3.5 h-3.5" />
                   </span>

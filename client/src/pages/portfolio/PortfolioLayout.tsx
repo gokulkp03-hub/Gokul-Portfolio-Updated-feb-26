@@ -192,11 +192,10 @@ export default function PortfolioLayout() {
                         ))}
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
                         {filteredProjects.map((project, i) => {
                             const categoryString = (project.category || "").toLowerCase();
                             const Icon = categoryIcons[categoryString] || Play;
-                            const aspectClass = "aspect-[4/5]";
                             
                             // Paid ad border flag
                             const isPaidAd = categoryString === "ads" || categoryString === "marketing" || project.id === "meta-ads-1" || project.id === "aqua-care-uae" || project.id === "beyondcars-leads";
@@ -216,20 +215,26 @@ export default function PortfolioLayout() {
                                         setSelectedItem(project);
                                     }}
                                 >
-                                    <div className={`relative w-full overflow-hidden rounded-[2.5rem] border ${isLiveCampaign ? 'border-red-500/50' : isPaidAd ? 'border-orange-500/30' : 'border-white/5'} aspect-[4/5] bg-zinc-900 shadow-lg hover:shadow-2xl hover:shadow-orange-500/5`}>
+                                    <div className={`relative w-full overflow-hidden rounded-2xl md:rounded-[2.5rem] border ${isLiveCampaign ? 'border-red-500/50' : isPaidAd ? 'border-orange-500/30' : 'border-white/5'} aspect-[4/5] bg-zinc-900 shadow-lg hover:shadow-2xl hover:shadow-orange-500/5`}>
                                         {project.videoUrl ? (
                                             <video
                                                 src={project.videoUrl}
-                                                preload="metadata"
+                                                preload="none"
+                                                poster={project.thumbnail}
                                                 playsInline
                                                 muted
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                                 onMouseEnter={(e) => {
-                                                    e.currentTarget.play().catch(() => {});
+                                                    // Only play on hover for desktop to avoid mobile performance issues
+                                                    if (window.innerWidth >= 768) {
+                                                        e.currentTarget.play().catch(() => {});
+                                                    }
                                                 }}
                                                 onMouseLeave={(e) => {
-                                                    e.currentTarget.pause();
-                                                    e.currentTarget.currentTime = 0;
+                                                    if (window.innerWidth >= 768) {
+                                                        e.currentTarget.pause();
+                                                        e.currentTarget.currentTime = 0;
+                                                    }
                                                 }}
                                             />
                                         ) : (
@@ -243,40 +248,41 @@ export default function PortfolioLayout() {
                                         )}
 
                                         {/* Gradient overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
                                         {/* Category chip */}
-                                        <div className="absolute top-5 left-5">
-                                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-black/75 backdrop-blur-md border border-white/10 text-white rounded-full text-[9px] uppercase font-bold tracking-widest">
-                                                <Icon className="w-3 h-3 text-orange-500" />
-                                                {categoryString}
+                                        <div className="absolute top-3 left-3 md:top-5 md:left-5">
+                                            <span className="inline-flex items-center gap-1 md:gap-1.5 px-2 py-1 md:px-3.5 md:py-1.5 bg-black/75 backdrop-blur-md border border-white/10 text-white rounded-full text-[7px] md:text-[9px] uppercase font-bold tracking-widest">
+                                                <Icon className="w-2.5 h-2.5 md:w-3 md:h-3 text-orange-500" />
+                                                <span className="hidden sm:inline">{categoryString}</span>
                                             </span>
                                         </div>
 
                                         {/* Live Campaign Status Badge */}
                                         {isLiveCampaign && (
-                                            <div className="absolute top-5 right-5 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-red-600/90 backdrop-blur-md border border-red-500/30 text-white rounded-full text-[9px] uppercase font-bold tracking-widest animate-pulse">
+                                            <div className="absolute top-3 right-3 md:top-5 md:right-5 z-20 flex items-center gap-1 md:gap-1.5 px-2 py-1 md:px-3 md:py-1.5 bg-red-600/90 backdrop-blur-md border border-red-500/30 text-white rounded-full text-[7px] md:text-[9px] uppercase font-bold tracking-widest animate-pulse">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                                                LIVE CAMPAIGN RESULTS
+                                                <span className="hidden sm:inline">LIVE CAMPAIGN RESULTS</span>
+                                                <span className="sm:hidden">LIVE</span>
                                             </div>
                                         )}
 
                                         {/* Arrow button overlay on hover */}
-                                        <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                                            <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-xl">
-                                                {project.videoUrl ? <Play className="w-5 h-5 fill-current" /> : <ArrowUpRight className="w-5 h-5" />}
+                                        <div className="absolute bottom-3 right-3 md:bottom-6 md:right-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-2 md:group-hover:translate-y-0">
+                                            <div className="w-6 h-6 md:w-12 md:h-12 rounded-full bg-orange-500/80 md:bg-orange-500 text-white flex items-center justify-center shadow-xl backdrop-blur-sm">
+                                                {project.videoUrl ? <Play className="w-3 h-3 md:w-5 md:h-5 fill-current" /> : <ArrowUpRight className="w-3 h-3 md:w-5 md:h-5" />}
                                             </div>
                                         </div>
 
                                         {/* Title panel */}
-                                        <div className="absolute bottom-6 left-6 right-20 transition-all duration-300">
-                                            <p className="text-white/40 text-[9px] font-bold uppercase tracking-[0.2em] mb-1">{project.client}</p>
-                                            <h3 className="text-xl font-display font-bold text-white leading-tight uppercase tracking-tight line-clamp-2">{project.title}</h3>
+                                        <div className="absolute bottom-3 left-3 right-10 md:bottom-6 md:left-6 md:right-20 transition-all duration-300">
+                                            <p className="text-white/60 md:text-white/40 text-[7px] md:text-[9px] font-bold uppercase tracking-[0.2em] mb-0.5 md:mb-1 truncate">{project.client}</p>
+                                            <h3 className="text-sm md:text-xl font-display font-bold text-white leading-tight uppercase tracking-tight line-clamp-2 md:line-clamp-2">{project.title}</h3>
                                         </div>
 
                                         {/* Paid ads bottom line indicator */}
                                         {isPaidAd && (
-                                            <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-orange-500 z-10" />
+                                            <div className="absolute bottom-0 left-0 right-0 h-1 md:h-1.5 bg-orange-500 z-10" />
                                         )}
                                     </div>
                                 </motion.div>
