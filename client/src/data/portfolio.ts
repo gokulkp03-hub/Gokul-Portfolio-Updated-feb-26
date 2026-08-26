@@ -1,7 +1,7 @@
 export interface Project {
     id: string;
     title: string;
-    category: "Video" | "Photo" | "Marketing";
+    category: "Video" | "Photo" | "Marketing" | "Web";
     image: string;
     videoSrc?: string; // Optional video loop or full video link
     year: string;

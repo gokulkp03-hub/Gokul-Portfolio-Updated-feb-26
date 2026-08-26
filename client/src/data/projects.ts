@@ -2,7 +2,7 @@ export interface Project {
     id: string;
     slug: string;
     title: string;
-    category: "video" | "photo" | "editing" | "social" | "ads" | "influencer";
+    category: "video" | "photo" | "editing" | "social" | "ads" | "influencer" | "web";
     subcategory?: string;
     thumbnail: string;
     description: string;
@@ -473,6 +473,34 @@ export const projects: Project[] = [
         role: "Videographer & Editor",
         date: "2024",
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Healthymeals_creative_fpdhft.mp4",
+        featured: true
+    },
+    {
+        id: "ca-joyce-website",
+        slug: "ca-joyce-website",
+        title: "CA Joyce - Financial Portfolio",
+        category: "web",
+        subcategory: "Web Development",
+        thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", // Placeholder or fetch actual
+        description: "Designed and developed a professional portfolio and consulting website for a Chartered Accountant. Live at: www.cajoyce.com",
+        client: "CA Joyce",
+        role: "Web Developer",
+        tools: ["React", "Tailwind CSS", "Web Design"],
+        date: "2024",
+        featured: true
+    },
+    {
+        id: "ecom100-website",
+        slug: "ecom100-website",
+        title: "Ecom100",
+        category: "web",
+        subcategory: "Web Development",
+        thumbnail: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop", // Placeholder
+        description: "Built a high-converting e-commerce hub and digital platform for Ecom100. Live at: www.ecom100.in",
+        client: "Ecom100",
+        role: "Web Developer",
+        tools: ["Next.js", "Tailwind CSS", "UI/UX Design"],
+        date: "2024",
         featured: true
     }
 ];

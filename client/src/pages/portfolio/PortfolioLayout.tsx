@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Play, Camera, Edit, Share2, TrendingUp, ArrowUpRight, RotateCcw, X, ExternalLink, Award } from "lucide-react";
+import { Play, Camera, Edit, Share2, TrendingUp, ArrowUpRight, RotateCcw, X, ExternalLink, Award, Code } from "lucide-react";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { trpc } from "@/lib/trpc";
 import { projects as staticProjects } from "@/data/projects";
@@ -9,7 +9,7 @@ import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 import { SEO } from "@/components/SEO";
 import { trackEvent } from "@/utils/analytics";
 
-type FilterCategory = "all" | "ads" | "video" | "photo" | "social" | "influencer";
+type FilterCategory = "all" | "ads" | "video" | "photo" | "social" | "influencer" | "web";
 
 const categoryIcons: Record<string, any> = {
     video: Play,
@@ -19,7 +19,8 @@ const categoryIcons: Record<string, any> = {
     editing: Edit,
     social: Share2,
     ads: Award,
-    influencer: Share2
+    influencer: Share2,
+    web: Code
 };
 
 export default function PortfolioLayout() {
@@ -48,7 +49,7 @@ export default function PortfolioLayout() {
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const param = params.get("filter") as FilterCategory | null;
-        if (param && ["video", "photo", "ads", "social", "influencer", "all"].includes(param)) {
+        if (param && ["video", "photo", "ads", "social", "influencer", "web", "all"].includes(param)) {
             setActiveFilter(param);
         } else {
             setActiveFilter("all");
@@ -135,7 +136,7 @@ export default function PortfolioLayout() {
         { value: "video", label: "Video Production" },
         { value: "photo", label: "Photography" },
         { value: "social", label: "Social Media" },
-        { value: "influencer", label: "Influencer" }
+        { value: "web", label: "Web Dev" }
     ];
 
     return (
