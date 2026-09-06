@@ -78,7 +78,11 @@ export default function PhotoService() {
     
     return (
         <div className="min-h-screen bg-neutral-950 text-white selection:bg-amber-400 selection:text-black">
-            <SEO title="Gokul KP — Commercial Food & Product Photography | Dubai" description="Cinematic commercial food photography, luxury product stills, and high-converting campaign visuals in Dubai, UAE." />
+            <SEO 
+                title="Product & Brand Photography in Dubai | Gokul KP" 
+                description="High-end food photography, commercial product shots, and brand visual systems in Dubai and UAE." 
+                url="/portfolio/photo" 
+            />
             
             {/* 1. WebGL Three.js Hero Shader */}
             <PhotoShaderHero

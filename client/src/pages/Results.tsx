@@ -48,23 +48,30 @@ export default function Results() {
 
                 {/* Metrics Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-32">
-                    {proof.metrics.map((metric, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:bg-muted/20 hover:border-orange-500/20 transition-all duration-300"
-                        >
-                            <div className="text-3xl md:text-6xl font-display font-bold text-foreground mb-3 tabular-nums">
-                                {metric.prefix}{metric.value}{metric.suffix}
-                            </div>
-                            <div className="text-xs uppercase tracking-[0.2em] text-orange-500 font-bold">
-                                {metric.label}
-                            </div>
-                        </motion.div>
-                    ))}
+                    {proof.metrics.map((metric, i) => {
+                        const formattedValue = isNaN(Number(metric.value))
+                            ? metric.value
+                            : metric.value.includes('.')
+                                ? metric.value
+                                : Number(metric.value).toLocaleString();
+                        return (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:bg-muted/20 hover:border-orange-500/20 transition-all duration-300"
+                            >
+                                <div className="text-3xl md:text-6xl font-display font-bold text-foreground mb-3 tabular-nums">
+                                    {metric.prefix || ""}{formattedValue}{metric.suffix || ""}
+                                </div>
+                                <div className="text-xs uppercase tracking-[0.2em] text-orange-500 font-bold">
+                                    {metric.label}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
                 {/* Visual Wall of Wins */}

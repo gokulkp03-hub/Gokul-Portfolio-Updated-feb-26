@@ -2,6 +2,28 @@
 <html lang="en">
 
 <head>
+  <!-- Google Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
+    var initialConsent = 'denied';
+    try {
+      if (localStorage.getItem('cookie_consent') === 'granted') {
+        initialConsent = 'granted';
+      }
+    } catch (e) {}
+
+    gtag('consent', 'default', {
+      'analytics_storage': initialConsent,
+      'ad_storage': initialConsent,
+      'ad_user_data': initialConsent,
+      'ad_personalization': initialConsent,
+      'wait_for_update': 500
+    });
+  </script>
+  <!-- End Google Consent Mode v2 -->
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -13,8 +35,6 @@
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JB54FDS086"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-JB54FDS086');
   </script>
@@ -24,9 +44,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Bing Webmaster Site Verification -->
   <meta name="msvalidate.01" content="794AC79E0B6E4617CC5D2DBD0818E3C8" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- Fonts Preconnect & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -255,7 +277,7 @@
       <section>
         <h2>Featured Case Studies</h2>
         <ul>
-          <li><a href="/marketing/aqua-care-uae">Aqua Care UAE Meta Ads Case Study</a> — Generated AED 31,743 in revenue from AED 7,131 spend with a 4.45x ROAS across 6 product lines.</li>
+          <li><a href="/marketing/aqua-care-uae">Aqua Care UAE Meta Ads Case Study</a> — Multi-product Meta Ads engine generating 2,357 messaging conversations and 212 Meta leads across 25 campaigns in the UAE.</li>
           <li><a href="/marketing/prepmeal">PrepMeal UAE Performance Marketing</a> — Scaled WhatsApp lead generation delivering 6,133 messaging leads and 4.44M+ impressions from AED 159.5K spend.</li>
           <li><a href="/marketing/steaburg-local-seo">Steaburg Local SEO Landmark</a> — Hyper-local Google Business Profile optimization driving 100+ reviews and top 3 local rankings in Sharjah.</li>
         </ul>

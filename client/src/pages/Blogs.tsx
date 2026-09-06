@@ -32,8 +32,7 @@ export default function Blogs() {
           ) : blogs && blogs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {blogs.map(blog => (
-                <Link key={blog.id} href={`/blogs/${blog.slug}`}>
-                  <a className="group block bg-zinc-900/40 border border-white/5 rounded-[2rem] overflow-hidden hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1">
+                <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group block bg-zinc-900/40 border border-white/5 rounded-[2rem] overflow-hidden hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1">
                     {blog.thumbnail && (
                       <div className="aspect-[16/10] overflow-hidden">
                         <img 
@@ -60,7 +59,6 @@ export default function Blogs() {
                         <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
-                  </a>
                 </Link>
               ))}
             </div>

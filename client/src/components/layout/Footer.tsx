@@ -45,6 +45,7 @@ export default function Footer() {
                                 <Link href="/portfolio" className="text-sm font-medium hover:text-orange-400 transition-colors">Work</Link>
                                 <Link href="/about" className="text-sm font-medium hover:text-orange-400 transition-colors">About</Link>
                                 <Link href="/results" className="text-sm font-medium hover:text-orange-400 transition-colors">Results</Link>
+                                <Link href="/privacy" className="text-sm font-medium hover:text-orange-400 transition-colors">Privacy Policy</Link>
                             </div>
                         </div>
                         <div className="space-y-4">
@@ -110,7 +111,11 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-border/40 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground/50 text-center md:text-left">
-                    <p>© 2026 Gokul KP. All rights reserved.</p>
+                    <div className="flex items-center gap-4">
+                        <p>© 2026 Gokul KP. All rights reserved.</p>
+                        <span className="text-border">•</span>
+                        <Link href="/privacy" className="hover:text-foreground transition-colors underline">Privacy Policy</Link>
+                    </div>
                     <div className="flex items-center gap-2">
                         <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         <span className="uppercase font-semibold tracking-wider text-[10px]">Dubai, United Arab Emirates</span>

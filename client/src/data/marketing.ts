@@ -34,23 +34,25 @@ export const marketingCampaigns: MarketingCampaign[] = [
         client: "Aqua Care UAE",
         industry: "Water Treatment",
         platform: "Meta Ads",
-        title: "From zero to AED 31,743 revenue",
-        headline: "Built a full-funnel Meta ad system across 6 product lines. 3-month sprint, AED 7,131 spend, 4.45× ROAS.",
-        description: "Generate direct sales and qualified leads for 6 water treatment products across UAE market using Meta Ads only.",
-        objective: "Direct sales and qualified leads across varying price points.",
-        challenge: "Wide price range required entirely different funnel strategies per product.",
+        title: "Multi-Product Meta Ads Engine",
+        headline: "Managed and scaled Meta advertising across awareness, engagement, and lead-gen campaigns for AquaCare's UAE product portfolio.",
+        description: "Built a structured 3-stage funnel across 25 campaigns, 29 ad sets, and 80 creative variations spanning shower filters, water dispensers, and whole-house softeners.",
+        objective: "Direct-response lead generation and low-cost messaging acquisition.",
+        challenge: "Differentiating conversion funnels for impulse-buy shower filters vs high-ticket dispensers and villa softeners.",
         strategy: [
-            "Awareness: Reach campaigns, broad targeting",
-            "Engagement: Messaging conversations, warm retargeting",
-            "Leads: Lead gen forms, qualified intent"
+            "Awareness: Broad reach campaigns & product education",
+            "Engagement: Low-cost messaging acquisition & WhatsApp DMs",
+            "Leads: High-intent instant lead forms for product buyers"
         ],
         execution: [],
-        results: "31K Revenue, 4.45x Return on Ad Spend.",
+        results: "2,357 Messaging Conversations, 212 Meta Leads, 1.21M Reach.",
         metrics: [
-            { label: "ROAS", value: "4.45x", trend: "up" },
-            { label: "Revenue generated", value: "AED 31K", trend: "up" },
-            { label: "People reached", value: "874K", trend: "up" },
-            { label: "Active campaigns", value: "16", trend: "up" }
+            { label: "Meta Ad Spend", value: "AED 11.1K", trend: "up" },
+            { label: "Impressions", value: "2.23M", trend: "up" },
+            { label: "Reach", value: "1.21M", trend: "up" },
+            { label: "Conversations", value: "2,357", trend: "up" },
+            { label: "Meta Leads", value: "212", trend: "up" },
+            { label: "Campaigns", value: "25", trend: "up" }
         ],
         visuals: [
             "/assets/images/brands/Aqua-Care/new.jpg"
@@ -59,7 +61,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         tags: ["Performance Marketing", "Meta Ads"],
         featured: true,
         role: "Performance Marketer",
-        duration: "Dec 2025 – Mar 2026",
+        duration: "25 Dec 2025 — 6 Sep 2026",
         logoUrl: "/assets/images/logos/Aquacare logo.png"
     },
     {

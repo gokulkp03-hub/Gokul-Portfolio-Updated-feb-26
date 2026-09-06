@@ -21,11 +21,12 @@ export function AnimatedCounter({
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-60px" });
   const prefersReducedMotion = useReducedMotion();
+  const formattedFinal = decimals > 0 ? to.toFixed(decimals) : Math.floor(to).toLocaleString();
 
   useEffect(() => {
     if (!nodeRef.current) return;
     if (prefersReducedMotion) {
-      nodeRef.current.textContent = `${prefix}${to.toFixed(decimals)}${suffix}`;
+      nodeRef.current.textContent = `${prefix}${formattedFinal}${suffix}`;
       return;
     }
     
@@ -44,11 +45,11 @@ export function AnimatedCounter({
       },
     });
     return () => controls.stop();
-  }, [inView, from, to, prefix, suffix, duration, prefersReducedMotion, decimals]);
+  }, [inView, from, to, prefix, suffix, duration, prefersReducedMotion, decimals, formattedFinal]);
 
   return (
     <span ref={nodeRef} className={className}>
-      {prefix}{prefersReducedMotion ? to.toFixed(decimals) : "0"}{suffix}
+      {prefix}{formattedFinal}{suffix}
     </span>
   );
 }

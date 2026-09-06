@@ -6,6 +6,7 @@ interface SEOProps {
   keywords?: string;
   image?: string;
   url?: string;
+  noindex?: boolean;
 }
 
 export function SEO({ 
@@ -13,7 +14,8 @@ export function SEO({
   description, 
   keywords, 
   image, 
-  url 
+  url,
+  noindex = false
 }: SEOProps) {
   const defaultTitle = "Gokul KP — Performance Marketer & Video Producer | Dubai, UAE";
   const defaultDescription = "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS.";
@@ -21,11 +23,24 @@ export function SEO({
   const defaultImage = "https://www.gokulkp.com/assets/images/profile/gokul-kp-performance-marketer-dubai.webp";
   const baseUrl = "https://www.gokulkp.com";
 
-  const metaTitle = title ? `${title} | Gokul KP` : defaultTitle;
+  let metaTitle = defaultTitle;
+  if (title) {
+    metaTitle = title.includes("Gokul KP") ? title : `${title} | Gokul KP`;
+  }
+
   const metaDescription = description || defaultDescription;
   const metaKeywords = keywords || defaultKeywords;
   const metaImage = image || defaultImage;
-  const metaUrl = url ? `${baseUrl}${url}` : baseUrl;
+  
+  let canonicalPath = "";
+  if (url) {
+    canonicalPath = url.startsWith("http") ? url : `${baseUrl}${url}`;
+  } else if (typeof window !== "undefined") {
+    const pathname = window.location.pathname;
+    canonicalPath = `${baseUrl}${pathname === "/" ? "" : pathname}`;
+  } else {
+    canonicalPath = baseUrl;
+  }
 
   return (
     <Helmet>
@@ -33,15 +48,17 @@ export function SEO({
       <meta name="title" content={metaTitle} />
       <meta name="description" content={metaDescription} />
       <meta name="keywords" content={metaKeywords} />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+      <link rel="canonical" href={canonicalPath} />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={metaUrl} />
+      <meta property="og:url" content={canonicalPath} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:image" content={metaImage} />
 
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={metaUrl} />
+      <meta property="twitter:url" content={canonicalPath} />
       <meta property="twitter:title" content={metaTitle} />
       <meta property="twitter:description" content={metaDescription} />
       <meta property="twitter:image" content={metaImage} />

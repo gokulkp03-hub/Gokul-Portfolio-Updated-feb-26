@@ -12,7 +12,6 @@ function SkillBar({ name, index }: { name: string; index: number }) {
 
     return (
         <div ref={ref} className="flex items-center justify-between border-b border-border/50 pb-2">
-            <SEO title="About Gokul KP | Performance Marketer & Creative Director" description="Learn more about Gokul KP's 3+ years scaling B2C brands across GCC (UAE & Oman) with paid ads, UGC creatives, and conversion copywriting." />
             <span className="text-muted-foreground font-light">{name}</span>
             <div className="w-12 h-1 bg-orange-500/20 rounded-full overflow-hidden flex items-center">
                 <motion.div
@@ -36,6 +35,11 @@ export default function About() {
     const displayParas = chunks.slice(1).length > 0 ? chunks.slice(1) : chunks;
     return (
         <div className="min-h-screen bg-background pt-40 md:pt-56 pb-32">
+            <SEO 
+                title="About Gokul KP | Dubai Performance Marketer & Creative Director" 
+                description="Meet Gokul KP, a Dubai-based performance marketer and creative director with experience across Meta Ads, WhatsApp funnels, video, and GCC brands." 
+                url="/about" 
+            />
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
 

@@ -44,7 +44,7 @@ export function ProofStrip() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto relative z-10 mb-12">
                     {proof.metrics.map((metric, i) => {
                         const numericValue = parseFloat(metric.value);
-                        const isDecimals = metric.value.includes('.');
+                        const decimalPlaces = metric.value.includes('.') ? metric.value.split('.')[1].length : 0;
                         return (
                             <div key={i} className="flex flex-col items-center text-center">
                                 <motion.div
@@ -58,7 +58,7 @@ export function ProofStrip() {
                                         to={numericValue} 
                                         prefix={metric.prefix} 
                                         suffix={metric.suffix} 
-                                        decimals={isDecimals ? 2 : 0} 
+                                        decimals={decimalPlaces} 
                                     />
                                 </motion.div>
                                 <div className="text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground text-center">

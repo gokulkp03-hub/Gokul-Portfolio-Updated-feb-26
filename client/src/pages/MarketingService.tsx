@@ -19,7 +19,6 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   
   return (
         <div className="border-b border-border/40 py-4">
-            <SEO title="Gokul KP — Performance Marketing & Meta Ads | Dubai, UAE" description="Data-driven Meta Ads management, lead generation funnels, and GCC WhatsApp automation. Managed AED 166K+ spend, 7,300+ leads, up to 4.45x ROAS." />
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full text-left font-medium text-lg hover:text-emerald-500 transition-colors"
@@ -399,6 +398,11 @@ export default function MarketingService() {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden relative">
+      <SEO 
+        title="Performance Marketing & Meta Ads in Dubai | Gokul KP" 
+        description="Full-funnel Meta Ads, WhatsApp lead generation, creative testing, and conversion-focused campaign management for UAE and GCC brands." 
+        url="/marketing" 
+      />
 
       {/* ---- Marketing Hero ---- */}
       <MarketingHero />

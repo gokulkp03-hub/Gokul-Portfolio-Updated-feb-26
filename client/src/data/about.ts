@@ -28,9 +28,9 @@ export const experiences: ExperienceItem[] = [
             "Configured custom lead distribution frameworks and optimized sales team CRM pipelines to speed up response times."
         ],
         achievements: [
-            "Generated 1,232+ qualified leads and achieved 874K+ total reach in active campaigns across UAE & Oman markets.",
-            "Achieved average CPL of AED 5.73 in competitive UAE market, with optimized Oman campaigns reaching as low as AED 0.61 CPL.",
-            "Delivered verified 4.45x ROAS and AED 31,743 in attributed revenue on targeted campaigns with precise ABO/CBO budget scaling."
+            "Managed 25 Meta campaigns, generating 2,357 messaging conversations, 212 Meta leads, and 1.21M reach across the UAE.",
+            "Achieved cost per lead as low as AED 4.32 on winning Shower Filter Reel creatives and AED 1.03 per messaging conversation on countertop dispensers.",
+            "Scaled multi-product Meta advertising with structured testing across 29 ad sets and 80 creative variations."
         ]
     },
     {

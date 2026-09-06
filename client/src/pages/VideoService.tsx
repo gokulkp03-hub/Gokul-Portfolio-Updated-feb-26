@@ -83,8 +83,8 @@ export default function VideoService() {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
             <SEO 
-                title="Gokul KP — Commercial Video Producer & Director | Dubai, UAE"
-                description="Commercial video producer and director in Dubai. High-impact brand films, music videos, and high-retention Reels built for paid acquisition and brand authority."
+                title="Commercial Video Production in Dubai | Gokul KP"
+                description="Cinematic brand films, high-retention social media reels, and commercial video production for UAE brands."
                 url="/portfolio/video"
             />
             {/* Cinematic Background - No Blobs */}

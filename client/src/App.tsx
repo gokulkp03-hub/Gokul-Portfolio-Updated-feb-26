@@ -25,6 +25,8 @@ import Blogs from "./pages/Blogs";
 import BlogPost from "./pages/BlogPost";
 import AquaCareCaseStudy from "./pages/portfolio/AquaCareCaseStudy";
 import PrepmealCaseStudy from "./pages/portfolio/PrepmealCaseStudy";
+import Privacy from "./pages/Privacy";
+import { ConsentBanner } from "./components/ui/ConsentBanner";
 
 function Router() {
   const [location] = useLocation();
@@ -76,6 +78,9 @@ function Router() {
         <PageTransition>
           <Switch>
             <Route path="/" component={Home} />
+            <Route path="/portfolio/video" component={VideoService} />
+            <Route path="/portfolio/photo" component={PhotoService} />
+            <Route path="/portfolio/marketing" component={MarketingService} />
             <Route path="/video" component={VideoService} />
             <Route path="/photo" component={PhotoService} />
             <Route path="/marketing" component={MarketingService} />
@@ -97,6 +102,7 @@ function Router() {
             <Route path="/blogs/:slug">
               {(params) => <BlogPost slug={params.slug} />}
             </Route>
+            <Route path="/privacy" component={Privacy} />
 
             {/* Admin Routes */}
             <Route path="/admin">
@@ -203,6 +209,7 @@ function App() {
           <Toaster />
           <div className="bg-grain" />
           <Router />
+          <ConsentBanner />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

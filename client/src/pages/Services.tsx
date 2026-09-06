@@ -1,3 +1,4 @@
+import { SEO } from "@/components/SEO";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Check, Zap, Target, Sparkles, BarChart, Camera, Play, Layers } from "lucide-react";
 import { Link } from "wouter";
@@ -114,6 +115,11 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
+      <SEO 
+        title="Performance Marketing, Video & Creative Services | Gokul KP" 
+        description="Explore Gokul KP’s performance marketing, paid-social creative, video production, photography, and growth-retainer services for UAE and GCC brands." 
+        url="/services" 
+      />
       <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
 
         {/* Header */}
