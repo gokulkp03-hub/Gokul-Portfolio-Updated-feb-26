@@ -239,6 +239,18 @@
     </div>
   </div>
   
+  <script>
+    // Fail-safe: ensure page-loader disappears even on slow networks / mobile devices
+    setTimeout(function() {
+      var loader = document.getElementById('page-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        setTimeout(function() { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 500);
+      }
+    }, 1500);
+  </script>
+  
   <style>
     @keyframes pulse {
       0%, 100% { opacity: 0.4; transform: scale(0.98); }

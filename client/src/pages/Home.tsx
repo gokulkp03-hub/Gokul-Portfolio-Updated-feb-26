@@ -44,13 +44,24 @@ export default function Home() {
   }
 
   const [showScrollArrow, setShowScrollArrow] = useState(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    return window.innerWidth >= 768;
+  });
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollArrow(window.scrollY < 200);
     };
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const wordRevealVariants = {
@@ -66,7 +77,7 @@ export default function Home() {
       <CursorTrailSpotlight />
 
       <motion.div 
-        className="fixed inset-0 pointer-events-none bg-orange-500/10 z-0 mix-blend-screen" 
+        className="hidden md:block fixed inset-0 pointer-events-none bg-orange-500/10 z-0 mix-blend-screen" 
         style={{ opacity: ctaAuraOpacity }} 
       />
 
@@ -75,21 +86,25 @@ export default function Home() {
         className="relative pt-36 pb-20 md:pt-48 md:pb-28 px-4 md:px-8 max-w-[1600px] mx-auto group min-h-[90vh] flex flex-col justify-center"
         onMouseMove={handleMouseMove}
       >
-        {/* New 3D Tubes Background - Hidden on mobile for performance */}
-        <div className="hidden md:block absolute inset-0">
-          <TubesBackground />
-        </div>
+        {/* 3D Tubes Background - Mounted only on desktop for performance */}
+        {isDesktop && (
+          <div className="hidden md:block absolute inset-0">
+            <TubesBackground />
+          </div>
+        )}
 
-        {/* Looping Cinematic Background Video */}
+        {/* Looping Cinematic Background Video with Auto Quality and Poster */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <video
             autoPlay
             muted
             loop
             playsInline
+            preload="metadata"
+            poster="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg"
             className="w-full h-full object-cover opacity-15 filter grayscale contrast-125"
           >
-            <source src="https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dgmieaf9g/video/upload/q_auto:eco,w_800,vc_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-[#0a0a0a]" />

@@ -5,15 +5,20 @@ export const CursorTrailSpotlight: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [pageHeight, setPageHeight] = useState<number>(4000);
-  const [isDesktop, setIsDesktop] = useState<boolean>(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth >= 768 && !("ontouchstart" in window);
+  });
 
   const { scrollYProgress } = useScroll();
 
   // Active Spotlight Y-position in pixels across page scroll height
   const spotlightY = useTransform(scrollYProgress, [0, 1], [300, pageHeight - 400]);
 
-  // Dynamic Page Height Measurement
+  // Dynamic Page Height Measurement (Desktop only)
   useEffect(() => {
+    if (!isDesktop) return;
+
     const updateDimensions = () => {
       const h = Math.max(
         document.body.scrollHeight,
@@ -22,7 +27,7 @@ export const CursorTrailSpotlight: React.FC = () => {
         document.documentElement.offsetHeight
       );
       setPageHeight(h);
-      setIsDesktop(window.innerWidth >= 768 && !('ontouchstart' in window));
+      setIsDesktop(window.innerWidth >= 768 && !("ontouchstart" in window));
     };
 
     updateDimensions();
@@ -33,7 +38,7 @@ export const CursorTrailSpotlight: React.FC = () => {
       window.removeEventListener("resize", updateDimensions);
       clearTimeout(timer);
     };
-  }, []);
+  }, [isDesktop]);
 
 // 1. Canvas2D Spring Cursor Trail Physics with Magnetic Snap to Cards
   useEffect(() => {
@@ -158,6 +163,8 @@ export const CursorTrailSpotlight: React.FC = () => {
     };
   }, [isDesktop]);
 
+  if (!isDesktop) return null;
+
   return (
     <div
       ref={containerRef}
@@ -174,12 +181,10 @@ export const CursorTrailSpotlight: React.FC = () => {
       />
 
       {/* 2. Fixed Canvas Layer for Desktop Cursor Spring Trail */}
-      {isDesktop && (
-        <canvas
-          ref={canvasRef}
-          className="fixed inset-0 w-full h-full pointer-events-none z-[2] filter blur-[0.5px]"
-        />
-      )}
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 w-full h-full pointer-events-none z-[2] filter blur-[0.5px]"
+      />
     </div>
   );
 };

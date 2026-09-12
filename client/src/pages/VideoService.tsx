@@ -70,6 +70,7 @@ export default function VideoService() {
     const [activeCategory, setActiveCategory] = useState<Category>("All");
     const [hoveredId, setHoveredId] = useState<string | null>(null);
     const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
+    const [activeEmbedId, setActiveEmbedId] = useState<string | null>(null);
 
     // Use static videoProjects — all 31 videos, no DB merge needed (avoids duplicates)
     const allVideos = videoProjects;
@@ -266,29 +267,30 @@ export default function VideoService() {
                                     className="group relative aspect-video rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer border border-border/30 hover:border-blue-500/40 transition-colors duration-300"
                                 >
                                     {/* Video Thumbnail / Preview */}
-                                    {video.videoUrl && (
+                                    <img
+                                        src={getCloudinaryThumb(video.thumbnail || video.videoUrl || "")}
+                                        alt={video.title}
+                                        loading="lazy"
+                                        className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                                        onError={(e) => {
+                                            e.currentTarget.src = "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop";
+                                        }}
+                                    />
+
+                                    {/* Desktop Hover Live Video Preview */}
+                                    {hoveredId === video.id && video.videoUrl && (
                                         <video
                                             src={video.videoUrl}
-                                            preload="metadata"
+                                            autoPlay
                                             playsInline
                                             muted
                                             loop
-                                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                                            ref={(el) => {
-                                                if (el) {
-                                                    if (hoveredId === video.id) {
-                                                        el.play().catch(() => {});
-                                                    } else {
-                                                        el.pause();
-                                                        el.currentTime = 0;
-                                                    }
-                                                }
-                                            }}
+                                            className="absolute inset-0 w-full h-full object-cover z-[1]"
                                         />
                                     )}
 
                                     {/* Dark gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-[2]" />
 
                                     {/* Play button — always visible, scales on hover */}
                                     <div className={cn(
@@ -363,17 +365,39 @@ export default function VideoService() {
                                 transition={{ duration: 0.5, delay: (idx % 2) * 0.1 }}
                                 className="group rounded-2xl overflow-hidden bg-zinc-900 border border-border/40 hover:border-blue-500/40 shadow-2xl transition-all duration-300 flex flex-col"
                             >
-                                <div className="relative w-full aspect-video bg-black overflow-hidden">
-                                    <iframe
-                                        src={`https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${embed.publicId}`}
-                                        width="640"
-                                        height="360"
-                                        style={{ height: "100%", width: "100%", aspectRatio: "640 / 360" }}
-                                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                                        allowFullScreen
-                                        frameBorder="0"
-                                        className="w-full h-full border-0 block"
-                                    />
+                                <div 
+                                    className="relative w-full aspect-video bg-black overflow-hidden cursor-pointer"
+                                    onClick={() => setActiveEmbedId(embed.publicId)}
+                                >
+                                    {activeEmbedId === embed.publicId ? (
+                                        <iframe
+                                            src={`https://player.cloudinary.com/embed/?cloud_name=dgmieaf9g&public_id=${embed.publicId}&autoplay=true`}
+                                            width="640"
+                                            height="360"
+                                            style={{ height: "100%", width: "100%", aspectRatio: "640 / 360" }}
+                                            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                                            allowFullScreen
+                                            frameBorder="0"
+                                            className="w-full h-full border-0 block"
+                                        />
+                                    ) : (
+                                        <div className="relative w-full h-full group/facade">
+                                            <img
+                                                src={`https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/${embed.publicId}.jpg`}
+                                                alt={embed.title}
+                                                loading="lazy"
+                                                className="w-full h-full object-cover opacity-75 group-hover/facade:opacity-90 group-hover/facade:scale-105 transition-all duration-500"
+                                                onError={(e) => {
+                                                    e.currentTarget.src = "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop";
+                                                }}
+                                            />
+                                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                                <div className="w-14 h-14 rounded-full bg-blue-500/80 backdrop-blur-md border border-white/30 flex items-center justify-center group-hover/facade:scale-110 group-hover/facade:bg-blue-500 transition-all duration-300 shadow-2xl">
+                                                    <Play className="w-6 h-6 text-white fill-current ml-0.5" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="p-5 bg-zinc-900/90 border-t border-border/30 flex items-center justify-between">
                                     <div>

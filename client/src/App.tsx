@@ -1,3 +1,4 @@
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -6,40 +7,54 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Home from "./pages/Home";
-import VideoService from "./pages/VideoService";
-import PhotoService from "./pages/PhotoService";
-import MarketingService from "./pages/MarketingService";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { PageTransition } from "@/components/ui/PageTransition";
-
-import Services from "./pages/Services";
-import About from "./pages/About";
-import PortfolioLayout from "./pages/portfolio/PortfolioLayout";
-import ProjectDetail from "./pages/portfolio/ProjectDetail";
-import Results from "./pages/Results";
-import Contact from "./pages/Contact";
-import Blogs from "./pages/Blogs";
-import BlogPost from "./pages/BlogPost";
-import AquaCareCaseStudy from "./pages/portfolio/AquaCareCaseStudy";
-import PrepmealCaseStudy from "./pages/portfolio/PrepmealCaseStudy";
-import Privacy from "./pages/Privacy";
 import { ConsentBanner } from "./components/ui/ConsentBanner";
+import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+
+// Lazy-loaded public routes
+const Home = lazy(() => import("./pages/Home"));
+const VideoService = lazy(() => import("./pages/VideoService"));
+const PhotoService = lazy(() => import("./pages/PhotoService"));
+const MarketingService = lazy(() => import("./pages/MarketingService"));
+const Services = lazy(() => import("./pages/Services"));
+const About = lazy(() => import("./pages/About"));
+const PortfolioLayout = lazy(() => import("./pages/portfolio/PortfolioLayout"));
+const ProjectDetail = lazy(() => import("./pages/portfolio/ProjectDetail"));
+const Results = lazy(() => import("./pages/Results"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Blogs = lazy(() => import("./pages/Blogs"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AquaCareCaseStudy = lazy(() => import("./pages/portfolio/AquaCareCaseStudy"));
+const PrepmealCaseStudy = lazy(() => import("./pages/portfolio/PrepmealCaseStudy"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+
+// Lazy-loaded admin routes
+const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
+const ProjectManager = lazy(() => import("./pages/admin/ProjectManager"));
+const MediaLibrary = lazy(() => import("./pages/admin/MediaLibrary"));
+const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
+const MarketingManager = lazy(() => import("./pages/admin/MarketingManager"));
+const Settings = lazy(() => import("./pages/admin/Settings"));
+const ContactManager = lazy(() => import("./pages/admin/ContactManager"));
+const BlogManager = lazy(() => import("./pages/admin/BlogManager"));
 
 function Router() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith("/admin");
 
   useEffect(() => {
+    let observer: IntersectionObserver | null = null;
     const timer = setTimeout(() => {
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("revealed");
-              observer.unobserve(entry.target);
+              observer?.unobserve(entry.target);
             }
           });
         },
@@ -57,15 +72,18 @@ function Router() {
             el.classList.add("revealed");
           } else {
             el.classList.add("scroll-reveal-init");
-            observer.observe(el);
+            observer?.observe(el);
           }
         }
       });
-
-      return () => observer.disconnect();
     }, 200);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (observer) {
+        observer.disconnect();
+      }
+    };
   }, [location]);
 
   return (
@@ -76,117 +94,87 @@ function Router() {
       {!isAdminRoute && <WhatsAppButton />}
       <main>
         <PageTransition>
-          <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/portfolio/video" component={VideoService} />
-            <Route path="/portfolio/photo" component={PhotoService} />
-            <Route path="/portfolio/marketing" component={MarketingService} />
-            <Route path="/video" component={VideoService} />
-            <Route path="/photo" component={PhotoService} />
-            <Route path="/marketing" component={MarketingService} />
-            <Route path="/services" component={Services} />
-            <Route path="/about" component={About} />
-            <Route path="/portfolio" component={PortfolioLayout} />
-            <Route path="/portfolio/:category/:slug">
-              {(params) => <ProjectDetail category={params.category} slug={params.slug} />}
-            </Route>
-            <Route path="/marketing/aqua-care-uae" component={AquaCareCaseStudy} />
-            <Route path="/marketing/prepmeal" component={PrepmealCaseStudy} />
-            <Route path="/marketing/prepmeal-launch" component={PrepmealCaseStudy} />
-            <Route path="/marketing/:slug">
-              {(params) => <ProjectDetail category="marketing" slug={params.slug} />}
-            </Route>
-            <Route path="/results" component={Results} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/blogs" component={Blogs} />
-            <Route path="/blogs/:slug">
-              {(params) => <BlogPost slug={params.slug} />}
-            </Route>
-            <Route path="/privacy" component={Privacy} />
+          <Suspense fallback={<div className="min-h-screen bg-background" />}>
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/portfolio/video" component={VideoService} />
+              <Route path="/portfolio/photo" component={PhotoService} />
+              <Route path="/portfolio/marketing" component={MarketingService} />
+              <Route path="/video" component={VideoService} />
+              <Route path="/photo" component={PhotoService} />
+              <Route path="/marketing" component={MarketingService} />
+              <Route path="/services" component={Services} />
+              <Route path="/about" component={About} />
+              <Route path="/portfolio" component={PortfolioLayout} />
+              <Route path="/portfolio/:category/:slug">
+                {(params) => <ProjectDetail category={params.category} slug={params.slug} />}
+              </Route>
+              <Route path="/marketing/aqua-care-uae" component={AquaCareCaseStudy} />
+              <Route path="/marketing/prepmeal" component={PrepmealCaseStudy} />
+              <Route path="/marketing/prepmeal-launch" component={PrepmealCaseStudy} />
+              <Route path="/marketing/:slug">
+                {(params) => <ProjectDetail category="marketing" slug={params.slug} />}
+              </Route>
+              <Route path="/results" component={Results} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/blogs" component={Blogs} />
+              <Route path="/blogs/:slug">
+                {(params) => <BlogPost slug={params.slug} />}
+              </Route>
+              <Route path="/privacy" component={Privacy} />
 
-            {/* Admin Routes */}
-            <Route path="/admin">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+              {/* Admin Routes */}
+              <Route path="/admin">
+                <AdminProtectedRoute>
                   <AdminDashboard />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-                        <Route path="/admin/blogs">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/blogs">
+                <AdminProtectedRoute>
                   <BlogManager />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-            <Route path="/admin/projects">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/projects">
+                <AdminProtectedRoute>
                   <ProjectManager />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-            <Route path="/admin/media">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/media">
+                <AdminProtectedRoute>
                   <MediaLibrary />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-            <Route path="/admin/content">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/content">
+                <AdminProtectedRoute>
                   <ContentManager />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-            <Route path="/admin/marketing">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/marketing">
+                <AdminProtectedRoute>
                   <MarketingManager />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-            <Route path="/admin/settings">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/settings">
+                <AdminProtectedRoute>
                   <Settings />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
-            <Route path="/admin/contact">
-              <AdminProtectedRoute>
-                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                </AdminProtectedRoute>
+              </Route>
+              <Route path="/admin/contact">
+                <AdminProtectedRoute>
                   <ContactManager />
-                </Suspense>
-              </AdminProtectedRoute>
-            </Route>
+                </AdminProtectedRoute>
+              </Route>
 
-            <Route path="/404" component={NotFound} />
-            <Route component={NotFound} />
-          </Switch>
+              <Route path="/404" component={NotFound} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
         </PageTransition>
       </main>
       {!isAdminRoute && <Footer />}
     </>
   );
 }
-
-import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
-import { lazy, Suspense } from "react";
-
-const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
-const ProjectManager = lazy(() => import("./pages/admin/ProjectManager"));
-const MediaLibrary = lazy(() => import("./pages/admin/MediaLibrary"));
-const ContentManager = lazy(() => import("./pages/admin/ContentManager"));
-const MarketingManager = lazy(() => import("./pages/admin/MarketingManager"));
-const Settings = lazy(() => import("./pages/admin/Settings"));
-const ContactManager = lazy(() => import("./pages/admin/ContactManager"));
-const BlogManager = lazy(() => import("./pages/admin/BlogManager"));
-
-import { CustomCursor } from "@/components/ui/CustomCursor";
-
-import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
@@ -195,8 +183,8 @@ function App() {
       loader.style.opacity = "0";
       loader.style.visibility = "hidden";
       const timeout = setTimeout(() => {
-        loader.remove();
-      }, 500);
+        if (loader.parentNode) loader.parentNode.removeChild(loader);
+      }, 400);
       return () => clearTimeout(timeout);
     }
   }, []);

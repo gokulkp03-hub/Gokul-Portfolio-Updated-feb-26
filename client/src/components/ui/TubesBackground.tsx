@@ -4,6 +4,10 @@ export function TubesBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && (window.innerWidth < 768 || "ontouchstart" in window)) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
