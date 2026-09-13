@@ -27,7 +27,24 @@ export default function Home() {
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 sm:pt-40 md:pt-48 pb-20 md:pb-28 border-b border-border/40 overflow-hidden">
-        <div className="container px-4 md:px-8 max-w-[1240px] mx-auto">
+        {/* Looping Cinematic Background Video with Auto Quality and Poster */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg"
+            className="w-full h-full object-cover opacity-20 filter grayscale contrast-125"
+          >
+            <source src="https://res.cloudinary.com/dgmieaf9g/video/upload/q_auto:eco,w_800,vc_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
+        </div>
+
+        <div className="container relative z-10 px-4 md:px-8 max-w-[1240px] mx-auto">
           
           <div className="max-w-4xl space-y-8">
             {/* Eyebrow */}
