@@ -79,12 +79,14 @@ const trpcClient = trpc.createClient({
 });
 
 import { HelmetProvider } from 'react-helmet-async';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 createRoot(document.getElementById("root")!).render(
   <trpc.Provider client={trpcClient} queryClient={queryClient}>
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <App />
+        <SpeedInsights />
       </HelmetProvider>
     </QueryClientProvider>
   </trpc.Provider>
