@@ -112,19 +112,19 @@ export default function PortfolioLayout() {
             const id = p.id;
             
             if (activeFilter === "ads") {
-                return cat === "ads" || id === "aqua-care-uae" || id === "beyondcars-leads" || id === "meta-ads-1" || id === "little-rooster-branding";
+                return cat === "ads" || id === "aqua-care-uae" || id === "beyondcars-leads" || id === "meta-ads-1" || id === "aureum-asset-management";
             }
             if (activeFilter === "video") {
-                return cat === "video" || id === "beyond-cars-showcase" || id === "wedding-highlight-1" || id === "boss-branding-1" || id === "product-showcase-1" || id === "steaburg-brand-film" || id === "steaburg-reel-social";
+                return cat === "video";
             }
             if (activeFilter === "photo") {
-                return cat === "photo" || id === "food-pancakes-1" || id === "food-cheesecake-1" || id === "product-photo-1";
+                return cat === "photo";
             }
             if (activeFilter === "social") {
                 return cat === "social" || id === "prepmeal-growth" || id === "steaburg-seo" || id === "instagram-reels-1";
             }
             if (activeFilter === "influencer") {
-                return id === "prepmeal-growth" || cat === "influencer";
+                return cat === "influencer" || id === "prepmeal-growth";
             }
             return cat === activeFilter;
         });
@@ -136,6 +136,7 @@ export default function PortfolioLayout() {
         { value: "video", label: "Video Production" },
         { value: "photo", label: "Photography" },
         { value: "social", label: "Social Media" },
+        { value: "influencer", label: "Influencer" },
         { value: "web", label: "Web Dev" }
     ];
 

@@ -82,6 +82,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                 tags: foundMarketing.tags,
                 gallery: foundMarketing.visuals,
                 status: "published",
+                reportUrl: foundMarketing.reportUrl,
             };
         }
 
@@ -159,8 +160,11 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
         if (s === "steaburg-local-seo" || s === "steaburg-seo") {
             return "/assets/images/case-studies/steaburg/Steaburg Strategy.pdf";
         }
-        return null;
-    }, [slug]);
+        if (s === "aureum-asset-management" || s === "aureum") {
+            return "/assets/case-studies/aureum/Aureum Strategy.pdf";
+        }
+        return (project as any)?.reportUrl || null;
+    }, [slug, project]);
 
     const formatVideoUrl = (url: string) => {
         if (!url) return "";

@@ -58,6 +58,19 @@ const CAMPAIGN_THEMES: Record<string, {
   backList: string;
   backBtn: string;
 }> = {
+  "aureum-asset-management": {
+    color: "amber",
+    badgeBg: "bg-amber-500/10",
+    badgeBorder: "border-amber-500/20",
+    badgeText: "text-amber-400",
+    hoverBorder: "group-hover:border-amber-500/40",
+    hoverGlow: "group-hover:shadow-amber-500/10",
+    arrowHover: "group-hover:border-amber-500/50 group-hover:text-amber-400",
+    backBg: "bg-amber-950/20",
+    backBorder: "border-amber-500/30",
+    backList: "border-amber-500",
+    backBtn: "bg-amber-500 hover:bg-amber-400 text-black"
+  },
   "aqua-care-uae": {
     color: "teal",
     badgeBg: "bg-teal-500/10",

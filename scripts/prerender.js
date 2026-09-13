@@ -90,6 +90,11 @@ const routes = [
     path: '/marketing/steaburg-local-seo',
     title: 'Steaburg Sharjah Local SEO Case Study | Gokul KP',
     description: 'How Google Business Profile optimization and a review system supported stronger local visibility and phone-call growth for Steaburg.'
+  },
+  {
+    path: '/marketing/aureum-asset-management',
+    title: 'Aureum Asset Management B2B Acquisition Case Study | Gokul KP',
+    description: 'Institutional B2B paid media strategy and lead acquisition system for built-to-suit logistics parks and industrial facilities in Dubai & Abu Dhabi.'
   }
 ];
 

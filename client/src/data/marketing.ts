@@ -29,6 +29,50 @@ export interface MarketingCampaign {
 
 export const marketingCampaigns: MarketingCampaign[] = [
     {
+        id: "aureum-asset-management",
+        slug: "aureum-asset-management",
+        client: "Aureum Asset Management",
+        industry: "Industrial Logistics & Real Estate",
+        platform: "LinkedIn & Meta Ads / B2B Growth",
+        title: "B2B Asset Management & Industrial Lead Gen",
+        headline: "High-Ticket Lead Acquisition & Paid Media Strategy for Built-to-Suit Logistics Parks",
+        description: "Institutional-grade B2B digital acquisition system targeting C-suite executives, supply chain directors, and institutional brokers for industrial warehousing across Dubai and Abu Dhabi.",
+        objective: "Generate qualified inbound enquiries for AED 10M–50M+ built-to-suit industrial facilities and speculative asset leases.",
+        challenge: "Industrial asset management has long sales cycles (3–9 months), narrow buyer personas (CFOs, Supply Chain Directors), and high ticket sizes (AED 10M–50M+) requiring institutional credibility over consumer-style marketing.",
+        strategy: [
+            "Authority-First B2B Brand Architecture: Showcase delivered infrastructure (5M+ sq ft, Aramex win) to eliminate friction and build institutional trust.",
+            "Precision Multi-Channel Paid Media: Targeted LinkedIn InMail and Thought Leader ads combined with high-intent Meta Lead Gen forms filtering by company size and warehouse requirements.",
+            "Two-Track Lead Routing Engine: Instant qualification workflows routing tenant requirements vs. broker deal networks to senior advisory teams."
+        ],
+        execution: [
+            "Developed comprehensive LinkedIn & Meta multi-stage funnel targeting logistics hubs (JAFZA, DIC, KIZAD).",
+            "Produced high-converting case study creative formats highlighting landmark deliveries and developer credibility.",
+            "Structured an institutional lead scoring matrix to filter high-probability requirements from general inquiries."
+        ],
+        results: "Targeting 8–12 highly qualified industrial tenant leads per month with AED 10M–50M+ deal potential.",
+        metrics: [
+            { label: "Delivered Facilities", value: "5M+ sq ft", trend: "up" },
+            { label: "Enterprise Clients", value: "100+", trend: "up" },
+            { label: "Target Deal Size", value: "AED 10M–50M+", trend: "up" },
+            { label: "Target Lead Pipeline", value: "8–12/mo", trend: "up" }
+        ],
+        visuals: [
+            "/assets/images/case-studies/aureum/slide-1.png",
+            "/assets/images/case-studies/aureum/slide-4.png",
+            "/assets/images/case-studies/aureum/slide-7.png",
+            "/assets/images/case-studies/aureum/slide-10.png"
+        ],
+        learnings: [
+            "High-ticket B2B industrial leasing requires credentialing and proof of past deliveries upfront.",
+            "A dual routing strategy for direct corporate tenants vs commercial brokers prevents channel conflict and accelerates deal velocity."
+        ],
+        tags: ["B2B Growth", "Industrial Real Estate", "Paid Media Strategy", "Lead Generation"],
+        featured: true,
+        role: "Growth & Paid Media Strategist",
+        duration: "Strategic Blueprint 2026",
+        reportUrl: "/assets/case-studies/aureum/Aureum Strategy.pdf"
+    },
+    {
         id: "aqua-care-uae",
         slug: "aqua-care-uae",
         client: "Aqua Care UAE",

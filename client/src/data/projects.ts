@@ -79,22 +79,6 @@ export const projects: Project[] = [
         ]
     },
     {
-        id: "product-showcase-1",
-        slug: "luxury-watch-reveal",
-        title: "Luxury Watch Reveal",
-        category: "video",
-        subcategory: "Product",
-        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Product_1_gfqhqr.jpg",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Product_1_gfqhqr.mp4",
-        cloudinaryId: "Product_1_gfqhqr",
-        description: "Premium product showcase highlighting craftsmanship and detail.",
-        client: "Luxury Watch Brand",
-        role: "Product Videographer",
-        tools: ["DaVinci Resolve", "Macro Lens", "Controlled Lighting"],
-        date: "2024",
-        featured: true
-    },
-    {
         id: "burj-aerial",
         slug: "burj-khalifa-aerial",
         title: "Burj Khalifa Aerial",
@@ -169,19 +153,6 @@ export const projects: Project[] = [
         featured: true
     },
     {
-        id: "food-cheesecake-1",
-        slug: "artisan-cheesecake",
-        title: "Artisan Cheesecake",
-        category: "photo",
-        subcategory: "Food",
-        thumbnail: "/assets/images/brands/Food-Photography/Cheesecake.jpg",
-        description: "Delicious dessert detailing and styling perfectly lit to showcase layers.",
-        client: "Artisan Bakery",
-        role: "Food Photographer",
-        date: "2024",
-        featured: true
-    },
-    {
         id: "food-iced-v60",
         slug: "iced-v60-pour-over",
         title: "Iced V60 Pour Over",
@@ -190,18 +161,6 @@ export const projects: Project[] = [
         thumbnail: "/assets/images/brands/Food-Photography/Iced V60.jpg",
         description: "Specialty coffee photography highlighting texture, condensation, and lighting.",
         client: "Specialty Coffee Shop",
-        role: "Food Photographer",
-        date: "2024"
-    },
-    {
-        id: "food-chicken-pesto",
-        slug: "chicken-pesto-pasta",
-        title: "Chicken Pesto Pasta",
-        category: "photo",
-        subcategory: "Food",
-        thumbnail: "/assets/images/brands/Food-Photography/Chicken Pesto.jpg",
-        description: "Savory dishes captured with appetizing detail and vibrant colors.",
-        client: "Italian Restaurant",
         role: "Food Photographer",
         date: "2024"
     },
@@ -230,23 +189,6 @@ export const projects: Project[] = [
             { label: "Conversion Increase", value: "+23%" },
             { label: "Return Rate Drop", value: "-15%" },
             { label: "Products Shot", value: "150+" }
-        ]
-    },
-    {
-        id: "portrait-session-1",
-        slug: "executive-portraits",
-        title: "Executive Portraits",
-        category: "photo",
-        subcategory: "Portraits",
-        thumbnail: "/assets/images/brands/Food-Photography/Cheesecake.jpg",
-        description: "Professional headshots and portraits for corporate clients.",
-        client: "Tech Company",
-        role: "Portrait Photographer",
-        tools: ["Lightroom", "Photoshop", "Natural Light"],
-        date: "2024",
-        images: [
-            "/assets/images/brands/Food-Photography/Cheesecake.jpg",
-            "/assets/images/brands/Food-Photography/Pancakes.jpg"
         ]
     },
 
@@ -297,55 +239,6 @@ export const projects: Project[] = [
             { label: "CTR", value: "3.8%" }
         ]
     },
-    {
-        id: "little-rooster-branding",
-        slug: "little-rooster-branding",
-        title: "Little Rooster Branding",
-        category: "ads",
-        subcategory: "Brand Identity",
-        thumbnail: "/assets/images/brands/Little-Rooster/Little Rooster Social Media Post.jpeg",
-        description: "Full visual brand identity system — logo, color palette, apparel, and premium packaging for a specialty chicken eatery.",
-        client: "Little Rooster UAE",
-        role: "Brand Designer & Strategist",
-        date: "2024",
-        featured: true,
-        images: [
-            "/assets/images/brands/Little-Rooster/Little Rooster Logo.png",
-            "/assets/images/brands/Little-Rooster/Tshirt Mockup.jpg",
-            "/assets/images/brands/Little-Rooster/Cap Mockup.jpg",
-            "/assets/images/brands/Little-Rooster/paperbag.jpg",
-            "/assets/images/brands/Little-Rooster/shopping_bag_mockup.jpg"
-        ]
-    },
-    // AQUA CARE INFLUENCER COLLABORATIONS
-    {
-        id: "aqua-care-influencer-1",
-        slug: "aqua-care-influencer-collab-1",
-        title: "Influencer Collaboration - Filter Showcase",
-        category: "influencer",
-        subcategory: "Influencer Campaign",
-        thumbnail: "/assets/images/brands/Aqua-Care/Vita bloom.jpg",
-        description: "A lifestyle influencer showcasing the health benefits of Aqua Care shower filters.",
-        client: "Aqua Care UAE",
-        role: "Creative & Media Strategy",
-        date: "2024",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_influencer_marketing_2_bwuudf.mp4",
-        featured: false
-    },
-    {
-        id: "aqua-care-influencer-2",
-        slug: "aqua-care-influencer-collab-2",
-        title: "Influencer Collaboration - Clean Water Campaign",
-        category: "influencer",
-        subcategory: "Influencer Campaign",
-        thumbnail: "/assets/images/brands/Aqua-Care/Filters 2.jpg",
-        description: "Collaboration highlighting the importance of filtered water in daily routines.",
-        client: "Aqua Care UAE",
-        role: "Creative & Media Strategy",
-        date: "2024",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_care_influencer_marketing_ytgetc.mp4",
-        featured: false
-    },
     // PREPMEAL INFLUENCER COLLABORATIONS
     {
         id: "prepmeal-influencer-1",
@@ -391,54 +284,12 @@ export const projects: Project[] = [
     },
     // AQUA CARE AD CREATIVES
     {
-        id: "aqua-care-ad-dispenser",
-        slug: "aqua-care-dispenser-cinematic",
-        title: "Aqua Care Dispenser Cinematic Ad",
-        category: "ads",
-        subcategory: "Ad Creative",
-        thumbnail: "/assets/images/brands/Aqua-Care/new.jpg",
-        description: "High-end cinematic commercial for Aqua Care's premium hot/cold water dispensers.",
-        client: "Aqua Care UAE",
-        role: "Director & Editor",
-        date: "2024",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_Dispenser_Cinematic_kwhxvr.mp4",
-        featured: true
-    },
-    {
-        id: "aqua-care-ad-ai-product",
-        slug: "aqua-care-ai-product-video",
-        title: "Aqua Care AI Product Video",
-        category: "ads",
-        subcategory: "AI Video",
-        thumbnail: "/assets/images/brands/Aqua-Care/Filters 2.jpg",
-        description: "A fully AI-generated product showcase video illustrating filtration tech in action.",
-        client: "Aqua Care UAE",
-        role: "AI Creative Strategist",
-        date: "2024",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_fully_AI_Product_Video_qc6l39.mp4",
-        featured: true
-    },
-    {
-        id: "aqua-care-ad-ramadan-dispenser",
-        slug: "aqua-care-ramadan-dispenser-ai",
-        title: "Ramadan Dispenser AI Campaign",
-        category: "ads",
-        subcategory: "AI Video",
-        thumbnail: "/assets/images/brands/Aqua-Care/Oman National Day.jpg",
-        description: "AI-assisted campaign targeting hot water usage during Ramadan meal prep.",
-        client: "Aqua Care UAE",
-        role: "AI Creative Strategist",
-        date: "2024",
-        videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Aqua_Care_Ramadan_Dispenser_Hot_water_use_AI_Video_yh60pz.mp4",
-        featured: true
-    },
-    {
         id: "aqua-care-ad-softener-ai",
         slug: "aqua-care-softener-system-ai",
         title: "Water Softener System AI Video",
         category: "ads",
         subcategory: "AI Video",
-        thumbnail: "/assets/images/brands/Aqua-Care/new.jpg",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_5/Aqua_Care_Water_softener_system_AI_Video_fmcm0l.jpg",
         description: "AI product demonstration illustrating the benefits of scale prevention and soft water.",
         client: "Aqua Care UAE",
         role: "AI Creative Strategist",
@@ -453,7 +304,7 @@ export const projects: Project[] = [
         title: "Little Rooster Brand Video",
         category: "video",
         subcategory: "Commercial",
-        thumbnail: "/assets/images/brands/Little-Rooster/Little Rooster Social Media Post.jpeg",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_15/Little_Rooster_creative_ampr17.jpg",
         description: "Cinematic brand advertisement for specialty chicken eatery Little Rooster.",
         client: "Little Rooster UAE",
         role: "Videographer & Editor",
@@ -467,7 +318,7 @@ export const projects: Project[] = [
         title: "Healthy Meals Promo Video",
         category: "video",
         subcategory: "Commercial",
-        thumbnail: "/assets/images/brands/HealthyMeals.webp",
+        thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/so_2/Healthymeals_creative_fpdhft.jpg",
         description: "Appetizing promotional video for Healthy Meals subscription food delivery.",
         client: "Healthy Meals",
         role: "Videographer & Editor",
@@ -481,7 +332,7 @@ export const projects: Project[] = [
         title: "CA Joyce - Financial Portfolio",
         category: "web",
         subcategory: "Web Development",
-        thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", // Placeholder or fetch actual
+        thumbnail: "/assets/images/brands/cajoyce-hero.webp",
         description: "Designed and developed a professional portfolio and consulting website for a Chartered Accountant. Live at: www.cajoyce.com",
         client: "CA Joyce",
         role: "Web Developer",
