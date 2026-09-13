@@ -28,15 +28,18 @@ export default function Results() {
 
     return (
         <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
-            <SEO title="Proven Results & Marketing Case Studies | Gokul KP" description="Browse verified growth metrics, ROI case studies, and ad spend scaling performance across GCC client campaigns managed by Gokul KP." />
+            <SEO title="Gokul KP — Results & Campaign Proof" description="Verified metrics and campaign outcomes from paid media, direct-response video, and performance marketing across the UAE." />
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
                 {/* Header */}
                 <div className="mb-16 md:mb-20">
-                    <h1 className="text-5xl sm:text-7xl md:text-9xl font-display font-bold tracking-tighter mb-6 md:mb-8 uppercase italic">
-                        The <span className="text-orange-500">Proof</span>.
+                    <span className="inline-block text-xs font-mono uppercase tracking-[0.25em] text-orange-500 mb-4">
+                        Performance Track Record
+                    </span>
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight mb-6 uppercase">
+                        Selected <span className="text-zinc-500">Results.</span>
                     </h1>
-                    <p className="text-lg md:text-3xl text-muted-foreground max-w-3xl font-light leading-relaxed">
-                        Numbers from real campaigns. Every figure here is backed by a report I can share.
+                    <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl font-light leading-relaxed">
+                        Numbers from real campaigns. Every figure here comes from campaigns I directly ran or supported — backed by real reports, real spend, and verified inquiries.
                     </p>
                 </div>
 
@@ -185,8 +188,13 @@ export default function Results() {
                 </div>
 
                 {/* Brands Grid */}
-                <div className="mt-48 text-center">
-                    <h3 className="text-sm uppercase tracking-[0.4em] text-muted-foreground mb-12">Trusted by 20+ Regional Entities</h3>
+                <div className="mt-40 text-center">
+                    <span className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground block mb-3">
+                        Brands &amp; Collaborations
+                    </span>
+                    <h3 className="text-2xl font-display font-bold text-foreground mb-12">
+                        Teams and Businesses I've Worked With
+                    </h3>
                     <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
                         {proof.logos.map((logo, i) => (
                             <img 

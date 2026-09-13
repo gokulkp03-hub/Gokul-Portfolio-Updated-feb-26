@@ -73,10 +73,10 @@ const Navbar = () => {
             href: "/portfolio",
             activeColor: "text-orange-500",
             dropdown: [
-                { name: "All Portfolio", href: "/portfolio", icon: "grid" },
-                { name: "Marketing", href: "/marketing", icon: "trending", accent: "text-emerald-400" },
-                { name: "Video", href: "/video", icon: "play", accent: "text-blue-400" },
-                { name: "Photography", href: "/photo", icon: "camera", accent: "text-orange-400" },
+                { name: "All Work", href: "/portfolio", icon: "grid" },
+                { name: "Performance Marketing", href: "/marketing", icon: "trending", accent: "text-emerald-400" },
+                { name: "Commercial Video", href: "/video", icon: "play", accent: "text-blue-400" },
+                { name: "Commercial Photography", href: "/photo", icon: "camera", accent: "text-orange-400" },
             ]
         },
         { name: "About", href: "/about", activeColor: "text-orange-500" },

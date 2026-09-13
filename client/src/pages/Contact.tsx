@@ -148,29 +148,32 @@ export default function Contact() {
     return (
         <div className="min-h-screen bg-background pt-32 pb-20">
             <SEO 
-                title="Book a Project & Consult | Gokul KP" 
-                description="Get in touch with Gokul KP for premium commercial video production, B2C advertising campaigns, and direct-response content photography." 
+                title="Contact & Project Inquiry | Gokul KP" 
+                description="Get in touch with Gokul KP for performance marketing campaigns, commercial video production, and creative strategy in Dubai and the UAE." 
             />
             <div className="container px-4 md:px-8 max-w-[1400px] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
                     {/* Left: Info */}
                     <div>
-                        <h1 className="text-6xl md:text-9xl font-display font-bold tracking-tighter mb-8 uppercase italic flex flex-col items-start overflow-hidden">
+                        <span className="inline-block text-xs font-mono uppercase tracking-[0.25em] text-orange-500 mb-4">
+                            Get In Touch
+                        </span>
+                        <h1 className="text-6xl md:text-8xl font-display font-bold tracking-tight mb-6 uppercase flex flex-col items-start overflow-hidden">
                             <motion.span 
-                                initial={{ opacity: 0, y: -40, rotate: -2 }}
-                                animate={{ opacity: 1, y: 0, rotate: 0 }}
-                                transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
                                 className="block"
                             >Let's</motion.span>
                             <motion.span 
-                                initial={{ opacity: 0, x: 40, rotate: 2 }}
-                                animate={{ opacity: 1, x: 0, rotate: 0 }}
-                                transition={{ duration: 0.7, type: "spring", stiffness: 100, delay: 0.15 }}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
                                 className="text-orange-500 block"
-                            >Scale.</motion.span>
+                            >Talk.</motion.span>
                         </h1>
-                        <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed mb-12 max-w-lg">
-                            Tell me what you're building — I'll tell you exactly how to make it grow.
+                        <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed mb-12 max-w-lg">
+                            Have a project, campaign, or creative problem you want to work through? Reach out directly via email, WhatsApp, or through the form below.
                         </p>
 
                         <div className="space-y-6 mb-16">
@@ -236,7 +239,7 @@ export default function Contact() {
                                 </motion.div>
                             ) : (
                                 <>
-                                    <h2 className="text-3xl font-display font-bold mb-8">Quick Inquiry</h2>
+                                    <h2 className="text-3xl font-display font-bold mb-8">Send a Message</h2>
                                     
                                     {submitError && (
                                         <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex flex-col gap-2" role="alert">
@@ -350,10 +353,11 @@ export default function Contact() {
                                                      }`}
                                                  >
                                                      <option className="bg-zinc-950 text-zinc-500" value="" disabled>Select a service</option>
-                                                     <option className="bg-zinc-950 text-white" value="High-End Video Production">High-End Video Production</option>
-                                                     <option className="bg-zinc-950 text-white" value="Performance Marketing Scaling">Performance Marketing Scaling (Meta Ads)</option>
-                                                     <option className="bg-zinc-950 text-white" value="Brand & Commercial Photography">Brand &amp; Commercial Photography</option>
-                                                     <option className="bg-zinc-950 text-white" value="Full Growth Retainer">Full Growth Retainer (Creative + Media)</option>
+                                                     <option className="bg-zinc-950 text-white" value="Performance Marketing (Meta Ads / Paid Media)">Performance Marketing (Meta Ads / Paid Media)</option>
+                                                     <option className="bg-zinc-950 text-white" value="Commercial Video Production">Commercial Video Production</option>
+                                                     <option className="bg-zinc-950 text-white" value="Commercial Photography">Commercial Photography</option>
+                                                     <option className="bg-zinc-950 text-white" value="Full Campaign (Creative + Media Buying)">Full Campaign (Creative + Media Buying)</option>
+                                                     <option className="bg-zinc-950 text-white" value="Consulting / Advisory">Consulting / Advisory</option>
                                                  </select>
                                                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
                                              </div>

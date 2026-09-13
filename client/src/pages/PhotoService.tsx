@@ -79,8 +79,8 @@ export default function PhotoService() {
     return (
         <div className="min-h-screen bg-neutral-950 text-white selection:bg-amber-400 selection:text-black">
             <SEO 
-                title="Product & Brand Photography in Dubai | Gokul KP" 
-                description="High-end food photography, commercial product shots, and brand visual systems in Dubai and UAE." 
+                title="Gokul KP — Commercial Photography" 
+                description="Commercial photography for food, products, and brands in Dubai and the UAE. Still photography designed for menus, packaging, and digital ad campaigns." 
                 url="/portfolio/photo" 
             />
             
@@ -88,9 +88,9 @@ export default function PhotoService() {
             <PhotoShaderHero
                 imageSrc="/assets/images/photography/photo-hero-camera.jpg"
                 fallbackSrc="/assets/images/photography/photo-hero-camera.jpg"
-                headlineLine1="Food & Product"
+                headlineLine1="Commercial"
                 headlineLine2="Photography"
-                sublabel="Dubai — Commercial & Editorial Photography"
+                sublabel="Food, product, and brand photography built for digital feeds and commercial campaigns."
             />
 
             {/* 2. Food & Culinary Stills Archive Grid */}
@@ -244,13 +244,13 @@ export default function PhotoService() {
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
                         <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block">
-                            Commercial Investment
+                            Commercial Sessions
                         </span>
                         <h2 className="text-5xl md:text-7xl font-serif text-white tracking-tight">
-                            Production <span className="italic text-neutral-400">Tiers</span>
+                            Production <span className="italic text-neutral-400">Options</span>
                         </h2>
                         <p className="text-neutral-400 text-base font-light">
-                            Structured photography packages engineered for commercial campaigns and brand launches.
+                            Structured photography sessions for menus, products, and campaign assets.
                         </p>
                     </div>
 
@@ -270,14 +270,14 @@ export default function PhotoService() {
                                         <h3 className="text-2xl font-serif text-white">{pkg.name}</h3>
                                         {pkg.highlight && (
                                             <span className="text-[10px] uppercase font-mono px-3 py-1 bg-amber-400 text-neutral-950 font-bold rounded-full">
-                                                Most Popular
+                                                Popular
                                             </span>
                                         )}
                                     </div>
 
                                     <ul className="space-y-4 border-t border-neutral-800 pt-6">
                                         {pkg.features.map((feat, j) => (
-                                            <li key={j} className="flex items-center gap-3 text-xs text-neutral-300 font-mono">
+                                             <li key={j} className="flex items-center gap-3 text-xs text-neutral-300 font-mono">
                                                 <CheckCircle2 className="w-4 h-4 text-amber-400 flex-shrink-0" />
                                                 <span>{feat}</span>
                                             </li>
@@ -293,7 +293,7 @@ export default function PhotoService() {
                                                 ? "bg-amber-400 text-neutral-950 hover:bg-amber-300" 
                                                 : "border border-neutral-700 text-white hover:bg-neutral-900"
                                         )}>
-                                            Book Production
+                                            Book a Shoot
                                         </span>
                                     </Link>
                                 </div>

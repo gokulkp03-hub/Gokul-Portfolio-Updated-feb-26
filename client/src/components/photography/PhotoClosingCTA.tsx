@@ -30,7 +30,7 @@ export const PhotoClosingCTA: React.FC = () => {
         <div className="pt-6">
           <Link href="/contact">
             <span className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-amber-400 hover:bg-amber-300 text-neutral-950 font-bold text-sm uppercase tracking-widest transition-all shadow-xl shadow-amber-400/20 cursor-pointer">
-              Initiate Project Inquiry <ArrowRight className="w-4 h-4" />
+              Let's Talk About Your Shoot <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
         </div>

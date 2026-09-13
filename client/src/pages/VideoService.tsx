@@ -84,8 +84,8 @@ export default function VideoService() {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
             <SEO 
-                title="Commercial Video Production in Dubai | Gokul KP"
-                description="Cinematic brand films, high-retention social media reels, and commercial video production for UAE brands."
+                title="Gokul KP — Commercial Video Production"
+                description="Commercial video production, brand films, product videos, and social ad creative for brands in Dubai and the UAE."
                 url="/portfolio/video"
             />
             {/* Cinematic Background - No Blobs */}
@@ -95,37 +95,36 @@ export default function VideoService() {
             </div>
 
             {/* Hero */}
-            <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[75vh] py-24 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-black/60 z-10" />
+                    <div className="absolute inset-0 bg-black/70 z-10" />
                     <video
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover opacity-60"
+                        className="w-full h-full object-cover opacity-50"
                         poster={getCloudinaryThumb("https://res.cloudinary.com/dgmieaf9g/video/upload/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4")}
                     >
                         <source src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_0,q_auto,w_1280/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.mp4" type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-20" />
                 </div>
-                <div className="relative z-30 container text-center px-4">
+                <div className="relative z-30 container text-center px-4 max-w-5xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                        <span className="inline-block py-1 px-4 rounded-full bg-white/5 border border-white/10 text-zinc-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-8 backdrop-blur-md">
-                            Directing // Editing // Color
+                        <span className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-xs font-mono uppercase tracking-[0.25em] mb-6 backdrop-blur-md">
+                            Commercial Video Production
                         </span>
-                        <h1 className="text-6xl md:text-[12rem] font-display font-bold tracking-tighter mb-8 text-white uppercase leading-[0.75] flex flex-col items-center">
-                            <span className="block">Pure</span>
-                            <span className="block text-zinc-700">Cinema.</span>
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-6 text-white uppercase leading-[1.05]">
+                            Video That Has <span className="text-zinc-500">A Job To Do.</span>
                         </h1>
-                        <p className="text-lg md:text-xl text-zinc-500 max-w-xl mx-auto mb-12 font-medium tracking-tight leading-relaxed">
-                            High-impact brand films and commercials designed to command attention and hold it.
+                        <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-10 font-light tracking-tight leading-relaxed">
+                            I shoot and edit commercial and social content designed to communicate clearly — not just look cinematic.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a href="#works" className="btn bg-white text-black hover:bg-zinc-200 px-8 py-4 rounded-full font-semibold flex items-center gap-2 group transition-all">
                                 <Play className="w-5 h-5 fill-current group-hover:scale-110 transition-transform" />
-                                See All Work
+                                See All Videos
                             </a>
                             <Link href="/contact">
                                 <a className="btn border border-border hover:bg-muted text-foreground px-8 py-4 rounded-full font-medium transition-all">
@@ -414,6 +413,73 @@ export default function VideoService() {
                                 </div>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Production Capabilities */}
+            <section className="py-24 border-t border-border/20 relative z-10 bg-zinc-950/60">
+                <div className="container max-w-6xl mx-auto px-6">
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <span className="text-xs font-mono tracking-[0.3em] text-blue-400 uppercase block mb-3">
+                            Production Formats
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+                            Built For Feeds, Screens, and Paid Media
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                title: "Brand & Commercial Films",
+                                desc: "Focused narrative and positioning for company launches, culinary brands, and corporate presence."
+                            },
+                            {
+                                title: "Direct-Response Ad Creative",
+                                desc: "Hook variations, problem-solution cuts, and product demos engineered for paid Meta campaigns."
+                            },
+                            {
+                                title: "Short-Form Social & Reels",
+                                desc: "High-retention vertical edits designed for mobile feeds, TikTok, and Instagram engagement."
+                            },
+                            {
+                                title: "Product & AI Showcase",
+                                desc: "Clean camera motion, macro product details, and hybrid AI visuals for physical products."
+                            }
+                        ].map((item, idx) => (
+                            <div key={idx} className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800/80">
+                                <span className="text-xs font-mono text-blue-400 font-bold block mb-3">0{idx + 1}</span>
+                                <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
+                                <p className="text-xs text-zinc-400 font-light leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Closing CTA */}
+            <section className="py-24 border-t border-border/20 text-center relative z-10">
+                <div className="container max-w-3xl mx-auto px-6">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight mb-6">
+                        Have a video or campaign project in mind?
+                    </h2>
+                    <p className="text-lg text-muted-foreground font-light mb-10 max-w-xl mx-auto">
+                        Whether you need a commercial shoot, ad creative for paid social, or ongoing video production, let's talk.
+                    </p>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <Link href="/contact">
+                            <a className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-all cursor-pointer">
+                                Let's Talk
+                            </a>
+                        </Link>
+                        <a 
+                            href="https://wa.me/971545264632" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto px-8 py-4 rounded-full border border-border text-foreground hover:bg-muted font-medium transition-all"
+                        >
+                            Chat on WhatsApp
+                        </a>
                     </div>
                 </div>
             </section>

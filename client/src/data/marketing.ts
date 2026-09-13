@@ -29,27 +29,112 @@ export interface MarketingCampaign {
 
 export const marketingCampaigns: MarketingCampaign[] = [
     {
+        id: "aqua-care-uae",
+        slug: "aqua-care-uae",
+        client: "Aqua Care UAE",
+        industry: "Water Treatment",
+        platform: "Meta Ads & WhatsApp Automation",
+        title: "Multi-Product Meta Ads & Lead System",
+        headline: "Managing Meta campaigns, creative testing, and WhatsApp enquiries across the UAE and Oman.",
+        description: "I manage paid acquisition across 25 active campaigns for Aqua Care's product line — including shower filters, reverse osmosis systems, countertop dispensers, and whole-house softeners. I script, shoot, and edit the creative variants, run the ad sets, and built the WhatsApp flows to connect enquiries directly with the sales team.",
+        objective: "Generate direct WhatsApp enquiries and native Meta form leads at a sustainable cost per acquisition.",
+        challenge: "Water treatment products range from quick impulse buys (shower filters) to high-ticket household investments (softeners and RO units), requiring distinct creative hooks and campaign structures.",
+        strategy: [
+            "Produce localized direct-response video ads highlighting everyday UAE water quality issues.",
+            "Run low-friction WhatsApp messaging campaigns for instant sales conversations.",
+            "Use native Meta lead generation forms with qualifying questions for high-ticket softeners."
+        ],
+        execution: [
+            "Structured 25 campaigns across 29 ad sets and 80 creative variations.",
+            "Produced vertical UGC video assets testing hook angles, problem agitation, and unboxing.",
+            "Configured Instagram-to-WhatsApp routing to ensure sales response times stayed under 2 minutes."
+        ],
+        results: "Generated 2,357 messaging conversations and 212 Meta form leads with 1.21M reach across UAE and Oman. Lowest documented CPL on a winning Shower Filter creative: AED 4.32.",
+        metrics: [
+            { label: "Messaging Conversations", value: "2,357", trend: "up" },
+            { label: "Meta Leads", value: "212", trend: "up" },
+            { label: "Reach (UAE & Oman)", value: "1.21M", trend: "up" },
+            { label: "Lowest CPL (Winning Ad)", value: "AED 4.32", trend: "up" },
+            { label: "Cost / Messaging Conv.", value: "AED 1.03", trend: "up" },
+            { label: "Active Campaigns", value: "25", trend: "up" }
+        ],
+        visuals: [
+            "/assets/images/brands/Aqua-Care/new.jpg"
+        ],
+        learnings: [
+            "Visual demonstrations of filter discoloration outperformed polished product renders by 3x on click-through rate.",
+            "Connecting ad clicks to WhatsApp reps in under 2 minutes increased lead-to-consultation rates noticeably."
+        ],
+        tags: ["Performance Marketing", "Meta Ads", "WhatsApp Automation", "Creative Testing"],
+        featured: true,
+        role: "Performance Marketing Lead",
+        duration: "Oct 2025 — Present",
+        logoUrl: "/assets/images/logos/Aquacare logo.png"
+    },
+    {
+        id: "prepmeal-growth",
+        slug: "prepmeal",
+        client: "PrepMeal",
+        industry: "F&B / Subscription",
+        platform: "Meta Ads & Short-form Video",
+        title: "Acquisition Campaigns & Social Video",
+        headline: "Content production and paid acquisition support for a subscription meal-prep brand.",
+        description: "I worked across organic content and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with AED 185,000+ in spend.",
+        objective: "Drive qualified messaging enquiries and subscription orders for weekly healthy meal plans.",
+        challenge: "The meal-prep category has high competition and creative fatigue happens quickly, requiring continuous video production and offer iteration.",
+        strategy: [
+            "High-cadence short-form video production focused on portion sizes, macro counts, and taste.",
+            "Direct WhatsApp conversation campaigns to answer diet and delivery questions instantly.",
+            "Offer testing around trial weeks and promo discounts."
+        ],
+        execution: [
+            "Scripted, shot, and edited 150+ vertical video assets for Instagram Reels and TikTok.",
+            "Supported Meta ad accounts with AED 185,000+ in spend across acquisition campaigns.",
+            "Monitored lead quality with the sales team to adjust ad messaging and audience targeting."
+        ],
+        results: "Supported the delivery of 21,000+ meals, generated 6,133 messaging conversations, and contributed to a 3.5x ROAS on direct-response lead-gen campaigns.",
+        metrics: [
+            { label: "Meals Delivered", value: "21,000+", trend: "up" },
+            { label: "Messaging Conversations", value: "6,133", trend: "up" },
+            { label: "Meta Spend Supported", value: "AED 185K+", trend: "up" },
+            { label: "Lead-Gen ROAS", value: "3.5x", trend: "up" }
+        ],
+        visuals: [
+            "/assets/images/brands/Prepmeal.webp",
+            "/assets/images/brands/Q4/Ad 9.jpg"
+        ],
+        learnings: [
+            "Showing the actual unboxing and kitchen preparation consistently beat generic gym lifestyle shots.",
+            "WhatsApp-based order coordination significantly reduced drop-off compared to web forms."
+        ],
+        tags: ["Paid Media", "Short-form Video", "Content Strategy"],
+        featured: true,
+        role: "Social Media Manager",
+        duration: "Jan 2023 — Sep 2025",
+        logoUrl: "/assets/images/logos/prepmeal.png"
+    },
+    {
         id: "aureum-asset-management",
         slug: "aureum-asset-management",
         client: "Aureum Asset Management",
         industry: "Industrial Logistics & Real Estate",
-        platform: "LinkedIn & Meta Ads / B2B Growth",
-        title: "B2B Asset Management & Industrial Lead Gen",
-        headline: "High-Ticket Lead Acquisition & Paid Media Strategy for Built-to-Suit Logistics Parks",
-        description: "Institutional-grade B2B digital acquisition system targeting C-suite executives, supply chain directors, and institutional brokers for industrial warehousing across Dubai and Abu Dhabi.",
-        objective: "Generate qualified inbound enquiries for AED 10M–50M+ built-to-suit industrial facilities and speculative asset leases.",
-        challenge: "Industrial asset management has long sales cycles (3–9 months), narrow buyer personas (CFOs, Supply Chain Directors), and high ticket sizes (AED 10M–50M+) requiring institutional credibility over consumer-style marketing.",
+        platform: "LinkedIn & Meta Ads / B2B Strategy",
+        title: "B2B Paid Media & Lead Generation Strategy",
+        headline: "Paid media blueprint and lead acquisition strategy for built-to-suit industrial logistics facilities.",
+        description: "I developed a targeted B2B paid media strategy focused on senior supply chain directors, industrial logistics operators, and commercial brokers across Dubai and Abu Dhabi.",
+        objective: "Build an inbound pipeline of qualified tenant enquiries for AED 10M–50M+ built-to-suit logistics parks.",
+        challenge: "Industrial leasing involves long consideration cycles and narrow decision-maker personas where generic ads fail completely.",
         strategy: [
-            "Authority-First B2B Brand Architecture: Showcase delivered infrastructure (5M+ sq ft, Aramex win) to eliminate friction and build institutional trust.",
-            "Precision Multi-Channel Paid Media: Targeted LinkedIn InMail and Thought Leader ads combined with high-intent Meta Lead Gen forms filtering by company size and warehouse requirements.",
-            "Two-Track Lead Routing Engine: Instant qualification workflows routing tenant requirements vs. broker deal networks to senior advisory teams."
+            "Credentialing-first creative strategy highlighting delivered track records and logistics infrastructure.",
+            "Two-track routing separating corporate tenant inquiries from broker deal networks.",
+            "Targeted LinkedIn and Meta lead gen forms with strict qualification criteria."
         ],
         execution: [
-            "Developed comprehensive LinkedIn & Meta multi-stage funnel targeting logistics hubs (JAFZA, DIC, KIZAD).",
-            "Produced high-converting case study creative formats highlighting landmark deliveries and developer credibility.",
-            "Structured an institutional lead scoring matrix to filter high-probability requirements from general inquiries."
+            "Developed a full funnel architecture mapped to regional logistics hubs (JAFZA, DIC, KIZAD).",
+            "Structured case-study ad creatives focusing on completed warehouse developments.",
+            "Built a lead scoring workflow to prioritize high-probability tenant requirements."
         ],
-        results: "Targeting 8–12 highly qualified industrial tenant leads per month with AED 10M–50M+ deal potential.",
+        results: "Comprehensive strategic blueprint delivered with targeted pipeline modeling of 8–12 qualified tenant enquiries per month.",
         metrics: [
             { label: "Delivered Facilities", value: "5M+ sq ft", trend: "up" },
             { label: "Enterprise Clients", value: "100+", trend: "up" },
@@ -64,90 +149,13 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         learnings: [
             "High-ticket B2B industrial leasing requires credentialing and proof of past deliveries upfront.",
-            "A dual routing strategy for direct corporate tenants vs commercial brokers prevents channel conflict and accelerates deal velocity."
+            "Dual routing for direct tenants vs brokers prevents channel conflict and accelerates deal velocity."
         ],
-        tags: ["B2B Growth", "Industrial Real Estate", "Paid Media Strategy", "Lead Generation"],
+        tags: ["B2B Paid Media", "Lead Generation", "Industrial Real Estate"],
         featured: true,
         role: "Growth & Paid Media Strategist",
         duration: "Strategic Blueprint 2026",
         reportUrl: "/assets/case-studies/aureum/Aureum Strategy.pdf"
-    },
-    {
-        id: "aqua-care-uae",
-        slug: "aqua-care-uae",
-        client: "Aqua Care UAE",
-        industry: "Water Treatment",
-        platform: "Meta Ads",
-        title: "Multi-Product Meta Ads Engine",
-        headline: "Managed and scaled Meta advertising across awareness, engagement, and lead-gen campaigns for AquaCare's UAE product portfolio.",
-        description: "Built a structured 3-stage funnel across 25 campaigns, 29 ad sets, and 80 creative variations spanning shower filters, water dispensers, and whole-house softeners.",
-        objective: "Direct-response lead generation and low-cost messaging acquisition.",
-        challenge: "Differentiating conversion funnels for impulse-buy shower filters vs high-ticket dispensers and villa softeners.",
-        strategy: [
-            "Awareness: Broad reach campaigns & product education",
-            "Engagement: Low-cost messaging acquisition & WhatsApp DMs",
-            "Leads: High-intent instant lead forms for product buyers"
-        ],
-        execution: [],
-        results: "2,357 Messaging Conversations, 212 Meta Leads, 1.21M Reach.",
-        metrics: [
-            { label: "Meta Ad Spend", value: "AED 11.1K", trend: "up" },
-            { label: "Impressions", value: "2.23M", trend: "up" },
-            { label: "Reach", value: "1.21M", trend: "up" },
-            { label: "Conversations", value: "2,357", trend: "up" },
-            { label: "Meta Leads", value: "212", trend: "up" },
-            { label: "Campaigns", value: "25", trend: "up" }
-        ],
-        visuals: [
-            "/assets/images/brands/Aqua-Care/new.jpg"
-        ],
-        learnings: [],
-        tags: ["Performance Marketing", "Meta Ads"],
-        featured: true,
-        role: "Performance Marketer",
-        duration: "25 Dec 2025 — 6 Sep 2026",
-        logoUrl: "/assets/images/logos/Aquacare logo.png"
-    },
-    {
-        id: "prepmeal-growth",
-        slug: "prepmeal",
-        client: "PrepMeal UAE",
-        industry: "F&B / Subscription",
-        platform: "Meta Ads (IG & FB)",
-        title: "Performance & Lead Generation",
-        headline: "Scaling Meta Ads & WhatsApp Lead Funnels",
-        description: "Full-funnel Meta Ads strategy for a UAE food & meal-prep startup. Scaled WhatsApp lead generation to 6,100+ conversations.",
-        objective: "Drive high-intent WhatsApp & Messenger leads for subscription meal plans.",
-        challenge: "High customer acquisition costs in the competitive UAE meal prep market.",
-        strategy: [
-            "Localized UGC video ad production focused on unboxing and nutrition.",
-            "Direct WhatsApp & Messenger conversation campaign architecture.",
-            "Offer testing & creative optimization (achieved 10.3% CTR on promo ads)."
-        ],
-        execution: [
-            "Managed AED 159.5K+ in spend across 50 campaigns.",
-            "Produced short-form video UGC assets for Meta Reels and Stories.",
-            "Optimized cost-per-conversation down to AED 3.72 on top promo campaigns."
-        ],
-        results: "Generated 6,133 messaging conversations and 4.4M+ impressions across UAE.",
-        metrics: [
-            { label: "Messaging Leads", value: "6,133", trend: "up" },
-            { label: "Ad Spend Managed", value: "AED 159.5K", trend: "up" },
-            { label: "Total Impressions", value: "4.44M", trend: "up" }
-        ],
-        visuals: [
-            "/assets/images/brands/Prepmeal.webp",
-            "/assets/images/brands/Q4/Ad 9.jpg"
-        ],
-        learnings: [
-            "Consistent short-form content is key for building trust in food services.",
-            "Coordinated WhatsApp support significantly improves local conversion rates."
-        ],
-        tags: ["Social Media Management", "Content Planning", "Coordination"],
-        featured: true,
-        role: "Social Media Manager",
-        duration: "18 Months",
-        logoUrl: "/assets/images/logos/prepmeal.png"
     },
     {
         id: "steaburg-seo",

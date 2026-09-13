@@ -111,6 +111,7 @@ function Router() {
               </Route>
               <Route path="/marketing/aqua-care-uae" component={AquaCareCaseStudy} />
               <Route path="/marketing/prepmeal" component={PrepmealCaseStudy} />
+              <Route path="/marketing/prepmeal-growth" component={PrepmealCaseStudy} />
               <Route path="/marketing/prepmeal-launch" component={PrepmealCaseStudy} />
               <Route path="/marketing/:slug">
                 {(params) => <ProjectDetail category="marketing" slug={params.slug} />}

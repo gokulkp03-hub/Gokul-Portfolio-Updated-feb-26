@@ -28,7 +28,7 @@ export default function PrepmealCaseStudy() {
             className="bg-emerald-500 text-black p-8 md:p-14 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-emerald-400/50 shadow-2xl shadow-emerald-500/20"
         >
             <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-80 italic">Verified Performance (Meta Ads Lifetime)</span>
-            <h2 className="text-5xl md:text-[7rem] font-display font-bold tracking-tighter leading-none mb-6">6,133 Leads</h2>
+            <h2 className="text-5xl md:text-[6.5rem] font-display font-bold tracking-tighter leading-none mb-6">6,133 Inquiries</h2>
             <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-2xl">
                 Generated 6,133 messaging conversations from 4.4M+ impressions & AED 159.5K spend.
             </p>
@@ -38,7 +38,7 @@ export default function PrepmealCaseStudy() {
             Prepmeal: Performance Marketing & Scale.
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mb-16 font-medium leading-relaxed">
-            Full-funnel Meta Ads strategy for a UAE food & meal-prep startup. Managed AED 159.5K+ in spend across 50 campaigns to scale WhatsApp lead generation and subscription growth.
+            Full-funnel Meta Ads strategy for a UAE meal-prep startup. Managed AED 159.5K+ in spend across 50 campaigns to scale WhatsApp customer conversations and subscription growth.
         </p>
 
         {/* Meta */}
@@ -144,10 +144,10 @@ export default function PrepmealCaseStudy() {
                 </div>
                 <div className="md:col-span-8 prose prose-invert">
                     <p className="text-lg text-muted-foreground font-light leading-relaxed">
-                        The UAE meal prep market is highly saturated with established players holding massive market share. Prepmeal needed to launch as a premium, health-focused alternative but lacked initial brand awareness and faced high customer acquisition costs (CAC) typical of subscription models.
+                        The UAE meal prep market is highly saturated with established players holding substantial market share. Prepmeal needed to launch as a fresh, health-focused alternative without an initial customer base, while keeping customer acquisition costs viable for a subscription model.
                     </p>
                     <p className="text-lg text-muted-foreground font-light leading-relaxed mt-4">
-                        We were tasked with building a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp & Messenger leads at scale while continuously optimizing cost-per-conversation.
+                        I was brought in to build a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp inquiries at scale, while continuously optimizing cost-per-conversation.
                     </p>
                 </div>
             </section>
@@ -160,16 +160,16 @@ export default function PrepmealCaseStudy() {
                 <div className="md:col-span-8">
                     <div className="space-y-8">
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">1. Foundational Creatives</h3>
-                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, we directed localized UGC-style video shoots emphasizing freshness, macro-nutrients, and lifestyle convenience tailored to busy Dubai professionals.</p>
+                            <h3 className="text-lg font-bold text-emerald-500 mb-3">1. Creative Production</h3>
+                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, I directed localized short-form video shoots emphasizing freshness, macro-nutrients, and everyday convenience tailored to busy Dubai professionals.</p>
                         </div>
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">2. Direct Messaging Lead Funnel</h3>
-                            <p className="text-muted-foreground font-light">Engineered WhatsApp & Messenger direct chat campaigns, lowering friction for potential subscribers and enabling real-time meal plan consultations.</p>
+                            <h3 className="text-lg font-bold text-emerald-500 mb-3">2. Direct WhatsApp Funnel</h3>
+                            <p className="text-muted-foreground font-light">I structured WhatsApp direct chat campaigns, lowering friction for potential subscribers and enabling immediate meal plan consultations with the sales team.</p>
                         </div>
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">3. Offer Engineering & Optimization</h3>
-                            <p className="text-muted-foreground font-light">Tested high-converting promotional hooks. The stand-out "July Promo" campaign unlocked an incredible 10.3% CTR and reduced lead costs down to AED 3.72 per conversation.</p>
+                            <h3 className="text-lg font-bold text-emerald-500 mb-3">3. Offer Testing</h3>
+                            <p className="text-muted-foreground font-light">I tested promotional hooks and discount angles. The stand-out July Promo campaign delivered a 10.3% CTR and reduced messaging costs to AED 3.72 per conversation.</p>
                         </div>
                     </div>
                 </div>
@@ -188,15 +188,15 @@ export default function PrepmealCaseStudy() {
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Produced 20+ short-form UGC video ads focusing on unboxing, meal taste tests, and nutritional breakdowns.</span>
+                            <span>Produced 20+ short-form video ads focusing on unboxing, meal taste tests, and nutritional breakdowns.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Scaled WhatsApp messenger campaigns, delivering 6,133 total direct customer conversations.</span>
+                            <span>Scaled WhatsApp messaging campaigns, delivering 6,133 total direct customer conversations.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Continuously audited account metrics to eliminate underperforming budget allocation and scale top-converting ads.</span>
+                            <span>Audited creative and placement data weekly to cut underperforming assets and push budget into winning hooks.</span>
                         </li>
                     </ul>
                 </div>
@@ -205,21 +205,21 @@ export default function PrepmealCaseStudy() {
             {/* The Results */}
             <section className="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-border/40 pt-20">
                 <div className="md:col-span-4">
-                    <h2 className="text-3xl font-display font-bold text-foreground uppercase italic tracking-tighter">The Payoff</h2>
+                    <h2 className="text-3xl font-display font-bold text-foreground uppercase tracking-tight">The Results</h2>
                 </div>
                 <div className="md:col-span-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
                         <div className="p-8 rounded-3xl bg-emerald-950/30 border border-emerald-500/20">
                             <div className="text-5xl font-bold text-emerald-500 mb-2">6,133</div>
-                            <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Total Messaging Leads</div>
+                            <div className="text-xs text-zinc-400 font-bold uppercase tracking-widest">Total Messaging Conversations</div>
                         </div>
                         <div className="p-8 rounded-3xl bg-emerald-950/30 border border-emerald-500/20">
                             <div className="text-5xl font-bold text-emerald-500 mb-2">AED 3.72</div>
-                            <div className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Best Cost Per Lead</div>
+                            <div className="text-xs text-zinc-400 font-bold uppercase tracking-widest">Lowest Cost Per Conversation</div>
                         </div>
                     </div>
-                    <p className="text-xl text-muted-foreground font-medium leading-relaxed italic">
-                        "The combination of high-impact video ads, offer testing, and direct WhatsApp lead funnels enabled us to reach 1.5M+ users and drive over 6,100 high-intent customer conversations across the UAE."
+                    <p className="text-lg text-muted-foreground font-light leading-relaxed">
+                        By pairing custom short-form video with direct WhatsApp messaging, potential subscribers had a direct line to the sales team instead of having to navigate a high-friction form or complex cart. Over 6,100 conversations were started across the UAE.
                     </p>
                 </div>
             </section>

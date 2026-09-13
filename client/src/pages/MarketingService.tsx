@@ -1,527 +1,326 @@
 import { SEO } from "@/components/SEO";
-"use client";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
-import { useState, useEffect, useMemo, useRef } from "react";
-import { trpc } from "@/lib/trpc";
-import { MorphBlob } from "@/components/ui/MorphBlob";
-import { RevealText } from "@/components/ui/RevealText";
-import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-import { useScroll, useTransform } from "framer-motion";
-import { marketingCampaigns as staticMarketing } from "@/data/marketing";
-import { GrowthEngine } from "@/components/home/GrowthEngine";
+import { 
+  ArrowRight, 
+  ArrowUpRight, 
+  Check, 
+  X, 
+  MessageCircle, 
+  Target, 
+  ExternalLink 
+} from "lucide-react";
+import { marketingCampaigns } from "@/data/marketing";
+import { proof } from "@/data/proof";
 
-// ------- FAQ Item -------
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-  
-  return (
-        <div className="border-b border-border/40 py-4">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full text-left font-medium text-lg hover:text-emerald-500 transition-colors"
-      >
-        {question}
-        <motion.div animate={prefersReducedMotion ? undefined : { rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={prefersReducedMotion ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={prefersReducedMotion ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="pt-2 pb-4 text-muted-foreground leading-relaxed">{answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
-
-const CAMPAIGN_THEMES: Record<string, {
-  color: string;
-  badgeBg: string;
-  badgeBorder: string;
-  badgeText: string;
-  hoverBorder: string;
-  hoverGlow: string;
-  arrowHover: string;
-  backBg: string;
-  backBorder: string;
-  backList: string;
-  backBtn: string;
-}> = {
-  "aureum-asset-management": {
-    color: "amber",
-    badgeBg: "bg-amber-500/10",
-    badgeBorder: "border-amber-500/20",
-    badgeText: "text-amber-400",
-    hoverBorder: "group-hover:border-amber-500/40",
-    hoverGlow: "group-hover:shadow-amber-500/10",
-    arrowHover: "group-hover:border-amber-500/50 group-hover:text-amber-400",
-    backBg: "bg-amber-950/20",
-    backBorder: "border-amber-500/30",
-    backList: "border-amber-500",
-    backBtn: "bg-amber-500 hover:bg-amber-400 text-black"
+const howIWorkSteps = [
+  {
+    step: "01",
+    title: "Understand the offer",
+    desc: "Before opening Ads Manager, I study what the business is actually selling, the pricing, the margins, and why a customer would choose it over competitors."
   },
-  "aqua-care-uae": {
-    color: "teal",
-    badgeBg: "bg-teal-500/10",
-    badgeBorder: "border-teal-500/20",
-    badgeText: "text-teal-400",
-    hoverBorder: "group-hover:border-teal-500/40",
-    hoverGlow: "group-hover:shadow-teal-500/10",
-    arrowHover: "group-hover:border-teal-500/50 group-hover:text-teal-400",
-    backBg: "bg-teal-950/20",
-    backBorder: "border-teal-500/30",
-    backList: "border-teal-500",
-    backBtn: "bg-teal-500 hover:bg-teal-400 text-black"
+  {
+    step: "02",
+    title: "Define the audience",
+    desc: "Identify who has the problem right now. In the GCC, this usually means understanding local versus expat demographics, language preferences, and purchasing habits."
   },
-  "prepmeal-growth": {
-    color: "orange",
-    badgeBg: "bg-orange-500/10",
-    badgeBorder: "border-orange-500/20",
-    badgeText: "text-orange-400",
-    hoverBorder: "group-hover:border-orange-500/40",
-    hoverGlow: "group-hover:shadow-orange-500/10",
-    arrowHover: "group-hover:border-orange-500/50 group-hover:text-orange-400",
-    backBg: "bg-orange-950/20",
-    backBorder: "border-orange-500/30",
-    backList: "border-orange-500",
-    backBtn: "bg-orange-500 hover:bg-orange-400 text-black"
+  {
+    step: "03",
+    title: "Build campaign structure",
+    desc: "Set up a clean, manageable account structure with clear separation between broad prospecting, creative testing ad sets, and retargeting."
   },
-  "steaburg-seo": {
-    color: "amber",
-    badgeBg: "bg-amber-500/10",
-    badgeBorder: "border-amber-500/20",
-    badgeText: "text-amber-400",
-    hoverBorder: "group-hover:border-amber-500/40",
-    hoverGlow: "group-hover:shadow-amber-500/10",
-    arrowHover: "group-hover:border-amber-500/50 group-hover:text-amber-400",
-    backBg: "bg-amber-950/20",
-    backBorder: "border-amber-500/30",
-    backList: "border-amber-500",
-    backBtn: "bg-amber-500 hover:bg-amber-400 text-black"
+  {
+    step: "04",
+    title: "Create and test creative",
+    desc: "Script, shoot, and edit multiple creative angles — testing different visual hooks, problem agitation, customer testimonials, and direct offers."
   },
-  "sias-group-seo": {
-    color: "indigo",
-    badgeBg: "bg-indigo-500/10",
-    badgeBorder: "border-indigo-500/20",
-    badgeText: "text-indigo-400",
-    hoverBorder: "group-hover:border-indigo-500/40",
-    hoverGlow: "group-hover:shadow-indigo-500/10",
-    arrowHover: "group-hover:border-indigo-500/50 group-hover:text-indigo-400",
-    backBg: "bg-indigo-950/20",
-    backBorder: "border-indigo-500/30",
-    backList: "border-indigo-500",
-    backBtn: "bg-indigo-500 hover:bg-indigo-400 text-white"
+  {
+    step: "05",
+    title: "Monitor performance",
+    desc: "Track early leading indicators: click-through rates, cost per conversation, form completion rates, and CPMs to spot fatigue or winning patterns early."
   },
-  "galaxy-star-perfumes": {
-    color: "purple",
-    badgeBg: "bg-purple-500/10",
-    badgeBorder: "border-purple-500/20",
-    badgeText: "text-purple-400",
-    hoverBorder: "group-hover:border-purple-500/40",
-    hoverGlow: "group-hover:shadow-purple-500/10",
-    arrowHover: "group-hover:border-purple-500/50 group-hover:text-purple-400",
-    backBg: "bg-purple-950/20",
-    backBorder: "border-purple-500/30",
-    backList: "border-purple-500",
-    backBtn: "bg-purple-500 hover:bg-purple-400 text-black"
+  {
+    step: "06",
+    title: "Improve what works",
+    desc: "Shift budget into winning creative angles, cut losing ads without hesitation, and test iterations of top-performing videos."
+  },
+  {
+    step: "07",
+    title: "Work with sales on lead quality",
+    desc: "The job doesn't end at the ad click. I check in with the sales team to see whether leads are picking up the phone, what questions they're asking, and if lead quality matches ad messaging."
   }
-};
-
-// ------- Case Study Flip Card -------
-function CaseStudyCard({ campaign, i }: { campaign: any; i: number }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const theme = CAMPAIGN_THEMES[campaign.id] || {
-    color: "emerald",
-    badgeBg: "bg-emerald-500/10",
-    badgeBorder: "border-emerald-500/20",
-    badgeText: "text-emerald-400",
-    hoverBorder: "group-hover:border-emerald-500/40",
-    hoverGlow: "group-hover:shadow-emerald-500/10",
-    arrowHover: "group-hover:border-emerald-500/50 group-hover:text-emerald-400",
-    backBg: "bg-emerald-950/20",
-    backBorder: "border-emerald-500/30",
-    backList: "border-emerald-500",
-    backBtn: "bg-emerald-500 hover:bg-emerald-400 text-black"
-  };
-
-  let parsedResults: any[] = [];
-  try {
-    parsedResults = typeof campaign.results === "string" ? JSON.parse(campaign.results) : campaign.results || [];
-  } catch {}
-
-  let industry = "Growth";
-  try {
-    const tags = typeof campaign.tags === "string" ? JSON.parse(campaign.tags) : campaign.tags;
-    if (Array.isArray(tags) && tags[0]) industry = tags[0];
-  } catch {}
-
-  const blobColor = theme.color === 'teal' ? 'rgba(20, 184, 166, 0.05)' :
-                    theme.color === 'orange' ? 'rgba(249, 115, 22, 0.05)' :
-                    theme.color === 'amber' ? 'rgba(245, 158, 11, 0.05)' :
-                    theme.color === 'indigo' ? 'rgba(99, 102, 241, 0.05)' :
-                    theme.color === 'purple' ? 'rgba(168, 85, 247, 0.05)' :
-                    'rgba(16, 185, 129, 0.05)';
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full h-[380px] perspective-1000"
-    >
-      <motion.div
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-        className={`w-full h-full relative cursor-pointer group rounded-2xl shadow-xl transition-all duration-500 ${theme.hoverGlow}`}
-        style={{ transformStyle: "preserve-3d" }}
-        onClick={() => setIsFlipped(!isFlipped)}
-      >
-        {/* Front Face */}
-        <div 
-          className={`absolute inset-0 glass-card p-6 md:p-8 border border-border/20 ${theme.hoverBorder} transition-all duration-500 overflow-hidden rounded-2xl flex flex-col justify-between bg-card`}
-          style={{
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(0deg)"
-          }}
-        >
-          <div className="absolute top-0 right-0 w-40 h-40 blur-3xl pointer-events-none" style={{ backgroundColor: blobColor }} />
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center justify-between mb-4">
-              <span className={`text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 border rounded-full transition-all duration-500 ${theme.badgeBg} ${theme.badgeBorder} ${theme.badgeText}`}>
-                {industry}
-              </span>
-              <div className={`p-2 rounded-full border border-border/50 text-muted-foreground transition-all duration-500 ${theme.arrowHover}`}>
-                 <ArrowUpRight className="w-4 h-4" />
-              </div>
-            </div>
-            
-            <div className="mb-3 flex items-center gap-3">
-              {campaign.logoUrl ? (
-                <img 
-                  src={campaign.logoUrl} 
-                  alt={campaign.client} 
-                  className="h-8 max-w-[120px] object-contain opacity-90 group-hover:opacity-100 transition-opacity" 
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-              ) : (
-                <span className={`text-sm font-bold uppercase tracking-wider block mb-0.5 ${theme.badgeText}`}>
-                  {campaign.client || "Client Campaign"}
-                </span>
-              )}
-              <span className="text-[10px] text-zinc-400 font-semibold uppercase tracking-widest ml-auto">
-                {campaign.platform || "Performance Marketing"}
-              </span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-emerald-500 transition-colors uppercase tracking-tighter leading-none">{campaign.title}</h3>
-            
-            <div className="grid grid-cols-2 gap-4 mt-auto">
-                {Array.isArray(parsedResults) && parsedResults.slice(0, 2).map((res: any, j: number) => (
-                    <div key={j} className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-xl">
-                        <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">{res.label}</div>
-                        <div className={`text-xl font-bold ${theme.badgeText}`}>{res.value}</div>
-                    </div>
-                ))}
-            </div>
-
-            <div className="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mt-8 flex items-center justify-between">
-              <span>View Full Narrative</span>
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity">Click to Reveal →</span>
-            </div>
-          </div>
-        </div>
-        
-        {/* Back Face */}
-        <div 
-          className={`absolute inset-0 glass-card p-6 md:p-8 border transition-all duration-500 overflow-hidden rounded-2xl flex flex-col justify-between ${theme.backBg} ${theme.backBorder}`}
-          style={{
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg)"
-          }}
-        >
-           <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">Campaign Metrics</h3>
-           <div className="flex-1 space-y-4">
-              {Array.isArray(parsedResults) && parsedResults.map((res: any, j: number) => (
-                <div key={j} className={`flex justify-between items-center border-l-2 pl-4 py-1 ${theme.backList}`}>
-                  <span className="text-xs uppercase tracking-wider text-white/60">{res.label}</span>
-                  <span className={`text-xl font-bold ${theme.badgeText}`}>{res.value}</span>
-                </div>
-              ))}
-           </div>
-           
-           <Link href={`/marketing/${campaign.slug}`}>
-               <a className={`mt-6 text-center block w-full py-3.5 font-bold rounded-xl transition-all duration-300 shadow-md ${theme.backBtn}`} onClick={(e) => e.stopPropagation()}>
-                  Read Full Study
-               </a>
-           </Link>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-// ------- Marketing Hero -------
-function MarketingHero() {
-  const stats = [
-    { val: 166, suffix: "K+", prefix: "AED ", label: "Ad Spend Managed" },
-    { val: 7.3, suffix: "K+", prefix: "", label: "WhatsApp Leads" },
-    { val: 4.45, suffix: "x", prefix: "", label: "Avg ROAS" },
-    { val: 2.3, suffix: "M+", prefix: "", label: "Campaign Reach" },
-  ];
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32 pb-20">
-      {/* Ambient background */}
-      <MorphBlob color="emerald-500" size={700} opacity={0.05} blur={150} className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" animDuration={14} />
-
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col items-center">
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center"
-        >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-8 border border-emerald-500/20 shadow-xl shadow-emerald-500/5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Performance Marketing
-            </div>
-
-            <h1 className="text-white text-5xl sm:text-7xl md:text-[8rem] font-display font-bold tracking-tighter mb-12 text-center leading-[0.8] uppercase">
-                Profit <br />
-                <span className="text-emerald-500 italic">Engineering.</span>
-            </h1>
-
-            <p className="text-lg md:text-2xl text-zinc-500 max-w-2xl mx-auto mb-16 text-center font-medium tracking-tight px-4">
-                I build performance systems that turn ad spend into scalable revenue. No fluff, just ROAS.
-            </p>
-
-            {/* Dashboard Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-800/50 border border-zinc-800/50 rounded-3xl overflow-hidden w-full max-w-5xl mb-20 shadow-2xl">
-                {stats.map((s, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 + i * 0.1 }}
-                    className="bg-zinc-950 p-6 sm:p-10 text-center flex flex-col items-center justify-center group hover:bg-zinc-900 transition-colors"
-                >
-                    <div className="text-emerald-500 text-3xl sm:text-4xl md:text-5xl font-bold tabular-nums mb-3 tracking-tighter">
-                        {s.prefix}{s.val}{s.suffix}
-                    </div>
-                    <div className="text-zinc-500 text-[10px] uppercase font-bold tracking-[0.2em]">{s.label}</div>
-                </motion.div>
-                ))}
-            </div>
-
-            <div className="text-[10px] text-zinc-600 uppercase tracking-widest text-center mt-[-30px] mb-12 select-none">
-              *All campaign spend, reach, and revenue performance are combined metrics aggregated across all managed client accounts.
-            </div>
-
-            {/* CTA */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="flex flex-col sm:flex-row items-center gap-4"
-            >
-                <Link href="/contact">
-                    <a className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-full transition-all hover:shadow-xl hover:shadow-emerald-500/20 hover:-translate-y-1 flex items-center gap-2">
-                    Start Your Growth Arc
-                    <ArrowUpRight className="w-4 h-4" />
-                    </a>
-                </Link>
-                <Link href="/results">
-                    <a className="px-8 py-4 border border-border/50 hover:border-emerald-500/50 text-muted-foreground hover:text-foreground rounded-full transition-all inline-block text-center whitespace-nowrap">
-                    View Case Studies
-                    </a>
-                </Link>
-            </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/40"
-      >
-        <span className="text-xs uppercase tracking-[0.3em]">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-px h-8 bg-gradient-to-b from-muted-foreground/30 to-transparent"
-        />
-      </motion.div>
-    </section>
-  );
-}
-
-// ------- Main Page -------
-const processSteps = [
-  { title: "Audit & Strategy", desc: "Deep dive into your current data and competitors." },
-  { title: "Creative Setup", desc: "Designing high-converting ad creatives." },
-  { title: "Launch & Test", desc: "A/B testing audiences and hooks." },
-  { title: "Scale & Optimize", desc: "Doubling down on winners, cutting losers." },
 ];
 
-const faqs = [
-  { q: "What is your minimum budget?", a: "I recommend a minimum ad spend of AED 5,000/month to ensure we have enough data for optimization." },
-  { q: "Do you guarantee results?", a: "I guarantee a data-driven process. While specific ROAS cannot be legally guaranteed, my track record shows consistent growth." },
-  { q: "How long does it take?", a: "Optimization is ongoing, but initial results typically appear within the first 14-30 days." },
-  { q: "Do you handle creative?", a: "Yes, I provide creative strategy and can produce ad assets as part of the retainer." },
+const whatIDontDo = [
+  {
+    title: "I don't do enterprise multi-million TV media buying",
+    desc: "My focus is hands-on digital acquisition — primarily Meta Ads, short-form video ads, and direct lead generation."
+  },
+  {
+    title: "I don't buy fake followers or vanity metrics",
+    desc: "I care about qualified messaging enquiries, phone calls, and sales pipeline — not bought bot followers or hollow impressions."
+  },
+  {
+    title: "I don't guarantee overnight miracles",
+    desc: "Paid advertising is an iterative process. If an offer doesn't convert, no amount of ad hacks will fix it. We test honestly, find what works, and build from there."
+  },
+  {
+    title: "I don't outsource my creative production to third parties",
+    desc: "I shoot and edit the ad assets myself. That direct feedback loop between Ads Manager and the editing timeline is why my campaigns iterate quickly."
+  }
 ];
 
 export default function MarketingService() {
-  
-  const { data: dbProjects } = trpc.projects.list.useQuery();
-
-  const processRef = useRef(null);
-  const { scrollYProgress: processProgress } = useScroll({ target: processRef, offset: ["start center", "end center"] });
-
-  const campaigns = useMemo(() => {
-    return staticMarketing.map((m) => ({
-      id: m.id,
-      slug: m.slug,
-      title: m.title,
-      client: m.client,
-      platform: m.platform,
-      logoUrl: m.logoUrl,
-      results: JSON.stringify(m.metrics.map((met) => ({ label: met.label, value: met.value }))),
-      tags: JSON.stringify(m.tags),
-      category: "marketing",
-    }));
-  }, []);
+  // Focus on the core performance campaigns
+  const performanceCampaigns = marketingCampaigns.filter(c => 
+    c.id === "aqua-care-uae" || c.id === "prepmeal-growth" || c.id === "aureum-asset-management"
+  );
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden relative">
+    <div className="min-h-screen bg-background text-foreground pt-28 md:pt-36 pb-28">
       <SEO 
-        title="Performance Marketing & Meta Ads in Dubai | Gokul KP" 
-        description="Full-funnel Meta Ads, WhatsApp lead generation, creative testing, and conversion-focused campaign management for UAE and GCC brands." 
+        title="Gokul KP — Performance Marketing" 
+        description="Performance marketing, Meta Ads, creative testing, and WhatsApp lead acquisition across the UAE and Oman managed by Gokul KP." 
         url="/marketing" 
       />
 
-      {/* ---- Marketing Hero ---- */}
-      <MarketingHero />
+      <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-24 md:space-y-32">
 
+        {/* 1. HERO HEADER */}
+        <section className="border-b border-border/40 pb-16 md:pb-24">
+          <div className="max-w-4xl space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold tracking-widest uppercase font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              PERFORMANCE MARKETING
+            </div>
 
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight text-foreground leading-[1.08]">
+              I run campaigns, test creative, and follow the numbers.
+            </h1>
 
-      {/* ---- Case Studies ---- */}
-      <section className="py-24 relative overflow-hidden">
-        <MorphBlob color="emerald-500" size={500} opacity={0.04} blur={120} className="-right-20 top-0" animDuration={16} />
-        <div className="container max-w-6xl relative z-10">
-          <RevealText text="Recent Wins" as="h2" className="text-3xl md:text-5xl font-display font-bold mb-12" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {campaigns.map((campaign: any, i: number) => (
-              <CaseStudyCard key={campaign.id} campaign={campaign} i={i} />
-            ))}
-            {campaigns.length === 0 && (
-              <div className="col-span-full text-center py-20 text-muted-foreground border border-dashed border-border/30 rounded-2xl">
-                Case studies are being published. <Link href="/contact"><a className="text-emerald-500 underline">Let's Talk</a></Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal leading-relaxed max-w-3xl">
+              I work mainly across Meta advertising, lead generation, creative testing and WhatsApp-based acquisition.
+            </p>
 
-      {/* ---- Detailed Narratives ---- */}
-      <GrowthEngine />
-
-      {/* ---- Process ---- */}
-      <section className="py-24 border-t border-border/20">
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <RevealText text="How It Works" as="h2" className="text-4xl md:text-5xl font-display font-bold mb-6" />
-              <p className="text-lg text-muted-foreground mb-8 max-w-lg font-light">
-                Stop burning money on "boost post". My process is scientific, iterative, and focused on one metric:{" "}
-                <span className="text-foreground font-semibold">Profit</span>.
-              </p>
+            <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link href="/contact">
-                <a className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/50 hover:border-emerald-500/50 transition-all text-sm font-medium hover:text-emerald-500">
-                  Start Your Growth Arc
-                  <ArrowUpRight className="w-4 h-4" />
+                <a className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-full transition-colors shadow-lg shadow-emerald-600/20">
+                  Discuss a Campaign
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </Link>
-            </div>
-            <div className="space-y-8 relative" ref={processRef}>
-              <motion.div 
-                style={{ scaleY: processProgress, originY: 0 }}
-                className="absolute left-[20.5px] top-8 bottom-8 w-[2px] bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.5)] z-0" 
-              />
-              <div className="absolute left-5 top-8 bottom-8 w-px border-l border-dashed border-muted-foreground/20 -z-10" />
-              {processSteps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.12, duration: 0.5 }}
-                  className="flex gap-6 items-start relative z-10"
-                >
-                  <motion.div
-                    className="flex-shrink-0 w-10 h-10 rounded-full bg-card border border-emerald-500/30 text-emerald-500 flex items-center justify-center font-bold text-sm shadow-sm"
-                    whileHover={{ scale: 1.1, borderColor: "rgba(16,185,129,0.8)" }}
-                  >
-                    {i + 1}
-                  </motion.div>
-                  <div className="pt-2">
-                    <h3 className="text-xl font-bold mb-1">{step.title}</h3>
-                    <p className="text-muted-foreground font-light">{step.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---- FAQ ---- */}
-      <section className="py-24 bg-muted/10 border-t border-border/20">
-        <div className="container max-w-3xl">
-          <RevealText text="Frequently Asked Questions" as="h2" className="text-3xl md:text-4xl font-display font-bold mb-12 text-center" />
-          <div className="space-y-2">
-            {faqs.map((faq, i) => <FAQItem key={i} question={faq.q} answer={faq.a} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* ---- CTA ---- */}
-      <section id="contact" className="py-32 container text-center px-4">
-        <div className="relative bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 rounded-3xl md:rounded-[3rem] p-8 md:p-20 text-white overflow-hidden shadow-2xl shadow-emerald-900/30">
-          <MorphBlob color="emerald-500" size={500} opacity={0.12} blur={100} className="left-0 top-0" animDuration={10} />
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <RevealText text="Scale your revenue." as="h2" className="text-4xl md:text-7xl font-display font-black mb-8 uppercase italic tracking-tighter" />
-            <p className="text-white/80 text-lg md:text-xl mb-12 font-light">Ready to turn your traffic into customers? Get a free performance audit.</p>
-            <Link href="/contact">
-              <motion.a
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-3 bg-white text-black font-bold text-lg px-8 py-4 md:px-10 md:py-5 rounded-full shadow-xl cursor-pointer"
+              <a 
+                href="#case-studies" 
+                className="inline-flex items-center gap-2 bg-muted/40 hover:bg-muted/70 text-foreground font-medium px-8 py-4 rounded-full border border-border/60 transition-colors"
               >
-                Get a Free Audit
-                <ArrowUpRight className="w-5 h-5" />
-              </motion.a>
+                View Case Studies
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. HOW I WORK (7 STEPS) */}
+        <section className="space-y-12">
+          <div className="border-b border-border/40 pb-6">
+            <p className="text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">Process</p>
+            <h2 className="text-2xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
+              How I work.
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground mt-2 max-w-xl">
+              No black boxes or secret algorithms. Just a disciplined, repeatable operational framework.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {howIWorkSteps.map((step, idx) => (
+              <div 
+                key={step.step}
+                className={`p-8 rounded-3xl border border-border/50 bg-muted/10 flex flex-col justify-between space-y-4 hover:border-emerald-500/30 transition-colors ${
+                  idx === howIWorkSteps.length - 1 ? "md:col-span-2 lg:col-span-1" : ""
+                }`}
+              >
+                <div className="space-y-3">
+                  <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                    Step {step.step}
+                  </span>
+                  <h3 className="text-xl font-display font-bold text-foreground">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 3. CASE STUDIES */}
+        <section id="case-studies" className="space-y-12">
+          <div className="border-b border-border/40 pb-6">
+            <p className="text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">Evidence</p>
+            <h2 className="text-2xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
+              Case studies & campaigns.
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground mt-2 max-w-xl">
+              Detailed breakdowns of campaign strategy, creative testing, and verified outcomes.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {performanceCampaigns.map((camp) => (
+              <div 
+                key={camp.id}
+                className="p-8 md:p-12 rounded-[2rem] border border-border/60 bg-muted/10 space-y-8"
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/40 pb-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold uppercase">{camp.industry}</span>
+                      <span className="text-muted-foreground/40">•</span>
+                      <span className="text-xs font-mono text-muted-foreground">{camp.role}</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
+                      {camp.client}: {camp.title}
+                    </h3>
+                  </div>
+                  <span className="text-xs font-mono text-muted-foreground bg-muted/40 px-3.5 py-1.5 rounded-full border border-border/40 self-start md:self-auto">
+                    {camp.duration}
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-base sm:text-lg text-foreground/90 leading-relaxed max-w-4xl">
+                    {camp.description}
+                  </p>
+                </div>
+
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {camp.metrics.map((m, mi) => (
+                    <div key={mi} className="p-4 rounded-2xl bg-background border border-border/60">
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{m.value}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Strategy Points */}
+                {camp.strategy && camp.strategy.length > 0 && (
+                  <div className="pt-2 space-y-3">
+                    <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">Strategy & Execution</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {camp.strategy.map((s, si) => (
+                        <div key={si} className="flex items-start gap-2.5 text-xs sm:text-sm text-muted-foreground">
+                          <Check className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                          <span>{s}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="pt-2 flex items-center gap-4">
+                  <Link href={`/marketing/${camp.slug}`}>
+                    <a className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+                      Read Full Case Study
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </Link>
+                  {camp.reportUrl && (
+                    <a 
+                      href={camp.reportUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      View Report PDF <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. KEY RESULTS STRIP */}
+        <section className="p-10 md:p-14 rounded-[2.5rem] border border-border/60 bg-muted/10 space-y-8">
+          <div>
+            <p className="text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-1">Key Verified Numbers</p>
+            <h3 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
+              What the campaigns produced.
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {proof.metrics.map((metric, i) => (
+              <div key={i} className="space-y-1">
+                <p className="text-3xl sm:text-4xl font-display font-bold text-foreground tabular-nums">
+                  {metric.prefix}{metric.value}{metric.suffix}
+                </p>
+                <p className="text-xs sm:text-sm text-muted-foreground capitalize">{metric.label}</p>
+                {metric.context && (
+                  <p className="text-[10px] font-mono text-muted-foreground/60">{metric.context}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 5. WHAT I DON'T DO */}
+        <section className="space-y-8">
+          <div className="border-b border-border/40 pb-6">
+            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Honest Boundaries</p>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground tracking-tight">
+              What I don't do.
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+              I don't claim expertise in every corner of digital marketing. Clear expectations build better partnerships.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {whatIDontDo.map((item, idx) => (
+              <div key={idx} className="p-8 rounded-3xl border border-border/40 bg-muted/5 space-y-3">
+                <div className="flex items-center gap-2 text-foreground font-semibold text-base sm:text-lg">
+                  <X className="w-5 h-5 text-red-500 shrink-0" />
+                  <h4>{item.title}</h4>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed pl-7">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. CALL TO ACTION */}
+        <section className="rounded-[2.5rem] border border-border/60 bg-muted/10 p-10 md:p-16 text-center space-y-6">
+          <div className="max-w-2xl mx-auto space-y-3">
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
+              Have a brand or campaign you want to review?
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground">
+              Send over your current ad account, website, or creative assets. I'll take a look and give you honest feedback.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <Link href="/contact">
+              <a className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-full transition-colors shadow-lg shadow-emerald-600/20">
+                Let's talk
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </Link>
+            <Link href="/portfolio">
+              <a className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-muted/30 hover:bg-muted/50 text-foreground font-medium px-8 py-4 rounded-full border border-border/60 transition-colors">
+                View All Work
+              </a>
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
     </div>
   );
 }

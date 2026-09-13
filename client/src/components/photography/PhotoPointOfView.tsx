@@ -5,18 +5,18 @@ export const PhotoPointOfView: React.FC = () => {
   const points = [
     {
       number: "01",
-      title: "Light & Atmosphere",
-      description: "Chiaroscuro, precise specular highlights, and directional diffusion. Lighting is used not just to illuminate, but to define volume, appetite, and luxury resonance."
+      title: "Light & Texture",
+      description: "Directional diffusion, controlled highlights, and natural contrast. Lighting is used to show real detail, appetite appeal, and genuine product quality."
     },
     {
       number: "02",
-      title: "Compositional Rigor",
-      description: "Negative space, architectural framing, and strict focal paths. Every element inside the frame is deliberately placed to draw the eye instantly."
+      title: "Compositional Cleanliness",
+      description: "Negative space, deliberate framing, and clear focal paths. Every element inside the frame is arranged to draw attention directly to what matters."
     },
     {
       number: "03",
-      title: "Commercial Impact",
-      description: "Stills designed with intent — built for high-converting Meta ad campaigns, editorial features, and commercial packaging that stops the scroll."
+      title: "Built For Practical Use",
+      description: "Stills captured with a clear purpose — ready for Meta ad creatives, e-commerce stores, menus, packaging, and social feeds."
     }
   ];
 
