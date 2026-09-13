@@ -39,7 +39,7 @@ export default function Results() {
                         Selected <span className="text-zinc-500">Results.</span>
                     </h1>
                     <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl font-light leading-relaxed">
-                        Numbers from real campaigns. Every figure here comes from campaigns I directly ran or supported — backed by real reports, real spend, and verified inquiries.
+                        Documented outcomes from active campaigns across the UAE and Oman. Real ad spend, qualified inquiries, and verified results.
                     </p>
                 </div>
 

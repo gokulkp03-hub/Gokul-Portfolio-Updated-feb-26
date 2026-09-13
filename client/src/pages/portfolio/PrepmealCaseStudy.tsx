@@ -147,7 +147,7 @@ export default function PrepmealCaseStudy() {
                         The UAE meal prep market is highly saturated with established players holding substantial market share. Prepmeal needed to launch as a fresh, health-focused alternative without an initial customer base, while keeping customer acquisition costs viable for a subscription model.
                     </p>
                     <p className="text-lg text-muted-foreground font-light leading-relaxed mt-4">
-                        I was brought in to build a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp inquiries at scale, while continuously optimizing cost-per-conversation.
+                        The objective was building a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp inquiries at scale, while continuously optimizing cost-per-conversation.
                     </p>
                 </div>
             </section>
@@ -161,15 +161,15 @@ export default function PrepmealCaseStudy() {
                     <div className="space-y-8">
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
                             <h3 className="text-lg font-bold text-emerald-500 mb-3">1. Creative Production</h3>
-                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, I directed localized short-form video shoots emphasizing freshness, macro-nutrients, and everyday convenience tailored to busy Dubai professionals.</p>
+                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, localized short-form video shoots were produced to emphasize freshness, macro-nutrients, and everyday convenience tailored to busy Dubai professionals.</p>
                         </div>
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
                             <h3 className="text-lg font-bold text-emerald-500 mb-3">2. Direct WhatsApp Funnel</h3>
-                            <p className="text-muted-foreground font-light">I structured WhatsApp direct chat campaigns, lowering friction for potential subscribers and enabling immediate meal plan consultations with the sales team.</p>
+                            <p className="text-muted-foreground font-light">WhatsApp direct chat campaigns lowered friction for potential subscribers and enabled immediate meal plan consultations with the sales team.</p>
                         </div>
                         <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
                             <h3 className="text-lg font-bold text-emerald-500 mb-3">3. Offer Testing</h3>
-                            <p className="text-muted-foreground font-light">I tested promotional hooks and discount angles. The stand-out July Promo campaign delivered a 10.3% CTR and reduced messaging costs to AED 3.72 per conversation.</p>
+                            <p className="text-muted-foreground font-light">Testing promotional hooks and discount angles identified high-converting offers. The stand-out July Promo campaign delivered a 10.3% CTR and reduced messaging costs to AED 3.72 per conversation.</p>
                         </div>
                     </div>
                 </div>
@@ -229,7 +229,7 @@ export default function PrepmealCaseStudy() {
                 <div className="md:col-span-4">
                     <h2 className="text-2xl font-display font-bold text-foreground uppercase tracking-tight">Influencer Collaborations</h2>
                     <p className="text-sm text-muted-foreground mt-3 leading-relaxed font-light">
-                        We collaborated with local fitness and lifestyle content creators to build organic social proof and drive subscription signups in the UAE.
+                        Collaborations with local fitness and lifestyle creators generated organic social proof and aided subscription signups across Dubai.
                     </p>
                 </div>
                 <div className="md:col-span-8">

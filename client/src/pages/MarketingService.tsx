@@ -17,56 +17,56 @@ const howIWorkSteps = [
   {
     step: "01",
     title: "Understand the offer",
-    desc: "Before opening Ads Manager, I study what the business is actually selling, the pricing, the margins, and why a customer would choose it over competitors."
+    desc: "Analysis of what the business actually sells, pricing structure, margins, and the specific reasons customers choose it over alternatives."
   },
   {
     step: "02",
     title: "Define the audience",
-    desc: "Identify who has the problem right now. In the GCC, this usually means understanding local versus expat demographics, language preferences, and purchasing habits."
+    desc: "Identify who has the problem right now. In the GCC, this means mapping local versus expat demographics, language preferences, and purchasing habits."
   },
   {
     step: "03",
     title: "Build campaign structure",
-    desc: "Set up a clean, manageable account structure with clear separation between broad prospecting, creative testing ad sets, and retargeting."
+    desc: "A clean account architecture with clear separation between broad prospecting, creative testing ad sets, and retargeting."
   },
   {
     step: "04",
     title: "Create and test creative",
-    desc: "Script, shoot, and edit multiple creative angles — testing different visual hooks, problem agitation, customer testimonials, and direct offers."
+    desc: "Script, shoot, and edit multiple creative angles — testing different visual hooks, problem agitation, customer proof, and direct offers."
   },
   {
     step: "05",
-    title: "Monitor performance",
+    title: "Monitor leading metrics",
     desc: "Track early leading indicators: click-through rates, cost per conversation, form completion rates, and CPMs to spot fatigue or winning patterns early."
   },
   {
     step: "06",
-    title: "Improve what works",
-    desc: "Shift budget into winning creative angles, cut losing ads without hesitation, and test iterations of top-performing videos."
+    title: "Iterate on winners",
+    desc: "Shift budget into winning creative angles, cut losing ads without hesitation, and produce variations of top-performing videos."
   },
   {
     step: "07",
-    title: "Work with sales on lead quality",
-    desc: "The job doesn't end at the ad click. I check in with the sales team to see whether leads are picking up the phone, what questions they're asking, and if lead quality matches ad messaging."
+    title: "Align with the sales desk",
+    desc: "The work doesn't stop at the click. Ongoing coordination with sales reps tracks contact rates, common objections, and lead quality."
   }
 ];
 
 const whatIDontDo = [
   {
-    title: "I don't do enterprise multi-million TV media buying",
-    desc: "My focus is hands-on digital acquisition — primarily Meta Ads, short-form video ads, and direct lead generation."
+    title: "No enterprise TV or mass media buying",
+    desc: "Focus is exclusively hands-on digital acquisition — Meta Ads, short-form video creative, and direct lead generation."
   },
   {
-    title: "I don't buy fake followers or vanity metrics",
-    desc: "I care about qualified messaging enquiries, phone calls, and sales pipeline — not bought bot followers or hollow impressions."
+    title: "No fake engagement or vanity metrics",
+    desc: "Success is measured by qualified messaging conversations, verified phone leads, and sales pipeline — not bought followers or empty impressions."
   },
   {
-    title: "I don't guarantee overnight miracles",
-    desc: "Paid advertising is an iterative process. If an offer doesn't convert, no amount of ad hacks will fix it. We test honestly, find what works, and build from there."
+    title: "No overnight miracle promises",
+    desc: "Paid advertising is an iterative testing process. If the underlying offer or economics don't work, ad hacks won't save it. Testing reveals reality fast."
   },
   {
-    title: "I don't outsource my creative production to third parties",
-    desc: "I shoot and edit the ad assets myself. That direct feedback loop between Ads Manager and the editing timeline is why my campaigns iterate quickly."
+    title: "No disconnected third-party creative",
+    desc: "Video assets are scripted, shot, and edited directly. The tight feedback loop between Ads Manager data and the editing timeline is why campaigns iterate faster."
   }
 ];
 
@@ -95,11 +95,11 @@ export default function MarketingService() {
             </div>
 
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight text-foreground leading-[1.08]">
-              I run campaigns, test creative, and follow the numbers.
+              PAID CAMPAIGNS BUILT AROUND WHAT ACTUALLY CONVERTS.
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal leading-relaxed max-w-3xl">
-              I work mainly across Meta advertising, lead generation, creative testing and WhatsApp-based acquisition.
+              Meta advertising, creative testing, and WhatsApp lead acquisition across the UAE and Oman.
             </p>
 
             <div className="pt-4 flex flex-wrap items-center gap-4">
@@ -119,15 +119,15 @@ export default function MarketingService() {
           </div>
         </section>
 
-        {/* 2. HOW I WORK (7 STEPS) */}
+        {/* 2. HOW THE CAMPAIGNS RUN */}
         <section className="space-y-12">
           <div className="border-b border-border/40 pb-6">
             <p className="text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">Process</p>
             <h2 className="text-2xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
-              How I work.
+              Operational framework.
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground mt-2 max-w-xl">
-              No black boxes or secret algorithms. Just a disciplined, repeatable operational framework.
+              No black boxes or secret algorithms. Just a disciplined, repeatable testing loop.
             </p>
           </div>
 
@@ -267,15 +267,15 @@ export default function MarketingService() {
           </div>
         </section>
 
-        {/* 5. WHAT I DON'T DO */}
+        {/* 5. BOUNDARIES & SCOPE */}
         <section className="space-y-8">
           <div className="border-b border-border/40 pb-6">
-            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Honest Boundaries</p>
+            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Scope & Focus</p>
             <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground tracking-tight">
-              What I don't do.
+              Boundaries & focus.
             </h2>
             <p className="text-sm text-muted-foreground mt-1 max-w-xl">
-              I don't claim expertise in every corner of digital marketing. Clear expectations build better partnerships.
+              Clear expectations build better partnerships. Focused execution beats shallow coverage.
             </p>
           </div>
 
@@ -301,7 +301,7 @@ export default function MarketingService() {
               Have a brand or campaign you want to review?
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground">
-              Send over your current ad account, website, or creative assets. I'll take a look and give you honest feedback.
+              Share your current ad account, website, or creative assets for an honest, direct breakdown of what can be improved.
             </p>
           </div>
 

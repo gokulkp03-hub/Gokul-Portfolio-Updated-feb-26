@@ -90,17 +90,17 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* 2. THE LOOP: CREATIVE PRODUCTION WITH A PERFORMANCE MINDSET */}
+                {/* 2. THE FEEDBACK LOOP */}
                 <section className="space-y-8">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
                         <div>
-                            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">The Complete Loop</p>
-                            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground">
-                                Creative production with a performance mindset.
+                            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Process</p>
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground uppercase">
+                                Creative + Performance Loop
                             </h2>
                         </div>
                         <p className="text-sm text-muted-foreground max-w-md">
-                            Campaigns fail when creative and media buying live in silos. I run the full feedback loop from initial script to ad testing to lead quality.
+                            Campaigns improve when creative and media buying are connected. Running the feedback loop from initial script to ad testing to lead quality.
                         </p>
                     </div>
 
@@ -126,12 +126,12 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* 3. WHAT I ACTUALLY DO (4 CATEGORIES) */}
+                {/* 3. WHAT I DO */}
                 <section className="space-y-8">
                     <div className="border-b border-border/40 pb-6">
-                        <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Capabilities</p>
-                        <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground">
-                            What I actually do.
+                        <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Scope</p>
+                        <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground uppercase">
+                            What I do.
                         </h2>
                     </div>
 
@@ -144,7 +144,7 @@ export default function About() {
                                 <div className="space-y-4 mb-6">
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-mono text-orange-500 font-semibold tracking-wider">0{idx + 1}</span>
-                                        <span className="text-[10px] uppercase font-mono tracking-widest text-muted-foreground/60">Core Pillar</span>
+                                        <span className="text-[10px] uppercase font-mono tracking-widest text-muted-foreground/60">Core Area</span>
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-display font-bold tracking-tight text-foreground">
                                         {cat.title}
@@ -155,10 +155,10 @@ export default function About() {
                                 </div>
 
                                 <div className="pt-4 border-t border-border/30">
-                                    <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/60 mb-3">Focus Areas</p>
+                                    <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/60 mb-3">Focus</p>
                                     <div className="flex flex-wrap gap-2">
                                         {cat.skills.map((skill) => (
-                                            <span 
+                                             <span 
                                                 key={skill} 
                                                 className="text-xs font-medium bg-background px-3 py-1.5 rounded-full border border-border/60 text-foreground/80"
                                             >
@@ -172,12 +172,12 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* 4. EXPERIENCE — EDITORIAL TIMELINE */}
+                {/* 4. EXPERIENCE */}
                 <section className="space-y-10">
                     <div className="border-b border-border/40 pb-6">
-                        <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Track Record</p>
-                        <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground">
-                            Experience & roles.
+                        <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Career</p>
+                        <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground uppercase">
+                            Experience.
                         </h2>
                     </div>
 
@@ -234,7 +234,7 @@ export default function About() {
                                         {/* Grounded Bullet Points */}
                                         {exp.details && (
                                             <div className="space-y-3 pt-2">
-                                                <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">Operational Scope</p>
+                                                <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">Selected Work</p>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                                     {exp.details.map((detail, dIdx) => (
                                                         <div key={dIdx} className="flex items-start gap-3 text-sm text-muted-foreground">
@@ -318,12 +318,12 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* 5. WHAT HAPPENS BEHIND THE CAMPAIGN */}
+                {/* 5. SYSTEMS */}
                 <section className="space-y-8">
                     <div className="border-b border-border/40 pb-6">
-                        <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Systems & Infrastructure</p>
-                        <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground">
-                            What happens behind the campaign.
+                        <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Operations</p>
+                        <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground uppercase">
+                            Behind the campaigns.
                         </h2>
                     </div>
 
@@ -357,11 +357,11 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* 6. TOOLS (MINIMAL TEXT ROW) */}
+                {/* 6. TOOLS */}
                 <section className="border-t border-b border-border/40 py-10">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div>
-                            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60 mb-1">Primary Tools</p>
+                            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60 mb-1">Tools</p>
                             <p className="text-sm font-medium text-foreground">Day-to-day execution stack</p>
                         </div>
                         <div className="flex flex-wrap items-center gap-y-2 gap-x-3 text-sm text-muted-foreground font-mono">
@@ -377,14 +377,14 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* 7. HUMAN CTA */}
+                {/* 7. CTA */}
                 <section className="rounded-[2.5rem] border border-border/60 bg-muted/10 p-10 md:p-16 text-center space-y-8">
                     <div className="max-w-2xl mx-auto space-y-4">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-                            Have a brand that needs better content, better campaigns, or both?
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
+                            Let's talk.
                         </h2>
                         <p className="text-base sm:text-lg text-muted-foreground">
-                            Available for selected freelance projects, collaborations and marketing roles.
+                            Available for select campaigns, creative production, and marketing roles.
                         </p>
                     </div>
 

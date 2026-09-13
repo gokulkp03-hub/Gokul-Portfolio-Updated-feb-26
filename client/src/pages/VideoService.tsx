@@ -119,7 +119,7 @@ export default function VideoService() {
                             Video That Has <span className="text-zinc-500">A Job To Do.</span>
                         </h1>
                         <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-10 font-light tracking-tight leading-relaxed">
-                            I shoot and edit commercial and social content designed to communicate clearly — not just look cinematic.
+                            Commercial and social content designed to communicate clearly — not just look cinematic. Shot, edited, and formatted for real distribution.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a href="#works" className="btn bg-white text-black hover:bg-zinc-200 px-8 py-4 rounded-full font-semibold flex items-center gap-2 group transition-all">

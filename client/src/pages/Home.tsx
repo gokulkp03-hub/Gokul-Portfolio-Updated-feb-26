@@ -46,7 +46,7 @@ export default function Home() {
 
         <div className="container relative z-10 px-4 md:px-8 max-w-[1240px] mx-auto">
           
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-3xl space-y-8">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[11px] font-semibold tracking-widest uppercase font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
@@ -54,21 +54,19 @@ export default function Home() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-foreground leading-[1.04]">
-              I make the content.<br />
-              I run the campaigns.<br />
-              <span className="text-orange-500">I watch what happens next.</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-foreground leading-[1.04] uppercase">
+              Creative meets <span className="text-orange-500">performance.</span>
             </h1>
 
             {/* Supporting Copy */}
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal leading-relaxed max-w-2xl">
-              I work across paid media, short-form content and creative production — helping brands turn better creative into better marketing results.
+              Paid media, content, and production — built around what actually works.
             </p>
 
             {/* Context / Location */}
             <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-muted-foreground">
               <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
-              <span>Based between India and the GCC, with hands-on experience across UAE and Oman markets.</span>
+              <span>Based between India and the GCC • Working across UAE and regional markets</span>
             </div>
 
             {/* Actions */}
@@ -77,7 +75,7 @@ export default function Home() {
                 href="#work" 
                 className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 shadow-lg shadow-orange-500/20 text-center"
               >
-                View My Work
+                View Selected Work
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link href="/contact">
@@ -97,13 +95,13 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
             <div>
-              <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Projects</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
+              <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Portfolio</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
                 Selected work.
               </h2>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              A selection of projects where I managed paid acquisition, shot and edited the creative, or built the lead generation flow.
+              Selected campaigns, short-form creative, and lead systems built for regional brands.
             </p>
           </div>
 
@@ -146,7 +144,7 @@ export default function Home() {
                   <div className="pt-2">
                     <Link href="/marketing/aqua-care-uae">
                       <a className="inline-flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors">
-                        Read Aqua Care Case Study
+                        Read Case Study
                         <ArrowRight className="w-4 h-4" />
                       </a>
                     </Link>
@@ -184,7 +182,7 @@ export default function Home() {
                   </h3>
 
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    Content production and paid acquisition support for a healthy meal-prep brand. Produced over 150 vertical videos while supporting Meta ad campaigns with AED 185,000+ in spend.
+                    Content production and paid acquisition support for a healthy meal-prep brand. Over 150 vertical videos produced alongside AED 185,000+ in managed Meta ad spend.
                   </p>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
@@ -205,7 +203,7 @@ export default function Home() {
                   <div className="pt-2">
                     <Link href="/marketing/prepmeal">
                       <a className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-orange-500 transition-colors">
-                        Read PrepMeal Case Study
+                        Read Case Study
                         <ArrowRight className="w-4 h-4" />
                       </a>
                     </Link>
@@ -224,7 +222,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Project 3: Commercial Video (Beyond Cars / Ecom 100) */}
+            {/* Project 3: Commercial Video */}
             <div className="p-8 md:p-12 rounded-[2rem] border border-border/60 bg-muted/10 hover:border-border/90 transition-all duration-300">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div className="lg:col-span-7 space-y-6">
@@ -240,7 +238,7 @@ export default function Home() {
                   </h3>
 
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    Directed and edited commercial shoots for automotive, hospitality, and corporate clients across the UAE and India — including Beyond Cars, Acero Steel, and regional lifestyle brands.
+                    Commercial shoots and brand films for automotive, hospitality, and corporate clients across the UAE and India — including Beyond Cars, Acero Steel, and regional lifestyle brands.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 pt-2">
@@ -284,10 +282,10 @@ export default function Home() {
             {/* Additional Project: Steaburg */}
             <div className="p-6 md:p-8 rounded-2xl border border-border/40 bg-muted/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">Additional Project</span>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">Other Work</span>
                 <h4 className="text-lg font-display font-bold text-foreground">Steaburg — Local SEO & Content</h4>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-2xl">
-                  Optimized Google Business Profile and built a customer review system for a Sharjah burger landmark, growing verified reviews from 26 to 100+ and achieving top-3 local rankings.
+                  Google Business Profile optimization and review system for a Sharjah restaurant, growing verified reviews from 26 to 100+ and securing top-3 local map rankings.
                 </p>
               </div>
               <Link href="/marketing/steaburg-local-seo">
@@ -302,17 +300,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. WHAT I ACTUALLY DO (4 CATEGORIES) */}
+      {/* 3. WHAT I DO */}
       <section className="py-24 md:py-32 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16">
           
           <div className="border-b border-border/40 pb-6">
-            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Capabilities</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-              What I actually do.
+            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Scope</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
+              What I do.
             </h2>
             <p className="text-base text-muted-foreground mt-2 max-w-xl">
-              No bloated agency offerings. Just four clear areas where I do hands-on work.
+              Four core areas of execution across paid acquisition and creative production.
             </p>
           </div>
 
@@ -322,11 +320,11 @@ export default function Home() {
             <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-orange-500">01</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Execution</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Paid Media</span>
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">PAID MEDIA</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Structured media buying focused on qualified inquiries and revenue, not vanity impressions. I manage the campaign structure, audience targeting, and budget scaling directly.
+                Structured media buying focused on qualified inquiries and sales, not vanity impressions. Hands-on campaign architecture, creative testing, and budget scaling.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {["Meta Ads Manager", "Lead Generation", "Creative Testing", "Campaign Structure"].map((item) => (
@@ -345,7 +343,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">CONTENT</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Direct-response and brand video produced specifically for vertical platforms and mobile feeds. I handle filming, editing, and sound design myself to keep iterations fast.
+                Direct-response video and brand creative designed for vertical platforms and mobile feeds. Scripting, shooting, and editing handled in-house for fast iteration.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {["Short-form Video", "Creative Production", "Product Photography", "Creative Direction"].map((item) => (
@@ -364,7 +362,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">GROWTH</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Deconstructing competitor positioning, finding hook angles, and planning content systems that build trust while feeding creative testing into paid ads.
+                Competitor analysis, hook exploration, and content planning that builds organic credibility while providing creative testing data for paid campaigns.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {["Content Strategy", "Competitor Research", "Offer Testing", "Social Media"].map((item) => (
@@ -379,14 +377,14 @@ export default function Home() {
             <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-orange-500">04</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Infrastructure</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Automation</span>
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">AUTOMATION</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Eliminating lead drop-off by connecting ad clicks and Instagram comments directly to WhatsApp sales representatives in under two minutes.
+                Connecting ad clicks and social inquiries directly to sales representatives on WhatsApp in under two minutes to prevent lead drop-off.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
-                {["ManyChat", "Instagram → WhatsApp", "Lead Routing", "Basic CRM Workflows"].map((item) => (
+                {["ManyChat", "Instagram → WhatsApp", "Lead Routing", "CRM Workflows"].map((item) => (
                   <span key={item} className="text-xs font-medium bg-background px-3 py-1.5 rounded-full border border-border/60 text-foreground/80">
                     {item}
                   </span>
@@ -399,35 +397,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. A LITTLE ABOUT ME (PERSONAL STORY) */}
+      {/* 4. ABOUT */}
       <section className="py-24 md:py-32 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
-              <p className="text-xs font-mono uppercase tracking-widest text-orange-500">Background</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-                A little about me.
+              <p className="text-xs font-mono uppercase tracking-widest text-orange-500">About</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
+                Background.
               </h2>
-              <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  I started with a camera.
-                </p>
-                <p>
-                  Over time, my work moved deeper into digital marketing — from content and social media into paid acquisition, creative testing and lead generation.
-                </p>
-                <p className="text-foreground font-medium">
-                  Today I work across both sides. I can shoot the video, edit the creative, launch the campaign, and then look at the numbers to see whether it actually worked.
-                </p>
-                <p>
-                  That combination is what I enjoy most: making creative that looks good, but still has a job to do.
-                </p>
+              
+              <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-orange-500 font-bold mb-1">Started in Creative</h4>
+                  <p>The early years were focused on cinematography, photography, and commercial video production.</p>
+                </div>
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-orange-500 font-bold mb-1">Then Came Marketing</h4>
+                  <p>Social media and client projects gradually moved into paid media, content strategy, and direct lead generation.</p>
+                </div>
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-orange-500 font-bold mb-1">Today</h4>
+                  <p className="text-foreground font-medium">The work sits between creative production and performance marketing — from making the asset to understanding what happens after it goes live.</p>
+                </div>
               </div>
 
               <div className="pt-2">
                 <Link href="/about">
                   <a className="inline-flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors">
-                    Read My Career Timeline
+                    View Career Timeline
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </Link>
@@ -456,21 +455,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. CORE DIFFERENTIATOR: CREATIVE + PERFORMANCE */}
+      {/* 5. CREATIVE + PERFORMANCE */}
       <section className="py-24 md:py-32 border-b border-border/40 bg-muted/5">
         <div className="container px-4 md:px-8 max-w-[1000px] mx-auto text-center space-y-8">
           <p className="text-xs font-mono uppercase tracking-widest text-orange-500">The Cross-Over</p>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-foreground tracking-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-foreground tracking-tight uppercase">
             Creative + Performance
           </h2>
           <div className="space-y-4 text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal max-w-2xl mx-auto leading-relaxed">
             <p className="text-foreground font-medium">
               "Most marketers don't make the creative.<br className="hidden sm:inline" />
-              Most creatives don't spend their day inside Ads Manager.<br className="hidden sm:inline" />
-              I've spent time in both."
+              Most videographers don't look at the ad account."
             </p>
             <p className="text-base sm:text-lg text-muted-foreground">
-              I enjoy the part where a creative idea becomes an actual campaign — and the numbers tell you whether the idea worked.
+              Working across both sides means creative decisions are shaped by campaign data, and ad campaigns have a direct supply of fresh, tested creative.
             </p>
           </div>
         </div>
@@ -482,13 +480,13 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
             <div>
-              <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Credibility</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-                Selected results.
+              <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Evidence</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
+                Results.
               </h2>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              Real numbers from campaigns I've managed or supported. Every figure is backed by reports.
+              Key outcomes from campaigns directly managed or supported.
             </p>
           </div>
 
@@ -533,13 +531,13 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
             <div>
-              <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Showcase</p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
+              <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Production</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
                 Creative work.
               </h2>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              Brand films, short-form direct-response video, and commercial photography designed with a job to do.
+              Commercial films, short-form video ads, and product photography.
             </p>
           </div>
 
@@ -600,11 +598,11 @@ export default function Home() {
         <div className="container px-4 md:px-8 max-w-[1000px] mx-auto">
           <div className="rounded-[2.5rem] border border-border/60 bg-muted/10 p-10 md:p-16 text-center space-y-8">
             <div className="max-w-2xl mx-auto space-y-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-                Have a project in mind?
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
+                Let's talk.
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground">
-                Available for selected freelance projects, collaborations and marketing opportunities.
+                Available for select campaigns, creative production, and marketing roles.
               </p>
             </div>
 

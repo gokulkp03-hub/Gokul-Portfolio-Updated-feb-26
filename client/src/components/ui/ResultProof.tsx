@@ -62,7 +62,7 @@ export function ResultProof() {
                         </h2>
                     </div>
                     <p className="text-muted-foreground text-lg md:text-xl font-light max-w-sm border-l border-border/50 pl-6 mb-2">
-                        I bridge the gap between creative storytelling and data-backed growth.
+                        Bridging the gap between creative storytelling and data-backed growth.
                     </p>
                 </div>
 

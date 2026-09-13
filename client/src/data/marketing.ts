@@ -36,7 +36,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         platform: "Meta Ads & WhatsApp Automation",
         title: "Multi-Product Meta Ads & Lead System",
         headline: "Managing Meta campaigns, creative testing, and WhatsApp enquiries across the UAE and Oman.",
-        description: "I manage paid acquisition across 25 active campaigns for Aqua Care's product line — including shower filters, reverse osmosis systems, countertop dispensers, and whole-house softeners. I script, shoot, and edit the creative variants, run the ad sets, and built the WhatsApp flows to connect enquiries directly with the sales team.",
+        description: "Paid acquisition management across 25 active campaigns for Aqua Care's product line — shower filters, reverse osmosis systems, countertop dispensers, and whole-house softeners. Combines in-house creative production, ad set targeting, and WhatsApp lead routing directly to the sales desk.",
         objective: "Generate direct WhatsApp enquiries and native Meta form leads at a sustainable cost per acquisition.",
         challenge: "Water treatment products range from quick impulse buys (shower filters) to high-ticket household investments (softeners and RO units), requiring distinct creative hooks and campaign structures.",
         strategy: [
@@ -79,7 +79,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         platform: "Meta Ads & Short-form Video",
         title: "Acquisition Campaigns & Social Video",
         headline: "Content production and paid acquisition support for a subscription meal-prep brand.",
-        description: "I worked across organic content and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with AED 185,000+ in spend.",
+        description: "Cross-channel content production and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with AED 185,000+ in spend.",
         objective: "Drive qualified messaging enquiries and subscription orders for weekly healthy meal plans.",
         challenge: "The meal-prep category has high competition and creative fatigue happens quickly, requiring continuous video production and offer iteration.",
         strategy: [
@@ -121,7 +121,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         platform: "LinkedIn & Meta Ads / B2B Strategy",
         title: "B2B Paid Media & Lead Generation Strategy",
         headline: "Paid media blueprint and lead acquisition strategy for built-to-suit industrial logistics facilities.",
-        description: "I developed a targeted B2B paid media strategy focused on senior supply chain directors, industrial logistics operators, and commercial brokers across Dubai and Abu Dhabi.",
+        description: "Targeted B2B paid media strategy focused on senior supply chain directors, industrial logistics operators, and commercial brokers across Dubai and Abu Dhabi.",
         objective: "Build an inbound pipeline of qualified tenant enquiries for AED 10M–50M+ built-to-suit logistics parks.",
         challenge: "Industrial leasing involves long consideration cycles and narrow decision-maker personas where generic ads fail completely.",
         strategy: [

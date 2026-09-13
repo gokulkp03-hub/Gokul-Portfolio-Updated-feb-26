@@ -44,7 +44,7 @@ export function GrowthEngine() {
                     <div className="max-w-2xl">
                         <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight">Growth <span className="text-orange-500 italic">Engine</span></h2>
                         <p className="text-muted-foreground text-xl font-light">
-                            Real metrics. Real growth. How I transform traditional brands into digital-first market leaders.
+                            Real metrics. Real growth. Transforming regional brands with performance creative and disciplined media buying.
                         </p>
                     </div>
                     <Link href="/marketing">

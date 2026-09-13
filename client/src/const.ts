@@ -6,8 +6,8 @@ export const APP_LOGO = "/gokul-logo.png";
 
 // Portfolio owner information
 export const OWNER_NAME = "Gokul KP";
-export const OWNER_HEADLINE = "Digital Marketer & Motion-Graphics Creator";
-export const OWNER_TAGLINE = "I help UAE-based brands grow using high-converting content, scroll-stopping videos, and data-driven Meta Ads";
+export const OWNER_HEADLINE = "Performance Marketing & Commercial Creative";
+export const OWNER_TAGLINE = "Paid media, short-form video, and conversion systems built around what actually works.";
 export const OWNER_INSTAGRAM = "https://www.instagram.com/__agotime";
 export const OWNER_LINKEDIN = "https://www.linkedin.com/in/gokul-kp03";
 export const OWNER_EMAIL = "gokulkp03@gmail.com";

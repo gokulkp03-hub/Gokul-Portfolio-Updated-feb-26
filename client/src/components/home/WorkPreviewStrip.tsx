@@ -41,7 +41,7 @@ export function WorkPreviewStrip() {
             <div>
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-500 mb-4 block">Creative Work</span>
               <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight">
-                What I <span className="text-orange-500 italic">Shoot & Edit</span>
+                Selected <span className="text-orange-500 italic">Production</span>
               </h2>
             </div>
 

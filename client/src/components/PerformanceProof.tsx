@@ -37,7 +37,7 @@ export default function PerformanceProof() {
                         <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-500 mb-6 block">Proof of Work</span>
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 uppercase tracking-tight">Results & <span className="text-orange-500 italic">Performance</span></h2>
                         <p className="text-xl text-white/40 font-light leading-relaxed">
-                            I deliver data-backed growth, not just pretty visuals. Real campaign snapshots — strategy, creatives, and validated metrics.
+                            Data-backed growth and creative production. Real campaign snapshots — strategy, creatives, and validated metrics.
                         </p>
                     </div>
                     <div className="hidden md:block pb-2">
