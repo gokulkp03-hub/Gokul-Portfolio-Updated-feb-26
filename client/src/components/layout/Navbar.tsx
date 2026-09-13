@@ -74,9 +74,9 @@ const Navbar = () => {
             activeColor: "text-orange-500",
             dropdown: [
                 { name: "All Portfolio", href: "/portfolio", icon: "grid" },
+                { name: "Marketing", href: "/marketing", icon: "trending", accent: "text-emerald-400" },
                 { name: "Video", href: "/video", icon: "play", accent: "text-blue-400" },
                 { name: "Photography", href: "/photo", icon: "camera", accent: "text-orange-400" },
-                { name: "Marketing", href: "/marketing", icon: "trending", accent: "text-emerald-400" },
             ]
         },
         { name: "About", href: "/about", activeColor: "text-orange-500" },
@@ -144,9 +144,9 @@ const Navbar = () => {
                                                     <div className="px-5 py-4 border-b border-border/40 bg-muted/20">
                                                         <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-bold">My Work</p>
                                                         <div className="flex gap-1.5 mt-2">
+                                                            <div className="w-2 h-2 rounded-full bg-emerald-400" />
                                                             <div className="w-2 h-2 rounded-full bg-blue-400" />
                                                             <div className="w-2 h-2 rounded-full bg-orange-400" />
-                                                            <div className="w-2 h-2 rounded-full bg-emerald-400" />
                                                         </div>
                                                     </div>
                                                     {/* Links */}

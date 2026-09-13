@@ -79,7 +79,9 @@ export default function PortfolioLayout() {
             client: p.client || "",
             role: p.role || "",
             status: "published",
-            images: p.images || []
+            images: p.images || [],
+            tools: p.tools || [],
+            liveUrl: p.liveUrl
         }));
 
         const mappedMarketing = staticMarketing.map(m => ({
@@ -94,7 +96,9 @@ export default function PortfolioLayout() {
             client: m.client || "",
             role: m.role || "",
             status: "published",
-            images: m.visuals || []
+            images: m.visuals || [],
+            tools: m.tags || [],
+            liveUrl: undefined as string | undefined
         }));
 
         return [...mappedProjects, ...mappedMarketing];
@@ -269,6 +273,20 @@ export default function PortfolioLayout() {
                                             </div>
                                         )}
 
+                                        {/* Live Website Link Pill */}
+                                        {project.liveUrl && !isLiveCampaign && (
+                                            <a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="absolute top-3 right-3 md:top-5 md:right-5 z-20 flex items-center gap-1 md:gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-[8px] md:text-[10px] uppercase font-bold tracking-wider shadow-lg transition-transform hover:scale-105"
+                                            >
+                                                <span>Live Site</span>
+                                                <ExternalLink className="w-2.5 h-2.5 md:w-3 md:h-3" />
+                                            </a>
+                                        )}
+
                                         {/* Arrow button overlay on hover */}
                                         <div className="absolute bottom-3 right-3 md:bottom-6 md:right-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-2 md:group-hover:translate-y-0">
                                             <div className="w-6 h-6 md:w-12 md:h-12 rounded-full bg-orange-500/80 md:bg-orange-500 text-white flex items-center justify-center shadow-xl backdrop-blur-sm">
@@ -360,10 +378,21 @@ export default function PortfolioLayout() {
                                 />
                             )}
 
-                            <div className="absolute top-6 right-6 flex gap-3">
+                            <div className="absolute top-6 right-6 flex items-center gap-3 z-30">
+                                {selectedItem.liveUrl && (
+                                    <a
+                                        href={selectedItem.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="h-10 px-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-lg transition-transform hover:scale-105"
+                                    >
+                                        <span>Visit Live Site</span>
+                                        <ExternalLink className="w-3.5 h-3.5" />
+                                    </a>
+                                )}
                                 <Link href={selectedItem.id === "aqua-care-uae" ? "/marketing/aqua-care-uae" : selectedItem.id === "prepmeal-growth" ? "/marketing/prepmeal" : `/portfolio/${selectedItem.category || 'all'}/${selectedItem.slug}`}>
                                     <span className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform cursor-pointer shadow-lg animate-fade-in" onClick={() => setSelectedItem(null)}>
-                                        <ExternalLink className="w-4 h-4" />
+                                        <ArrowUpRight className="w-4 h-4" />
                                     </span>
                                 </Link>
                                 <button 
@@ -374,14 +403,40 @@ export default function PortfolioLayout() {
                                 </button>
                             </div>
 
-                            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/85 to-transparent">
-                                <span className="text-[9px] font-bold uppercase tracking-[0.4em] mb-2 block text-orange-500">
-                                    {selectedItem.category} Project • {selectedItem.client}
-                                </span>
-                                <h2 className="text-2xl md:text-3xl font-display font-black text-white mb-2 uppercase tracking-tighter">
-                                    {selectedItem.title}
-                                </h2>
-                                <p className="text-white/60 text-sm font-light max-w-xl line-clamp-2">{selectedItem.description}</p>
+                            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/85 to-transparent">
+                                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                                    <div>
+                                        <span className="text-[9px] font-bold uppercase tracking-[0.4em] mb-1.5 block text-orange-500">
+                                            {selectedItem.category} Project • {selectedItem.client}
+                                        </span>
+                                        <h2 className="text-xl md:text-3xl font-display font-black text-white mb-2 uppercase tracking-tighter">
+                                            {selectedItem.title}
+                                        </h2>
+                                        <p className="text-white/70 text-xs md:text-sm font-light max-w-xl line-clamp-2 mb-3">{selectedItem.description}</p>
+                                        
+                                        {selectedItem.tools && selectedItem.tools.length > 0 && (
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {selectedItem.tools.map((tool: string, idx: number) => (
+                                                    <span key={idx} className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-white/90 text-[10px] font-medium tracking-wide">
+                                                        {tool}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {selectedItem.liveUrl && (
+                                        <a
+                                            href={selectedItem.liveUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider shadow-xl transition-all hover:scale-105"
+                                        >
+                                            <span>Visit Live Website</span>
+                                            <ExternalLink className="w-3.5 h-3.5" />
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>

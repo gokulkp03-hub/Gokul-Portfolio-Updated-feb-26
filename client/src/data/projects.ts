@@ -16,6 +16,7 @@ export interface Project {
     images?: string[];
     videoUrl?: string;
     cloudinaryId?: string;
+    liveUrl?: string;
 
     // Detail page content
     challenge?: string;
@@ -329,16 +330,17 @@ export const projects: Project[] = [
     {
         id: "ca-joyce-website",
         slug: "ca-joyce-website",
-        title: "CA Joyce - Financial Portfolio",
+        title: "CA Joyce — Financial Portfolio",
         category: "web",
         subcategory: "Web Development",
         thumbnail: "/assets/images/brands/cajoyce-hero.webp",
-        description: "Designed and developed a professional portfolio and consulting website for a Chartered Accountant. Live at: www.cajoyce.com",
+        description: "Official consulting portfolio and client portal for Chartered Accountant Joyce J Charuvila (ICAI & UAE practice).",
         client: "CA Joyce",
         role: "Web Developer",
-        tools: ["React", "Tailwind CSS", "Web Design"],
+        tools: ["React", "Tailwind CSS", "Next.js"],
         date: "2024",
-        featured: true
+        featured: true,
+        liveUrl: "https://www.cajoyce.com"
     },
     {
         id: "ecom100-website",
@@ -346,13 +348,14 @@ export const projects: Project[] = [
         title: "Ecom100",
         category: "web",
         subcategory: "Web Development",
-        thumbnail: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop", // Placeholder
-        description: "Built a high-converting e-commerce hub and digital platform for Ecom100. Live at: www.ecom100.in",
+        thumbnail: "/assets/images/brands/Ecom100.webp",
+        description: "High-converting digital commerce hub and business platform for Ecom100.",
         client: "Ecom100",
         role: "Web Developer",
         tools: ["Next.js", "Tailwind CSS", "UI/UX Design"],
         date: "2024",
-        featured: true
+        featured: true,
+        liveUrl: "https://ecom100.in"
     }
 ];
 

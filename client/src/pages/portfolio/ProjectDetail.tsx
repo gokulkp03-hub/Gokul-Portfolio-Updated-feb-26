@@ -55,6 +55,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                 tags: foundProj.tools || [],
                 gallery: foundProj.images || [],
                 status: "published",
+                liveUrl: foundProj.liveUrl,
             };
         }
 
@@ -213,26 +214,74 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                         </div>
 
                         {/* Info Grid */}
-                        <div className="grid grid-cols-2 gap-8 py-8 border-y border-border/40">
-                            <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
-                                    <User className="w-3 h-3 text-primary" /> Client
-                                </p>
-                                <p className="font-medium">{project.client || "Confidential"}</p>
-                            </div>
-                            <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
-                                    <Wrench className="w-3 h-3 text-primary" /> Role
-                                </p>
-                                <p className="font-medium">{tools[0] || "Lead Creative"}</p>
-                            </div>
-                            <div>
-                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
-                                    <Calendar className="w-3 h-3 text-primary" /> Date
-                                </p>
-                                <p className="font-medium">{project.year || new Date().getFullYear()}</p>
-                            </div>
-                        </div>
+                        {(() => {
+                            const liveUrl = (project as any)?.liveUrl as string | undefined;
+                            return (
+                                <>
+                                    <div className="grid grid-cols-2 gap-8 py-8 border-y border-border/40">
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
+                                                <User className="w-3 h-3 text-primary" /> Client
+                                            </p>
+                                            <p className="font-medium">{project.client || "Confidential"}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
+                                                <Wrench className="w-3 h-3 text-primary" /> Role
+                                            </p>
+                                            <p className="font-medium">{tools[0] || "Lead Creative"}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
+                                                <Calendar className="w-3 h-3 text-primary" /> Date
+                                            </p>
+                                            <p className="font-medium">{project.year || new Date().getFullYear()}</p>
+                                        </div>
+                                        {liveUrl && (
+                                            <div>
+                                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2 flex items-center gap-2">
+                                                    <ArrowUpRight className="w-3 h-3 text-primary" /> Live Website
+                                                </p>
+                                                <a 
+                                                    href={liveUrl} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer" 
+                                                    className="font-semibold text-orange-500 hover:text-orange-400 underline underline-offset-4 inline-flex items-center gap-1"
+                                                >
+                                                    <span>{liveUrl.replace(/^https?:\/\/(www\.)?/, '')}</span>
+                                                    <ArrowUpRight className="w-3.5 h-3.5" />
+                                                </a>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Tech stack & Live Website CTA */}
+                                    {liveUrl && (
+                                        <div className="pt-2 space-y-4">
+                                            <a
+                                                href={liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm tracking-wider uppercase transition-all shadow-xl hover:shadow-orange-500/25 hover:scale-[1.02]"
+                                            >
+                                                <span>Visit Live Website</span>
+                                                <ArrowUpRight className="w-4 h-4" />
+                                            </a>
+
+                                            {tools && tools.length > 0 && (
+                                                <div className="flex flex-wrap gap-2 pt-2">
+                                                    {tools.map((tool: string, idx: number) => (
+                                                        <span key={idx} className="px-3 py-1 rounded-full bg-muted/40 border border-border/40 text-xs font-medium text-foreground">
+                                                            {tool}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </>
+                            );
+                        })()}
                     </motion.div>
 
                     <motion.div
