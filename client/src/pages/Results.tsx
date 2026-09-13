@@ -12,12 +12,6 @@ export default function Results() {
     const { data: dbProjects } = trpc.projects.list.useQuery();
     
     const campaigns = useMemo(() => {
-        if (dbProjects && dbProjects.length > 0) {
-            const dbCamps = dbProjects.filter((p: any) => p.category.toLowerCase() === "marketing");
-            if (dbCamps.length > 0) return dbCamps;
-        }
-
-        // Fallback to static marketing campaigns
         return staticMarketing.map(m => ({
             id: m.id,
             title: m.title,
@@ -30,7 +24,7 @@ export default function Results() {
             results: m.metrics.map(met => ({ label: met.label, value: met.value })),
             tags: m.tags,
         }));
-    }, [dbProjects]);
+    }, []);
 
     return (
         <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20">
