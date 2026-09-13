@@ -14,12 +14,12 @@ export default function Contact() {
     const [submitError, setSubmitError] = useState<string | null>(null);
     const [hasTrackedFormStart, setHasTrackedFormStart] = useState(false);
     const [formMountTime, setFormMountTime] = useState<number>(Date.now());
-    const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string }>({});
+    const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string; service?: string }>({});
     
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        service: "High-End Video Production",
+        service: "",
         details: "",
         websiteHoneypot: ""
     });
@@ -80,7 +80,7 @@ export default function Contact() {
     const submitContact = trpc.contact.submit.useMutation();
 
     const validateForm = () => {
-        const errors: { name?: string; email?: string } = {};
+        const errors: { name?: string; email?: string; service?: string } = {};
         const trimmedName = formData.name.trim();
         const trimmedEmail = formData.email.trim();
 
@@ -91,6 +91,10 @@ export default function Contact() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!trimmedEmail || !emailRegex.test(trimmedEmail)) {
             errors.email = "Please enter a valid email address.";
+        }
+
+        if (!formData.service) {
+            errors.service = "Please select a service.";
         }
 
         setFieldErrors(errors);
@@ -126,7 +130,7 @@ export default function Contact() {
             setFormData({
                 name: "",
                 email: "",
-                service: "High-End Video Production",
+                service: "",
                 details: "",
                 websiteHoneypot: ""
             });
@@ -326,26 +330,34 @@ export default function Contact() {
 
                                         {/* Service selector */}
                                         <div className="space-y-2">
-                                            <label htmlFor="contact-service" className="text-xs uppercase tracking-widest text-muted-foreground">
-                                                Service Interest
+                                            <label htmlFor="contact-service" className="text-xs uppercase tracking-widest text-muted-foreground flex justify-between">
+                                                <span>Service Interest <span className="text-orange-500">*</span></span>
+                                                {fieldErrors.service && <span className="text-red-400 text-[10px] lowercase">{fieldErrors.service}</span>}
                                             </label>
-                                            <div className="relative rounded-xl overflow-hidden bg-muted/20 border border-border">
+                                            <div className={`relative rounded-xl overflow-hidden bg-muted/20 border ${fieldErrors.service ? 'border-red-500/60' : 'border-border'}`}>
                                                 <select
                                                     id="contact-service"
                                                     name="service"
                                                     value={formData.service}
-                                                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                                                    disabled={isSubmitting}
-                                                    className="w-full bg-transparent px-5 py-4 outline-none transition-colors appearance-none disabled:opacity-50 peer z-10 relative cursor-pointer"
-                                                >
-                                                    <option className="bg-zinc-950 text-white" value="High-End Video Production">High-End Video Production</option>
-                                                    <option className="bg-zinc-950 text-white" value="Performance Marketing Scaling">Performance Marketing Scaling (Meta Ads)</option>
-                                                    <option className="bg-zinc-950 text-white" value="Brand & Commercial Photography">Brand &amp; Commercial Photography</option>
-                                                    <option className="bg-zinc-950 text-white" value="Full Growth Retainer">Full Growth Retainer (Creative + Media)</option>
-                                                </select>
-                                                <span className="absolute bottom-0 left-0 w-0 h-1 bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
-                                            </div>
-                                        </div>
+                                                    onChange={(e) => {
+                                                         handleFormInteraction();
+                                                         setFormData({ ...formData, service: e.target.value });
+                                                         if (fieldErrors.service) setFieldErrors({ ...fieldErrors, service: undefined });
+                                                     }}
+                                                     disabled={isSubmitting}
+                                                     className={`w-full bg-transparent px-5 py-4 outline-none transition-colors appearance-none disabled:opacity-50 peer z-10 relative cursor-pointer ${
+                                                         !formData.service ? 'text-muted-foreground' : 'text-foreground'
+                                                     }`}
+                                                 >
+                                                     <option className="bg-zinc-950 text-zinc-500" value="" disabled>Select a service</option>
+                                                     <option className="bg-zinc-950 text-white" value="High-End Video Production">High-End Video Production</option>
+                                                     <option className="bg-zinc-950 text-white" value="Performance Marketing Scaling">Performance Marketing Scaling (Meta Ads)</option>
+                                                     <option className="bg-zinc-950 text-white" value="Brand & Commercial Photography">Brand &amp; Commercial Photography</option>
+                                                     <option className="bg-zinc-950 text-white" value="Full Growth Retainer">Full Growth Retainer (Creative + Media)</option>
+                                                 </select>
+                                                 <span className="absolute bottom-0 left-0 w-0 h-1 bg-orange-500 transition-all duration-300 peer-focus:w-full z-20" />
+                                             </div>
+                                         </div>
 
                                         {/* Details textarea */}
                                         <div className="space-y-2">

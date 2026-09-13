@@ -44,11 +44,35 @@ const trpcClient = trpc.createClient({
     httpBatchLink({
       url: `${backendUrl}/api/trpc`,
       transformer: superjson,
-      fetch(input, init) {
-        return globalThis.fetch(input, {
+      async fetch(input, init) {
+        const res = await globalThis.fetch(input, {
           ...(init ?? {}),
           credentials: "include",
         });
+
+        // Guard against HTML responses (e.g. 404/500 static page fallbacks or SPA rewrites)
+        // that throw "SyntaxError: Unexpected token '<'" when parsed as JSON
+        const contentType = res.headers.get("content-type") || "";
+        if (!contentType.includes("application/json") && !res.ok) {
+          return new Response(
+            JSON.stringify([
+              {
+                error: {
+                  message: `API endpoint returned HTML error (${res.status})`,
+                  code: -32004,
+                  data: { httpStatus: res.status, code: "NOT_FOUND" },
+                },
+              },
+            ]),
+            {
+              status: res.status,
+              statusText: res.statusText,
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+        }
+
+        return res;
       },
     }),
   ],
