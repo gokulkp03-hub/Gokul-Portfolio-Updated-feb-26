@@ -1,4 +1,5 @@
 import { SEO } from "@/components/SEO";
+import { CursorTrailSpotlight } from "@/components/home/CursorTrailSpotlight";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { 
@@ -7,8 +8,8 @@ import {
   Play, 
   Check, 
   MapPin, 
-  MessageCircle,
-  ExternalLink
+  MessageCircle, 
+  ExternalLink 
 } from "lucide-react";
 import { useState } from "react";
 import { proof } from "@/data/proof";
@@ -18,12 +19,15 @@ export default function Home() {
   const [showreelOpen, setShowreelOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-background text-foreground selection:bg-orange-500 selection:text-white relative">
       <SEO 
         title="Gokul KP — Digital Marketer & Creative Producer" 
         description="Portfolio of Gokul KP — a digital marketer and creative producer working across paid media, content, video and lead generation in the UAE and Oman." 
         url="/" 
       />
+
+      {/* Mouse Line Tracing Animation & Ambient Spotlight Background */}
+      <CursorTrailSpotlight />
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 sm:pt-40 md:pt-48 pb-20 md:pb-28 border-b border-border/40 overflow-hidden">
