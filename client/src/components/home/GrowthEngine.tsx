@@ -110,9 +110,9 @@ export function GrowthEngine() {
                                         ))}
                                     </div>
 
-                                    <div className="flex items-center gap-2 text-orange-500 font-medium group/btn">
+                                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-500/15 group-hover:bg-orange-500 text-orange-400 group-hover:text-white text-xs font-semibold border border-orange-500/30 group-hover:border-orange-500 transition-all duration-300 shadow-sm group-hover:shadow-orange-500/25 group-hover:shadow-md transform group-hover:-translate-y-0.5">
                                         <span>Full Case Study</span>
-                                        <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                                        <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                                     </div>
                                 </div>
                                 </motion.div>

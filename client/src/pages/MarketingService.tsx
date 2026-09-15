@@ -220,11 +220,12 @@ export default function MarketingService() {
                   </div>
                 )}
 
-                <div className="pt-2 flex items-center gap-4">
+                <div className="pt-4 flex flex-wrap items-center gap-3">
                   <Link href={`/marketing/${camp.slug}`}>
-                    <a className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
-                      Read Full Case Study
-                      <ArrowRight className="w-4 h-4" />
+                    <a className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-sm shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/35 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 overflow-hidden">
+                      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                      <span className="relative z-10 tracking-wide">Read Full Case Study</span>
+                      <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
                     </a>
                   </Link>
                   {camp.reportUrl && (
@@ -232,9 +233,10 @@ export default function MarketingService() {
                       href={camp.reportUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
+                      className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-muted/40 hover:bg-muted/80 text-muted-foreground hover:text-foreground text-xs font-mono border border-border/60 hover:border-border transition-all duration-200 transform hover:-translate-y-0.5 shadow-sm"
                     >
-                      View Report PDF <ExternalLink className="w-3.5 h-3.5" />
+                      <span>View Report PDF</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-all duration-300 group-hover:scale-110" />
                     </a>
                   )}
                 </div>

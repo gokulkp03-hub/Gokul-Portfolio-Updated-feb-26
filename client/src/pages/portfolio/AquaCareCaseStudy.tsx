@@ -1,4 +1,4 @@
-import { ArrowLeft, Play, Target, Layers, Sparkles, ChevronDown, ChevronUp, MessageCircle, Users, Eye, CheckCircle2, TrendingUp } from "lucide-react";
+import { ArrowLeft, Play, Target, Layers, Sparkles, ChevronDown, ChevronUp, MessageCircle, Users, Eye, CheckCircle2, TrendingUp, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
@@ -6,6 +6,7 @@ import { SEO } from "@/components/SEO";
 export default function AquaCareCaseStudy() {
   const [playReel, setPlayReel] = useState(false);
   const [showTechnicalData, setShowTechnicalData] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,41 +85,102 @@ export default function AquaCareCaseStudy() {
         </div>
 
         {/* ─── THE 3 KEY TAKEAWAYS (CLEAR & SIMPLE) ───────────────────────── */}
+        {/* ─── THE 3 KEY TAKEAWAYS (WITH VISUAL CREATIVE PROOF) ──────────── */}
         <div className="mb-16">
           <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2">Executive Summary</p>
           <h2 className="text-2xl font-bold text-white tracking-tight mb-6">What Made This Campaign Work</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="glass-card p-6 border-emerald-500/20 flex flex-col justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Vita bloom.webp')}
+              className="glass-card p-5 border-emerald-500/20 flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
+            >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold mb-4">
-                  01
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
+                  <img 
+                    src="/assets/images/brands/Aqua-Care/Vita bloom.webp" 
+                    alt="Shower Filter Direct Response Creative" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
+                    AED 4.32 CPL
+                  </div>
+                  <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 rounded-full p-1 text-zinc-300">
+                    <Eye className="w-3.5 h-3.5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Shower Filter Led Direct Leads</h3>
+
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-6 h-6 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xs">
+                    01
+                  </span>
+                  <h3 className="text-base font-bold text-white">Shower Filter Direct Leads</h3>
+                </div>
+
                 <p className="text-xs text-zinc-300 leading-relaxed font-light">
                   A high-volume entry product that captured <strong className="text-white">183+ Meta leads</strong> at just <strong className="text-emerald-400 font-semibold">AED 4.85 per lead</strong>, with the top Reel delivering leads at AED 4.32.
                 </p>
               </div>
             </div>
 
-            <div className="glass-card p-6 border-blue-500/20 flex flex-col justify-between">
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg')}
+              className="glass-card p-5 border-blue-500/20 flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 group cursor-pointer"
+            >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold mb-4">
-                  02
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
+                  <img 
+                    src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg" 
+                    alt="Countertop Dispenser WhatsApp Ad" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-blue-400 border border-blue-500/30">
+                    AED 1.03 / Chat
+                  </div>
+                  <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 rounded-full p-1 text-zinc-300">
+                    <Eye className="w-3.5 h-3.5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Dispensers Drove WhatsApp DMs</h3>
+
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-6 h-6 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs">
+                    02
+                  </span>
+                  <h3 className="text-base font-bold text-white">Dispensers WhatsApp DMs</h3>
+                </div>
+
                 <p className="text-xs text-zinc-300 leading-relaxed font-light">
                   Countertop water dispensers generated <strong className="text-white">630+ direct messaging conversations</strong>, with winning static creatives costing just <strong className="text-blue-400 font-semibold">AED 1.03 per chat</strong>.
                 </p>
               </div>
             </div>
 
-            <div className="glass-card p-6 border-purple-500/20 flex flex-col justify-between">
+            <div 
+              onClick={() => setSelectedImage('/assets/images/aquacare-reel/ig-overview.jpg')}
+              className="glass-card p-5 border-purple-500/20 flex flex-col justify-between hover:border-purple-500/40 transition-all duration-300 group cursor-pointer"
+            >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-bold mb-4">
-                  03
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
+                  <img 
+                    src="/assets/images/aquacare-reel/ig-overview.jpg" 
+                    alt="100K+ Viral Reel Creative" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-purple-400 border border-purple-500/30">
+                    100K+ Views
+                  </div>
+                  <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 rounded-full p-1 text-zinc-300">
+                    <Eye className="w-3.5 h-3.5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Reels Won Direct Response</h3>
+
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="w-6 h-6 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-xs">
+                    03
+                  </span>
+                  <h3 className="text-base font-bold text-white">Reels Direct Response</h3>
+                </div>
+
                 <p className="text-xs text-zinc-300 leading-relaxed font-light">
                   Short-form video Reels produced over <strong className="text-white">75% of total lead volume</strong>, while clean static graphics were deployed for broad awareness and fast seasonal promotions.
                 </p>
@@ -127,29 +189,47 @@ export default function AquaCareCaseStudy() {
           </div>
         </div>
 
-        {/* ─── 3-STAGE FUNNEL VISUAL ──────────────────────────────────────── */}
+        {/* ─── 3-STAGE FUNNEL WITH REAL CREATIVES ─────────────────────────── */}
         <div className="glass-card p-8 mb-16 border-zinc-800">
           <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-2">Funnel Architecture</p>
           <h2 className="text-2xl font-bold text-white tracking-tight mb-6">How Audiences Moved from Awareness to Inquiry</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/new.webp')}
+              className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-emerald-500/30 transition-all"
+            >
+              <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
+                <img src="/assets/images/brands/Aqua-Care/new.webp" alt="Stage 1 Awareness Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
               <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 1 — Awareness</span>
               <h4 className="text-sm font-bold text-white mb-2">Broad Education</h4>
               <p className="text-xs text-zinc-400 font-light leading-relaxed">
-                Broad targeting across the UAE introducing water quality awareness, filtration benefits, and AquaCare products.
+                Broad targeting across the UAE introducing water quality awareness, filtration benefits, and AquaCare systems.
               </p>
             </div>
 
-            <div className="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800">
-              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 2 — Engagement</span>
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg')}
+              className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-blue-500/30 transition-all"
+            >
+              <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
+                <img src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg" alt="Stage 2 Engagement Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">Stage 2 — Engagement</span>
               <h4 className="text-sm font-bold text-white mb-2">WhatsApp Conversations</h4>
               <p className="text-xs text-zinc-400 font-light leading-relaxed">
                 Click-to-WhatsApp and Instagram DM ads answering customer product questions and pricing inquiries in real time.
               </p>
             </div>
 
-            <div className="p-5 rounded-xl bg-zinc-900/60 border border-zinc-800">
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Filters 2.webp')}
+              className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-emerald-500/30 transition-all"
+            >
+              <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
+                <img src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Stage 3 Lead Capture Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
               <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 3 — Lead Capture</span>
               <h4 className="text-sm font-bold text-white mb-2">Instant Lead Forms</h4>
               <p className="text-xs text-zinc-400 font-light leading-relaxed">
@@ -158,36 +238,49 @@ export default function AquaCareCaseStudy() {
             </div>
           </div>
 
-          <div className="mt-4 p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs text-zinc-300 flex items-center gap-2.5">
+          <div className="mt-6 p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs text-zinc-300 flex items-center gap-2.5">
             <Sparkles className="w-4 h-4 text-emerald-400 flex-shrink-0" />
             <span><strong>Ramadan Seasonal Push:</strong> Ran tailored campaigns in Feb 2026 adapting dispenser and filter messaging for family prep during Iftar.</span>
           </div>
         </div>
 
-        {/* ─── PRODUCT HIGHLIGHTS (2 CORE WINNERS) ────────────────────────── */}
+        {/* ─── PRODUCT HIGHLIGHTS WITH IMAGE SPOTLIGHTS ───────────────────── */}
         <div className="mb-16">
           <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2">Top Performers</p>
           <h2 className="text-2xl font-bold text-white tracking-tight mb-6">Product Performance Spotlight</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Shower Filter */}
-            <div className="glass-card p-6 border-blue-500/30 bg-gradient-to-br from-blue-950/15 to-zinc-950">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
-                    Lead Generation Winner
+            <div className="glass-card p-6 border-blue-500/30 bg-gradient-to-br from-blue-950/15 to-zinc-950 flex flex-col justify-between">
+              <div>
+                <div 
+                  onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Vita bloom.webp')}
+                  className="relative aspect-video rounded-xl overflow-hidden mb-4 border border-zinc-800 bg-black group cursor-pointer"
+                >
+                  <img src="/assets/images/brands/Aqua-Care/Vita bloom.webp" alt="Vita Bloom Shower Filter Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <span className="absolute bottom-2 left-3 text-[11px] font-mono text-zinc-300 flex items-center gap-1.5">
+                    <Eye className="w-3 h-3 text-emerald-400" /> Winning Meta Ad Creative · Vita Bloom
                   </span>
-                  <h3 className="text-xl font-bold text-white mt-2">Shower Filter</h3>
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-blue-400">183 Leads</div>
-                  <div className="text-[11px] text-zinc-400">AED 4.85 avg CPL</div>
-                </div>
-              </div>
 
-              <p className="text-xs text-zinc-300 leading-relaxed font-light mb-4">
-                Positioned around hair and skincare benefits in UAE tap water. The winning <strong className="text-white">Shower Filter Reel</strong> alone generated <strong className="text-blue-300">145 leads at AED 4.32 CPL</strong>.
-              </p>
+                <div className="flex justify-between items-start mb-3">
+                  <div>
+                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
+                      Lead Generation Winner
+                    </span>
+                    <h3 className="text-xl font-bold text-white mt-2">Shower Filter</h3>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-blue-400">183 Leads</div>
+                    <div className="text-[11px] text-zinc-400">AED 4.85 avg CPL</div>
+                  </div>
+                </div>
+
+                <p className="text-xs text-zinc-300 leading-relaxed font-light mb-4">
+                  Positioned around hair and skincare benefits in UAE tap water. The winning <strong className="text-white">Shower Filter Reel</strong> alone generated <strong className="text-blue-300">145 leads at AED 4.32 CPL</strong>.
+                </p>
+              </div>
 
               <div className="p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-xs flex justify-between text-zinc-300">
                 <span>Impressions: <strong>49.7K</strong></span>
@@ -197,27 +290,188 @@ export default function AquaCareCaseStudy() {
             </div>
 
             {/* Countertop Dispenser */}
-            <div className="glass-card p-6 border-emerald-500/30 bg-gradient-to-br from-emerald-950/15 to-zinc-950">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-                    Messaging Winner
+            <div className="glass-card p-6 border-emerald-500/30 bg-gradient-to-br from-emerald-950/15 to-zinc-950 flex flex-col justify-between">
+              <div>
+                <div 
+                  onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg')}
+                  className="relative aspect-video rounded-xl overflow-hidden mb-4 border border-zinc-800 bg-black group cursor-pointer"
+                >
+                  <img src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg" alt="Countertop Dispenser Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <span className="absolute bottom-2 left-3 text-[11px] font-mono text-zinc-300 flex items-center gap-1.5">
+                    <Eye className="w-3 h-3 text-emerald-400" /> Winning Meta Ad Creative · RO Dispenser
                   </span>
-                  <h3 className="text-xl font-bold text-white mt-2">Countertop Dispensers</h3>
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-emerald-400">630+ DMs</div>
-                  <div className="text-[11px] text-zinc-400">from AED 1.03 / DM</div>
-                </div>
-              </div>
 
-              <p className="text-xs text-zinc-300 leading-relaxed font-light mb-4">
-                Targeted homeowners and offices seeking instant hot/cold purified water. Clean static images generated high-intent customer inquiries at extremely low cost.
-              </p>
+                <div className="flex justify-between items-start mb-3">
+                  <div>
+                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                      Messaging Winner
+                    </span>
+                    <h3 className="text-xl font-bold text-white mt-2">Countertop Dispensers</h3>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-emerald-400">630+ DMs</div>
+                    <div className="text-[11px] text-zinc-400">from AED 1.03 / DM</div>
+                  </div>
+                </div>
+
+                <p className="text-xs text-zinc-300 leading-relaxed font-light mb-4">
+                  Targeted homeowners and offices seeking instant hot/cold purified water. Clean static images generated high-intent customer inquiries at extremely low cost.
+                </p>
+              </div>
 
               <div className="p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-xs flex justify-between text-zinc-300">
                 <span>Static: <strong>314 DMs (AED 1.03)</strong></span>
                 <span>Image 2: <strong>168 DMs (AED 1.22)</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── VERIFIED META ADS LIVE DASHBOARD PROOF ─────────────────────── */}
+        <div className="mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1">Live Verified Proof</p>
+              <h2 className="text-2xl font-bold text-white tracking-tight">Meta Ads Manager Campaign Dashboard</h2>
+            </div>
+            <span className="text-xs font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full w-fit">
+              25 Active Campaigns · AED 11,063 Spend
+            </span>
+          </div>
+
+          <div 
+            onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Aqua Care meta ads campaigns screen shot.png')}
+            className="glass-card p-3 rounded-2xl border-zinc-800 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all duration-300 shadow-2xl relative"
+          >
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
+              <img 
+                src="/assets/images/brands/Aqua-Care/Aqua Care meta ads campaigns screen shot.png" 
+                alt="Verified Meta Ads Manager Campaign Dashboard" 
+                className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+              <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-white flex items-center gap-1.5 shadow-lg group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-colors">
+                <Eye className="w-3.5 h-3.5" />
+                <span>Click to Expand Live Dashboard</span>
+              </div>
+            </div>
+            <div className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-zinc-400 font-light">
+              <p>Direct export from Meta Ads Manager: 2,357 messaging chats, 212 form leads, AED 0.79 CPC across the UAE.</p>
+              <span className="font-mono text-emerald-400 font-semibold shrink-0">100% Verified Live Data</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── WINNING STATIC AD CREATIVES GALLERY ───────────────────────── */}
+        <div className="mb-16">
+          <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1">Creative Production</p>
+          <h2 className="text-2xl font-bold text-white tracking-tight mb-2">High-Converting Static & Ad Assets</h2>
+          <p className="text-sm text-zinc-400 mb-8 font-light">
+            In-house creative production spanning product photography, 3D/AI product demonstrations, and localized direct-response social formats.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Vita bloom.webp')}
+              className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
+                <img src="/assets/images/brands/Aqua-Care/Vita bloom.webp" alt="Vita Bloom Shower Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                  AED 4.32 CPL
+                </div>
+              </div>
+              <div className="px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">Lead Winner</span>
+                <h4 className="text-sm font-bold text-white mt-0.5">Vita Bloom Shower Filter</h4>
+                <p className="text-xs text-zinc-400 mt-1 font-light">Direct-response ad addressing hard water effects on hair & skin in UAE homes.</p>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg')}
+              className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-blue-500/40 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
+                <img src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.jpg" alt="Countertop Dispenser Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-blue-400 border border-blue-500/30">
+                  AED 1.03 / Chat
+                </div>
+              </div>
+              <div className="px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-blue-400 font-semibold">Inquiry Winner</span>
+                <h4 className="text-sm font-bold text-white mt-0.5">Instant RO Dispenser</h4>
+                <p className="text-xs text-zinc-400 mt-1 font-light">Clean aesthetic showcasing instant hot/cold water convenience for families.</p>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Filters 2.webp')}
+              className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
+                <img src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Multi-Stage Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-zinc-300 border border-zinc-700">
+                  Retention
+                </div>
+              </div>
+              <div className="px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold">Replacement Upsell</span>
+                <h4 className="text-sm font-bold text-white mt-0.5">Filter Cartridge Systems</h4>
+                <p className="text-xs text-zinc-400 mt-1 font-light">Promotional graphic highlighting certified multi-stage sediment & carbon blocks.</p>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Oman National Day.webp')}
+              className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-amber-500/40 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
+                <img src="/assets/images/brands/Aqua-Care/Oman National Day.webp" alt="Oman National Day Campaign" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-amber-400 border border-amber-500/30">
+                  Seasonal
+                </div>
+              </div>
+              <div className="px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-semibold">Regional Campaign</span>
+                <h4 className="text-sm font-bold text-white mt-0.5">Oman National Day Push</h4>
+                <p className="text-xs text-zinc-400 mt-1 font-light">Localized holiday promotion scaling regional brand awareness in Oman.</p>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/new.webp')}
+              className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
+                <img src="/assets/images/brands/Aqua-Care/new.webp" alt="Hydration Lifestyle Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                  Lifestyle
+                </div>
+              </div>
+              <div className="px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">Brand Awareness</span>
+                <h4 className="text-sm font-bold text-white mt-0.5">Pure Mineral Hydration</h4>
+                <p className="text-xs text-zinc-400 mt-1 font-light">Health and lifestyle angle highlighting pure mineralized water for wellness.</p>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.jpg')}
+              className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-purple-500/40 transition-all duration-300 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
+                <img src="/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.jpg" alt="Platinum Plus RO System" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-purple-400 border border-purple-500/30">
+                  High-Ticket
+                </div>
+              </div>
+              <div className="px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-semibold">Villa System</span>
+                <h4 className="text-sm font-bold text-white mt-0.5">Platinum Plus RO Faucet</h4>
+                <p className="text-xs text-zinc-400 mt-1 font-light">Premium architectural faucet & multi-stage filtration for luxury homes.</p>
               </div>
             </div>
           </div>
@@ -648,6 +902,24 @@ export default function AquaCareCaseStudy() {
             </div>
           </div>
         </section>
+
+        {/* Image Lightbox Modal */}
+        {selectedImage && (
+          <div 
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl bg-zinc-950 p-2" onClick={(e) => e.stopPropagation()}>
+              <button 
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/80 hover:bg-zinc-900 text-white flex items-center justify-center border border-white/20 transition-colors cursor-pointer shadow-lg"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <img src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

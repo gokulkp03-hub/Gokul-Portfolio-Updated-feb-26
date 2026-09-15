@@ -66,14 +66,22 @@ export default function About() {
                         <div className="lg:col-span-5">
                             <div className="relative max-w-sm mx-auto lg:max-w-none">
                                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border/60 bg-muted/20 shadow-xl">
-                                    <img
-                                        src="/assets/images/profile/gokul-kp-performance-marketer-dubai.webp"
-                                        alt="Gokul KP — Performance Marketer & Video Producer"
-                                        className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
-                                        onError={(e) => {
-                                            e.currentTarget.src = "/assets/images/profile/profile.webp";
-                                        }}
-                                    />
+                                    <picture>
+                                        <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
+                                        <img
+                                            src="/assets/images/profile/gokul-kp.jpg"
+                                            alt="Gokul KP — Performance Marketer & Video Producer"
+                                            title="Gokul KP"
+                                            width="1080"
+                                            height="1616"
+                                            loading="eager"
+                                            decoding="async"
+                                            className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.jpg";
+                                            }}
+                                        />
+                                    </picture>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                                     <div className="absolute bottom-5 left-5 right-5 text-white">
                                         <p className="text-sm font-semibold tracking-wide">Gokul KP</p>

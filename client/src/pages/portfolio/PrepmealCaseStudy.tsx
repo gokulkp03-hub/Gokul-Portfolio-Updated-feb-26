@@ -1,10 +1,12 @@
-import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { ArrowLeft, Eye, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { MorphBlob } from "@/components/ui/MorphBlob";
 
 export default function PrepmealCaseStudy() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -138,17 +140,38 @@ export default function PrepmealCaseStudy() {
 
         <div className="space-y-24 mt-24">
             {/* The Challenge */}
-            <section className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 <div className="md:col-span-4">
                     <h2 className="text-2xl font-display font-bold text-foreground">The Challenge</h2>
+                    <p className="text-xs text-muted-foreground mt-1">Market Saturation & High CAC</p>
                 </div>
-                <div className="md:col-span-8 prose prose-invert">
-                    <p className="text-lg text-muted-foreground font-light leading-relaxed">
-                        The UAE meal prep market is highly saturated with established players holding substantial market share. Prepmeal needed to launch as a fresh, health-focused alternative without an initial customer base, while keeping customer acquisition costs viable for a subscription model.
-                    </p>
-                    <p className="text-lg text-muted-foreground font-light leading-relaxed mt-4">
-                        The objective was building a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp inquiries at scale, while continuously optimizing cost-per-conversation.
-                    </p>
+                <div className="md:col-span-8">
+                    <div className="space-y-4">
+                        <p className="text-base sm:text-lg text-muted-foreground font-light leading-relaxed">
+                            The UAE meal prep market is highly saturated with established players holding substantial market share. Prepmeal needed to launch as a fresh, health-focused alternative without an initial customer base, while keeping customer acquisition costs viable for a subscription model.
+                        </p>
+                        <p className="text-base sm:text-lg text-muted-foreground font-light leading-relaxed">
+                            The objective was building a cost-effective performance marketing engine on Meta Ads to drive high-intent WhatsApp inquiries at scale, while continuously optimizing cost-per-conversation.
+                        </p>
+                    </div>
+
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.jpg')}
+                        className="mt-6 aspect-[21/9] rounded-2xl overflow-hidden border border-border/40 bg-muted/20 group cursor-pointer relative shadow-lg"
+                    >
+                        <img 
+                            src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" 
+                            alt="Prepmeal Fresh Culinary Production" 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs">
+                            <span className="font-semibold">In-House Culinary Asset Production · Chicken Pesto Bowl</span>
+                            <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono flex items-center gap-1">
+                                <Eye className="w-3 h-3 text-emerald-400" /> View
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -156,20 +179,134 @@ export default function PrepmealCaseStudy() {
             <section className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 <div className="md:col-span-4">
                     <h2 className="text-2xl font-display font-bold text-foreground">The Strategy</h2>
+                    <p className="text-xs text-muted-foreground mt-1">Full-Funnel Meta Advertising</p>
                 </div>
                 <div className="md:col-span-8">
-                    <div className="space-y-8">
-                        <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">1. Creative Production</h3>
-                            <p className="text-muted-foreground font-light">Instead of relying on standard stock imagery, localized short-form video shoots were produced to emphasize freshness, macro-nutrients, and everyday convenience tailored to busy Dubai professionals.</p>
+                    <div className="space-y-6">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
+                            className="p-6 rounded-2xl bg-muted/20 border border-border/40 hover:border-emerald-500/30 transition-all group cursor-pointer"
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+                                <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
+                                    <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                </div>
+                                <div className="sm:col-span-7">
+                                    <h3 className="text-lg font-bold text-emerald-500 mb-2">1. Creative Production</h3>
+                                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                                        Instead of standard stock imagery, localized short-form video and crisp food photography shoots were produced to emphasize freshness, macro-nutrients, and convenience for Dubai professionals.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">2. Direct WhatsApp Funnel</h3>
-                            <p className="text-muted-foreground font-light">WhatsApp direct chat campaigns lowered friction for potential subscribers and enabled immediate meal plan consultations with the sales team.</p>
+
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
+                            className="p-6 rounded-2xl bg-muted/20 border border-border/40 hover:border-emerald-500/30 transition-all group cursor-pointer"
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+                                <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
+                                    <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                </div>
+                                <div className="sm:col-span-7">
+                                    <h3 className="text-lg font-bold text-emerald-500 mb-2">2. Direct WhatsApp Funnel</h3>
+                                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                                        WhatsApp direct chat campaigns lowered friction for potential subscribers and enabled immediate meal plan consultations with the sales desk, avoiding lengthy website checkout funnels.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="p-8 rounded-2xl bg-muted/20 border border-border/40">
-                            <h3 className="text-lg font-bold text-emerald-500 mb-3">3. Offer Testing</h3>
-                            <p className="text-muted-foreground font-light">Testing promotional hooks and discount angles identified high-converting offers. The stand-out July Promo campaign delivered a 10.3% CTR and reduced messaging costs to AED 3.72 per conversation.</p>
+
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
+                            className="p-6 rounded-2xl bg-muted/20 border border-border/40 hover:border-emerald-500/30 transition-all group cursor-pointer"
+                        >
+                            <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+                                <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
+                                    <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                </div>
+                                <div className="sm:col-span-7">
+                                    <h3 className="text-lg font-bold text-emerald-500 mb-2">3. Offer Testing</h3>
+                                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                                        Testing promotional hooks and discount angles identified high-converting offers. The stand-out July Promo campaign delivered a 10.3% CTR and reduced messaging costs to AED 3.72 per conversation.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Visual Culinary Creative Showcase */}
+            <section className="space-y-6">
+                <div>
+                    <span className="text-xs font-mono uppercase tracking-widest text-emerald-500">Visual Asset Library</span>
+                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mt-1">
+                        High-Converting Culinary Creatives
+                    </h2>
+                    <p className="text-sm text-muted-foreground font-light mt-1">
+                        A curated snapshot of high-retention food styling and advertising assets shot for Meta Ads.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.jpg')}
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
+                    >
+                        <img src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" alt="Chicken Pesto" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span className="text-xs font-semibold text-white">Chicken Pesto Bowl</span>
+                        </div>
+                    </div>
+
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
+                    >
+                        <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Protein Pancakes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span className="text-xs font-semibold text-white">Fluffy Protein Pancakes</span>
+                        </div>
+                    </div>
+
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
+                    >
+                        <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span className="text-xs font-semibold text-white">Chicken Butter Burrito</span>
+                        </div>
+                    </div>
+
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
+                    >
+                        <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span className="text-xs font-semibold text-white">Sourdough Labneh & Zaatar</span>
+                        </div>
+                    </div>
+
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.jpg')}
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
+                    >
+                        <img src="/assets/images/case-studies/prepmeal/Acai Smoothie.jpg" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span className="text-xs font-semibold text-white">Superfood Acai Smoothie</span>
+                        </div>
+                    </div>
+
+                    <div 
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.jpg')}
+                        className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
+                    >
+                        <img src="/assets/images/case-studies/prepmeal/Macros Club.jpg" alt="Macros Club Lifestyle" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                            <span className="text-xs font-semibold text-white">Macros Club Social Creative</span>
                         </div>
                     </div>
                 </div>
@@ -292,42 +429,60 @@ export default function PrepmealCaseStudy() {
                 </div>
                 <div className="md:col-span-8">
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.jpg')}
+                            className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
+                        >
                             <img src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" alt="Chicken Pesto Meal Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Chicken Pesto Macro Meal</span>
                             </div>
                         </div>
 
-                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
+                            className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
+                        >
                             <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Sourdough & Labneh Prep</span>
                             </div>
                         </div>
 
-                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.jpg')}
+                            className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
+                        >
                             <img src="/assets/images/case-studies/prepmeal/Acai Smoothie.jpg" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fresh Organic Acai</span>
                             </div>
                         </div>
 
-                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
+                            className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
+                        >
                             <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">High-Protein Burrito</span>
                             </div>
                         </div>
 
-                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
+                            className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
+                        >
                             <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fitness Protein Pancakes</span>
                             </div>
                         </div>
 
-                        <div className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative">
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.jpg')}
+                            className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
+                        >
                             <img src="/assets/images/case-studies/prepmeal/Macros Club.jpg" alt="Prepmeal Plan Menu" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Macro Meal Card</span>
@@ -337,6 +492,25 @@ export default function PrepmealCaseStudy() {
                 </div>
             </section>
         </div>
+
+        {/* Image Lightbox Modal */}
+        {selectedImage && (
+          <div 
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="relative max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-zinc-950 p-2" onClick={(e) => e.stopPropagation()}>
+              <button 
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/80 hover:bg-zinc-900 text-white flex items-center justify-center border border-white/20 transition-colors cursor-pointer shadow-lg"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <img src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );

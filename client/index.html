@@ -44,11 +44,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Bing Webmaster Site Verification -->
   <meta name="msvalidate.01" content="794AC79E0B6E4617CC5D2DBD0818E3C8" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48 32x32 16x16" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Fonts Preconnect & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,7 +73,12 @@
   <meta property="og:title" content="Gokul KP — Performance Marketer & Video Producer | Dubai" />
   <meta property="og:description"
     content="Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS." />
-  <meta property="og:image" content="https://www.gokulkp.com/assets/images/profile/gokul-kp-performance-marketer-dubai.webp" />
+  <meta property="og:image" content="https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg" />
+  <meta property="og:image:secure_url" content="https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="1616" />
+  <meta property="og:image:alt" content="Gokul KP — Performance Marketer & Video Producer in Dubai, UAE" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
@@ -78,7 +86,8 @@
   <meta property="twitter:title" content="Gokul KP — Performance Marketer & Video Producer | Dubai" />
   <meta property="twitter:description"
     content="Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS." />
-  <meta property="twitter:image" content="https://www.gokulkp.com/assets/images/profile/gokul-kp-performance-marketer-dubai.webp" />
+  <meta property="twitter:image" content="https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg" />
+  <meta property="twitter:image:alt" content="Gokul KP — Performance Marketer & Video Producer in Dubai, UAE" />
 
   <!-- Structured JSON-LD Schema Markup -->
   <!-- 1. Person schema — enables Google Knowledge Panel eligibility -->
@@ -91,10 +100,20 @@
     "description": "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS.",
     "url": "https://www.gokulkp.com",
     "image": [
-      "https://www.gokulkp.com/assets/images/profile/gokul-kp-performance-marketer-dubai.webp",
-      "https://www.gokulkp.com/assets/images/profile/gokul-kp-video-editor-uae.webp",
-      "https://www.gokulkp.com/assets/images/profile/gokul-kp-videographer-dubai.webp",
-      "https://www.gokulkp.com/assets/images/profile/gokul-kp-ad-creative-specialist.webp"
+      {
+        "@type": "ImageObject",
+        "url": "https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg",
+        "contentUrl": "https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg",
+        "caption": "Gokul KP — Performance Marketer & Video Producer in Dubai, UAE",
+        "name": "Gokul KP"
+      },
+      {
+        "@type": "ImageObject",
+        "url": "https://www.gokulkp.com/assets/images/profile/gokul-kp-dubai.jpg",
+        "contentUrl": "https://www.gokulkp.com/assets/images/profile/gokul-kp-dubai.jpg",
+        "caption": "Gokul KP — Creative Producer & Meta Ads Specialist in Dubai",
+        "name": "Gokul KP Dubai"
+      }
     ],
     "address": {
       "@type": "PostalAddress",
@@ -143,13 +162,25 @@
   }
   </script>
 
-  <!-- 3. ProfessionalService schema — helps local search for 'performance marketer dubai' -->
+  <!-- 3. Organization schema — defines official brand logo for Google Search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Gokul KP",
+    "url": "https://www.gokulkp.com",
+    "logo": "https://www.gokulkp.com/logo.png"
+  }
+  </script>
+
+  <!-- 4. ProfessionalService schema — helps local search for 'performance marketer dubai' -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Gokul KP — Performance Marketing & Video Production",
     "url": "https://www.gokulkp.com",
+    "logo": "https://www.gokulkp.com/logo.png",
     "image": "https://www.gokulkp.com/assets/images/profile/profile.webp",
     "description": "Video production and performance marketing services for B2B and B2C brands in UAE and Oman. Specialising in Meta Ads, WhatsApp lead generation, and commercial video editing.",
     "address": {
@@ -275,6 +306,10 @@
     </header>
     <main>
       <h1>Gokul KP — Performance Marketer & Video Producer in Dubai, UAE</h1>
+      <figure style="max-width: 400px; margin: 1rem 0;">
+        <img src="/assets/images/profile/gokul-kp.jpg" alt="Gokul KP — Performance Marketer & Video Producer in Dubai, UAE" title="Gokul KP" width="1080" height="1616" style="width: 100%; height: auto;" />
+        <figcaption>Gokul KP — Performance Marketer & Video Producer in Dubai, UAE</figcaption>
+      </figure>
       <p>Performance-driven marketing campaigns, commercial video production, and high-converting Meta ad creatives built to scale GCC brands. Managed AED 166,000+ in spend, driving 7,300+ direct WhatsApp leads and up to 4.45x average ROAS across the UAE & Oman.</p>
 
       <section>

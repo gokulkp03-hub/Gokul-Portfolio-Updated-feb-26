@@ -79,8 +79,8 @@ export default function PhotoService() {
     return (
         <div className="min-h-screen bg-neutral-950 text-white selection:bg-amber-400 selection:text-black">
             <SEO 
-                title="Gokul KP — Commercial Photography" 
-                description="Commercial photography for food, products, and brands in Dubai and the UAE. Still photography designed for menus, packaging, and digital ad campaigns." 
+                title="Gokul KP — Creative & Brand Photography" 
+                description="Creative photography for food, products, and brands in Dubai and the UAE. Still photography designed for menus, packaging, and digital ad campaigns." 
                 url="/portfolio/photo" 
             />
             
@@ -88,9 +88,9 @@ export default function PhotoService() {
             <PhotoShaderHero
                 imageSrc="/assets/images/photography/photo-hero-camera.jpg"
                 fallbackSrc="/assets/images/photography/photo-hero-camera.jpg"
-                headlineLine1="Commercial"
+                headlineLine1="Creative"
                 headlineLine2="Photography"
-                sublabel="Food, product, and brand photography built for digital feeds and commercial campaigns."
+                sublabel="Food, product, and brand photography built for modern brands and visual feeds."
             />
 
             {/* 2. Food & Culinary Stills Archive Grid */}

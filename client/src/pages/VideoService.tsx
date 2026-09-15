@@ -84,8 +84,8 @@ export default function VideoService() {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
             <SEO 
-                title="Gokul KP — Commercial Video Production"
-                description="Commercial video production, brand films, product videos, and social ad creative for brands in Dubai and the UAE."
+                title="Gokul KP — Video Production & Brand Films"
+                description="Brand films, high-retention video creative, product videos, and social ad creative for brands in Dubai and the UAE."
                 url="/portfolio/video"
             />
             {/* Cinematic Background - No Blobs */}
@@ -113,13 +113,13 @@ export default function VideoService() {
                 <div className="relative z-30 container text-center px-4 max-w-5xl mx-auto">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                         <span className="inline-block py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-xs font-mono uppercase tracking-[0.25em] mb-6 backdrop-blur-md">
-                            Commercial Video Production
+                            Video Production & Brand Films
                         </span>
                         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight mb-6 text-white uppercase leading-[1.05]">
                             Video That Has <span className="text-zinc-500">A Job To Do.</span>
                         </h1>
                         <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-10 font-light tracking-tight leading-relaxed">
-                            Commercial and social content designed to communicate clearly — not just look cinematic. Shot, edited, and formatted for real distribution.
+                            Brand storytelling and social content designed to communicate clearly — not just look cinematic. Shot, edited, and formatted for real distribution.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a href="#works" className="btn bg-white text-black hover:bg-zinc-200 px-8 py-4 rounded-full font-semibold flex items-center gap-2 group transition-all">

@@ -75,13 +75,13 @@ export default function Home() {
 
             {/* Actions */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <a 
-                href="#work" 
-                className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 shadow-lg shadow-orange-500/20 text-center"
-              >
-                View Selected Work
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              <Link href="/portfolio">
+                <a className="group relative inline-flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 text-center overflow-hidden">
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                  <span className="relative z-10">Explore Portfolio</span>
+                  <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </Link>
               <Link href="/contact">
                 <a className="inline-flex items-center justify-center gap-2 bg-muted/40 hover:bg-muted/70 text-foreground font-medium px-8 py-4 rounded-full border border-border/60 transition-colors text-center">
                   Let's Talk
@@ -145,11 +145,12 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-4 flex items-center gap-4">
                     <Link href="/marketing/aqua-care-uae">
-                      <a className="inline-flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors">
-                        Read Case Study
-                        <ArrowRight className="w-4 h-4" />
+                      <a className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/35 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 overflow-hidden">
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                        <span className="relative z-10 tracking-wide">Read Full Case Study</span>
+                        <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
                       </a>
                     </Link>
                   </div>
@@ -204,11 +205,12 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-4 flex items-center gap-4">
                     <Link href="/marketing/prepmeal">
-                      <a className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-orange-500 transition-colors">
-                        Read Case Study
-                        <ArrowRight className="w-4 h-4" />
+                      <a className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/35 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 overflow-hidden">
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                        <span className="relative z-10 tracking-wide">Read Full Case Study</span>
+                        <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
                       </a>
                     </Link>
                   </div>
@@ -226,29 +228,29 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Project 3: Commercial Video */}
+            {/* Project 3: Video Production */}
             <div className="p-8 md:p-12 rounded-[2rem] border border-border/60 bg-muted/10 hover:border-border/90 transition-all duration-300">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div className="lg:col-span-7 space-y-6">
                   <div className="flex items-center gap-3">
                     <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/40">
-                      Commercial Video Production
+                      Video Production & Direction
                     </span>
-                    <span className="text-xs font-mono text-muted-foreground">Automotive & Corporate</span>
+                    <span className="text-xs font-mono text-muted-foreground">Automotive & Lifestyle</span>
                   </div>
 
                   <h3 className="text-2xl sm:text-4xl font-display font-bold text-foreground">
-                    Commercial Video & Brand Films
+                    Cinematic Video & Brand Films
                   </h3>
 
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    Commercial shoots and brand films for automotive, hospitality, and corporate clients across the UAE and India — including Beyond Cars, Acero Steel, and regional lifestyle brands.
+                    Brand films and high-retention video productions for automotive, hospitality, and lifestyle brands across the UAE and India — including Beyond Cars, Acero Steel, and regional labels.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 pt-2">
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
                       <p className="text-2xl font-display font-bold text-foreground tabular-nums">120+</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">commercial videos delivered</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">videos produced & delivered</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
                       <p className="text-2xl font-display font-bold text-foreground tabular-nums">5+</p>
@@ -256,11 +258,12 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-4 flex items-center gap-4">
                     <Link href="/video">
-                      <a className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-orange-500 transition-colors">
-                        Explore Video Portfolio
-                        <ArrowRight className="w-4 h-4" />
+                      <a className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/35 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 overflow-hidden">
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                        <span className="relative z-10 tracking-wide">Explore Video Portfolio</span>
+                        <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
                       </a>
                     </Link>
                   </div>
@@ -439,14 +442,22 @@ export default function Home() {
 
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border/60 bg-muted/20 max-w-sm mx-auto shadow-xl">
-                <img 
-                  src="/assets/images/profile/gokul-kp-performance-marketer-dubai.webp" 
-                  alt="Gokul KP — Digital Marketer & Creative Producer"
-                  className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
-                  onError={(e) => {
-                    e.currentTarget.src = "/assets/images/profile/profile.webp";
-                  }}
-                />
+                <picture>
+                  <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
+                  <img 
+                    src="/assets/images/profile/gokul-kp.jpg" 
+                    alt="Gokul KP — Digital Marketer & Creative Producer"
+                    title="Gokul KP"
+                    width="1080"
+                    height="1616"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
+                    onError={(e) => {
+                      e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.jpg";
+                    }}
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-5 left-5 right-5 text-white">
                   <p className="text-sm font-semibold">Gokul KP</p>
@@ -541,7 +552,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              Commercial films, short-form video ads, and product photography.
+              Cinematic brand films, high-retention video creative, and product photography.
             </p>
           </div>
 
@@ -552,7 +563,7 @@ export default function Home() {
           >
             <img 
               src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_1200,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg" 
-              alt="Commercial video showreel"
+              alt="Video showreel preview"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
@@ -570,26 +581,30 @@ export default function Home() {
           {/* Direct Navigation Links */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
             <Link href="/video">
-              <a className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:border-orange-500/30 transition-colors flex items-center justify-between group">
+              <a className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:border-orange-500/40 transition-all duration-300 flex items-center justify-between group hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/5">
                 <div>
                   <h3 className="text-xl font-display font-bold text-foreground group-hover:text-orange-500 transition-colors">
-                    Commercial Video Production
+                    Cinematic Video & Brand Films
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1">Brand films, Reels, and direct-response video</p>
+                  <p className="text-sm text-muted-foreground mt-1">Brand films, high-retention Reels, and visual storytelling</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-orange-500 group-hover:translate-x-1 transition-all" />
+                <div className="w-11 h-11 rounded-full bg-muted/40 border border-border/60 group-hover:bg-orange-500 group-hover:border-orange-500 flex items-center justify-center text-muted-foreground group-hover:text-white transition-all duration-300 shrink-0 ml-4 shadow-sm">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
               </a>
             </Link>
 
             <Link href="/photo">
-              <a className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:border-orange-500/30 transition-colors flex items-center justify-between group">
+              <a className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:border-orange-500/40 transition-all duration-300 flex items-center justify-between group hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/5">
                 <div>
                   <h3 className="text-xl font-display font-bold text-foreground group-hover:text-orange-500 transition-colors">
-                    Commercial Photography
+                    Creative & Product Photography
                   </h3>
                   <p className="text-sm text-muted-foreground mt-1">Product, culinary, and lifestyle visual assets</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-orange-500 group-hover:translate-x-1 transition-all" />
+                <div className="w-11 h-11 rounded-full bg-muted/40 border border-border/60 group-hover:bg-orange-500 group-hover:border-orange-500 flex items-center justify-center text-muted-foreground group-hover:text-white transition-all duration-300 shrink-0 ml-4 shadow-sm">
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
               </a>
             </Link>
           </div>

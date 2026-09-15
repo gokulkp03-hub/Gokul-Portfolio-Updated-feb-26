@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.gokulkp.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg</image:loc>
+      <image:title>Gokul KP</image:title>
+      <image:caption>Gokul KP — Performance Marketer &amp; Video Producer in Dubai, UAE</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.gokulkp.com/assets/images/profile/gokul-kp-dubai.jpg</image:loc>
+      <image:title>Gokul KP Dubai</image:title>
+      <image:caption>Gokul KP — Performance Marketing &amp; Video Production Specialist Dubai</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gokulkp.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gokulkp.com/assets/images/profile/gokul-kp.jpg</image:loc>
+      <image:title>Gokul KP</image:title>
+      <image:caption>About Gokul KP — Performance Marketer and Creative Producer in Dubai</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.gokulkp.com/assets/images/profile/gokul-kp-dubai.jpg</image:loc>
+      <image:title>Gokul KP On Location</image:title>
+      <image:caption>Gokul KP Commercial Production and Media Buying</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.gokulkp.com/portfolio</loc>
@@ -34,11 +60,6 @@
     <loc>https://www.gokulkp.com/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.gokulkp.com/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.gokulkp.com/contact</loc>
