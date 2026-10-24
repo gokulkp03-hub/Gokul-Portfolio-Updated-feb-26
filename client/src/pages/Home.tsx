@@ -192,7 +192,7 @@ export default function Home() {
                   </h3>
 
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    Content production and paid acquisition support for a healthy meal-prep brand. Over 150 vertical videos produced alongside AED 185,000+ in managed Meta ad spend.
+                    Content production and paid acquisition support for a healthy meal-prep brand. Over 150 vertical videos produced alongside AED 150,000+ in managed Meta ad spend.
                   </p>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
@@ -201,7 +201,7 @@ export default function Home() {
                       <p className="text-xs text-muted-foreground mt-0.5">vertical videos</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">AED 185K+</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">AED 150K+</p>
                       <p className="text-xs text-muted-foreground mt-0.5">Meta spend supported</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60 col-span-2 sm:col-span-1">

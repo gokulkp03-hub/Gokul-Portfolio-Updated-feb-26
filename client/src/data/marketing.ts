@@ -79,7 +79,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         platform: "Meta Ads & Short-form Video",
         title: "Acquisition Campaigns & Social Video",
         headline: "Content production and paid acquisition support for a subscription meal-prep brand.",
-        description: "Cross-channel content production and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with AED 185,000+ in spend.",
+        description: "Cross-channel content production and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with AED 150,000+ in spend.",
         objective: "Drive qualified messaging enquiries and subscription orders for weekly healthy meal plans.",
         challenge: "The meal-prep category has high competition and creative fatigue happens quickly, requiring continuous video production and offer iteration.",
         strategy: [
@@ -89,14 +89,14 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         execution: [
             "Scripted, shot, and edited 150+ vertical video assets for Instagram Reels and TikTok.",
-            "Supported Meta ad accounts with AED 185,000+ in spend across acquisition campaigns.",
+            "Supported Meta ad accounts with AED 150,000+ in spend across acquisition campaigns.",
             "Monitored lead quality with the sales team to adjust ad messaging and audience targeting."
         ],
         results: "Supported the delivery of 21,000+ meals, generated 6,133 messaging conversations, and contributed to a 3.5x ROAS on direct-response lead-gen campaigns.",
         metrics: [
             { label: "Meals Delivered", value: "21,000+", trend: "up" },
             { label: "Messaging Conversations", value: "6,133", trend: "up" },
-            { label: "Meta Spend Supported", value: "AED 185K+", trend: "up" },
+            { label: "Meta Spend Supported", value: "AED 150K+", trend: "up" },
             { label: "Lead-Gen ROAS", value: "3.5x", trend: "up" }
         ],
         visuals: [

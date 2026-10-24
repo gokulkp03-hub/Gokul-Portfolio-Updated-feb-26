@@ -51,7 +51,7 @@ export default function PrepmealCaseStudy() {
             <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-80 italic">Verified Performance (Meta Ads Lifetime)</span>
             <h2 className="text-5xl md:text-[6.5rem] font-display font-bold tracking-tighter leading-none mb-6">6,133 Inquiries</h2>
             <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-2xl">
-                Generated 6,133 messaging conversations from 4.4M+ impressions & AED 159.5K spend.
+                Generated 6,133 messaging conversations from 4.4M+ impressions & AED 150K+ spend.
             </p>
         </motion.div>
 
@@ -59,7 +59,7 @@ export default function PrepmealCaseStudy() {
             Prepmeal: Performance Marketing & Scale.
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mb-16 font-medium leading-relaxed">
-            Full-funnel Meta Ads strategy for a UAE meal-prep startup. Managed AED 159.5K+ in spend across 50 campaigns to scale WhatsApp customer conversations and subscription growth.
+            Full-funnel Meta Ads strategy for a UAE meal-prep startup. Managed AED 150K+ in spend across 50 campaigns to scale WhatsApp customer conversations and subscription growth.
         </p>
 
         {/* Meta */}
@@ -85,7 +85,7 @@ export default function PrepmealCaseStudy() {
                     <div className="text-xs text-muted-foreground uppercase tracking-wider">Conversations Started</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-foreground mb-2">AED 159.5K</div>
+                    <div className="text-3xl font-bold text-foreground mb-2">AED 150K+</div>
                     <div className="text-xs text-muted-foreground uppercase tracking-wider">Total Ad Spend</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
@@ -340,7 +340,7 @@ export default function PrepmealCaseStudy() {
                     <ul className="space-y-4 text-muted-foreground font-light text-lg">
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Managed AED 159.5K+ in spend across 50 campaigns on Meta Ads (Instagram & Facebook).</span>
+                            <span>Managed AED 150K+ in spend across 50 campaigns on Meta Ads (Instagram & Facebook).</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>

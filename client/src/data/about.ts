@@ -107,13 +107,13 @@ export const experiences: ExperienceItem[] = [
         summary: "Content production, social media, and paid acquisition support for a meal-prep subscription brand.",
         details: [
             "150+ vertical video assets produced for Instagram Reels and TikTok.",
-            "Meta ad campaigns supported with AED 185,000+ in spend.",
+            "Meta ad campaigns supported with AED 150,000+ in spend.",
             "Customer acquisition scaled to 21,000+ meals delivered."
         ],
         metrics: [
             { label: "Meals Delivered", value: "21,000+" },
             { label: "Vertical Videos", value: "150+" },
-            { label: "Meta Spend Supported", value: "AED 185K+" }
+            { label: "Meta Spend Supported", value: "AED 150K+" }
         ],
         tags: ["Short-form Video", "Subscription F&B", "Paid Acquisition"]
     },
