@@ -4,8 +4,32 @@ import { proof } from "@/data/proof";
 import { TrendingUp, Users, Target, BarChart3, PieChart, ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { marketingCampaigns as staticMarketing } from "@/data/marketing";
+
+function BrandLogoItem({ logo }: { logo: { name: string; src: string } }) {
+    const [hasError, setHasError] = useState(false);
+
+    return (
+        <div 
+            className="flex items-center justify-center p-3 sm:p-4 px-6 rounded-2xl bg-zinc-900/60 dark:bg-zinc-900/80 border border-white/10 dark:border-white/10 hover:border-orange-500/40 transition-all duration-300 min-h-[68px] min-w-[130px] max-w-[190px] shadow-sm backdrop-blur-sm"
+            title={logo.name}
+        >
+            {!hasError ? (
+                <img 
+                    src={logo.src} 
+                    alt={`${logo.name} logo`} 
+                    onError={() => setHasError(true)}
+                    className="h-8 md:h-10 w-auto max-w-[130px] object-contain opacity-85 hover:opacity-100 transition-all duration-300"
+                />
+            ) : (
+                <span className="font-display font-bold tracking-wider text-xs sm:text-sm text-foreground/90 uppercase text-center">
+                    {logo.name}
+                </span>
+            )}
+        </div>
+    );
+}
 
 export default function Results() {
     
@@ -103,11 +127,23 @@ export default function Results() {
                                     viewport={{ once: true }}
                                     className={i % 2 === 0 ? "order-1" : "order-1 lg:order-2"}
                                 >
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-500 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
-                                            <Target className="w-3 h-3" />
-                                            {camp.client || camp.title}
-                                        </span>
+                                    <div className="flex flex-wrap items-center gap-3 mb-6">
+                                        {camp.id === "aureum-asset-management" ? (
+                                            <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+                                                <Target className="w-3 h-3" />
+                                                STRATEGY &amp; CONSULTING
+                                            </span>
+                                        ) : (
+                                            <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-500 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+                                                <Target className="w-3 h-3" />
+                                                {camp.client || camp.title}
+                                            </span>
+                                        )}
+                                        {camp.id === "aureum-asset-management" && (
+                                            <span className="px-3 py-1 bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-full text-[10px] font-semibold tracking-wide">
+                                                {camp.client}
+                                            </span>
+                                        )}
                                         <span className="text-muted-foreground text-sm font-light italic">
                                             {industry}
                                         </span>
@@ -119,19 +155,56 @@ export default function Results() {
                                         {camp.description}
                                     </p>
 
-                                    {Array.isArray(parsedResults) && parsedResults.length > 0 && (
-                                        <div className="grid grid-cols-2 gap-8 mb-8">
-                                            {parsedResults.slice(0, 4).map((m: any, mi: number) => (
-                                                <div key={mi} className="border-l-2 border-orange-500/30 pl-6">
-                                                    <div className="text-3xl font-display font-bold text-foreground mb-1">
-                                                        {m.value}
+                                    {camp.id === "aureum-asset-management" ? (
+                                        <div className="space-y-6 mb-8">
+                                            <div>
+                                                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-bold mb-3 flex items-center gap-2">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                                    Outcomes (Achieved)
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-6">
+                                                    <div className="border-l-2 border-emerald-500/40 pl-6">
+                                                        <div className="text-3xl font-display font-bold text-foreground mb-1">5M+ sq ft</div>
+                                                        <div className="text-xs uppercase tracking-wider text-muted-foreground">Delivered Facilities</div>
                                                     </div>
-                                                    <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                                                        {m.label}
+                                                    <div className="border-l-2 border-emerald-500/40 pl-6">
+                                                        <div className="text-3xl font-display font-bold text-foreground mb-1">100+</div>
+                                                        <div className="text-xs uppercase tracking-wider text-muted-foreground">Enterprise Clients</div>
                                                     </div>
                                                 </div>
-                                            ))}
+                                            </div>
+                                            <div>
+                                                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-amber-400 font-bold mb-3 flex items-center gap-2">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                                                    Targets (Proposed)
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-6">
+                                                    <div className="border-l-2 border-amber-500/40 pl-6">
+                                                        <div className="text-3xl font-display font-bold text-foreground mb-1">AED 10M–50M+</div>
+                                                        <div className="text-xs uppercase tracking-wider text-muted-foreground">Target Deal Size</div>
+                                                    </div>
+                                                    <div className="border-l-2 border-amber-500/40 pl-6">
+                                                        <div className="text-3xl font-display font-bold text-foreground mb-1">8–12/mo</div>
+                                                        <div className="text-xs uppercase tracking-wider text-muted-foreground">Target Lead Pipeline</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                    ) : (
+                                        Array.isArray(parsedResults) && parsedResults.length > 0 && (
+                                            <div className="grid grid-cols-2 gap-8 mb-8">
+                                                {parsedResults.slice(0, 4).map((m: any, mi: number) => (
+                                                    <div key={mi} className="border-l-2 border-orange-500/30 pl-6">
+                                                        <div className="text-3xl font-display font-bold text-foreground mb-1">
+                                                            {m.value}
+                                                        </div>
+                                                        <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                                                            {m.label}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )
                                     )}
 
                                     <div className="flex flex-wrap gap-4 mt-8 items-center">
@@ -195,17 +268,16 @@ export default function Results() {
                     <h3 className="text-2xl font-display font-bold text-foreground mb-12">
                         Teams and Businesses I've Worked With
                     </h3>
-                    <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
+                    <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
                         {proof.logos.map((logo, i) => (
-                            <img 
-                                key={i} 
-                                src={logo.src} 
-                                alt={logo.name} 
-                                className="h-8 md:h-12 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-                                title={logo.name}
-                            />
+                            <BrandLogoItem key={i} logo={logo} />
                         ))}
                     </div>
+
+                    {/* Methodology note */}
+                    <p className="text-xs text-muted-foreground mt-16 max-w-2xl mx-auto leading-relaxed">
+                        Reporting period, role, and metric definitions are stated per case study.
+                    </p>
                 </div>
             </div>
         </div>

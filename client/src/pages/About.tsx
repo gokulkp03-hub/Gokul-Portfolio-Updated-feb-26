@@ -14,6 +14,9 @@ import {
 } from "lucide-react";
 
 export default function About() {
+    
+    // Feature gate: false until shoot photos of Gokul on set are supplied (see ASSET-MANIFEST.md)
+    const SHOW_ON_SET_ROW = false;
     return (
         <div className="min-h-screen bg-background pt-28 md:pt-36 pb-28 text-foreground">
             <SEO 
@@ -85,11 +88,11 @@ export default function About() {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                                     <div className="absolute bottom-5 left-5 right-5 text-white">
                                         <p className="text-sm font-semibold tracking-wide">Gokul KP</p>
-                                        <p className="text-xs text-white/70 font-mono">Performance Marketing & Creative Direction</p>
+                                        <p className="text-xs text-white/70 font-mono">Performance Marketer &amp; Video Producer</p>
                                     </div>
                                 </div>
                                 <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground font-mono px-1">
-                                    <span>Base: Dubai & India</span>
+                                    <span>Base: Dubai, UAE</span>
                                     <span>Focus: Meta Ads + Video</span>
                                 </div>
                             </div>
@@ -179,6 +182,35 @@ export default function About() {
                         ))}
                     </div>
                 </section>
+
+                {/* ─── ON SET (FEATURE-GATED — Task 11) ────────────────────── */}
+                {/* Gated off until new shoot photos of Gokul on set exist (see ASSET-MANIFEST.md) */}
+                {SHOW_ON_SET_ROW && (
+                    <section className="space-y-8">
+                        <div className="border-b border-border/40 pb-6">
+                            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Production</p>
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground uppercase">
+                                On Set &amp; In The Field
+                            </h2>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-border/40 bg-muted/20 relative">
+                                <img 
+                                    src="/assets/images/profile/on-set-1.webp" 
+                                    alt="Gokul KP directing commercial video shoot on set" 
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-border/40 bg-muted/20 relative">
+                                <img 
+                                    src="/assets/images/profile/on-set-2.webp" 
+                                    alt="Gokul KP on location during commercial production" 
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+                    </section>
+                )}
 
                 {/* 4. EXPERIENCE */}
                 <section className="space-y-10">

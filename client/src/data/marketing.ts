@@ -111,7 +111,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         featured: true,
         role: "Social Media Manager",
         duration: "Jan 2023 — Sep 2025",
-        logoUrl: "/assets/images/logos/prepmeal.png"
+        logoUrl: "/assets/images/logos/PrepMeal.png"
     },
     {
         id: "aureum-asset-management",
@@ -268,7 +268,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Conversion Rate", value: "1.8%", trend: "up" }
         ],
         visuals: [
-            "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+            "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
             "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg"
         ],
         learnings: [

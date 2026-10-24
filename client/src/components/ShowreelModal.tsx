@@ -9,17 +9,25 @@ interface ShowreelModalProps {
 }
 
 export default function ShowreelModal({ isOpen, onClose, videoId = "VIDEO_ID" }: ShowreelModalProps) {
-    // Lock body scroll when modal is open
+    // Lock body scroll and listen for Escape key when modal is open
     useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                onClose();
+            }
+        };
+
         if (isOpen) {
             document.body.style.overflow = "hidden";
+            window.addEventListener("keydown", handleKeyDown);
         } else {
             document.body.style.overflow = "unset";
         }
         return () => {
             document.body.style.overflow = "unset";
+            window.removeEventListener("keydown", handleKeyDown);
         };
-    }, [isOpen]);
+    }, [isOpen, onClose]);
 
     return (
         <AnimatePresence>

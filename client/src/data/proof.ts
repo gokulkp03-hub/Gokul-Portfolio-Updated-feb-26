@@ -15,11 +15,11 @@ export const proof = {
     ] as Metric[],
     logos: [
         { name: "Aqua Care", src: "/assets/images/logos/Aquacare logo.png" },
-        { name: "PrepMeal", src: "/assets/images/logos/prepmeal.png" },
+        { name: "PrepMeal", src: "/assets/images/logos/PrepMeal.png" },
         { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.png" },
-        { name: "Acero Steel", src: "/assets/images/logos/acero.png" },
+        { name: "Acero Steel", src: "/assets/images/logos/Acero.png" },
         { name: "Ecom 100", src: "/assets/images/logos/ecom-100.png" },
-        { name: "Q4 Clean Home", src: "/assets/images/logos/q4c.png" },
+        { name: "Q4 Clean Home", src: "/assets/images/logos/Q4c.png" },
         { name: "Healthy Meals", src: "/assets/images/logos/healthy-meals.png" }
     ],
     testimonials: [

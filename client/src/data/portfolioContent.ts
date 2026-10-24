@@ -19,7 +19,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Wedding_reel_1_quwexf",
                 title: "Wedding Reel 1",
                 description: "Cinematic wedding highlights capturing the special moments",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Wedding_reel_1_quwexf.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Wedding_reel_1_quwexf.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -28,7 +28,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "5_t1jx9h",
                 title: "Wedding Film 5",
                 description: "Beautiful wedding ceremony and celebration",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/5_t1jx9h.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/5_t1jx9h.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -37,7 +37,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "2_uccbkl",
                 title: "Wedding Film 2",
                 description: "Romantic wedding story beautifully captured",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_uccbkl.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/2_uccbkl.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -46,7 +46,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "3_ulirqi",
                 title: "Wedding Film 3",
                 description: "Elegant wedding moments and emotions",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/3_ulirqi.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/3_ulirqi.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -55,7 +55,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "6_yeqql7",
                 title: "Wedding Film 6",
                 description: "Timeless wedding memories captured in film",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_yeqql7.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/6_yeqql7.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -64,7 +64,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "4_m0jo3z",
                 title: "Wedding Film 4",
                 description: "Joyful celebration of love and unity",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/4_m0jo3z.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/4_m0jo3z.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -73,7 +73,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "11_xadimf",
                 title: "Wedding Film 11",
                 description: "Stunning wedding cinematography",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/11_xadimf.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/11_xadimf.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -82,7 +82,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "14_ijw1ew",
                 title: "Wedding Film 14",
                 description: "Memorable wedding day highlights",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/14_ijw1ew.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/14_ijw1ew.jpg",
                 aspectRatio: "horizontal"
             }
         ],
@@ -93,7 +93,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Quant_hmvjvq",
                 title: "Quant Event Highlight",
                 description: "Cinematic coverage of the Quant event in Dubai.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Quant_hmvjvq.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Quant_hmvjvq.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -102,7 +102,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Inauguration_1_ltmw5l",
                 title: "Grand Inauguration",
                 description: "Official ceremony and ribbon cutting highlights.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Inauguration_1_ltmw5l.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Inauguration_1_ltmw5l.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -111,7 +111,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Game_Street_Reel_1_zosjmg",
                 title: "Game Street Event",
                 description: "Dynamic vertical coverage of the Game Street showcase.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Game_Street_Reel_1_zosjmg.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Game_Street_Reel_1_zosjmg.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -120,7 +120,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Retro_5_wukctg",
                 title: "Retro Event 5",
                 description: "Professional event coverage with cinematic storytelling.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Retro_5_wukctg.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Retro_5_wukctg.jpg",
                 aspectRatio: "horizontal"
             },
             {
@@ -129,7 +129,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Burj_2_hcocpv",
                 title: "Burj Event 2",
                 description: "High-end event videography capturing key moments.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Burj_2_hcocpv.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Burj_2_hcocpv.jpg",
                 aspectRatio: "horizontal"
             }
         ],
@@ -141,7 +141,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Boss_1_znnsfe",
                 title: "Personal Branding - Episode 1",
                 description: "High-impact vertical brand story.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Boss_1_znnsfe.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -150,7 +150,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 cloudinaryId: "Boss_2_final_zjfhqk",
                 title: "Personal Branding - Episode 2",
                 description: "The journey of building a premium personal brand.",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_2_final_zjfhqk.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Boss_2_final_zjfhqk.jpg",
                 aspectRatio: "vertical"
             }
         ],
@@ -160,7 +160,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "2_n4wvsc",
                 title: "Brand Identity Story",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/2_n4wvsc.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/2_n4wvsc.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -168,7 +168,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "Akhil_frnd_n46qlh",
                 title: "Professional Showcase",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Akhil_frnd_n46qlh.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Akhil_frnd_n46qlh.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -176,7 +176,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "8_uyanbn",
                 title: "Corporate Excellence",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/8_uyanbn.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/8_uyanbn.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -184,7 +184,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "Anu-_2_ziwvlp",
                 title: "Creative Branding",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Anu-_2_ziwvlp.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Anu-_2_ziwvlp.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -192,7 +192,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "15_vn0m4b",
                 title: "Visual Brand Story",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/15_vn0m4b.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/15_vn0m4b.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -200,7 +200,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "1_ymkybg",
                 title: "Brand Connection",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/1_ymkybg.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/1_ymkybg.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -208,7 +208,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "10_exc2jg",
                 title: "Premium Identity",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/10_exc2jg.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/10_exc2jg.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -216,7 +216,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "12_zhg9oi",
                 title: "Modern Professional",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/12_zhg9oi.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/12_zhg9oi.jpg",
                 aspectRatio: "vertical"
             }
         ]
@@ -265,7 +265,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "6_ci2fz2",
                 title: "Dynamic Motion Reel",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/6_ci2fz2.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/6_ci2fz2.jpg",
                 aspectRatio: "vertical"
             },
             {
@@ -273,7 +273,7 @@ export const portfolioContent: Record<string, Record<string, PortfolioItem[]>> =
                 type: "cloudinary",
                 cloudinaryId: "Ziya_5_easwfm",
                 title: "Creative Transitions",
-                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Ziya_5_easwfm.jpg",
+                thumbnail: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Ziya_5_easwfm.jpg",
                 aspectRatio: "vertical"
             }
         ],

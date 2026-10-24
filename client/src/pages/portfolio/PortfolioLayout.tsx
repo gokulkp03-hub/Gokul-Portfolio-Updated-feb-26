@@ -167,7 +167,7 @@ export default function PortfolioLayout() {
                         </motion.h1>
                         <p className="text-xl text-muted-foreground font-normal leading-relaxed">
                             {filteredProjects.length > 0 
-                                ? `${filteredProjects.length} selective campaigns across performance marketing, cinematic video, and commercial media.`
+                                ? `${filteredProjects.length} selected campaigns across performance marketing, cinematic video, and commercial media.`
                                 : "A complete collection across video production, photography, social content, and performance advertising."
                             }
                         </p>

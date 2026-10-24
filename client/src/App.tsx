@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Redirect } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "@/components/layout/Navbar";
@@ -97,9 +97,9 @@ function Router() {
           <Suspense fallback={<div className="min-h-screen bg-background" />}>
             <Switch>
               <Route path="/" component={Home} />
-              <Route path="/portfolio/video" component={VideoService} />
-              <Route path="/portfolio/photo" component={PhotoService} />
-              <Route path="/portfolio/marketing" component={MarketingService} />
+              <Route path="/portfolio/video">{() => <Redirect to="/video" replace />}</Route>
+              <Route path="/portfolio/photo">{() => <Redirect to="/photo" replace />}</Route>
+              <Route path="/portfolio/marketing">{() => <Redirect to="/marketing" replace />}</Route>
               <Route path="/video" component={VideoService} />
               <Route path="/photo" component={PhotoService} />
               <Route path="/marketing" component={MarketingService} />

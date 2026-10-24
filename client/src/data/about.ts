@@ -33,12 +33,12 @@ export interface BehindCampaignProject {
 
 export const bio = {
     name: "Gokul KP",
-    role: "Digital Marketer & Creative Producer",
+    role: "Performance Marketer & Video Producer",
     eyebrow: "ABOUT",
     headline: "Creative meets performance.",
-    location: "UAE & India",
+    location: "Dubai, UAE • GCC & India",
     status: "Available for select roles & projects",
-    intro: "Digital marketer and creative producer working across the GCC and India. The work sits between paid media and creative production — planning campaigns, shooting and editing ad creative, managing ad accounts, and tracking what actually converts into sales conversations.",
+    intro: "Performance marketer and video producer working across Dubai, the GCC, and India. The work sits between paid media and creative production — planning campaigns, shooting and editing ad creative, managing ad accounts, and tracking what actually converts into sales conversations.",
     statement: "Most careers sit on one side of the table — either creative or marketing. Having worked across both makes it possible to take an idea from camera to Ads Manager, and follow it all the way to the sales conversation.",
     loop: [
         { step: "01", name: "Angle", detail: "Hook & offer" },

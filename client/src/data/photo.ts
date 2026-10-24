@@ -43,7 +43,7 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "perfume-galaxy-1",
         title: "Galaxy Star Fragrance",
-        image: "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+        image: "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
         category: "Product",
         description: "High-end product photography for luxury fragrance brands."
     },

@@ -14,25 +14,30 @@ export default function WhatsAppButton() {
     return (
         <AnimatePresence>
             {isVisible && (
-                <div className="fixed bottom-0 left-0 right-0 z-[60] p-4 md:p-8 pointer-events-none flex justify-center md:justify-end">
+                <div className="fixed bottom-0 left-0 right-0 z-[60] p-4 md:p-8 pointer-events-none flex justify-end">
                     <motion.div 
                         initial={{ y: 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: 100, opacity: 0 }}
-                        className="pointer-events-auto flex items-center gap-2 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-full p-2 pr-6 shadow-2xl md:hidden"
+                        style={{
+                            marginBottom: "var(--consent-banner-height, 0px)",
+                            transition: "margin-bottom 0.3s ease"
+                        }}
+                        className="pointer-events-auto flex items-center gap-2 bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full p-2 pr-4 shadow-2xl md:hidden"
                     >
                         <a 
                             href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => trackEvent('whatsapp_click')}
-                            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+                            className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors shrink-0"
+                            aria-label="Chat on WhatsApp"
                         >
-                            <MessageCircle size={24} fill="currentColor" />
+                            <MessageCircle size={20} fill="currentColor" />
                         </a>
-                        <div className="flex flex-col">
-                            <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Quick Contact</span>
-                            <span className="text-xs text-white font-medium">WhatsApp Me</span>
+                        <div className="flex flex-col pr-1">
+                            <span className="text-[9px] text-white/50 uppercase tracking-widest font-bold">Quick Contact</span>
+                            <span className="text-xs text-white font-medium">WhatsApp</span>
                         </div>
                     </motion.div>
 

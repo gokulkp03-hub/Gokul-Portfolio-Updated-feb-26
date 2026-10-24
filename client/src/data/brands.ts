@@ -95,7 +95,7 @@ export const brands: Brand[] = [
         logo: "/assets/images/brands/brand-3.png",
         items: [
             "/assets/images/brands/Galaxy-Star/AD 2 DEC.jpg",
-            "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+            "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
             "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg",
             "/assets/images/brands/Galaxy-Star/OCT 4.jpg",
             "/assets/images/brands/Galaxy-Star/AD 3 DEC.jpg",

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Camera, ArrowUpRight, X, ChevronRight } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "wouter";
 import { videoProjects } from "@/data/video";
 import { photoProjects } from "@/data/photo";
@@ -16,6 +16,22 @@ export function WorkPreviewStrip() {
   const [activeTab, setActiveTab] = useState<Tab>("video");
   const [lightbox, setLightbox] = useState<{ type: Tab; src: string; title: string; category: string } | null>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    if (lightbox) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [lightbox]);
 
   function handleVideoHover(id: string, entering: boolean) {
     const video = videoRefs.current[id];
@@ -164,7 +180,7 @@ export function WorkPreviewStrip() {
 
           {/* View All CTA */}
           <div className="mt-10 flex justify-center">
-            <Link href={activeTab === "video" ? "/portfolio/video" : "/portfolio/photo"}>
+            <Link href={activeTab === "video" ? "/video" : "/photo"}>
               <span className="inline-flex items-center gap-2 btn-outline rounded-full px-8 py-4 text-sm font-semibold cursor-pointer group">
                 See All {activeTab === "video" ? "Video Work" : "Photography"}
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -86,7 +86,7 @@ export default function VideoService() {
             <SEO 
                 title="Gokul KP — Video Production & Brand Films"
                 description="Brand films, high-retention video creative, product videos, and social ad creative for brands in Dubai and the UAE."
-                url="/portfolio/video"
+                url="/video"
             />
             {/* Cinematic Background - No Blobs */}
             <div className="absolute inset-0 z-0 pointer-events-none bg-black">

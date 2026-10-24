@@ -181,7 +181,7 @@ export const projects: Project[] = [
         images: [
             "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg",
             "/assets/images/brands/Galaxy-Star/Galaxy 2.jpg",
-            "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg"
+            "/assets/images/brands/Galaxy-Star/galaxy-3.jpg"
         ],
         challenge: "Create consistent, high-quality product images that drive conversions.",
         solution: "Developed a standardized lighting setup and post-processing workflow for brand consistency.",

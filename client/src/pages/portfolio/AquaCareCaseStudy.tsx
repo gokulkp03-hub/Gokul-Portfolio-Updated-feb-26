@@ -12,6 +12,22 @@ export default function AquaCareCaseStudy() {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedImage(null);
+    };
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImage]);
+
   return (
     <div className="min-h-screen pt-24 pb-20 bg-[#09090b] text-zinc-100 font-sans selection:bg-emerald-500/20 selection:text-emerald-400">
       <SEO
@@ -49,7 +65,7 @@ export default function AquaCareCaseStudy() {
                 Performance Marketing · Meta Ads
               </span>
               <span className="text-xs text-zinc-400 font-medium">
-                25 Dec 2025 — 6 Sep 2026
+                Campaign window: 25 Dec 2025 — 6 Sep 2026
               </span>
             </div>
 
@@ -902,6 +918,11 @@ export default function AquaCareCaseStudy() {
             </div>
           </div>
         </section>
+
+        {/* Methodology Note */}
+        <p className="text-xs text-muted-foreground mt-16 max-w-2xl">
+          Reporting period, role, and metric definitions are stated per case study.
+        </p>
 
         {/* Image Lightbox Modal */}
         {selectedImage && (

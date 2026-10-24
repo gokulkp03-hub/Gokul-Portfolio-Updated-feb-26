@@ -9,6 +9,9 @@ import { Link } from "wouter";
 
 export default function Contact() {
     
+    // Feature gate: false until casual photo is supplied (see ASSET-MANIFEST.md)
+    const SHOW_CONTACT_IMAGE = false;
+    
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
@@ -202,8 +205,19 @@ export default function Contact() {
 
                         <div className="flex items-center gap-2 text-muted-foreground font-light">
                             <MapPin className="w-4 h-4 text-orange-500" />
-                            <span>Based in UAE • Operating Globally</span>
+                            <span>Based in Dubai • Working across the GCC &amp; India</span>
                         </div>
+
+                        {/* 4:5 Casual Photo Slot — Task 11 */}
+                        {SHOW_CONTACT_IMAGE && (
+                            <div className="mt-8 rounded-3xl overflow-hidden border border-border/40 aspect-[4/5] bg-muted/20 relative">
+                                <img 
+                                    src="/assets/images/profile/gokul-kp-casual.webp" 
+                                    alt="Gokul KP — Performance Marketer &amp; Video Producer"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        )}
                     </div>
 
                     {/* Right: Form / CTA */}

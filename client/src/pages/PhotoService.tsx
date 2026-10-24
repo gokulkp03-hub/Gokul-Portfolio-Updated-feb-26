@@ -10,13 +10,13 @@ import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const foodStills = [
-    "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
-    "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg",
-    "/assets/images/portfolio-all/Cheesecake.jpg",
-    "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg",
-    "/assets/images/portfolio-all/Iced_V60.jpg",
-    "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg",
-    "/assets/images/portfolio-all/ginger_shot.jpg"
+    { src: "/assets/images/portfolio-all/Sourdough_Avocado.jpg", alt: "Sourdough avocado toast with microgreens on ceramic plate, overhead shot" },
+    { src: "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg", alt: "Vibrant vegan buddha bowl with roasted chickpeas, quinoa, and avocado" },
+    { src: "/assets/images/portfolio-all/Cheesecake.jpg", alt: "Artisan berry cheesecake slice plated with fresh raspberry coulis" },
+    { src: "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg", alt: "Freshly baked chocolate chip cookies served with a glass of milk" },
+    { src: "/assets/images/portfolio-all/Iced_V60.jpg", alt: "Single-origin pour-over iced V60 coffee in fluted glassware" },
+    { src: "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg", alt: "Toasted sourdough bread with creamy labneh, zaatar, and extra virgin olive oil" },
+    { src: "/assets/images/portfolio-all/ginger_shot.jpg", alt: "Organic cold-pressed immunity ginger wellness shot in glass bottle" }
 ];
 
 const lifestyleStills = [
@@ -34,6 +34,23 @@ const lifestyleStills = [
     "/assets/images/portfolio-all/DSC09457.jpg",
     "/assets/images/portfolio-all/DSC09598.jpg",
     "/assets/images/portfolio-all/DSC09621.jpg"
+];
+
+const lifestyleDescriptions = [
+    "Vita Bloom luxury product packaging still with botanical lighting",
+    "Commercial studio product shot highlighting clean architectural design",
+    "Urban lifestyle subject in natural sunlight, candid portrait composition",
+    "Specialty coffee barista pour-over preparation at espresso bar",
+    "Minimalist interior architectural perspective with warm ambient lighting",
+    "High-fashion editorial model styling in dynamic studio lighting setup",
+    "Contemporary retail storefront visual merchandising showcase",
+    "Culinary prep scene highlighting fresh organic ingredients and kitchenware",
+    "Direct-response cosmetic skincare bottle on textured slate background",
+    "Outdoor commercial lifestyle shoot capturing dynamic motion",
+    "Editorial portrait featuring dramatic directional lighting",
+    "Commercial tabletop beverage styling with condensation drops",
+    "Creative visual branding composition with custom color palette",
+    "Modern product still showcasing metallic textures and reflections"
 ];
 
 const graphicAdDesigns = [
@@ -81,7 +98,7 @@ export default function PhotoService() {
             <SEO 
                 title="Gokul KP — Creative & Brand Photography" 
                 description="Creative photography for food, products, and brands in Dubai and the UAE. Still photography designed for menus, packaging, and digital ad campaigns." 
-                url="/portfolio/photo" 
+                url="/photo" 
             />
             
             {/* 1. WebGL Three.js Hero Shader */}
@@ -111,7 +128,7 @@ export default function PhotoService() {
                     </div>
 
                     <div className="columns-2 sm:columns-3 lg:columns-4 gap-6 space-y-6">
-                        {foodStills.map((src, i) => (
+                        {foodStills.map((item, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
@@ -121,8 +138,8 @@ export default function PhotoService() {
                                 className="break-inside-avoid relative group rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800/80 shadow-lg"
                             >
                                 <img
-                                    src={src}
-                                    alt={`Food photography archive frame ${i + 1}`}
+                                    src={item.src}
+                                    alt={item.alt}
                                     className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
                                     loading="lazy"
                                 />
@@ -166,7 +183,7 @@ export default function PhotoService() {
                             >
                                 <img
                                     src={src}
-                                    alt={`Lifestyle photography archive frame ${i + 1}`}
+                                    alt={lifestyleDescriptions[i] || `Commercial product and lifestyle still ${i + 1}`}
                                     className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
                                     loading="lazy"
                                 />

@@ -16,9 +16,31 @@
       ],
       "destination": "https://www.gokulkp.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/portfolio/video",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/photo",
+      "destination": "/photo",
+      "permanent": true
     }
   ],
   "rewrites": [
+    {
+      "source": "/assets/images/logos/prepmeal.png",
+      "destination": "/assets/images/logos/PrepMeal.png"
+    },
+    {
+      "source": "/assets/images/logos/acero.png",
+      "destination": "/assets/images/logos/Acero.png"
+    },
+    {
+      "source": "/assets/images/logos/q4c.png",
+      "destination": "/assets/images/logos/Q4c.png"
+    },
     {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap"

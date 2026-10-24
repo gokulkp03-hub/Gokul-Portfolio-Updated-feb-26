@@ -13,6 +13,7 @@ export default function Blogs() {
         title="Marketing & Growth Blogs" 
         description="Insights, case studies, and thoughts on performance marketing and video production in Dubai." 
         url="/blogs"
+        noindex={true}
       />
       <div className="pt-32 pb-24 px-6 min-h-screen bg-background">
         <div className="max-w-4xl mx-auto space-y-12">

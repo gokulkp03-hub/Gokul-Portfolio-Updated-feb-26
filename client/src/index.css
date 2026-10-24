@@ -52,6 +52,7 @@
   /* Cache Purge: 2024-05-20 */
   :root, .dark {
     scroll-padding-top: 100px;
+    --consent-banner-height: 0px;
 
     /* Cinematic Dark (Obsidian) — default */
     --background: 240 10% 4%;
@@ -163,6 +164,11 @@
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
     background-color: var(--bg-primary);
     color: var(--text-primary);
+  }
+
+  main {
+    padding-bottom: var(--consent-banner-height, 0px);
+    transition: padding-bottom 0.3s ease;
   }
 
   /* Utility for hiding scrollbar but keeping functionality */

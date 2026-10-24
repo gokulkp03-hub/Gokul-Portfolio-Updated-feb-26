@@ -7,9 +7,28 @@ import { MorphBlob } from "@/components/ui/MorphBlob";
 export default function PrepmealCaseStudy() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  // Feature gate: false until client/owner supplies Meta Ads Manager screenshots (see ASSET-MANIFEST.md)
+  const SHOW_CAMPAIGN_PROOF = false;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedImage(null);
+    };
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImage]);
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-background text-foreground font-sans relative overflow-hidden">
@@ -189,7 +208,7 @@ export default function PrepmealCaseStudy() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <img src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">1. Creative Production</h3>
@@ -206,7 +225,7 @@ export default function PrepmealCaseStudy() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <img src="/assets/images/optimized/pancakes.webp" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">2. Direct WhatsApp Funnel</h3>
@@ -223,7 +242,7 @@ export default function PrepmealCaseStudy() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <img src="/assets/images/optimized/prepmeal-burrito.webp" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">3. Offer Testing</h3>
@@ -274,7 +293,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img src="/assets/images/optimized/prepmeal-burrito.webp" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Chicken Butter Burrito</span>
                         </div>
@@ -284,9 +303,9 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                            <span className="text-xs font-semibold text-white">Sourdough Labneh & Zaatar</span>
+                            <span className="text-xs font-semibold text-white">Sourdough Labneh &amp; Zaatar</span>
                         </div>
                     </div>
 
@@ -294,7 +313,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.jpg')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/case-studies/prepmeal/Acai Smoothie.jpg" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img src="/assets/images/optimized/prepmeal-acai.webp" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Superfood Acai Smoothie</span>
                         </div>
@@ -360,6 +379,61 @@ export default function PrepmealCaseStudy() {
                     </p>
                 </div>
             </section>
+
+            {/* ─── CAMPAIGN PROOF (FEATURE-GATED — Task 12) ────────────────── */}
+            {/* Gated off until Meta Ads Manager screenshots are supplied (see ASSET-MANIFEST.md) */}
+            {SHOW_CAMPAIGN_PROOF && (
+                <section className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-border/40 pt-20">
+                    <div className="md:col-span-4">
+                        <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-1 block">Live Verified Proof</span>
+                        <h2 className="text-2xl font-display font-bold text-foreground">Campaign Proof</h2>
+                        <p className="text-sm text-muted-foreground mt-3 leading-relaxed font-light">
+                            Verified Meta Ads Manager exports showing spend, messaging leads, and CPL across UAE campaign runs.
+                        </p>
+                    </div>
+                    <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {/* Slot 1: Meta Ads Manager Overview (16:9) */}
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/proof-dashboard-1.webp')}
+                            className="glass-card p-3 rounded-2xl border-border/40 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all shadow-xl relative"
+                        >
+                            <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
+                                <img 
+                                    src="/assets/images/case-studies/prepmeal/proof-dashboard-1.webp" 
+                                    alt="PrepMeal Meta Ads Manager Campaign Overview" 
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                />
+                                <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-[10px] text-white flex items-center gap-1">
+                                    <Eye className="w-3 h-3" /> Click to Expand
+                                </div>
+                            </div>
+                            <div className="p-2 text-xs text-muted-foreground">
+                                Meta Ads Campaign Overview — 6,133 messaging leads
+                            </div>
+                        </div>
+
+                        {/* Slot 2: CPL Breakdown (16:9) */}
+                        <div 
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/proof-dashboard-2.webp')}
+                            className="glass-card p-3 rounded-2xl border-border/40 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all shadow-xl relative"
+                        >
+                            <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
+                                <img 
+                                    src="/assets/images/case-studies/prepmeal/proof-dashboard-2.webp" 
+                                    alt="PrepMeal Cost Per Messaging Conversation Breakdown" 
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                />
+                                <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-[10px] text-white flex items-center gap-1">
+                                    <Eye className="w-3 h-3" /> Click to Expand
+                                </div>
+                            </div>
+                            <div className="p-2 text-xs text-muted-foreground">
+                                CPL &amp; Conversion Breakdown — AED 3.72 lowest CPL
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Influencer Collaborations */}
             <section className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-border/40 pt-20">
@@ -443,9 +517,9 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
-                                <span className="text-xs font-semibold text-white">Sourdough & Labneh Prep</span>
+                                <span className="text-xs font-semibold text-white">Sourdough &amp; Labneh Prep</span>
                             </div>
                         </div>
 
@@ -453,7 +527,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.jpg')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/case-studies/prepmeal/Acai Smoothie.jpg" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img src="/assets/images/optimized/prepmeal-acai.webp" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fresh Organic Acai</span>
                             </div>
@@ -463,7 +537,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img src="/assets/images/optimized/prepmeal-burrito.webp" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">High-Protein Burrito</span>
                             </div>
@@ -473,7 +547,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img src="/assets/images/optimized/pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fitness Protein Pancakes</span>
                             </div>
@@ -491,6 +565,11 @@ export default function PrepmealCaseStudy() {
                     </div>
                 </div>
             </section>
+
+            {/* Methodology Note */}
+            <p className="text-xs text-muted-foreground mt-16 max-w-2xl">
+                Reporting period, role, and metric definitions are stated per case study.
+            </p>
         </div>
 
         {/* Image Lightbox Modal */}

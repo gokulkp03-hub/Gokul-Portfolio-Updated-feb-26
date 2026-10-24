@@ -64,16 +64,17 @@ export default function Footer() {
                             <h4 className="text-xs uppercase tracking-widest text-muted-foreground/60 font-bold mb-4">Connect</h4>
                             <div className="flex gap-3">
                                 {[
-                                    { icon: Instagram, href: instagramLink },
-                                    { icon: Linkedin, href: linkedinLink, type: 'linkedin' },
-                                    { icon: Palette, href: behanceLink },
-                                    { icon: Mail, href: `mailto:${contactEmail}`, type: 'email' },
+                                    { icon: Instagram, href: instagramLink, label: "Instagram profile" },
+                                    { icon: Linkedin, href: linkedinLink, label: "LinkedIn profile", type: 'linkedin' },
+                                    { icon: Palette, href: behanceLink, label: "Behance portfolio" },
+                                    { icon: Mail, href: `mailto:${contactEmail}`, label: "Email Gokul KP", type: 'email' },
                                 ].map((social, i) => (
                                     <a
                                         key={i}
                                         href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        aria-label={social.label}
+                                        target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                                        rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                                         onClick={() => {
                                             if (social.type === 'linkedin') trackEvent('linkedin_click');
                                             if (social.type === 'email') trackEvent('email_click');

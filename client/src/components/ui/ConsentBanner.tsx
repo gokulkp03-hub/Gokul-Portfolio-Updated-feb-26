@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { ShieldCheck, X } from "lucide-react";
 
 export function ConsentBanner() {
   const [isVisible, setIsVisible] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     try {
@@ -23,6 +24,37 @@ export function ConsentBanner() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!isVisible) {
+      document.documentElement.style.setProperty("--consent-banner-height", "0px");
+      return;
+    }
+
+    const updateHeight = () => {
+      if (bannerRef.current) {
+        const height = bannerRef.current.offsetHeight;
+        document.documentElement.style.setProperty("--consent-banner-height", `${height}px`);
+      }
+    };
+
+    // Initial measurement
+    updateHeight();
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (bannerRef.current && typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(() => updateHeight());
+      resizeObserver.observe(bannerRef.current);
+    }
+
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener("resize", updateHeight);
+      document.documentElement.style.setProperty("--consent-banner-height", "0px");
+    };
+  }, [isVisible]);
+
   const updateConsentState = (state: "granted" | "denied") => {
     if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
       (window as any).gtag("consent", "update", {
@@ -39,6 +71,7 @@ export function ConsentBanner() {
       localStorage.setItem("cookie_consent", "granted");
     } catch {}
     updateConsentState("granted");
+    document.documentElement.style.setProperty("--consent-banner-height", "0px");
     setIsVisible(false);
   };
 
@@ -47,6 +80,7 @@ export function ConsentBanner() {
       localStorage.setItem("cookie_consent", "denied");
     } catch {}
     updateConsentState("denied");
+    document.documentElement.style.setProperty("--consent-banner-height", "0px");
     setIsVisible(false);
   };
 
@@ -54,15 +88,16 @@ export function ConsentBanner() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          ref={bannerRef}
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-20 md:bottom-6 left-4 right-4 md:left-6 md:right-auto md:max-w-sm z-[140] pointer-events-auto"
+          className="fixed bottom-0 left-0 right-0 md:bottom-6 md:right-28 md:left-auto md:max-w-sm z-[140] pointer-events-auto"
           role="region"
           aria-label="Cookie and Privacy Consent"
         >
-          <div className="bg-zinc-950/90 backdrop-blur-xl border border-white/10 rounded-2xl p-3.5 sm:p-4 shadow-2xl text-foreground text-xs leading-relaxed relative overflow-hidden">
+          <div className="bg-zinc-950/95 backdrop-blur-xl border-t md:border border-white/10 rounded-t-2xl md:rounded-2xl p-3.5 sm:p-4 shadow-2xl text-foreground text-xs leading-relaxed relative overflow-hidden">
             {/* Subtle glow */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 blur-xl rounded-full pointer-events-none" />
 
@@ -80,7 +115,7 @@ export function ConsentBanner() {
               </div>
               <button
                 onClick={handleReject}
-                className="text-zinc-500 hover:text-white transition-colors p-0.5 -mt-0.5 -mr-0.5"
+                className="text-zinc-500 hover:text-white transition-colors p-0.5 -mt-0.5 -mr-0.5 cursor-pointer"
                 aria-label="Dismiss cookie notice"
               >
                 <X className="w-3.5 h-3.5" />

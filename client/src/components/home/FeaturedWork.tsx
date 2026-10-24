@@ -44,7 +44,7 @@ const FEATURED_ITEMS = [
         client: "Galaxy Star Perfumes",
         category: "E-Commerce",
         metric: "1.8% CVR",
-        image: "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+        image: "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
         path: "/portfolio",
         isVideo: false,
         videoUrl: "",
@@ -68,7 +68,7 @@ const FEATURED_ITEMS = [
         accentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
         hoverBorderClass: "hover:border-purple-500/40 hover:shadow-purple-500/10",
         btnBgClass: "bg-purple-500 text-white",
-        logo: "/assets/images/logos/prepmeal.png"
+        logo: "/assets/images/logos/PrepMeal.png"
     },
     {
         id: "entrepreneur-mindset-featured",
@@ -76,7 +76,7 @@ const FEATURED_ITEMS = [
         client: "Social Media Campaign",
         category: "Personal Branding",
         metric: "100K+ Views",
-        image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.jpg",
+        image: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Boss_1_znnsfe.jpg",
         path: "/portfolio/video/entrepreneur-mindset",
         isVideo: true,
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Boss_1_znnsfe.mp4",
@@ -91,7 +91,7 @@ const FEATURED_ITEMS = [
         client: "Steaburg",
         category: "Video Production",
         metric: "Cinematic Product",
-        image: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.jpg",
+        image: "https://res.cloudinary.com/dgmieaf9g/video/upload/w_800,c_limit,q_auto,f_webp/v1/Steaburg_sjl6ik.jpg",
         path: "/portfolio/video/steaburg-brand-film",
         isVideo: true,
         videoUrl: "https://res.cloudinary.com/dgmieaf9g/video/upload/v1/Steaburg_sjl6ik.mp4",

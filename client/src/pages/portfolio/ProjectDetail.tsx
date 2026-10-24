@@ -153,6 +153,10 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
 
     const relatedProjects = (projectsList as any[])?.filter(p => p.id !== project.id && p.category === project.category).slice(0, 3) || [];
 
+    // Feature gate: false until client/owner supplies GBP captures (see ASSET-MANIFEST.md)
+    const SHOW_STEABURG_GBP_PROOF = false;
+    const isSteaburg = slug === "steaburg-local-seo" || slug === "steaburg-seo";
+
     const reportUrl = useMemo(() => {
         const s = slug?.toLowerCase();
         if (s === "sias-group-marketing-scale" || s === "sias-group-b2b") {
@@ -381,6 +385,58 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                         ))}
                                     </ul>
                                 </section>
+                            )}
+
+                            {/* ─── GOOGLE BUSINESS PROFILE RESULTS (FEATURE-GATED — Task 12) ─── */}
+                            {/* Gated off until Steaburg GBP screenshots are supplied (see ASSET-MANIFEST.md) */}
+                            {isSteaburg && SHOW_STEABURG_GBP_PROOF && (
+                                <section className="space-y-6 pt-10 border-t border-border/40">
+                                    <span className="text-xs font-semibold uppercase tracking-widest text-orange-500 block">Verified Local SEO Growth</span>
+                                    <h2 className="text-3xl font-display font-bold">Google Business Profile Results</h2>
+                                    
+                                    {/* Review Stat Block */}
+                                    <div className="grid grid-cols-2 gap-4 p-6 rounded-2xl bg-muted/20 border border-border/40">
+                                        <div>
+                                            <div className="text-xs text-muted-foreground uppercase font-mono tracking-wider">Starting Reviews</div>
+                                            <div className="text-3xl font-display font-bold text-foreground mt-1">26</div>
+                                        </div>
+                                        <div>
+                                            <div className="text-xs text-orange-500 uppercase font-mono tracking-wider font-bold">Optimized Reviews</div>
+                                            <div className="text-3xl font-display font-bold text-orange-500 mt-1">100+</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Before / After slots */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                                        <div className="rounded-2xl overflow-hidden border border-border/40 bg-zinc-950 p-2">
+                                            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
+                                                <img 
+                                                    src="/assets/images/case-studies/steaburg/gbp-before.webp" 
+                                                    alt="Steaburg Google Business Profile Before Optimization"
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="p-2 text-xs font-mono text-muted-foreground">Before: Limited local pack visibility (26 reviews)</div>
+                                        </div>
+                                        <div className="rounded-2xl overflow-hidden border border-orange-500/30 bg-zinc-950 p-2">
+                                            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
+                                                <img 
+                                                    src="/assets/images/case-studies/steaburg/gbp-after.webp" 
+                                                    alt="Steaburg Google Business Profile After Optimization"
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="p-2 text-xs font-mono text-orange-400">After: Local Pack dominance &amp; 100+ reviews</div>
+                                        </div>
+                                    </div>
+                                </section>
+                            )}
+
+                            {/* Methodology Note for Marketing Case Studies */}
+                            {project.category === "marketing" && (
+                                <p className="text-xs text-muted-foreground pt-8 border-t border-border/40 max-w-2xl leading-relaxed">
+                                    Reporting period, role, and metric definitions are stated per case study.
+                                </p>
                             )}
                         </div>
 

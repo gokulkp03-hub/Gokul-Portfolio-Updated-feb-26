@@ -42,16 +42,6 @@ const routes = [
     description: 'Browse Gokul KP\'s commercial creative portfolio including performance ads, cinematic video projects, luxury photography, and B2C campaigns.'
   },
   {
-    path: '/portfolio/video',
-    title: 'Commercial Video Production in Dubai | Gokul KP',
-    description: 'Cinematic brand films, high-retention social media reels, and commercial video production for UAE brands.'
-  },
-  {
-    path: '/portfolio/photo',
-    title: 'Product & Brand Photography in Dubai | Gokul KP',
-    description: 'High-end food photography, commercial product shots, and brand visual systems in Dubai and UAE.'
-  },
-  {
     path: '/video',
     title: 'Commercial Video Production in Dubai | Gokul KP',
     description: 'Cinematic brand films, high-retention social media reels, and commercial video production for UAE brands.'
@@ -64,7 +54,8 @@ const routes = [
   {
     path: '/blogs',
     title: 'Performance Marketing & Growth Insights | Gokul KP',
-    description: 'Insights, case studies, and strategies on performance marketing, video production, and scaling brands in the GCC.'
+    description: 'Insights, case studies, and strategies on performance marketing, video production, and scaling brands in the GCC.',
+    noindex: true
   },
   {
     path: '/privacy',
@@ -123,6 +114,21 @@ routes.forEach(route => {
   html = html.replace(/<meta name="description"\s*content=".*?"\s*\/>/s, `<meta name="description" content="${route.description}" />`);
   html = html.replace(/<meta property="og:description"\s*content=".*?"\s*\/>/s, `<meta property="og:description" content="${route.description}" />`);
   html = html.replace(/<meta property="twitter:description"\s*content=".*?"\s*\/>/s, `<meta property="twitter:description" content="${route.description}" />`);
+
+  // Robots meta
+  if (route.noindex) {
+    if (html.includes('<meta name="robots"')) {
+      html = html.replace(/<meta name="robots"[^>]*\/?>/, '<meta name="robots" content="noindex, nofollow" />');
+    } else {
+      html = html.replace(/<\/head>/, '  <meta name="robots" content="noindex, nofollow" />\n</head>');
+    }
+  } else {
+    if (html.includes('<meta name="robots"')) {
+      html = html.replace(/<meta name="robots"[^>]*\/?>/, '<meta name="robots" content="index, follow, max-image-preview:large" />');
+    } else {
+      html = html.replace(/<\/head>/, '  <meta name="robots" content="index, follow, max-image-preview:large" />\n</head>');
+    }
+  }
   
   // Inject exactly ONE Canonical link
   const canonicalUrl = `https://www.gokulkp.com${route.path === '/' ? '' : route.path}`;

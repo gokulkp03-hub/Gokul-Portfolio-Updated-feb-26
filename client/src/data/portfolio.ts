@@ -80,7 +80,7 @@ export const portfolio: Project[] = [
         id: "product-photo-perfume",
         title: "Galaxy Star Fragrances",
         category: "Photo",
-        image: "/assets/images/brands/Galaxy-Star/Galaxy 3.jpg",
+        image: "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
         year: "2023",
         client: "Galaxy Star",
         tags: ["Product", "Commercial"],
