@@ -55,72 +55,43 @@ export default function Home() {
 
         <div className="container relative z-10 px-4 md:px-8 max-w-[1240px] mx-auto">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className="lg:col-span-7 space-y-8">
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[11px] font-semibold tracking-widest uppercase font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                PERFORMANCE MARKETER &amp; VIDEO PRODUCER
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-foreground leading-[1.04] uppercase">
-                Creative meets <span className="text-orange-500">performance.</span>
-              </h1>
-
-              {/* Supporting Copy */}
-              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal leading-relaxed max-w-2xl">
-                Paid media, content, and production — built around what actually works.
-              </p>
-
-              {/* Context / Location */}
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-muted-foreground">
-                <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>Based in Dubai • Working across the GCC &amp; India</span>
-              </div>
-
-              {/* Actions */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <Link href="/portfolio">
-                  <span className="group relative inline-flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 text-center overflow-hidden cursor-pointer">
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-                    <span className="relative z-10">Explore Portfolio</span>
-                    <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </Link>
-                <Link href="/contact">
-                  <span className="inline-flex items-center justify-center gap-2 bg-muted/40 hover:bg-muted/70 text-foreground font-medium px-8 py-4 rounded-full border border-border/60 transition-colors text-center cursor-pointer">
-                    Let's Talk
-                  </span>
-                </Link>
-              </div>
+          <div className="max-w-3xl space-y-8">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[11px] font-semibold tracking-widest uppercase font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+              PERFORMANCE MARKETER &amp; VIDEO PRODUCER
             </div>
 
-            {/* HERO PORTRAIT SLOT — Task 11 */}
-            {/* TODO: replace with shoot photo */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-xs sm:max-w-sm aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 bg-muted/20 shadow-2xl group">
-                <picture>
-                  <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
-                  <img 
-                    src="/assets/images/profile/gokul-kp.jpg" 
-                    alt="Gokul KP — Performance Marketer &amp; Video Producer based in Dubai"
-                    title="Gokul KP"
-                    width="1080"
-                    height="1616"
-                    fetchPriority="high"
-                    className="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700"
-                    onError={(e) => {
-                      e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.jpg";
-                    }}
-                  />
-                </picture>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <p className="text-sm font-semibold font-display">Gokul KP</p>
-                  <p className="text-[11px] text-white/70 font-mono">Performance Marketer &amp; Video Producer</p>
-                </div>
-              </div>
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-foreground leading-[1.04] uppercase">
+              Creative meets <span className="text-orange-500">performance.</span>
+            </h1>
+
+            {/* Supporting Copy */}
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal leading-relaxed max-w-2xl">
+              Paid media, content, and production — built around what actually works.
+            </p>
+
+            {/* Context / Location */}
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-muted-foreground">
+              <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
+              <span>Based in Dubai • Working across the GCC &amp; India</span>
+            </div>
+
+            {/* Actions */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <Link href="/portfolio">
+                <span className="group relative inline-flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 text-center overflow-hidden cursor-pointer">
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                  <span className="relative z-10">Explore Portfolio</span>
+                  <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </Link>
+              <Link href="/contact">
+                <span className="inline-flex items-center justify-center gap-2 bg-muted/40 hover:bg-muted/70 text-foreground font-medium px-8 py-4 rounded-full border border-border/60 transition-colors text-center cursor-pointer">
+                  Let's Talk
+                </span>
+              </Link>
             </div>
           </div>
 
