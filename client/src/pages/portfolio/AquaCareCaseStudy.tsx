@@ -1,4 +1,4 @@
-import { ArrowLeft, Play, Target, Layers, Sparkles, ChevronDown, ChevronUp, MessageCircle, Users, Eye, CheckCircle2, TrendingUp, X } from "lucide-react";
+import { ArrowLeft, Play, Target, Layers, Sparkles, ChevronDown, ChevronUp, MessageCircle, Users, Eye, CheckCircle2, TrendingUp, X, Instagram, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
@@ -7,6 +7,12 @@ export default function AquaCareCaseStudy() {
   const [playReel, setPlayReel] = useState(false);
   const [showTechnicalData, setShowTechnicalData] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeVideoModal, setActiveVideoModal] = useState<{
+    url: string;
+    instagramUrl?: string;
+    title: string;
+    subtitle?: string;
+  } | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,9 +20,12 @@ export default function AquaCareCaseStudy() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedImage(null);
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+        setActiveVideoModal(null);
+      }
     };
-    if (selectedImage) {
+    if (selectedImage || activeVideoModal) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
     } else {
@@ -26,7 +35,7 @@ export default function AquaCareCaseStudy() {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedImage]);
+  }, [selectedImage, activeVideoModal]);
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-[#09090b] text-zinc-100 font-sans selection:bg-emerald-500/20 selection:text-emerald-400">
@@ -69,8 +78,8 @@ export default function AquaCareCaseStudy() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-white mb-6 leading-[1.1]">
-              Building a Multi-Product Meta Ads Engine for AquaCare UAE
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-normal sm:tracking-wide text-white mb-6 leading-tight sm:leading-[1.18] max-w-4xl [word-spacing:0.16em] [text-wrap:balance]">
+              Building a <span className="whitespace-nowrap">Multi-Product</span> Meta Ads Engine for AquaCare UAE
             </h1>
 
             <p className="text-base sm:text-lg text-zinc-300 max-w-2xl font-light leading-relaxed mb-8">
@@ -108,21 +117,29 @@ export default function AquaCareCaseStudy() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div 
-              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Vita bloom.webp')}
+              onClick={() => setActiveVideoModal({
+                url: '/assets/videos/aquacare-shower-filter-reel.mp4',
+                instagramUrl: 'https://www.instagram.com/p/DTA1x9UiAtc/?hl=en',
+                title: 'AquaCare Shower Filter Direct Response Reel',
+                subtitle: 'Winning Lead-Gen Creative · AED 4.32 CPL'
+              })}
               className="glass-card p-5 border-emerald-500/20 flex flex-col justify-between hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div>
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
                   <img 
-                    src="/assets/images/brands/Aqua-Care/Vita bloom.webp" 
-                    alt="Shower Filter Direct Response Creative" 
+                    src="/assets/images/brands/Aqua-Care/shower-filter-reel-poster.jpg" 
+                    alt="Shower Filter Direct Response Creative Reel" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
+                  <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-1.5 transition-colors group-hover:bg-black/25">
+                    <div className="w-11 h-11 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
+                      <Play className="w-5 h-5 fill-current translate-x-0.5" />
+                    </div>
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-white">Watch Reel</span>
+                  </div>
                   <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
                     AED 4.32 CPL
-                  </div>
-                  <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 rounded-full p-1 text-zinc-300">
-                    <Eye className="w-3.5 h-3.5" />
                   </div>
                 </div>
 
@@ -136,6 +153,24 @@ export default function AquaCareCaseStudy() {
                 <p className="text-xs text-zinc-300 leading-relaxed font-light">
                   A high-volume entry product that captured <strong className="text-white">183+ Meta leads</strong> at just <strong className="text-emerald-400 font-semibold">AED 4.85 per lead</strong>, with the top Reel delivering leads at AED 4.32.
                 </p>
+
+                <div className="mt-3 pt-2.5 border-t border-zinc-800/60 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 group-hover:text-emerald-300">
+                    <Play className="w-3 h-3 fill-current" />
+                    <span>Watch Winning Video</span>
+                  </span>
+                  <a
+                    href="https://www.instagram.com/p/DTA1x9UiAtc/?hl=en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-emerald-400 transition-colors"
+                  >
+                    <Instagram className="w-3 h-3" />
+                    <span>Instagram</span>
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -212,11 +247,11 @@ export default function AquaCareCaseStudy() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div 
-              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/new.webp')}
+              onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/aquacare-countertop-dispenser-hero.webp')}
               className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-emerald-500/30 transition-all"
             >
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
-                <img src="/assets/images/brands/Aqua-Care/new.webp" alt="Stage 1 Awareness Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/assets/images/brands/Aqua-Care/aquacare-countertop-dispenser-hero.webp" alt="Stage 1 Awareness Creative — AquaCare Countertop Dispenser" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               </div>
               <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 1 — Awareness</span>
               <h4 className="text-sm font-bold text-white mb-2">Broad Education</h4>
@@ -270,13 +305,23 @@ export default function AquaCareCaseStudy() {
             <div className="glass-card p-6 border-blue-500/30 bg-gradient-to-br from-blue-950/15 to-zinc-950 flex flex-col justify-between">
               <div>
                 <div 
-                  onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Vita bloom.webp')}
+                  onClick={() => setActiveVideoModal({
+                    url: '/assets/videos/aquacare-shower-filter-reel.mp4',
+                    instagramUrl: 'https://www.instagram.com/p/DTA1x9UiAtc/?hl=en',
+                    title: 'AquaCare Shower Filter Direct Response Reel',
+                    subtitle: 'Winning Lead-Gen Creative · AED 4.32 CPL'
+                  })}
                   className="relative aspect-video rounded-xl overflow-hidden mb-4 border border-zinc-800 bg-black group cursor-pointer"
                 >
-                  <img src="/assets/images/brands/Aqua-Care/Vita bloom.webp" alt="Vita Bloom Shower Filter Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <span className="absolute bottom-2 left-3 text-[11px] font-mono text-zinc-300 flex items-center gap-1.5">
-                    <Eye className="w-3 h-3 text-emerald-400" /> Winning Meta Ad Creative · Vita Bloom
+                  <img src="/assets/images/brands/Aqua-Care/shower-filter-reel-poster.jpg" alt="Winning Shower Filter Reel Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/20">
+                    <div className="w-10 h-10 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
+                      <Play className="w-4 h-4 fill-current translate-x-0.5" />
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2 left-3 text-[11px] font-mono text-zinc-300 flex items-center gap-1.5 pointer-events-none">
+                    <Play className="w-3 h-3 text-emerald-400 fill-current" /> Winning Meta Ad Video Reel · Vita Bloom
                   </span>
                 </div>
 
@@ -938,6 +983,61 @@ export default function AquaCareCaseStudy() {
                 <X className="w-5 h-5" />
               </button>
               <img src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
+            </div>
+          </div>
+        )}
+
+        {/* Video Lightbox Modal */}
+        {activeVideoModal && (
+          <div 
+            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200"
+            onClick={() => setActiveVideoModal(null)}
+          >
+            <div 
+              className="relative max-w-sm w-full rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl bg-zinc-950 flex flex-col" 
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-4 border-b border-zinc-800/80 flex items-center justify-between bg-zinc-900/60">
+                <div className="pr-3 min-w-0">
+                  <h3 className="text-sm font-bold text-white truncate">{activeVideoModal.title}</h3>
+                  {activeVideoModal.subtitle && (
+                    <p className="text-[11px] text-emerald-400 font-mono mt-0.5">{activeVideoModal.subtitle}</p>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  {activeVideoModal.instagramUrl && (
+                    <a
+                      href={activeVideoModal.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 text-[11px] font-mono transition-colors"
+                      title="Open on Instagram"
+                    >
+                      <Instagram className="w-3 h-3" />
+                      <span>Instagram</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                  )}
+                  <button 
+                    onClick={() => setActiveVideoModal(null)}
+                    className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                    aria-label="Close modal"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative aspect-[9/16] bg-black w-full overflow-hidden flex items-center justify-center">
+                <video 
+                  src={activeVideoModal.url}
+                  poster="/assets/images/brands/Aqua-Care/shower-filter-reel-poster.jpg"
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         )}
