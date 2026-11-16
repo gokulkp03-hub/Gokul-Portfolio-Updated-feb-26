@@ -1,8 +1,8 @@
-import { adminProcedure, publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc";
 import { db } from "./db";
 import { projects } from "../drizzle/schema";
 import { z } from "zod";
-import { eq, asc, desc } from "drizzle-orm";
+import { and, eq, asc, desc } from "drizzle-orm";
 
 export const projectRouter = router({
     list: publicProcedure.query(async () => {
@@ -22,22 +22,28 @@ export const projectRouter = router({
 
     getById: publicProcedure
         .input(z.string())
-        .query(async ({ input }) => {
-            return db
+        .query(async ({ input, ctx }) => {
+            // Drafts and scheduled projects are only visible to admins.
+            const match = eq(projects.id, input);
+            const row = await db
                 .select()
                 .from(projects)
-                .where(eq(projects.id, input))
-                .get() || null;
+                .where(isAdminUser(ctx) ? match : and(match, eq(projects.status, "published")))
+                .get();
+            return row ?? null;
         }),
 
     getBySlug: publicProcedure
         .input(z.string())
-        .query(async ({ input }) => {
-            return db
+        .query(async ({ input, ctx }) => {
+            // Drafts and scheduled projects are only visible to admins.
+            const match = eq(projects.slug, input);
+            const row = await db
                 .select()
                 .from(projects)
-                .where(eq(projects.slug, input))
-                .get() || null;
+                .where(isAdminUser(ctx) ? match : and(match, eq(projects.status, "published")))
+                .get();
+            return row ?? null;
         }),
 
     create: adminProcedure

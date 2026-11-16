@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc";
 import { blogs } from "../drizzle/schema";
 import { eq, desc } from "drizzle-orm";
 import { db } from "./db";
@@ -12,43 +12,43 @@ export const blogRouter = router({
       }).optional()
     )
     .query(async ({ input, ctx }) => {
-      // If not an admin, we can only fetch published blogs
-      const isAdmin = !!ctx.user;
-      
-      const query = db
+      // Unpublished posts are only ever returned to admins who ask for them.
+      if (isAdminUser(ctx) && input?.includeUnpublished) {
+        return db.select().from(blogs).orderBy(desc(blogs.createdAt));
+      }
+      return db
         .select()
         .from(blogs)
+        .where(eq(blogs.published, true))
         .orderBy(desc(blogs.createdAt));
-        
-      const results = await query;
-      
-      if (!isAdmin || !input?.includeUnpublished) {
-        return results.filter(b => b.published);
-      }
-      return results;
     }),
 
   getBySlug: publicProcedure
     .input(z.string())
-    .query(async ({ input }) => {
+    .query(async ({ input, ctx }) => {
       const result = await db
         .select()
         .from(blogs)
         .where(eq(blogs.slug, input))
         .get();
-        
-      if (result) {
+
+      // Drafts are invisible to the public: respond exactly as if the slug didn't exist.
+      if (!result || (!result.published && !isAdminUser(ctx))) {
+        return null;
+      }
+
+      if (result.published) {
         // Increment views in background
         db.update(blogs)
           .set({ views: (result.views || 0) + 1 })
           .where(eq(blogs.id, result.id))
           .run();
       }
-        
+
       return result;
     }),
 
-  create: protectedProcedure
+  create: adminProcedure
     .input(
       z.object({
         title: z.string(),
@@ -70,7 +70,7 @@ export const blogRouter = router({
       return result;
     }),
 
-  update: protectedProcedure
+  update: adminProcedure
     .input(
       z.object({
         id: z.string(),
@@ -96,7 +96,7 @@ export const blogRouter = router({
       return result;
     }),
 
-  delete: protectedProcedure
+  delete: adminProcedure
     .input(z.string())
     .mutation(async ({ input }) => {
       await db.delete(blogs).where(eq(blogs.id, input)).run();

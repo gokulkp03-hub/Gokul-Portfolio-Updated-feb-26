@@ -7,6 +7,9 @@ export const ENV = {
   isProduction: process.env.NODE_ENV === "production",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
-  adminUsername: process.env.ADMIN_USERNAME ?? "admin",
-  adminPassword: process.env.ADMIN_PASSWORD ?? "admin",
+  // No fallbacks: missing admin credentials must disable login, never default to a guessable value.
+  adminUsername: process.env.ADMIN_USERNAME ?? "",
+  adminPassword: process.env.ADMIN_PASSWORD ?? "",
+  // Preferred: scrypt hash produced by `pnpm hash-password` (format: scrypt$<saltHex>$<hashHex>).
+  adminPasswordHash: process.env.ADMIN_PASSWORD_HASH ?? "",
 };

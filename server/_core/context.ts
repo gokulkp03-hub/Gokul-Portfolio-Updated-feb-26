@@ -1,6 +1,7 @@
 import type { NodeHTTPCreateContextFnOptions } from "@trpc/server/adapters/node-http";
 import type { IncomingMessage, ServerResponse } from "http";
 import jwt from "jsonwebtoken";
+import { readSessionToken } from "./cookies";
 import type { User } from "../../drizzle/schema";
 
 export type TrpcContext = {
@@ -16,13 +17,12 @@ export async function createContext(
   const req = opts.req;
   
   const authHeader = req.headers.authorization;
-  const cookieHeader = req.headers.cookie || "";
-  let token = null;
+  let token: string | null = null;
 
   if (authHeader?.startsWith("Bearer ")) {
     token = authHeader.substring(7);
-  } else if (cookieHeader.includes("auth_token=")) {
-    token = cookieHeader.split("auth_token=")[1].split(";")[0];
+  } else {
+    token = readSessionToken(req);
   }
 
   if (token) {

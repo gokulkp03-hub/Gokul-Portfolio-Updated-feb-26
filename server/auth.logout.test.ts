@@ -1,64 +1,58 @@
 import { describe, expect, it } from "vitest";
+import { parse } from "cookie";
 import { appRouter } from "./routers";
 import { COOKIE_NAME } from "../shared/const";
+import { readSessionToken, serializeSessionCookie } from "./_core/cookies";
 import type { TrpcContext } from "./_core/context";
 
-type CookieCall = {
-  name: string;
-  options: Record<string, unknown>;
-};
-
-type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
-
-function createAuthContext(): { ctx: TrpcContext; clearedCookies: CookieCall[] } {
-  const clearedCookies: CookieCall[] = [];
-
-  const user: AuthenticatedUser = {
-    id: 1,
-    openId: "sample-user",
-    email: "sample@example.com",
-    name: "Sample User",
-    loginMethod: "manus",
-    role: "user",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    lastSignedIn: new Date(),
-  };
-
+function createContext() {
+  const headers: Record<string, string> = {};
+  const req = { headers: { "x-forwarded-proto": "https" } } as unknown as TrpcContext["req"];
+  const res = {
+    setHeader: (name: string, value: string) => {
+      headers[name.toLowerCase()] = value;
+    },
+  } as unknown as TrpcContext["res"];
   const ctx: TrpcContext = {
-    user,
-    req: {
-      protocol: "https",
-      headers: {
-        "x-forwarded-proto": "https",
-      },
-    } as TrpcContext["req"],
-    res: {
-      clearCookie: (name: string, options: Record<string, unknown>) => {
-        clearedCookies.push({ name, options });
-      },
-    } as TrpcContext["res"],
+    user: { id: 1, openId: "owner", name: "Admin", email: null, loginMethod: "password", role: "admin", createdAt: new Date(), updatedAt: new Date(), lastSignedIn: new Date() },
+    req,
+    res,
   };
-
-  return { ctx, clearedCookies };
+  return { ctx, headers };
 }
 
-describe("auth.logout", () => {
-  it("clears the session cookie and reports success", async () => {
-    const { ctx, clearedCookies } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
+describe("session cookie", () => {
+  it("login cookie is the one the auth context reads", () => {
+    const req = { headers: { "x-forwarded-proto": "https" } } as unknown as TrpcContext["req"];
+    const setCookie = serializeSessionCookie(req, "jwt-value");
+    expect(setCookie.startsWith(`${COOKIE_NAME}=jwt-value`)).toBe(true);
+    expect(setCookie).toMatch(/HttpOnly/);
+    expect(setCookie).toMatch(/Secure/);
+    expect(setCookie).toMatch(/SameSite=Lax/);
 
-    const result = await caller.auth.logout();
+    const reqWithCookie = { headers: { cookie: `other=1; ${COOKIE_NAME}=jwt-value` } } as unknown as TrpcContext["req"];
+    expect(readSessionToken(reqWithCookie)).toBe("jwt-value");
+  });
+
+  it("does not read a cookie whose name merely ends with the session cookie name", () => {
+    const req = { headers: { cookie: `x${COOKIE_NAME}=evil` } } as unknown as TrpcContext["req"];
+    expect(readSessionToken(req)).toBeNull();
+  });
+});
+
+describe("auth.logout", () => {
+  it("expires the same cookie that login sets", async () => {
+    const { ctx, headers } = createContext();
+    const result = await appRouter.createCaller(ctx).auth.logout();
 
     expect(result).toEqual({ success: true });
-    expect(clearedCookies).toHaveLength(1);
-    expect(clearedCookies[0]?.name).toBe(COOKIE_NAME);
-    expect(clearedCookies[0]?.options).toMatchObject({
-      maxAge: -1,
-      secure: true,
-      sameSite: "none",
-      httpOnly: true,
-      path: "/",
-    });
+    const setCookie = headers["set-cookie"];
+    expect(setCookie).toBeDefined();
+    expect(COOKIE_NAME).toBe("auth_token");
+    expect(setCookie.startsWith(`${COOKIE_NAME}=;`)).toBe(true);
+    expect(setCookie).toMatch(/Max-Age=0/);
+    expect(setCookie).toMatch(/Path=\//);
+    expect(setCookie).toMatch(/HttpOnly/);
+    expect(parse(setCookie)[COOKIE_NAME]).toBe("");
   });
 });

@@ -1,4 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+// Never write test leads into the real (possibly production) database.
+vi.mock("./db", async () => (await import("./test/memoryDb")).createMemoryDbModule());
+
 import { appRouter } from "./routers";
 import type { TrpcContext } from "./_core/context";
 

@@ -1,6 +1,6 @@
 import { db } from "../db";
 import { blogs, projects } from "../../drizzle/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 export async function injectDynamicSEO(url: string, html: string): Promise<string> {
   try {
@@ -13,7 +13,7 @@ export async function injectDynamicSEO(url: string, html: string): Promise<strin
 
     if (blogMatch) {
       const slug = blogMatch[1];
-      const blog = await db.select().from(blogs).where(eq(blogs.slug, slug)).get();
+      const blog = await db.select().from(blogs).where(and(eq(blogs.slug, slug), eq(blogs.published, true))).get();
       if (blog) {
         title = blog.metaTitle || `${blog.title} | Gokul KP`;
         description = blog.metaDescription || blog.excerpt || "";
@@ -21,7 +21,7 @@ export async function injectDynamicSEO(url: string, html: string): Promise<strin
       }
     } else if (projectMatch) {
       const slug = projectMatch[1];
-      const project = await db.select().from(projects).where(eq(projects.slug, slug)).get();
+      const project = await db.select().from(projects).where(and(eq(projects.slug, slug), eq(projects.status, "published"))).get();
       if (project) {
         title = project.metaTitle || `${project.title} | Gokul KP`;
         description = project.metaDescription || project.description || "";

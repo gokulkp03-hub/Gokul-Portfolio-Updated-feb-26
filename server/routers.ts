@@ -1,5 +1,4 @@
-import { COOKIE_NAME } from "@shared/const";
-import { getSessionCookieOptions } from "./_core/cookies";
+import { serializeClearedSessionCookie } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { projectRouter } from "./projectRouter";
@@ -14,19 +13,8 @@ export const appRouter = router({
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
-      const cookieOptions = getSessionCookieOptions(ctx.req);
-      if (ctx.res) {
-        if (typeof (ctx.res as any).clearCookie === 'function') {
-          (ctx.res as any).clearCookie(COOKIE_NAME, {
-            ...cookieOptions,
-            maxAge: -1,
-          });
-        } else if (typeof ctx.res.setHeader === 'function') {
-          const isSecure = cookieOptions.secure ? 'Secure;' : '';
-          const sameSite = cookieOptions.sameSite ? `SameSite=${cookieOptions.sameSite};` : '';
-          ctx.res.setHeader('Set-Cookie', `${COOKIE_NAME}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; ${isSecure} ${sameSite}`);
-        }
-      }
+      // Expire the same cookie that /api/login sets, with matching attributes.
+      ctx.res.setHeader("Set-Cookie", serializeClearedSessionCookie(ctx.req));
       return {
         success: true,
       } as const;

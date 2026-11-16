@@ -43,3 +43,8 @@ export const adminProcedure = t.procedure.use(
     });
   }),
 );
+
+/** True only for an authenticated admin session. */
+export function isAdminUser(ctx: Pick<TrpcContext, "user">): boolean {
+  return ctx.user?.role === "admin";
+}
