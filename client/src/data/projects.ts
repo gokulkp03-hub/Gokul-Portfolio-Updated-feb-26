@@ -180,7 +180,6 @@ export const projects: Project[] = [
         featured: true,
         images: [
             "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg",
-            "/assets/images/brands/Galaxy-Star/Galaxy 2.jpg",
             "/assets/images/brands/Galaxy-Star/galaxy-3.jpg"
         ],
         challenge: "Create consistent, high-quality product images that drive conversions.",
@@ -247,7 +246,7 @@ export const projects: Project[] = [
         title: "Influencer Collab - Gina Fit & Fab",
         category: "influencer",
         subcategory: "Influencer Campaign",
-        thumbnail: "/assets/images/case-studies/prepmeal/Mockup.png",
+        thumbnail: "/assets/images/case-studies/prepmeal/Macros Club.jpg",
         description: "Fitness influencer Gina showcasing PrepMeal's nutrition and convenience.",
         client: "PrepMeal",
         role: "Creative Strategy",
@@ -275,7 +274,7 @@ export const projects: Project[] = [
         title: "Influencer Collab - Subscription Unboxing",
         category: "influencer",
         subcategory: "Influencer Campaign",
-        thumbnail: "/assets/images/case-studies/prepmeal/Mockup.png",
+        thumbnail: "/assets/images/case-studies/prepmeal/Macros Club.jpg",
         description: "Unboxing and review of PrepMeal subscription food plans.",
         client: "PrepMeal",
         role: "Creative Strategy",

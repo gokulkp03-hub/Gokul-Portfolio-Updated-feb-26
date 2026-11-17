@@ -113,14 +113,14 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "lifestyle-beyond-cars-1",
         title: "Urban Luxury Drive",
-        image: "/assets/images/brands/Beyond-Cars/1.jpg",
+        image: "/assets/images/brands/Beyond-Cars/Cover 1.webp",
         category: "Lifestyle",
         description: "Dynamic urban lifestyle content with high-end vehicles."
     },
     {
         id: "architecture-knk-vibrant",
         title: "Vibrant living Spaces",
-        image: "/assets/images/brands/Knk/Artboard 1.png",
+        image: "/assets/images/brands/Knk/Artboard 1_1761316769324.webp",
         category: "Architecture",
         description: "Capturing the energy and flow of modern residential layouts."
     },

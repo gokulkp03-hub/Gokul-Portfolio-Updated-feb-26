@@ -47,13 +47,6 @@ export function TestimonialsStrip() {
                   <p className="text-white/40 text-[10px] font-medium tracking-wide mt-0.5">{t.role}</p>
                 </div>
               </div>
-
-              {/* Star row */}
-              <div className="flex gap-1 absolute top-8 right-8">
-                {[...Array(5)].map((_, si) => (
-                  <span key={si} className="text-orange-500 text-[10px]">★</span>
-                ))}
-              </div>
             </motion.div>
           ))}
         </div>

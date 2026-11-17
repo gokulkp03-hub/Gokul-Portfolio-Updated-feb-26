@@ -59,12 +59,12 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     category: "Luxury Fragrance & Branding",
     year: "2025",
     title: "Oud & Amber Product Stills",
-    previewImage: "/assets/images/brands/Galaxy-Star/galaxystar.webp",
+    previewImage: "/assets/images/brands/Galaxy-Star/Galaxy 1.webp",
     brief: "Produce rich, nocturnal bottle stills for luxury Middle Eastern fragrance line.",
     approach: "Controlled specular highlights with warm amber backlight to accentuate liquid clarity and gilded bottle contours.",
     deliverables: ["Billboard Print Visuals", "Instagram Story Assets", "Product Display Cards"],
     gallery: [
-      "/assets/images/brands/Galaxy-Star/galaxystar.webp",
+      "/assets/images/brands/Galaxy-Star/Galaxy 1.webp",
       "/assets/images/portfolio-all/Xmas_-_Galaxy.jpg",
       "/assets/images/portfolio-all/DSC08771.jpg"
     ]
