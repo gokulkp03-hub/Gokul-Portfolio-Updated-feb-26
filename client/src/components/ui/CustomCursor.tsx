@@ -86,7 +86,7 @@ export function CustomCursor() {
                 }}
             >
                 {hoverText && (
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-primary-foreground">
                         {hoverText}
                     </span>
                 )}

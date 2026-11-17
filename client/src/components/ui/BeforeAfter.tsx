@@ -43,7 +43,7 @@ export function BeforeAfter({
                 draggable={false}
             />
 
-            <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest pointer-events-none z-20">
+            <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-white text-[11px] font-bold uppercase tracking-widest pointer-events-none z-20">
                 {labelAfter}
             </div>
 
@@ -58,7 +58,7 @@ export function BeforeAfter({
                     className="absolute inset-0 w-full h-full object-cover"
                     draggable={false}
                 />
-                <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest pointer-events-none">
+                <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-white text-[11px] font-bold uppercase tracking-widest pointer-events-none">
                     {labelBefore}
                 </div>
             </div>

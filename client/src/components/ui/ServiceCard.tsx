@@ -76,7 +76,7 @@ function VideoCard({ title, description, href, videoSrc, imageSrc, index }: Serv
                             <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center">
                                 <Play className="w-4 h-4 text-blue-400 fill-current ml-0.5" />
                             </div>
-                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-400">Video Production</span>
+                            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-blue-400">Video Production</span>
                         </div>
 
                         <div>
@@ -132,7 +132,7 @@ function PhotoCard({ title, description, href, imageSrc, index }: ServiceCardPro
                     {/* Top label */}
                     <div className="absolute top-6 left-6 flex items-center gap-2">
                         <Camera className="w-4 h-4 text-orange-400" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-orange-400">Photography</span>
+                        <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-orange-400">Photography</span>
                     </div>
 
                     {/* Bottom content reveals on hover */}
@@ -198,7 +198,7 @@ function MarketingCard({ title, description, href, imageSrc, index }: ServiceCar
                             <div className="flex items-center justify-between md:hidden mb-4">
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-400">Performance Marketing</span>
+                                    <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">Performance Marketing</span>
                                 </div>
                                 <div className="p-2 rounded-full border border-emerald-500/20 text-emerald-400">
                                     <TrendingUp className="w-4 h-4" />
@@ -207,7 +207,7 @@ function MarketingCard({ title, description, href, imageSrc, index }: ServiceCar
                             
                             <div className="hidden md:flex items-center gap-2 mb-4">
                                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-400">Performance Marketing</span>
+                                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">Performance Marketing</span>
                             </div>
 
                             <div>
@@ -239,7 +239,7 @@ function MarketingCard({ title, description, href, imageSrc, index }: ServiceCar
                                     transition={{ delay: 0.3 + i * 0.1 }}
                                     className="flex items-center justify-between bg-white/5 border border-white/10 rounded-xl px-4 py-3 group-hover:border-emerald-500/20 transition-colors"
                                 >
-                                    <span className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</span>
+                                    <span className="text-[11px] md:text-xs uppercase tracking-widest text-muted-foreground">{stat.label}</span>
                                     <span className="text-base md:text-lg font-display font-bold text-emerald-400">{stat.value}</span>
                                 </motion.div>
                             ))}

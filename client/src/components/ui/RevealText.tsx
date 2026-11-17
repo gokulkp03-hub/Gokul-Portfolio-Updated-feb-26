@@ -28,9 +28,9 @@ export function RevealText({
   }
 
   return (
-    <Tag ref={ref as any} className={cn("overflow-hidden flex flex-wrap", className)}>
+    <Tag ref={ref as any} aria-label={text} className={cn("overflow-hidden flex flex-wrap", className)}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden mr-[0.25em]">
+        <span key={i} aria-hidden="true" className="inline-block overflow-hidden mr-[0.25em]">
           <motion.span
             className="inline-block"
             initial={{ y: "110%", opacity: 0 }}

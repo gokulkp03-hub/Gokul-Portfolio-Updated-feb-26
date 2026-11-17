@@ -30,7 +30,7 @@ export const CampaignDataTerrainSingle: React.FC = () => {
     return (
       <div className="relative w-full bg-zinc-950 rounded-3xl border border-border/20 p-6 sm:p-8 overflow-hidden">
         <div className="mb-6">
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-orange-500 mb-2 block">Methodology</span>
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-orange-500 mb-2 block">Methodology</span>
           <h3 className="text-2xl font-display font-bold text-white mb-2 tracking-tight">Campaign Journey</h3>
           <p className="text-xs text-neutral-400 font-light leading-relaxed">
             An interactive full-funnel performance marketing methodology engineered for GCC brand growth.
@@ -49,8 +49,8 @@ export const CampaignDataTerrainSingle: React.FC = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-0.5">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">{node.label}</span>
-                    <span className="text-[10px] font-mono text-zinc-500">0{i + 1}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-orange-500">{node.label}</span>
+                    <span className="text-[11px] font-mono text-zinc-500">0{i + 1}</span>
                   </div>
                   <div className="text-base font-display font-bold text-white leading-snug">{node.value}</div>
                   <div className="text-xs text-neutral-400 font-light mt-0.5 leading-relaxed">{node.desc}</div>

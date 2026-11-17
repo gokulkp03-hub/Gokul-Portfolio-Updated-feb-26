@@ -37,7 +37,7 @@ export function GrowthEngine() {
     );
 
     return (
-        <section className="py-32 relative overflow-hidden">
+        <section className="py-20 md:py-32 relative overflow-hidden">
             <MorphBlob color="orange-500" size={600} opacity={0.04} blur={130} className="-right-20 top-1/2 -translate-y-1/2" />
             <div className="container relative z-10 px-4 md:px-8 max-w-[1400px] mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -84,7 +84,7 @@ export function GrowthEngine() {
 
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-3 mb-6">
-                                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 bg-muted/30 border border-border/50 rounded-full text-muted-foreground">
+                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] px-3 py-1 bg-muted/30 border border-border/50 rounded-full text-muted-foreground">
                                             {study.industry}
                                         </span>
                                     </div>
@@ -103,7 +103,7 @@ export function GrowthEngine() {
                                                 <div className="text-xl md:text-2xl font-display font-bold text-white mb-1">
                                                     {metric.value}
                                                 </div>
-                                                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                                                <div className="text-[11px] uppercase tracking-wider text-muted-foreground">
                                                     {metric.label}
                                                 </div>
                                             </div>

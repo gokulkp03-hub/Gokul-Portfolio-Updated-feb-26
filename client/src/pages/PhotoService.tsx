@@ -36,22 +36,27 @@ const lifestyleStills = [
     "/assets/images/portfolio-all/DSC09621.webp"
 ];
 
+// Alt text describes what is actually in each photo (same order as lifestyleStills).
 const lifestyleDescriptions = [
-    "Vita Bloom luxury product packaging still with botanical lighting",
-    "Commercial studio product shot highlighting clean architectural design",
-    "Urban lifestyle subject in natural sunlight, candid portrait composition",
-    "Specialty coffee barista pour-over preparation at espresso bar",
-    "Minimalist interior architectural perspective with warm ambient lighting",
-    "High-fashion editorial model styling in dynamic studio lighting setup",
-    "Contemporary retail storefront visual merchandising showcase",
-    "Culinary prep scene highlighting fresh organic ingredients and kitchenware",
-    "Direct-response cosmetic skincare bottle on textured slate background",
-    "Outdoor commercial lifestyle shoot capturing dynamic motion",
-    "Editorial portrait featuring dramatic directional lighting",
-    "Commercial tabletop beverage styling with condensation drops",
-    "Creative visual branding composition with custom color palette",
-    "Modern product still showcasing metallic textures and reflections"
+    "Vita Bloom RO water system product graphic",
+    "Couple seated on a park bench during an outdoor portrait session",
+    "Couple portrait among the branches of a large tree",
+    "Couple posing on a low tree branch in a park",
+    "Couple holding hands beneath a tree, outdoor portrait",
+    "Woman in a white floral saree standing in a park",
+    "Mother and child in traditional costume by a stepwell",
+    "Child dressed as Krishna seated by water with family behind",
+    "Bride-to-be celebration group portrait in a park",
+    "Bride-to-be group celebrating with raised arms, city towers behind",
+    "Bride-to-be group seated beside a decorated banner",
+    "Maternity portrait in front of a winged sculpture in Dubai",
+    "Maternity couple portrait with city towers behind",
+    "Maternity couple portrait in a garden"
 ];
+
+// Personal portrait & event sessions. Hidden so the page stays focused on
+// commercial food, product and brand photography; set to true to show them.
+const SHOW_PORTRAIT_ARCHIVE = false;
 
 const graphicAdDesigns = [
     { src: "/assets/images/portfolio-all/steaburg-design.webp", title: "Steaburg Culinary Brand Key Visual", tag: "Social Promo Design" },
@@ -107,15 +112,15 @@ export default function PhotoService() {
                 fallbackSrc="/assets/images/photography/photo-hero-camera.webp"
                 headlineLine1="Creative"
                 headlineLine2="Photography"
-                sublabel="Food, product, and brand photography built for modern brands and visual feeds."
+                sublabel="Food, product & brand photography"
             />
 
             {/* 2. Food & Culinary Stills Archive Grid */}
-            <section className="py-28 bg-neutral-950 border-t border-neutral-800 text-white">
+            <section className="py-16 md:py-28 bg-neutral-950 border-t border-neutral-800 text-white">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
                         <div>
-                            <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-3">
+                            <span className="text-xs font-mono tracking-[0.25em] text-amber-400 uppercase block mb-3">
                                 Culinary Archive
                             </span>
                             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
@@ -154,20 +159,21 @@ export default function PhotoService() {
                 </div>
             </section>
 
-            {/* 3. Product & Lifestyle Stills Archive Grid */}
-            <section className="py-28 bg-neutral-900/60 border-t border-neutral-800 text-white">
+            {/* 3. Portrait & event sessions (hidden by default, see SHOW_PORTRAIT_ARCHIVE) */}
+            {SHOW_PORTRAIT_ARCHIVE && (
+            <section className="py-16 md:py-28 bg-neutral-900/60 border-t border-neutral-800 text-white">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
                         <div>
-                            <span className="text-xs font-mono tracking-[0.4em] text-orange-500 uppercase block mb-3">
-                                Lifestyle Archive
+                            <span className="text-xs font-mono tracking-[0.25em] text-orange-500 uppercase block mb-3">
+                                Portrait Sessions
                             </span>
                             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
-                                Product & <span className="italic text-neutral-400">Lifestyle Stills</span>
+                                Portrait & <span className="italic text-neutral-400">Event Sessions</span>
                             </h2>
                         </div>
                         <p className="text-neutral-400 text-sm font-light max-w-md leading-relaxed">
-                            A broader view into commercial product lighting, lifestyle environments, and brand storytelling.
+                            Couples, maternity and celebration sessions shot around Dubai.
                         </p>
                     </div>
 
@@ -197,13 +203,14 @@ export default function PhotoService() {
                     </div>
                 </div>
             </section>
+            )}
 
             {/* 4. Separate Dedicated Section: Graphic Ad Creatives & Campaign Posters */}
-            <section className="py-28 bg-neutral-950 border-t border-neutral-800 text-white">
+            <section className="py-16 md:py-28 bg-neutral-950 border-t border-neutral-800 text-white">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-neutral-800 pb-8">
                         <div>
-                            <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-3">
+                            <span className="text-xs font-mono tracking-[0.25em] text-amber-400 uppercase block mb-3">
                                 Direct-Response Assets
                             </span>
                             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">
@@ -232,7 +239,7 @@ export default function PhotoService() {
                                         className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[10px] font-mono text-orange-400 uppercase tracking-wider">
+                                    <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px] font-mono text-orange-400 uppercase tracking-wider">
                                         {item.tag}
                                     </div>
                                 </div>
@@ -240,7 +247,7 @@ export default function PhotoService() {
                                     <h3 className="text-sm font-serif font-bold text-white group-hover:text-orange-400 transition-colors">
                                         {item.title}
                                     </h3>
-                                    <span className="text-[10px] font-mono text-neutral-500 block uppercase tracking-wider">
+                                    <span className="text-[11px] font-mono text-neutral-500 block uppercase tracking-wider">
                                         GCC Campaign Asset #{String(i + 1).padStart(2, '0')}
                                     </span>
                                 </div>
@@ -257,10 +264,10 @@ export default function PhotoService() {
             <PhotoShootIndex />
 
             {/* 5. Editorial Investment / Pricing Packages */}
-            <section className="py-32 bg-neutral-950 border-t border-neutral-800 text-white relative">
+            <section className="py-20 md:py-32 bg-neutral-950 border-t border-neutral-800 text-white relative">
                 <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
                     <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
-                        <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block">
+                        <span className="text-xs font-mono tracking-[0.25em] text-amber-400 uppercase block">
                             Commercial Sessions
                         </span>
                         <h2 className="text-5xl md:text-7xl font-serif text-white tracking-tight">
@@ -286,7 +293,7 @@ export default function PhotoService() {
                                     <div className="flex justify-between items-start">
                                         <h3 className="text-2xl font-serif text-white">{pkg.name}</h3>
                                         {pkg.highlight && (
-                                            <span className="text-[10px] uppercase font-mono px-3 py-1 bg-amber-400 text-neutral-950 font-bold rounded-full">
+                                            <span className="text-[11px] uppercase font-mono px-3 py-1 bg-amber-400 text-neutral-950 font-bold rounded-full">
                                                 Popular
                                             </span>
                                         )}

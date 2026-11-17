@@ -63,7 +63,7 @@ export const PhotoShaderHero: React.FC<PhotoShaderHeroProps> = ({
         
         {/* Top Label */}
         <div className="flex items-center justify-between">
-          <span className="text-[11px] font-mono uppercase tracking-[0.4em] text-neutral-300/90 border border-neutral-700/60 px-4 py-1.5 rounded-full backdrop-blur-md bg-neutral-950/40">
+          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-300/90 border border-neutral-700/60 px-4 py-1.5 rounded-full backdrop-blur-md bg-neutral-950/40">
             {sublabel}
           </span>
           <span className="hidden md:block text-[11px] font-mono tracking-[0.3em] text-neutral-400">

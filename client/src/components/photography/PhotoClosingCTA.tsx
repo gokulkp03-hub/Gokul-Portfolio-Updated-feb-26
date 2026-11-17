@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 export const PhotoClosingCTA: React.FC = () => {
   return (
-    <section className="relative py-40 bg-neutral-950 border-t border-neutral-800 text-white overflow-hidden">
+    <section className="relative py-24 md:py-40 bg-neutral-950 border-t border-neutral-800 text-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-25 mix-blend-luminosity pointer-events-none">
         <img loading="lazy" decoding="async"
           src="/assets/images/portfolio-all/Sourdough_Avocado.webp"
@@ -15,7 +15,7 @@ export const PhotoClosingCTA: React.FC = () => {
       </div>
 
       <div className="relative z-10 container max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-10">
-        <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase inline-block border border-amber-400/30 px-5 py-2 rounded-full backdrop-blur-md bg-neutral-950/40">
+        <span className="text-xs font-mono tracking-[0.25em] text-amber-400 uppercase inline-block border border-amber-400/30 px-5 py-2 rounded-full backdrop-blur-md bg-neutral-950/40">
           Book Commercial & Editorial Sessions
         </span>
 

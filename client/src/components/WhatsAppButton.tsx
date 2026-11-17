@@ -1,78 +1,101 @@
-import { MessageCircle } from "lucide-react";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { trackEvent } from "@/utils/analytics";
+import { Mail, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Link, useLocation } from "wouter";
 
+const WHATSAPP_NUMBER = "971545264632";
+
+const PAGE_LABELS: Record<string, string> = {
+  "/": "your portfolio",
+  "/marketing": "your performance marketing work",
+  "/video": "your video production work",
+  "/photo": "your photography",
+  "/portfolio": "your portfolio archive",
+  "/results": "your campaign results",
+  "/services": "your services",
+  "/about": "your profile",
+  "/contact": "your contact page",
+  "/marketing/aqua-care-uae": "the AquaCare case study",
+  "/marketing/prepmeal": "the PrepMeal case study",
+  "/marketing/steaburg-local-seo": "the Steaburg case study",
+  "/marketing/aureum-asset-management": "the Aureum case study",
+};
+
+/** Pre-filled WhatsApp link that says which page the visitor came from. */
+export function whatsappHref(path: string): string {
+  const clean = path.split(/[?#]/)[0].replace(/\/+$/, "") || "/";
+  const label =
+    PAGE_LABELS[clean] ??
+    (clean.startsWith("/blogs/") ? "one of your articles" : clean.split("/").length > 2 ? "one of your projects" : "your portfolio");
+  const text = `Hi Gokul, I saw ${label} on gokulkp.com and I'd like to discuss a project.`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+/**
+ * Mobile: a slim contact bar fixed to the bottom of the screen. It never sits
+ * on top of content because index.css reserves the same height at the bottom
+ * of the page (see --mobile-cta-height).
+ * Desktop: a single floating WhatsApp button.
+ * Clicks are tracked by the global link listener in utils/analytics.
+ */
 export default function WhatsAppButton() {
-    const [isVisible, setIsVisible] = useState(false);
+  const [location] = useLocation();
+  const href = whatsappHref(location);
 
-    useEffect(() => {
-        // Show immediately — always visible, no scroll threshold
-        setIsVisible(true);
-    }, []);
+  return (
+    <>
+      {/* Mobile contact bar */}
+      <div
+        className="md:hidden fixed inset-x-0 bottom-0 z-[60] border-t border-white/10 bg-black/90 backdrop-blur-xl"
+        style={{
+          paddingBottom: "env(safe-area-inset-bottom)",
+          marginBottom: "var(--consent-banner-height, 0px)",
+          transition: "margin-bottom 0.3s ease",
+        }}
+      >
+        <div className="flex h-[var(--mobile-cta-height)] items-center gap-2 px-3">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-green-500 text-sm font-semibold text-white active:bg-green-600"
+          >
+            <MessageCircle className="h-4 w-4" fill="currentColor" aria-hidden="true" />
+            WhatsApp
+          </a>
+          {location !== "/contact" && (
+            <Link
+              href="/contact"
+              className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-white/15 text-sm font-semibold text-white active:bg-white/10"
+            >
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              Send a brief
+            </Link>
+          )}
+        </div>
+      </div>
 
-    return (
-        <AnimatePresence>
-            {isVisible && (
-                <div className="fixed bottom-0 left-0 right-0 z-[60] p-4 md:p-8 pointer-events-none flex justify-end">
-                    <motion.div 
-                        initial={{ y: 100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 100, opacity: 0 }}
-                        style={{
-                            marginBottom: "var(--consent-banner-height, 0px)",
-                            transition: "margin-bottom 0.3s ease"
-                        }}
-                        className="pointer-events-auto flex items-center gap-2 bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full p-2 pr-4 shadow-2xl md:hidden"
-                    >
-                        <a 
-                            href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => trackEvent('whatsapp_click')}
-                            className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors shrink-0"
-                            aria-label="Chat on WhatsApp"
-                        >
-                            <MessageCircle size={20} fill="currentColor" />
-                        </a>
-                        <div className="flex flex-col pr-1">
-                            <span className="text-[9px] text-white/50 uppercase tracking-widest font-bold">Quick Contact</span>
-                            <span className="text-xs text-white font-medium">WhatsApp</span>
-                        </div>
-                    </motion.div>
-
-                    <motion.a
-                        href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => trackEvent('whatsapp_click')}
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="hidden md:flex pointer-events-auto w-16 h-16 bg-green-500 text-white rounded-full shadow-2xl hover:bg-green-600 transition-colors items-center justify-center cursor-pointer relative group"
-                        aria-label="Chat on WhatsApp"
-                    >
-                        <MessageCircle size={28} fill="currentColor" />
-                        {/* Pulse ring 1 */}
-                        <motion.div
-                            animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                            className="absolute inset-0 rounded-full bg-green-500"
-                        />
-                        {/* Pulse ring 2 — offset */}
-                        <motion.div
-                            animate={{ scale: [1, 2.2], opacity: [0.3, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.4 }}
-                            className="absolute inset-0 rounded-full bg-green-500"
-                        />
-                        <span className="absolute right-full mr-4 px-4 py-2 bg-black text-white rounded-xl text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-white/10 shadow-xl">
-                            💬 Chat on WhatsApp
-                        </span>
-                    </motion.a>
-                </div>
-            )}
-        </AnimatePresence>
-    );
+      {/* Desktop floating button */}
+      <div
+        className="hidden md:block fixed bottom-8 right-8 z-[60]"
+        style={{ marginBottom: "var(--consent-banner-height, 0px)", transition: "margin-bottom 0.3s ease" }}
+      >
+        <motion.a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl transition-colors hover:bg-green-600"
+          aria-label="Chat on WhatsApp"
+        >
+          <MessageCircle size={26} fill="currentColor" aria-hidden="true" />
+          <span className="pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-xl border border-white/10 bg-black px-4 py-2 text-xs font-bold text-white opacity-0 shadow-xl transition-opacity group-hover:opacity-100">
+            Chat on WhatsApp
+          </span>
+        </motion.a>
+      </div>
+    </>
+  );
 }

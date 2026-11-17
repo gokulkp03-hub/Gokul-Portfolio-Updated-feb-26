@@ -66,7 +66,7 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     gallery: [
       "/assets/images/brands/Galaxy-Star/Galaxy 1.webp",
       "/assets/images/portfolio-all/Xmas_-_Galaxy.webp",
-      "/assets/images/portfolio-all/DSC08771.webp"
+      "/assets/images/brands/Galaxy-Star/Galaxy 3.webp"
     ]
   },
   {
@@ -82,8 +82,8 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     deliverables: ["Editorial Campaign Stills", "Rental App Banners", "Social Media Stills"],
     gallery: [
       "/assets/images/brands/Beyond-Cars/beyondcarsin.webp",
-      "/assets/images/portfolio-all/DSC09457.webp",
-      "/assets/images/portfolio-all/DSC09598.webp"
+      "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.webp",
+      "/assets/images/brands/Beyond-Cars/Mercedes Benz.webp"
     ]
   },
   {
@@ -120,13 +120,13 @@ export const PhotoShootIndex: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-28 bg-neutral-950 text-white relative">
+    <section className="py-16 md:py-28 bg-neutral-950 text-white relative">
       <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
         
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-800 pb-8 mb-16">
           <div>
-            <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-3">
+            <span className="text-xs font-mono tracking-[0.25em] text-amber-400 uppercase block mb-3">
               Selected Works
             </span>
             <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">

@@ -258,7 +258,7 @@ export default function PortfolioLayout() {
 
                                         {/* Category chip */}
                                         <div className="absolute top-3 left-3 md:top-5 md:left-5">
-                                            <span className="inline-flex items-center gap-1 md:gap-1.5 px-2 py-1 md:px-3.5 md:py-1.5 bg-black/75 backdrop-blur-md border border-white/10 text-white rounded-full text-[7px] md:text-[9px] uppercase font-bold tracking-widest">
+                                            <span className="inline-flex items-center gap-1 md:gap-1.5 px-2 py-1 md:px-3.5 md:py-1.5 bg-black/75 backdrop-blur-md border border-white/10 text-white rounded-full text-[11px] md:text-[11px] uppercase font-bold tracking-widest">
                                                 <Icon className="w-2.5 h-2.5 md:w-3 md:h-3 text-orange-500" />
                                                 <span className="hidden sm:inline">{categoryString}</span>
                                             </span>
@@ -266,7 +266,7 @@ export default function PortfolioLayout() {
 
                                         {/* Live Campaign Status Badge */}
                                         {isLiveCampaign && (
-                                            <div className="absolute top-3 right-3 md:top-5 md:right-5 z-20 flex items-center gap-1 md:gap-1.5 px-2 py-1 md:px-3 md:py-1.5 bg-red-600/90 backdrop-blur-md border border-red-500/30 text-white rounded-full text-[7px] md:text-[9px] uppercase font-bold tracking-widest animate-pulse">
+                                            <div className="absolute top-3 right-3 md:top-5 md:right-5 z-20 flex items-center gap-1 md:gap-1.5 px-2 py-1 md:px-3 md:py-1.5 bg-red-600/90 backdrop-blur-md border border-red-500/30 text-white rounded-full text-[11px] md:text-[11px] uppercase font-bold tracking-widest animate-pulse">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
                                                 <span className="hidden sm:inline">LIVE CAMPAIGN RESULTS</span>
                                                 <span className="sm:hidden">LIVE</span>
@@ -280,7 +280,7 @@ export default function PortfolioLayout() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 onClick={(e) => e.stopPropagation()}
-                                                className="absolute top-3 right-3 md:top-5 md:right-5 z-20 flex items-center gap-1 md:gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-[8px] md:text-[10px] uppercase font-bold tracking-wider shadow-lg transition-transform hover:scale-105"
+                                                className="absolute top-3 right-3 md:top-5 md:right-5 z-20 flex items-center gap-1 md:gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-[11px] md:text-[11px] uppercase font-bold tracking-wider shadow-lg transition-transform hover:scale-105"
                                             >
                                                 <span>Live Site</span>
                                                 <ExternalLink className="w-2.5 h-2.5 md:w-3 md:h-3" />
@@ -296,8 +296,8 @@ export default function PortfolioLayout() {
 
                                         {/* Title panel */}
                                         <div className="absolute bottom-3 left-3 right-10 md:bottom-6 md:left-6 md:right-20 transition-all duration-300">
-                                            <p className="text-white/60 md:text-white/40 text-[7px] md:text-[9px] font-bold uppercase tracking-[0.2em] mb-0.5 md:mb-1 truncate">{project.client}</p>
-                                            <h3 className="text-sm md:text-xl font-display font-bold text-white leading-tight uppercase tracking-tight line-clamp-2 md:line-clamp-2">{project.title}</h3>
+                                            <p className="text-white/60 md:text-white/40 text-[11px] md:text-[11px] font-bold uppercase tracking-[0.2em] mb-0.5 md:mb-1 truncate">{project.client}</p>
+                                            <h3 className="text-sm md:text-xl font-display font-bold text-white leading-tight uppercase tracking-tight line-clamp-3 md:line-clamp-2 [overflow-wrap:anywhere]">{project.title}</h3>
                                         </div>
 
                                         {/* Paid ads bottom line indicator */}
@@ -406,7 +406,7 @@ export default function PortfolioLayout() {
                             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/85 to-transparent">
                                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                                     <div>
-                                        <span className="text-[9px] font-bold uppercase tracking-[0.4em] mb-1.5 block text-orange-500">
+                                        <span className="text-[11px] font-bold uppercase tracking-[0.25em] mb-1.5 block text-orange-500">
                                             {selectedItem.category} Project • {selectedItem.client}
                                         </span>
                                         <h2 className="text-xl md:text-3xl font-display font-black text-white mb-2 uppercase tracking-tighter">
@@ -417,7 +417,7 @@ export default function PortfolioLayout() {
                                         {selectedItem.tools && selectedItem.tools.length > 0 && (
                                             <div className="flex flex-wrap gap-1.5">
                                                 {selectedItem.tools.map((tool: string, idx: number) => (
-                                                    <span key={idx} className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-white/90 text-[10px] font-medium tracking-wide">
+                                                    <span key={idx} className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-white/90 text-[11px] font-medium tracking-wide">
                                                         {tool}
                                                     </span>
                                                 ))}

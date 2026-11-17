@@ -166,7 +166,7 @@ export const ScrollCurvePath: React.FC = () => {
             </div>
             <div>
               <div className="text-sm font-bold font-display text-white tracking-wide">{card.stat}</div>
-              <div className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">{card.label}</div>
+              <div className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider">{card.label}</div>
             </div>
           </motion.div>
         );

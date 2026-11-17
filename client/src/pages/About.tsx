@@ -25,7 +25,7 @@ export default function About() {
                 url="/about" 
             />
 
-            <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-24 md:space-y-32">
+            <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16 md:space-y-32">
 
                 {/* 1. EDITORIAL HERO & INTRO */}
                 <section className="border-b border-border/40 pb-16 md:pb-24">
@@ -155,7 +155,7 @@ export default function About() {
                                 <div className="space-y-4 mb-6">
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-mono text-orange-500 font-semibold tracking-wider">0{idx + 1}</span>
-                                        <span className="text-[10px] uppercase font-mono tracking-widest text-muted-foreground/60">Core Area</span>
+                                        <span className="text-[11px] uppercase font-mono tracking-widest text-muted-foreground/60">Core Area</span>
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-display font-bold tracking-tight text-foreground">
                                         {cat.title}
@@ -233,7 +233,7 @@ export default function About() {
                                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-orange-500/20 pb-6">
                                             <div className="space-y-1.5">
                                                 <div className="flex items-center gap-3">
-                                                    <span className="text-[10px] font-mono uppercase tracking-widest bg-orange-500 text-white font-bold px-2.5 py-0.5 rounded-full">
+                                                    <span className="text-[11px] font-mono uppercase tracking-widest bg-orange-500 text-white font-bold px-2.5 py-0.5 rounded-full">
                                                         Current Focus
                                                     </span>
                                                     <span className="text-xs font-mono text-muted-foreground">{exp.location}</span>
@@ -377,7 +377,7 @@ export default function About() {
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-mono font-bold text-orange-500">{item.number}</span>
                                         {item.tag && (
-                                            <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60 bg-muted/40 px-2.5 py-0.5 rounded-full border border-border/40">
+                                            <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/60 bg-muted/40 px-2.5 py-0.5 rounded-full border border-border/40">
                                                 {item.tag}
                                             </span>
                                         )}

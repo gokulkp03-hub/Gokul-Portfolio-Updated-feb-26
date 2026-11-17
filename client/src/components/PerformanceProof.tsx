@@ -34,14 +34,14 @@ export default function PerformanceProof() {
             <div className="container">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                     <div className="max-w-2xl">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-500 mb-6 block">Proof of Work</span>
+                        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-orange-500 mb-6 block">Proof of Work</span>
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 uppercase tracking-tight">Results & <span className="text-orange-500 italic">Performance</span></h2>
                         <p className="text-xl text-white/40 font-light leading-relaxed">
                             Data-backed growth and creative production. Real campaign snapshots — strategy, creatives, and validated metrics.
                         </p>
                     </div>
                     <div className="hidden md:block pb-2">
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[10px] text-white/40 uppercase tracking-widest">
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[11px] text-white/40 uppercase tracking-widest">
                             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                             Verified Meta Ads Data
                         </div>
@@ -68,7 +68,7 @@ export default function PerformanceProof() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
                                 <div className="absolute top-6 left-6 right-6 flex justify-between items-start">
-                                    <div className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-[9px] text-orange-500 font-bold uppercase tracking-widest backdrop-blur-md">
+                                    <div className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-[11px] text-orange-500 font-bold uppercase tracking-widest backdrop-blur-md">
                                         {item.label}
                                     </div>
                                     <div className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -77,7 +77,7 @@ export default function PerformanceProof() {
                                 </div>
 
                                 <div className="absolute bottom-0 left-0 right-0 p-8">
-                                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">{item.client}</p>
+                                    <p className="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] mb-2">{item.client}</p>
                                     <div className="flex flex-col gap-1">
                                         <h3 className="text-white text-3xl font-display font-bold tabular-nums">{item.metric}</h3>
                                         <p className="text-orange-500/80 text-sm font-medium tracking-tight uppercase">{item.result}</p>

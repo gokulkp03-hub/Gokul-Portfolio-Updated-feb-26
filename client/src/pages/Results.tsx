@@ -68,7 +68,7 @@ export default function Results() {
                 </div>
 
                 {/* Metrics Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-32">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 md:mb-32">
                     {proof.metrics.map((metric, i) => {
                         const formattedValue = isNaN(Number(metric.value))
                             ? metric.value
@@ -96,7 +96,7 @@ export default function Results() {
                 </div>
 
                 {/* Visual Wall of Wins */}
-                <div className="space-y-32">
+                <div className="space-y-20 md:space-y-32">
                     {campaigns.map((camp: any, i: number) => {
                         let parsedResults: any[] = [];
                         try {
@@ -122,25 +122,25 @@ export default function Results() {
                         return (
                             <div key={camp.id} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                                 <motion.div
-                                    initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0, y: 24 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     className={i % 2 === 0 ? "order-1" : "order-1 lg:order-2"}
                                 >
                                     <div className="flex flex-wrap items-center gap-3 mb-6">
                                         {camp.id === "aureum-asset-management" ? (
-                                            <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+                                            <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-[11px] font-bold uppercase tracking-widest flex items-center gap-1">
                                                 <Target className="w-3 h-3" />
                                                 STRATEGY &amp; CONSULTING
                                             </span>
                                         ) : (
-                                            <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-500 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+                                            <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-500 rounded-full text-[11px] font-bold uppercase tracking-widest flex items-center gap-1">
                                                 <Target className="w-3 h-3" />
                                                 {camp.client || camp.title}
                                             </span>
                                         )}
                                         {camp.id === "aureum-asset-management" && (
-                                            <span className="px-3 py-1 bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-full text-[10px] font-semibold tracking-wide">
+                                            <span className="px-3 py-1 bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-full text-[11px] font-semibold tracking-wide">
                                                 {camp.client}
                                             </span>
                                         )}
@@ -151,14 +151,14 @@ export default function Results() {
                                     <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-6 md:mb-8 leading-tight">
                                         {camp.title}
                                     </h2>
-                                    <p className="text-lg text-muted-foreground mb-8 font-light leading-relaxed line-clamp-4">
+                                    <p className="text-lg text-muted-foreground mb-8 font-light leading-relaxed">
                                         {camp.description}
                                     </p>
 
                                     {camp.id === "aureum-asset-management" ? (
                                         <div className="space-y-6 mb-8">
                                             <div>
-                                                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-bold mb-3 flex items-center gap-2">
+                                                <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-bold mb-3 flex items-center gap-2">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                                                     Outcomes (Achieved)
                                                 </div>
@@ -174,7 +174,7 @@ export default function Results() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-amber-400 font-bold mb-3 flex items-center gap-2">
+                                                <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-amber-400 font-bold mb-3 flex items-center gap-2">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                                                     Targets (Proposed)
                                                 </div>
@@ -234,7 +234,7 @@ export default function Results() {
                                     <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-border group bg-zinc-950 flex justify-center items-center">
                                         {camp.id === "beyondcars-leads" ? (
                                             <div className="w-full h-full bg-zinc-950 border border-white/5 rounded-3xl flex flex-col justify-center items-center p-12 text-center min-h-[300px]">
-                                                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-500 mb-3">AUTOMOTIVE CLIENT</span>
+                                                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-orange-500 mb-3">AUTOMOTIVE CLIENT</span>
                                                 <h3 className="text-xl font-display font-black text-white uppercase mb-2">DUBAI SUPERCAR RENTALS</h3>
                                                 <p className="text-white/40 text-xs font-light max-w-xs leading-relaxed">Lead generation engine scaled via direct-response cinematic creatives.</p>
                                             </div>

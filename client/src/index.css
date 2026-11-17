@@ -497,3 +497,20 @@
   opacity: 1;
   transform: translateY(0);
 }@plugin "@tailwindcss/typography";
+
+/* Mobile contact bar (WhatsAppButton): reserve its height so it never covers content. */
+:root {
+  --mobile-cta-height: 64px;
+}
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(var(--mobile-cta-height) + env(safe-area-inset-bottom));
+  }
+}
+
+/* Side-entering animations must never create sideways scrolling on phones.
+   `clip` (unlike `hidden`) keeps position: sticky working. */
+html,
+body {
+  overflow-x: clip;
+}

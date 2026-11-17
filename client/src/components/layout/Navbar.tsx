@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Play, Camera, TrendingUp, LayoutGrid, MessageCircle } from "lucide-react";
+import { Menu, X, ChevronDown, Play, Camera, TrendingUp, LayoutGrid } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -81,6 +81,7 @@ const Navbar = () => {
         },
         { name: "About", href: "/about", activeColor: "text-orange-500" },
         { name: "Results", href: "/results", activeColor: "text-orange-500" },
+        { name: "Services", href: "/services", activeColor: "text-orange-500" },
     ];
 
     return (
@@ -142,7 +143,7 @@ const Navbar = () => {
                                                 >
                                                     {/* Header Panel */}
                                                     <div className="px-5 py-4 border-b border-border/40 bg-muted/20">
-                                                        <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-bold">My Work</p>
+                                                        <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground font-bold">My Work</p>
                                                         <div className="flex gap-1.5 mt-2">
                                                             <div className="w-2 h-2 rounded-full bg-emerald-400" />
                                                             <div className="w-2 h-2 rounded-full bg-blue-400" />
@@ -207,15 +208,6 @@ const Navbar = () => {
                     {/* Mobile Toggle */}
                     <div className="flex items-center gap-3 md:hidden">
                         <ThemeToggle />
-                        <a
-                            href="https://wa.me/971545264632?text=Hi%20Gokul%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20project."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-9 h-9 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-500"
-                            aria-label="Chat on WhatsApp"
-                        >
-                            <MessageCircle className="w-4 h-4" fill="currentColor" />
-                        </a>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="text-foreground p-2 relative z-[120]"

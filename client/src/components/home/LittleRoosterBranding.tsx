@@ -24,9 +24,9 @@ export function LittleRoosterBranding() {
     }
 
     return (
-        <section className="py-24 container px-4 md:px-8 max-w-[1400px] mx-auto border-t border-border/10">
+        <section className="py-16 md:py-24 container px-4 md:px-8 max-w-[1400px] mx-auto border-t border-border/10">
             <div className="mb-16">
-                <p className="text-xs uppercase tracking-[0.4em] text-orange-500 mb-4">Brand Identity Project</p>
+                <p className="text-xs uppercase tracking-[0.25em] text-orange-500 mb-4">Brand Identity Project</p>
                 <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight">Little Rooster</h2>
                 <p className="text-muted-foreground text-lg md:text-xl font-light max-w-2xl">
                     Full visual identity system — logo, colour palette, apparel, and packaging.
@@ -96,10 +96,10 @@ export function LittleRoosterBranding() {
                             variants={{ hidden: { opacity: 0, scale: 0.97 }, show: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
                             className="relative rounded-[1.25rem] overflow-hidden flex flex-row h-16 md:h-20 flex-shrink-0"
                         >
-                            <div className="flex-1 bg-[#2D4995] flex flex-col justify-end p-2 md:p-3"><span className="text-[10px] text-white/70 font-mono tracking-wider hidden sm:block">#2D4995</span></div>
-                            <div className="flex-1 bg-[#E87A00] flex flex-col justify-end p-2 md:p-3"><span className="text-[10px] text-white/70 font-mono tracking-wider hidden sm:block">#E87A00</span></div>
-                            <div className="flex-1 bg-[#FCFAE7] flex flex-col justify-end p-2 md:p-3"><span className="text-[10px] text-black/50 font-mono tracking-wider hidden sm:block">#FCFAE7</span></div>
-                            <div className="flex-1 bg-[#0C0F14] flex flex-col justify-end p-2 md:p-3"><span className="text-[10px] text-white/50 font-mono tracking-wider hidden sm:block">#0C0F14</span></div>
+                            <div className="flex-1 bg-[#2D4995] flex flex-col justify-end p-2 md:p-3"><span className="text-[11px] text-white/70 font-mono tracking-wider hidden sm:block">#2D4995</span></div>
+                            <div className="flex-1 bg-[#E87A00] flex flex-col justify-end p-2 md:p-3"><span className="text-[11px] text-white/70 font-mono tracking-wider hidden sm:block">#E87A00</span></div>
+                            <div className="flex-1 bg-[#FCFAE7] flex flex-col justify-end p-2 md:p-3"><span className="text-[11px] text-black/50 font-mono tracking-wider hidden sm:block">#FCFAE7</span></div>
+                            <div className="flex-1 bg-[#0C0F14] flex flex-col justify-end p-2 md:p-3"><span className="text-[11px] text-white/50 font-mono tracking-wider hidden sm:block">#0C0F14</span></div>
                         </motion.div>
 
                         <motion.div

@@ -35,7 +35,7 @@ export const bio = {
     name: "Gokul KP",
     role: "Performance Marketer & Video Producer",
     eyebrow: "ABOUT",
-    headline: "Creative meets performance.",
+    headline: "The marketer who also shoots the creative.",
     location: "Dubai, UAE • GCC & India",
     status: "Available for select roles & projects",
     intro: "Performance marketer and video producer working across Dubai, the GCC, and India. The work sits between paid media and creative production — planning campaigns, shooting and editing ad creative, managing ad accounts, and tracking what actually converts into sales conversations.",

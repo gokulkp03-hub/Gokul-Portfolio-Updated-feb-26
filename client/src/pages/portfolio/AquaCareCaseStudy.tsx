@@ -136,9 +136,9 @@ export default function AquaCareCaseStudy() {
                     <div className="w-11 h-11 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
                       <Play className="w-5 h-5 fill-current translate-x-0.5" />
                     </div>
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-white">Watch Reel</span>
+                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-white">Watch Reel</span>
                   </div>
-                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
+                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
                     AED 4.32 CPL
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export default function AquaCareCaseStudy() {
                     alt="Countertop Dispenser WhatsApp Ad" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
-                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-blue-400 border border-blue-500/30">
+                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold text-blue-400 border border-blue-500/30">
                     AED 1.03 / Chat
                   </div>
                   <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 rounded-full p-1 text-zinc-300">
@@ -217,7 +217,7 @@ export default function AquaCareCaseStudy() {
                     alt="100K+ Viral Reel Creative" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
-                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold text-purple-400 border border-purple-500/30">
+                  <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold text-purple-400 border border-purple-500/30">
                     100K+ Views
                   </div>
                   <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/70 rounded-full p-1 text-zinc-300">
@@ -253,7 +253,7 @@ export default function AquaCareCaseStudy() {
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/aquacare-countertop-dispenser-hero.webp" alt="Stage 1 Awareness Creative — AquaCare Countertop Dispenser" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 1 — Awareness</span>
+              <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 1 — Awareness</span>
               <h4 className="text-sm font-bold text-white mb-2">Broad Education</h4>
               <p className="text-xs text-zinc-400 font-light leading-relaxed">
                 Broad targeting across the UAE introducing water quality awareness, filtration benefits, and AquaCare systems.
@@ -267,7 +267,7 @@ export default function AquaCareCaseStudy() {
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Stage 2 Engagement Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">Stage 2 — Engagement</span>
+              <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider block mb-1">Stage 2 — Engagement</span>
               <h4 className="text-sm font-bold text-white mb-2">WhatsApp Conversations</h4>
               <p className="text-xs text-zinc-400 font-light leading-relaxed">
                 Click-to-WhatsApp and Instagram DM ads answering customer product questions and pricing inquiries in real time.
@@ -281,7 +281,7 @@ export default function AquaCareCaseStudy() {
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Stage 3 Lead Capture Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 3 — Lead Capture</span>
+              <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 3 — Lead Capture</span>
               <h4 className="text-sm font-bold text-white mb-2">Instant Lead Forms</h4>
               <p className="text-xs text-zinc-400 font-light leading-relaxed">
                 Native Meta lead forms capturing customer name, phone, and delivery location directly inside Facebook and Instagram.
@@ -327,7 +327,7 @@ export default function AquaCareCaseStudy() {
 
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
+                    <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
                       Lead Generation Winner
                     </span>
                     <h3 className="text-xl font-bold text-white mt-2">Shower Filter</h3>
@@ -366,7 +366,7 @@ export default function AquaCareCaseStudy() {
 
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                    <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
                       Messaging Winner
                     </span>
                     <h3 className="text-xl font-bold text-white mt-2">Countertop Dispensers</h3>
@@ -440,12 +440,12 @@ export default function AquaCareCaseStudy() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Vita bloom.webp" alt="Vita Bloom Shower Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-emerald-400 border border-emerald-500/30">
                   AED 4.32 CPL
                 </div>
               </div>
               <div className="px-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">Lead Winner</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">Lead Winner</span>
                 <h4 className="text-sm font-bold text-white mt-0.5">Vita Bloom Shower Filter</h4>
                 <p className="text-xs text-zinc-400 mt-1 font-light">Direct-response ad addressing hard water effects on hair & skin in UAE homes.</p>
               </div>
@@ -457,12 +457,12 @@ export default function AquaCareCaseStudy() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Countertop Dispenser Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-blue-400 border border-blue-500/30">
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-blue-400 border border-blue-500/30">
                   AED 1.03 / Chat
                 </div>
               </div>
               <div className="px-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-blue-400 font-semibold">Inquiry Winner</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-blue-400 font-semibold">Inquiry Winner</span>
                 <h4 className="text-sm font-bold text-white mt-0.5">Instant RO Dispenser</h4>
                 <p className="text-xs text-zinc-400 mt-1 font-light">Clean aesthetic showcasing instant hot/cold water convenience for families.</p>
               </div>
@@ -474,12 +474,12 @@ export default function AquaCareCaseStudy() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Multi-Stage Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-zinc-300 border border-zinc-700">
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-zinc-300 border border-zinc-700">
                   Retention
                 </div>
               </div>
               <div className="px-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold">Replacement Upsell</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-semibold">Replacement Upsell</span>
                 <h4 className="text-sm font-bold text-white mt-0.5">Filter Cartridge Systems</h4>
                 <p className="text-xs text-zinc-400 mt-1 font-light">Promotional graphic highlighting certified multi-stage sediment & carbon blocks.</p>
               </div>
@@ -491,12 +491,12 @@ export default function AquaCareCaseStudy() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Oman National Day.webp" alt="Oman National Day Campaign" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-amber-400 border border-amber-500/30">
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-amber-400 border border-amber-500/30">
                   Seasonal
                 </div>
               </div>
               <div className="px-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-semibold">Regional Campaign</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-amber-400 font-semibold">Regional Campaign</span>
                 <h4 className="text-sm font-bold text-white mt-0.5">Oman National Day Push</h4>
                 <p className="text-xs text-zinc-400 mt-1 font-light">Localized holiday promotion scaling regional brand awareness in Oman.</p>
               </div>
@@ -508,12 +508,12 @@ export default function AquaCareCaseStudy() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/new.webp" alt="Hydration Lifestyle Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-emerald-400 border border-emerald-500/30">
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-emerald-400 border border-emerald-500/30">
                   Lifestyle
                 </div>
               </div>
               <div className="px-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">Brand Awareness</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">Brand Awareness</span>
                 <h4 className="text-sm font-bold text-white mt-0.5">Pure Mineral Hydration</h4>
                 <p className="text-xs text-zinc-400 mt-1 font-light">Health and lifestyle angle highlighting pure mineralized water for wellness.</p>
               </div>
@@ -525,12 +525,12 @@ export default function AquaCareCaseStudy() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
                 <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.webp" alt="Platinum Plus RO System" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-mono text-purple-400 border border-purple-500/30">
+                <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-purple-400 border border-purple-500/30">
                   High-Ticket
                 </div>
               </div>
               <div className="px-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-semibold">Villa System</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold">Villa System</span>
                 <h4 className="text-sm font-bold text-white mt-0.5">Platinum Plus RO Faucet</h4>
                 <p className="text-xs text-zinc-400 mt-1 font-light">Premium architectural faucet & multi-stage filtration for luxury homes.</p>
               </div>
@@ -558,19 +558,19 @@ export default function AquaCareCaseStudy() {
                 <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">Account-Level Efficiency Averages</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs">
                   <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Total Spend</span>
+                    <span className="text-[11px] text-zinc-500 block">Total Spend</span>
                     <strong className="text-white text-sm">AED 11,063.34</strong>
                   </div>
                   <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Average CTR</span>
+                    <span className="text-[11px] text-zinc-500 block">Average CTR</span>
                     <strong className="text-white text-sm">0.63% (14,040 clicks)</strong>
                   </div>
                   <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Average CPC</span>
+                    <span className="text-[11px] text-zinc-500 block">Average CPC</span>
                     <strong className="text-white text-sm">AED 0.79</strong>
                   </div>
                   <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-                    <span className="text-[10px] text-zinc-500 block">Average CPM</span>
+                    <span className="text-[11px] text-zinc-500 block">Average CPM</span>
                     <strong className="text-white text-sm">AED 4.96</strong>
                   </div>
                 </div>
@@ -582,7 +582,7 @@ export default function AquaCareCaseStudy() {
                 <div className="overflow-x-auto rounded-xl border border-zinc-800">
                   <table className="w-full text-left text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800 bg-zinc-900 text-zinc-400 uppercase text-[10px]">
+                      <tr className="border-b border-zinc-800 bg-zinc-900 text-zinc-400 uppercase text-[11px]">
                         <th className="p-3">Campaign</th>
                         <th className="p-3">Spend</th>
                         <th className="p-3">Results</th>
@@ -748,7 +748,7 @@ export default function AquaCareCaseStudy() {
         {/* ─── REEL CASE STUDY SECTION (ORGANIC GROWTH) ────────────────────── */}
         <section id="reel-case-study" className="pb-12 text-white">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
+            <span className="text-[11px] font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
               Organic Growth · Content Production
             </span>
           </div>
@@ -774,26 +774,26 @@ export default function AquaCareCaseStudy() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden mb-16 shadow-2xl">
             <div className="p-6 sm:p-8 bg-zinc-950 text-center flex flex-col justify-center border-r border-b md:border-b-0 border-zinc-900">
               <div className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-400 mb-2">114K+</div>
-              <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Total views</div>
-              <div className="text-[10px] text-zinc-600 mt-1">IG + FB + YouTube</div>
+              <div className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest">Total views</div>
+              <div className="text-[11px] text-zinc-600 mt-1">IG + FB + YouTube</div>
             </div>
 
             <div className="p-6 sm:p-8 bg-zinc-950 text-center flex flex-col justify-center border-r border-b md:border-b-0 border-zinc-900">
               <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">26.7K</div>
-              <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Accounts reached</div>
-              <div className="text-[10px] text-zinc-600 mt-1">Instagram only</div>
+              <div className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest">Accounts reached</div>
+              <div className="text-[11px] text-zinc-600 mt-1">Instagram only</div>
             </div>
 
             <div className="p-6 sm:p-8 bg-zinc-950 text-center flex flex-col justify-center border-r border-zinc-900">
               <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">99.4%</div>
-              <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">New audience</div>
-              <div className="text-[10px] text-zinc-600 mt-1">Non-followers</div>
+              <div className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest">New audience</div>
+              <div className="text-[11px] text-zinc-600 mt-1">Non-followers</div>
             </div>
 
             <div className="p-6 sm:p-8 bg-zinc-950 text-center flex flex-col justify-center">
               <div className="text-3xl sm:text-4xl md:text-5xl font-black text-emerald-400 mb-2">AED 0</div>
-              <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Ad spend</div>
-              <div className="text-[10px] text-zinc-600 mt-1">100% organic</div>
+              <div className="text-[11px] text-zinc-500 font-bold uppercase tracking-widest">Ad spend</div>
+              <div className="text-[11px] text-zinc-600 mt-1">100% organic</div>
             </div>
           </div>
 
@@ -814,7 +814,7 @@ export default function AquaCareCaseStudy() {
                     <Play className="w-8 h-8 fill-current translate-x-0.5" />
                   </div>
                   <p className="text-white font-bold text-xs uppercase tracking-widest mt-2">Play Case Reel</p>
-                  <span className="text-[10px] text-zinc-400">26 seconds · Organic Growth</span>
+                  <span className="text-[11px] text-zinc-400">26 seconds · Organic Growth</span>
                 </div>
               </>
             )}
@@ -830,7 +830,7 @@ export default function AquaCareCaseStudy() {
               <div>
                 <h4 className="text-base font-bold text-white mb-2 uppercase tracking-tight">Spotted the opportunity on-site</h4>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">We were doing a routine filter replacement at a customer's home. I saw the dirty filters and thought — people have no idea what's sitting inside their water system. Pulled out my phone.</p>
-                <div className="mt-3"><span className="text-[10px] text-blue-400 border border-blue-900/60 px-2 py-0.5 rounded-full bg-blue-950/30 font-semibold uppercase tracking-wider">Shot on mobile</span></div>
+                <div className="mt-3"><span className="text-[11px] text-blue-400 border border-blue-900/60 px-2 py-0.5 rounded-full bg-blue-950/30 font-semibold uppercase tracking-wider">Shot on mobile</span></div>
               </div>
             </div>
 
@@ -839,7 +839,7 @@ export default function AquaCareCaseStudy() {
               <div>
                 <h4 className="text-base font-bold text-white mb-2 uppercase tracking-tight">Edited in Premiere Pro</h4>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">Basic cut — trimmed to the best moments of each filter reveal. Kept the original ambient sounds (scraping, water, the suction breaking). No music, no transitions, no colour grade. The rawness was intentional.</p>
-                <div className="mt-3"><span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/30 font-semibold uppercase tracking-wider">Adobe Premiere Pro</span></div>
+                <div className="mt-3"><span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/30 font-semibold uppercase tracking-wider">Adobe Premiere Pro</span></div>
               </div>
             </div>
 
@@ -848,7 +848,7 @@ export default function AquaCareCaseStudy() {
               <div>
                 <h4 className="text-base font-bold text-white mb-2 uppercase tracking-tight">AI voiceover — conversational, not robotic</h4>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">Scripted the voiceover myself, then generated it through ElevenLabs. Chose a natural male voice, adjusted pacing to match the footage. Layered it under the ambient sounds — not over them.</p>
-                <div className="mt-3"><span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/30 font-semibold uppercase tracking-wider">ElevenLabs</span></div>
+                <div className="mt-3"><span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/30 font-semibold uppercase tracking-wider">ElevenLabs</span></div>
               </div>
             </div>
 
@@ -857,7 +857,7 @@ export default function AquaCareCaseStudy() {
               <div>
                 <h4 className="text-base font-bold text-white mb-2 uppercase tracking-tight">Hook text + 2K export via Instagram Edits</h4>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">Added the hook text overlay directly inside the Instagram Edits app. Exported at 2K resolution, 30fps — higher source quality means better compression on Instagram's side, sharper playback on every device.</p>
-                <div className="mt-3"><span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/30 font-semibold uppercase tracking-wider">Instagram Edits App</span></div>
+                <div className="mt-3"><span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/30 font-semibold uppercase tracking-wider">Instagram Edits App</span></div>
               </div>
             </div>
 
@@ -867,10 +867,10 @@ export default function AquaCareCaseStudy() {
                 <h4 className="text-base font-bold text-white mb-2 uppercase tracking-tight">Caption, hashtags, timing — all deliberate</h4>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">Used ChatGPT to shape the caption angle — led with a real observation ("we see this all the time"), followed with the problem, closed with a soft DM CTA. Posted mid-morning. Cross-posted to Facebook automatically. Same video uploaded manually to YouTube Shorts the same day.</p>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  <span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">ChatGPT</span>
-                  <span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">#aquacare</span>
-                  <span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">#waterfilter</span>
-                  <span className="text-[10px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">#cleanwater</span>
+                  <span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">ChatGPT</span>
+                  <span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">#aquacare</span>
+                  <span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">#waterfilter</span>
+                  <span className="text-[11px] text-zinc-500 border border-zinc-800 px-2 py-0.5 rounded-full bg-zinc-900/20">#cleanwater</span>
                 </div>
               </div>
             </div>
@@ -889,23 +889,23 @@ export default function AquaCareCaseStudy() {
             <div className="grid grid-cols-2 md:grid-cols-5 border border-zinc-800 bg-zinc-950/40 rounded-b-2xl overflow-hidden">
               <div className="p-5 border-r border-b md:border-b-0 border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">100.1K</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Views</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Views</div>
               </div>
               <div className="p-5 border-r border-b md:border-b-0 border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">13s</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Avg Watch Time</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Avg Watch Time</div>
               </div>
               <div className="p-5 border-r border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">95</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Shares</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Shares</div>
               </div>
               <div className="p-5 border-r border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">53</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Saves</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Saves</div>
               </div>
               <div className="p-5">
                 <div className="text-2xl sm:text-3xl font-bold text-emerald-400">37</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">New Follows</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">New Follows</div>
               </div>
             </div>
           </div>
@@ -919,19 +919,19 @@ export default function AquaCareCaseStudy() {
             <div className="grid grid-cols-2 md:grid-cols-4 border border-zinc-800 bg-zinc-950/40 rounded-b-2xl overflow-hidden">
               <div className="p-5 border-r border-b md:border-b-0 border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">13.9K</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Views</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Views</div>
               </div>
               <div className="p-5 border-r border-b md:border-b-0 border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">81.5%</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Stayed to Watch</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Stayed to Watch</div>
               </div>
               <div className="p-5 border-r border-zinc-900">
                 <div className="text-2xl sm:text-3xl font-bold text-white">0:28</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Avg Duration</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Avg Duration</div>
               </div>
               <div className="p-5">
                 <div className="text-2xl sm:text-3xl font-bold text-white">13.3K</div>
-                <div className="text-[9px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Unique Viewers</div>
+                <div className="text-[11px] text-zinc-500 uppercase tracking-widest font-bold mt-1">Unique Viewers</div>
               </div>
             </div>
           </div>

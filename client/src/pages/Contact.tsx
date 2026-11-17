@@ -167,7 +167,7 @@ export default function Contact() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6 }}
                                 className="block"
-                            >Let's</motion.span>
+                            >Let's</motion.span>{" "}
                             <motion.span 
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -290,7 +290,7 @@ export default function Contact() {
                                             <div className="space-y-2">
                                                 <label htmlFor="contact-name" className="text-xs uppercase tracking-widest text-muted-foreground flex justify-between">
                                                     <span>Name <span className="text-orange-500">*</span></span>
-                                                    {fieldErrors.name && <span className="text-red-400 text-[10px] lowercase">{fieldErrors.name}</span>}
+                                                    {fieldErrors.name && <span className="text-red-400 text-[11px] lowercase">{fieldErrors.name}</span>}
                                                 </label>
                                                 <div className={`relative rounded-xl overflow-hidden bg-muted/20 border ${fieldErrors.name ? 'border-red-500/60' : 'border-border'}`}>
                                                     <input
@@ -320,7 +320,7 @@ export default function Contact() {
                                             <div className="space-y-2">
                                                 <label htmlFor="contact-email" className="text-xs uppercase tracking-widest text-muted-foreground flex justify-between">
                                                     <span>Email <span className="text-orange-500">*</span></span>
-                                                    {fieldErrors.email && <span className="text-red-400 text-[10px] lowercase">{fieldErrors.email}</span>}
+                                                    {fieldErrors.email && <span className="text-red-400 text-[11px] lowercase">{fieldErrors.email}</span>}
                                                 </label>
                                                 <div className={`relative rounded-xl overflow-hidden bg-muted/20 border ${fieldErrors.email ? 'border-red-500/60' : 'border-border'}`}>
                                                     <input
@@ -349,7 +349,7 @@ export default function Contact() {
                                         <div className="space-y-2">
                                             <label htmlFor="contact-service" className="text-xs uppercase tracking-widest text-muted-foreground flex justify-between">
                                                 <span>Service Interest <span className="text-orange-500">*</span></span>
-                                                {fieldErrors.service && <span className="text-red-400 text-[10px] lowercase">{fieldErrors.service}</span>}
+                                                {fieldErrors.service && <span className="text-red-400 text-[11px] lowercase">{fieldErrors.service}</span>}
                                             </label>
                                             <div className={`relative rounded-xl overflow-hidden bg-muted/20 border ${fieldErrors.service ? 'border-red-500/60' : 'border-border'}`}>
                                                 <select

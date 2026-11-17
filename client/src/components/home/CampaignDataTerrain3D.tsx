@@ -181,7 +181,7 @@ export default function CampaignDataTerrain3D() {
               <div className="p-1.5 rounded-lg bg-orange-500/20 text-orange-500">
                 {React.createElement(hoveredNode.icon, { className: "w-4 h-4" })}
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-orange-500">{hoveredNode.label}</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-orange-500">{hoveredNode.label}</span>
             </div>
             <div className="text-lg font-display font-bold text-white mb-1 leading-tight">{hoveredNode.value}</div>
             <div className="text-xs text-neutral-400 font-light leading-snug">{hoveredNode.desc}</div>

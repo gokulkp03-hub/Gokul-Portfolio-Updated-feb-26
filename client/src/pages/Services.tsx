@@ -80,11 +80,11 @@ export default function Services() {
       title: "Performance Marketing",
       badge: "Paid Acquisition",
       thumbnail: "/assets/images/brands/Aqua-Care/new.webp",
-      description: "Data-driven ad strategies across Meta and TikTok that scale your revenue with precision.",
+      description: "Data-driven Meta ad strategies built around qualified enquiries and measurable sales.",
       icon: <Target className="w-8 h-8 text-orange-500" />,
       features: [
         "Full-Funnel Ad Strategy",
-        "Meta & TikTok Campaign Management",
+        "Meta Ads Campaign Management",
         "Creative Direction for Paid Media",
         "A/B Testing & Rapid Iteration",
         "Bi-Weekly Performance Audits"
@@ -176,7 +176,7 @@ export default function Services() {
                   <div className="p-4 rounded-2xl bg-muted/40 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                     {service.icon}
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-orange-500 bg-orange-500/10 px-3.5 py-1.5 rounded-full border border-orange-500/20 font-mono">
+                  <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-orange-500 bg-orange-500/10 px-3.5 py-1.5 rounded-full border border-orange-500/20 font-mono">
                     {service.badge}
                   </div>
                 </div>
@@ -215,7 +215,7 @@ export default function Services() {
                 </div>
                 <Link href="/contact">
                   <span className="btn bg-white hover:bg-zinc-200 text-black w-full py-4 rounded-full font-bold inline-flex items-center justify-center gap-2 group-hover:scale-[1.02] transition-transform cursor-pointer shadow-md">
-                    Commence Inquiry
+                    Start an enquiry
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </Link>
@@ -253,7 +253,7 @@ export default function Services() {
                   <h3 className="text-3xl font-display font-bold text-white mb-6 uppercase tracking-tighter">Performance Verified</h3>
                   <p className="text-muted-foreground font-light mb-10">We test and verify every creative asset for direct performance before scaling budget.</p>
                   <div className="text-2xl sm:text-3xl font-display font-bold text-orange-500 uppercase leading-tight">Every deliverable is tied to a report</div>
-                  <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground mt-4 font-mono">Documented outcomes.</div>
+                  <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mt-4 font-mono">Documented outcomes.</div>
                 </div>
               </div>
             </div>
@@ -262,7 +262,7 @@ export default function Services() {
 
         {/* FAQ Accordion Section — Task 15 (Feature-Gated) */}
         {SHOW_SERVICES_FAQ && (
-          <section className="mb-32 max-w-3xl mx-auto">
+          <section className="mb-16 md:mb-32 max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-xs font-mono uppercase tracking-[0.25em] text-orange-500 mb-2 block">FAQ</span>
               <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground uppercase">Frequently Asked Questions</h2>

@@ -54,7 +54,7 @@ export default function PrepmealCaseStudy() {
             animate={{ opacity: 1, scale: 1 }}
             className="bg-emerald-500 text-black p-8 md:p-14 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-emerald-400/50 shadow-2xl shadow-emerald-500/20"
         >
-            <span className="text-xs font-bold uppercase tracking-[0.4em] mb-4 opacity-80 italic">Verified Performance (Meta Ads Lifetime)</span>
+            <span className="text-xs font-bold uppercase tracking-[0.25em] mb-4 opacity-80 italic">Verified Performance (Meta Ads Lifetime)</span>
             <h2 className="text-5xl md:text-[6.5rem] font-display font-bold tracking-tighter leading-none mb-6">6,133 Inquiries</h2>
             <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-2xl">
                 Generated 6,133 messaging conversations from 4.4M+ impressions & AED 150K+ spend.
@@ -114,7 +114,7 @@ export default function PrepmealCaseStudy() {
                 <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-2">
-                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-black uppercase">Top Efficiency Spike</span>
+                            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500 text-black uppercase">Top Efficiency Spike</span>
                             <h3 className="font-bold text-foreground">July Promo – Messages</h3>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">AED 3,395 spend · 10.3% CTR (9x account avg)</p>
@@ -128,7 +128,7 @@ export default function PrepmealCaseStudy() {
                 <div className="p-5 rounded-2xl bg-card border border-border/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-2">
-                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-muted text-muted-foreground uppercase">Volume Leader</span>
+                            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-muted text-muted-foreground uppercase">Volume Leader</span>
                             <h3 className="font-bold text-foreground">Whatsapp Messenger Camp (Retro)</h3>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">AED 11,351 spend · High-converting chat flow</p>
@@ -192,7 +192,7 @@ export default function PrepmealCaseStudy() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs">
                             <span className="font-semibold">In-House Culinary Asset Production · Chicken Pesto Bowl</span>
-                            <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono flex items-center gap-1">
+                            <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-mono flex items-center gap-1">
                                 <Eye className="w-3 h-3 text-emerald-400" /> View
                             </span>
                         </div>
@@ -409,7 +409,7 @@ export default function PrepmealCaseStudy() {
                                     alt="PrepMeal Meta Ads Manager Campaign Overview" 
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                                 />
-                                <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-[10px] text-white flex items-center gap-1">
+                                <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-[11px] text-white flex items-center gap-1">
                                     <Eye className="w-3 h-3" /> Click to Expand
                                 </div>
                             </div>
@@ -429,7 +429,7 @@ export default function PrepmealCaseStudy() {
                                     alt="PrepMeal Cost Per Messaging Conversation Breakdown" 
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                                 />
-                                <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-[10px] text-white flex items-center gap-1">
+                                <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-full text-[11px] text-white flex items-center gap-1">
                                     <Eye className="w-3 h-3" /> Click to Expand
                                 </div>
                             </div>

@@ -53,7 +53,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
         </div>
 
-        <div className="container relative z-10 px-4 md:px-8 max-w-[1240px] mx-auto">
+        <div className="container relative z-10 px-4 md:px-8 max-w-[1240px] mx-auto lg:grid lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center lg:gap-16">
           
           <div className="max-w-3xl space-y-8">
             {/* Eyebrow */}
@@ -95,11 +95,38 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Desktop-only proof card: fills the right half of the hero with documented results */}
+          <motion.aside
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:block rounded-3xl border border-border/50 bg-background/60 backdrop-blur-xl p-7 shadow-2xl"
+            aria-label="Documented campaign results"
+          >
+            <p className="text-xs font-mono uppercase tracking-wider text-orange-500">Documented results</p>
+            <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-7">
+              {proof.metrics.map((m) => (
+                <div key={m.label}>
+                  <dt className="sr-only">{m.label}</dt>
+                  <dd className="text-3xl font-display font-bold tabular-nums text-foreground">
+                    {m.prefix}{m.value}{m.suffix}
+                  </dd>
+                  <dd className="mt-1 text-sm capitalize text-muted-foreground">{m.label}</dd>
+                </div>
+              ))}
+            </dl>
+            <Link href="/results">
+              <span className="mt-7 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-400">
+                See the campaigns behind these numbers <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>
+          </motion.aside>
+
         </div>
       </section>
 
       {/* 2. SELECTED WORK */}
-      <section id="work" className="py-24 md:py-32 border-b border-border/40">
+      <section id="work" className="py-16 md:py-28 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
@@ -254,7 +281,7 @@ export default function Home() {
 
                   <div className="grid grid-cols-2 gap-4 pt-2">
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">120+</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">150+</p>
                       <p className="text-xs text-muted-foreground mt-0.5">videos produced & delivered</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
@@ -294,7 +321,7 @@ export default function Home() {
             {/* Additional Project: Steaburg */}
             <div className="p-6 md:p-8 rounded-2xl border border-border/40 bg-muted/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">Other Work</span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/60">Other Work</span>
                 <h4 className="text-lg font-display font-bold text-foreground">Steaburg — Local SEO & Content</h4>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-2xl">
                   Google Business Profile optimization and review system for a Sharjah restaurant, growing verified reviews from 26 to 100+ and securing top-3 local map rankings.
@@ -313,7 +340,7 @@ export default function Home() {
       </section>
 
       {/* 3. WHAT I DO */}
-      <section className="py-24 md:py-32 border-b border-border/40">
+      <section className="py-16 md:py-28 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16">
           
           <div className="border-b border-border/40 pb-6">
@@ -332,7 +359,7 @@ export default function Home() {
             <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-orange-500">01</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Paid Media</span>
+                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Paid Media</span>
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">PAID MEDIA</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -351,7 +378,7 @@ export default function Home() {
             <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-orange-500">02</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Creative</span>
+                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Creative</span>
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">CONTENT</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -370,7 +397,7 @@ export default function Home() {
             <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-orange-500">03</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Strategy</span>
+                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Strategy</span>
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">GROWTH</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -389,7 +416,7 @@ export default function Home() {
             <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-orange-500">04</span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Automation</span>
+                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Automation</span>
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground">AUTOMATION</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -410,7 +437,7 @@ export default function Home() {
       </section>
 
       {/* 4. ABOUT */}
-      <section className="py-24 md:py-32 border-b border-border/40">
+      <section className="py-16 md:py-28 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -476,7 +503,7 @@ export default function Home() {
       </section>
 
       {/* 5. CREATIVE + PERFORMANCE */}
-      <section className="py-24 md:py-32 border-b border-border/40 bg-muted/5">
+      <section className="py-16 md:py-28 border-b border-border/40 bg-muted/5">
         <div className="container px-4 md:px-8 max-w-[1000px] mx-auto text-center space-y-8">
           <p className="text-xs font-mono uppercase tracking-widest text-orange-500">The Cross-Over</p>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-foreground tracking-tight uppercase">
@@ -484,7 +511,7 @@ export default function Home() {
           </h2>
           <div className="space-y-4 text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal max-w-2xl mx-auto leading-relaxed">
             <p className="text-foreground font-medium">
-              "Most marketers don't make the creative.<br className="hidden sm:inline" />
+              "Most marketers don't make the creative.{" "}<br className="hidden sm:inline" />
               Most videographers don't look at the ad account."
             </p>
             <p className="text-base sm:text-lg text-muted-foreground">
@@ -495,7 +522,7 @@ export default function Home() {
       </section>
 
       {/* 6. SELECTED RESULTS */}
-      <section className="py-24 md:py-32 border-b border-border/40">
+      <section className="py-16 md:py-28 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
@@ -546,7 +573,7 @@ export default function Home() {
       </section>
 
       {/* 7. CREATIVE WORK (VIDEO & VISUALS) */}
-      <section className="py-24 md:py-32 border-b border-border/40">
+      <section className="py-16 md:py-28 border-b border-border/40">
         <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border/40 pb-6">
@@ -618,7 +645,7 @@ export default function Home() {
       </section>
 
       {/* 8. FINAL HUMAN CTA */}
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-28">
         <div className="container px-4 md:px-8 max-w-[1000px] mx-auto">
           <div className="rounded-[2.5rem] border border-border/60 bg-muted/10 p-10 md:p-16 text-center space-y-8">
             <div className="max-w-2xl mx-auto space-y-4">

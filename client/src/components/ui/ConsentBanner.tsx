@@ -125,13 +125,13 @@ export function ConsentBanner() {
             <div className="flex items-center gap-2 mt-2.5 pt-2 border-t border-white/5 relative z-10">
               <button
                 onClick={handleReject}
-                className="flex-1 px-2.5 py-1.5 rounded-lg text-[10px] font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 transition-colors text-center cursor-pointer"
+                className="flex-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-400 hover:text-white bg-white/5 hover:bg-white/10 transition-colors text-center cursor-pointer"
               >
                 Essential
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="flex-1 px-2.5 py-1.5 rounded-lg text-[10px] font-bold text-white bg-orange-500 hover:bg-orange-600 shadow-sm shadow-orange-500/20 transition-all text-center cursor-pointer"
+                className="flex-1 px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-white bg-orange-500 hover:bg-orange-600 shadow-sm shadow-orange-500/20 transition-all text-center cursor-pointer"
               >
                 Accept All
               </button>

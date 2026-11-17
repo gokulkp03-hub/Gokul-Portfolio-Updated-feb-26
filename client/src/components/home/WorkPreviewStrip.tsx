@@ -55,7 +55,7 @@ export function WorkPreviewStrip() {
           {/* Section Header */}
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-orange-500 mb-4 block">Creative Work</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-orange-500 mb-4 block">Creative Work</span>
               <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight">
                 Selected <span className="text-orange-500 italic">Production</span>
               </h2>
@@ -149,7 +149,7 @@ export function WorkPreviewStrip() {
 
                     {/* Category pill */}
                     <div className="absolute top-3 left-3">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.25em] px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/70">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.25em] px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/70">
                         {category}
                       </span>
                     </div>
@@ -230,7 +230,7 @@ export function WorkPreviewStrip() {
               )}
               <div className="flex justify-between items-center mt-4 px-1">
                 <div>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-orange-500 font-bold">{lightbox.category}</span>
+                  <span className="text-[11px] uppercase tracking-[0.3em] text-orange-500 font-bold">{lightbox.category}</span>
                   <h3 className="text-white font-display font-bold text-lg uppercase tracking-tight mt-0.5">{lightbox.title}</h3>
                 </div>
                 <button

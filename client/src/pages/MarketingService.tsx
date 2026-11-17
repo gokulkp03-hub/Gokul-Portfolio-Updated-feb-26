@@ -84,7 +84,7 @@ export default function MarketingService() {
         url="/marketing" 
       />
 
-      <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-24 md:space-y-32">
+      <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16 md:space-y-32">
 
         {/* 1. HERO HEADER */}
         <section className="border-b border-border/40 pb-16 md:pb-24">
@@ -262,7 +262,7 @@ export default function MarketingService() {
                 </p>
                 <p className="text-xs sm:text-sm text-muted-foreground capitalize">{metric.label}</p>
                 {metric.context && (
-                  <p className="text-[10px] font-mono text-muted-foreground/60">{metric.context}</p>
+                  <p className="text-[11px] font-mono text-muted-foreground/60">{metric.context}</p>
                 )}
               </div>
             ))}

@@ -29,10 +29,10 @@ export default function Footer() {
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-2 pt-2">
-                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">Video Production</span>
-                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">UGC Creative</span>
-                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">Paid Acquisition</span>
-                            <span className="px-3 py-1 bg-muted rounded-full text-[10px] text-muted-foreground uppercase font-semibold tracking-wider">ManyChat Flows</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">Video Production</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">UGC Creative</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">Paid Acquisition</span>
+                            <span className="px-3 py-1 bg-muted rounded-full text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">ManyChat Flows</span>
                         </div>
                     </div>
 
@@ -119,7 +119,7 @@ export default function Footer() {
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="uppercase font-semibold tracking-wider text-[10px]">Dubai, United Arab Emirates</span>
+                        <span className="uppercase font-semibold tracking-wider text-[11px]">Dubai, United Arab Emirates</span>
                     </div>
                 </div>
             </div>

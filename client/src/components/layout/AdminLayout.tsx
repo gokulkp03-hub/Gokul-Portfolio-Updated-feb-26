@@ -53,7 +53,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                             PORTFOLIO
                         </a>
                     </Link>
-                    <div className="mt-2 text-[10px] md:text-xs text-neutral-500 uppercase tracking-widest font-semibold flex items-center gap-2">
+                    <div className="mt-2 text-[11px] md:text-xs text-neutral-500 uppercase tracking-widest font-semibold flex items-center gap-2">
                         Admin Panel <div className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                     </div>
                 </div>
@@ -164,7 +164,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                             </div>
                             <div className="hidden sm:block">
                                 <p className="text-sm font-semibold tracking-tight">Gokul K P</p>
-                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Administrator</p>
+                                <p className="text-[11px] text-neutral-500 uppercase tracking-widest font-bold">Administrator</p>
                             </div>
                         </div>
                     </div>

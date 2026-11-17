@@ -95,7 +95,7 @@ export default function VideoService() {
             </div>
 
             {/* Hero */}
-            <section className="relative min-h-[75vh] py-24 flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[75vh] py-16 md:py-24 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-black/70 z-10" />
                     <video
@@ -303,7 +303,7 @@ export default function VideoService() {
 
                                     {/* Category badge */}
                                     <div className="absolute top-3 left-3">
-                                        <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-blue-300 border border-blue-500/20">
+                                        <span className="text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-blue-300 border border-blue-500/20">
                                             {video.category}
                                         </span>
                                     </div>
@@ -311,7 +311,7 @@ export default function VideoService() {
                                     {/* Featured badge */}
                                     {video.featured && (
                                         <div className="absolute top-3 right-3">
-                                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-blue-500/80 backdrop-blur-md text-white">
+                                            <span className="text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-blue-500/80 backdrop-blur-md text-white">
                                                 Featured
                                             </span>
                                         </div>
@@ -331,10 +331,10 @@ export default function VideoService() {
                 </div>
             </section>
             {/* Cloudinary Player Embed Showcase Section */}
-            <section id="interactive-embeds" className="py-24 bg-zinc-950 border-t border-border/20 relative z-10">
+            <section id="interactive-embeds" className="py-16 md:py-24 bg-zinc-950 border-t border-border/20 relative z-10">
                 <div className="container">
                     <div className="mb-14">
-                        <span className="text-xs font-mono tracking-[0.4em] text-blue-400 uppercase block mb-3">
+                        <span className="text-xs font-mono tracking-[0.25em] text-blue-400 uppercase block mb-3">
                             Featured Player Embeds
                         </span>
                         <h2 className="text-3xl md:text-5xl font-display font-bold text-white tracking-tight">
@@ -400,7 +400,7 @@ export default function VideoService() {
                                 </div>
                                 <div className="p-5 bg-zinc-900/90 border-t border-border/30 flex items-center justify-between">
                                     <div>
-                                        <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest block mb-1">
+                                        <span className="text-[11px] font-mono text-blue-400 uppercase tracking-widest block mb-1">
                                             {embed.tag}
                                         </span>
                                         <h3 className="text-base font-bold text-white group-hover:text-blue-300 transition-colors">
@@ -418,7 +418,7 @@ export default function VideoService() {
             </section>
 
             {/* Production Capabilities */}
-            <section className="py-24 border-t border-border/20 relative z-10 bg-zinc-950/60">
+            <section className="py-16 md:py-24 border-t border-border/20 relative z-10 bg-zinc-950/60">
                 <div className="container max-w-6xl mx-auto px-6">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-xs font-mono tracking-[0.3em] text-blue-400 uppercase block mb-3">
@@ -458,7 +458,7 @@ export default function VideoService() {
             </section>
 
             {/* Closing CTA */}
-            <section className="py-24 border-t border-border/20 text-center relative z-10">
+            <section className="py-16 md:py-24 border-t border-border/20 text-center relative z-10">
                 <div className="container max-w-3xl mx-auto px-6">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight mb-6">
                         Have a video or campaign project in mind?

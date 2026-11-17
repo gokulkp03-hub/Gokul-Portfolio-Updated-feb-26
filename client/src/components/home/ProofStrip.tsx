@@ -12,10 +12,10 @@ export function ProofStrip() {
     const row2Logos = proof.logos.slice(4, 8);
 
     return (
-        <section ref={sectionRef} className="py-24 border-y border-border/40 bg-muted/10 relative overflow-hidden">
+        <section ref={sectionRef} className="py-16 md:py-24 border-y border-border/40 bg-muted/10 relative overflow-hidden">
             <div className="container">
                 <div className="mb-12 text-center max-w-3xl mx-auto">
-                    <span className="text-xs font-bold uppercase tracking-[0.4em] text-orange-500 mb-4 block">Proven Track Record</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.25em] text-orange-500 mb-4 block">Proven Track Record</span>
                     <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tight mb-4">TRUSTED BY LEADING BRANDS</h2>
                     <p className="text-muted-foreground text-sm md:text-base font-light">
                         Selected brands and campaigns I've helped grow across the GCC.
@@ -70,7 +70,7 @@ export function ProofStrip() {
                 </div>
 
                 {/* Citation Footnote */}
-                <div className="text-center text-[10px] text-muted-foreground/60 italic mt-8 border-t border-border/20 pt-6 max-w-2xl mx-auto relative z-10">
+                <div className="text-center text-[11px] text-muted-foreground/60 italic mt-8 border-t border-border/20 pt-6 max-w-2xl mx-auto relative z-10">
                     * Campaign metrics are tracked and verified via Meta Ads Manager dashboards for active client campaigns in the GCC region (Oct 2025 – Present).
                 </div>
             </div>

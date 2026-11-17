@@ -21,10 +21,10 @@ export const PhotoPointOfView: React.FC = () => {
   ];
 
   return (
-    <section className="py-32 bg-neutral-950 border-t border-neutral-800/80 text-white relative">
+    <section className="py-20 md:py-32 bg-neutral-950 border-t border-neutral-800/80 text-white relative">
       <div className="container max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="mb-20">
-          <span className="text-xs font-mono tracking-[0.4em] text-amber-400 uppercase block mb-4">
+          <span className="text-xs font-mono tracking-[0.25em] text-amber-400 uppercase block mb-4">
             Point of View
           </span>
           <h2 className="text-4xl md:text-6xl font-serif text-white tracking-tight">

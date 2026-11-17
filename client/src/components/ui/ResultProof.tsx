@@ -23,7 +23,7 @@ function ResultStat({ label, value, description, icon: Icon, delay = 0 }: Result
                 <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
                     <Icon className="w-5 h-5" />
                 </div>
-                <div className="text-[10px] uppercase tracking-widest text-emerald-500 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Verified</div>
+                <div className="text-[11px] uppercase tracking-widest text-emerald-500 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">Verified</div>
             </div>
             <div className="text-3xl font-display font-bold text-foreground mb-1 tabular-nums">{value}</div>
             <div className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-2">{label}</div>
@@ -41,7 +41,7 @@ export function ResultProof() {
     ];
 
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section className="py-16 md:py-24 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/5 blur-[150px] rounded-full pointer-events-none" />
             
@@ -52,7 +52,7 @@ export function ResultProof() {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="text-xs uppercase tracking-[0.4em] text-orange-500 font-bold mb-4 flex items-center gap-2"
+                            className="text-xs uppercase tracking-[0.25em] text-orange-500 font-bold mb-4 flex items-center gap-2"
                         >
                             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
                             Live Metrics & Direct Proof
@@ -87,7 +87,7 @@ export function ResultProof() {
                         </div>
                         <div className="flex -space-x-2">
                             {[1,2,3,4].map(i => (
-                                <div key={i} className="w-8 h-8 rounded-full border-2 border-zinc-950 bg-stone-800 flex items-center justify-center text-[10px] text-zinc-400 font-mono">
+                                <div key={i} className="w-8 h-8 rounded-full border-2 border-zinc-950 bg-stone-800 flex items-center justify-center text-[11px] text-zinc-400 font-mono">
                                     0{i}
                                 </div>
                             ))}
@@ -108,10 +108,10 @@ export function ResultProof() {
                                     </div>
                                 </div>
                                 <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-                                    <div className="px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/5 text-[10px] text-orange-500 font-bold uppercase tracking-widest">
+                                    <div className="px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/5 text-[11px] text-orange-500 font-bold uppercase tracking-widest">
                                         Campaign: Scale_Q4_UAE
                                     </div>
-                                    <div className="text-[10px] text-white/20 font-mono">HASH: 0x24a...fb12</div>
+                                    <div className="text-[11px] text-white/20 font-mono">HASH: 0x24a...fb12</div>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ export function ResultProof() {
                                             className="h-full bg-orange-500/50"
                                         />
                                     </div>
-                                    <p className="text-[10px] text-white/30 font-light">{item.desc}</p>
+                                    <p className="text-[11px] text-white/30 font-light">{item.desc}</p>
                                 </div>
                             ))}
                             

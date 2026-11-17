@@ -12,7 +12,7 @@ export function TestimonialsStrip() {
         {/* Tiny eyebrow — no big section heading */}
         <div className="flex items-center justify-center gap-4 mb-14">
           <div className="h-px flex-1 max-w-[80px] bg-white/10" />
-          <span className="text-[10px] uppercase tracking-[0.4em] text-orange-500 font-bold">What Clients Say</span>
+          <span className="text-[11px] uppercase tracking-[0.25em] text-orange-500 font-bold">What Clients Say</span>
           <div className="h-px flex-1 max-w-[80px] bg-white/10" />
         </div>
 
@@ -44,7 +44,7 @@ export function TestimonialsStrip() {
                 </div>
                 <div>
                   <p className="text-white text-xs font-semibold uppercase tracking-wide">{t.author}</p>
-                  <p className="text-white/40 text-[10px] font-medium tracking-wide mt-0.5">{t.role}</p>
+                  <p className="text-white/40 text-[11px] font-medium tracking-wide mt-0.5">{t.role}</p>
                 </div>
               </div>
             </motion.div>

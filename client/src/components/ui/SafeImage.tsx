@@ -63,7 +63,7 @@ export function SafeImage({
             {error ? (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 border border-white/5 text-muted-foreground z-20">
                     <ImageIcon className="w-8 h-8 mb-2 opacity-20" />
-                    <span className="text-[10px] uppercase tracking-widest font-bold opacity-30">Media Unavailable</span>
+                    <span className="text-[11px] uppercase tracking-widest font-bold opacity-30">Media Unavailable</span>
                 </div>
             ) : (
                 <img

@@ -159,7 +159,7 @@ export function FeaturedWork() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                         
                         <div className="absolute top-6 left-6 flex justify-between w-[calc(100%-3rem)] items-center">
-                            <span className={cn("text-[9px] font-bold uppercase tracking-[0.3em] px-3.5 py-1.5 rounded-full border backdrop-blur-md", item.accentClass)}>
+                            <span className={cn("text-[11px] font-bold uppercase tracking-[0.3em] px-3.5 py-1.5 rounded-full border backdrop-blur-md", item.accentClass)}>
                                 {item.category}
                             </span>
                             <span className="text-white/60 text-xs font-semibold uppercase tracking-widest bg-black/40 px-3 py-1 rounded-full backdrop-blur-md border border-white/5">
@@ -178,7 +178,7 @@ export function FeaturedWork() {
                                     }}
                                 />
                             ) : (
-                                <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mb-1">{item.client}</p>
+                                <p className="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] mb-1">{item.client}</p>
                             )}
                             <h3 className="text-white text-2xl font-display font-black leading-tight uppercase tracking-tight">
                                 {item.title}
@@ -243,7 +243,7 @@ export function FeaturedWork() {
                             </div>
 
                             <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-                                <span className={cn("text-[9px] font-bold uppercase tracking-[0.4em] mb-2 block", selectedItem.accentClass)}>
+                                <span className={cn("text-[11px] font-bold uppercase tracking-[0.25em] mb-2 block", selectedItem.accentClass)}>
                                     {selectedItem.category} Project • {selectedItem.metric}
                                 </span>
                                 <h2 className="text-2xl md:text-3xl font-display font-black text-white mb-2 uppercase tracking-tighter">
