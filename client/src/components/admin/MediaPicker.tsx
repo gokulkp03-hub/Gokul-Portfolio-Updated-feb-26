@@ -41,7 +41,7 @@ export function MediaPicker({ value, onSelect, trigger, title = "Select Media" }
                                         <ExternalLink className="w-5 h-5 text-orange-500" />
                                     </div>
                                 ) : (
-                                    <img src={value} alt="Selected" className="w-10 h-10 object-cover rounded-md flex-shrink-0" />
+                                    <img loading="lazy" decoding="async" src={value} alt="Selected" className="w-10 h-10 object-cover rounded-md flex-shrink-0" />
                                 )}
                                 <span className="text-sm truncate flex-1 text-left line-clamp-2 leading-tight">
                                     {value.startsWith('http') || value.startsWith('<iframe') ? value : value.split('/').pop()}
@@ -80,7 +80,7 @@ export function MediaPicker({ value, onSelect, trigger, title = "Select Media" }
                                     )}
                                 >
                                     {item.type.startsWith('image') ? (
-                                        <img src={item.url} alt="" className="w-full h-full object-cover" />
+                                        <img loading="lazy" decoding="async" src={item.url} alt="" className="w-full h-full object-cover" />
                                     ) : (
                                         <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center">
                                             <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mb-2">

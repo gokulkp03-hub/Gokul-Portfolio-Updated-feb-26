@@ -18,7 +18,8 @@ export function CustomCursor() {
     useEffect(() => {
         // Only enable on desktop
         const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-        if (isTouchDevice) return;
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (isTouchDevice || prefersReducedMotion) return;
 
         const moveMouse = (e: MouseEvent) => {
             mouseX.set(e.clientX);

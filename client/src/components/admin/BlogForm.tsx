@@ -104,7 +104,7 @@ export function BlogForm({ blog, onClose, onSaved }: BlogFormProps) {
                                     className="bg-zinc-900 border-white/10 text-white focus-visible:ring-orange-500 flex-1"
                                 />
                                 {formData.thumbnail && (
-                                    <img src={formData.thumbnail} className="h-10 w-10 rounded object-cover border border-white/10" alt="Thumb" />
+                                    <img loading="lazy" decoding="async" src={formData.thumbnail} className="h-10 w-10 rounded object-cover border border-white/10" alt="Thumb" />
                                 )}
                             </div>
                         </div>

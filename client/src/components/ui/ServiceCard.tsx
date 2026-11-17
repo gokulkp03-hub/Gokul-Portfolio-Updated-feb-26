@@ -66,7 +66,7 @@ function VideoCard({ title, description, href, videoSrc, imageSrc, index }: Serv
                             <source src={videoSrc} type="video/mp4" />
                         </video>
                     ) : imageSrc && (
-                        <img src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-700" />
+                        <img loading="lazy" decoding="async" src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-700" />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
 
@@ -125,7 +125,7 @@ function PhotoCard({ title, description, href, imageSrc, index }: ServiceCardPro
                     className="group relative overflow-hidden rounded-[2rem] cursor-pointer border border-border/30 hover:border-orange-500/40 transition-colors duration-500 bg-zinc-900"
                 >
                     {imageSrc && (
-                        <img src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90" />
+                        <img loading="lazy" decoding="async" src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90" />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
@@ -187,7 +187,7 @@ function MarketingCard({ title, description, href, imageSrc, index }: ServiceCar
                 >
                     {/* Background image very dark */}
                     {imageSrc && (
-                        <img src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
+                        <img loading="lazy" decoding="async" src={imageSrc} alt={title} className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/80 to-zinc-950" />
 
@@ -276,7 +276,7 @@ export function ServiceCard(props: ServiceCardProps) {
                     className="group relative flex flex-col justify-end h-[420px] p-8 rounded-[2rem] overflow-hidden bg-card border border-border/30 cursor-pointer"
                 >
                     <div className="absolute inset-0">
-                        {props.imageSrc && <img src={props.imageSrc} alt={props.title} className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />}
+                        {props.imageSrc && <img loading="lazy" decoding="async" src={props.imageSrc} alt={props.title} className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     </div>
                     <div className="relative z-10">

@@ -16,7 +16,7 @@ const RESULTS = [
         metric: "4.2x Avg ROAS",
         result: "AED 300K+ Managed",
         label: "Performance Ads",
-        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg" 
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.webp" 
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ const RESULTS = [
         metric: "20k+ Conversions",
         result: "AED 180 CPL",
         label: "Conversion Funnel",
-        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg"
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.webp"
     }
 ];
 
@@ -59,7 +59,7 @@ export default function PerformanceProof() {
                             className="group relative rounded-3xl overflow-hidden border border-white/5 bg-zinc-900/50 backdrop-blur-3xl hover:border-orange-500/30 transition-all duration-500"
                         >
                             <div className="aspect-[4/5] relative overflow-hidden">
-                                <img
+                                <img loading="lazy" decoding="async"
                                     src={item.image}
                                     alt={`${item.client} Results`}
                                     className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"

@@ -211,7 +211,7 @@ export default function Contact() {
                         {/* 4:5 Casual Photo Slot — Task 11 */}
                         {SHOW_CONTACT_IMAGE && (
                             <div className="mt-8 rounded-3xl overflow-hidden border border-border/40 aspect-[4/5] bg-muted/20 relative">
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src="/assets/images/profile/gokul-kp-casual.webp" 
                                     alt="Gokul KP — Performance Marketer &amp; Video Producer"
                                     className="w-full h-full object-cover"

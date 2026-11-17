@@ -14,13 +14,13 @@ export const proof = {
         { label: "best documented ROAS", value: "4.45", suffix: "x", context: "Winning lead campaign" },
     ] as Metric[],
     logos: [
-        { name: "Aqua Care", src: "/assets/images/logos/Aquacare logo.png" },
-        { name: "PrepMeal", src: "/assets/images/logos/PrepMeal.png" },
-        { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.png" },
-        { name: "Acero Steel", src: "/assets/images/logos/Acero.png" },
-        { name: "Ecom 100", src: "/assets/images/logos/ecom-100.png" },
-        { name: "Q4 Clean Home", src: "/assets/images/logos/Q4c.png" },
-        { name: "Healthy Meals", src: "/assets/images/logos/healthy-meals.png" }
+        { name: "Aqua Care", src: "/assets/images/logos/Aquacare logo.webp" },
+        { name: "PrepMeal", src: "/assets/images/logos/PrepMeal.webp" },
+        { name: "Beyond Cars", src: "/assets/images/logos/beyond-cars.webp" },
+        { name: "Acero Steel", src: "/assets/images/logos/Acero.webp" },
+        { name: "Ecom 100", src: "/assets/images/logos/ecom-100.webp" },
+        { name: "Q4 Clean Home", src: "/assets/images/logos/Q4c.webp" },
+        { name: "Healthy Meals", src: "/assets/images/logos/healthy-meals.webp" }
     ],
     testimonials: [
         {

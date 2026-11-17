@@ -27,7 +27,7 @@ export function ProofStrip() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 items-center justify-items-center">
                         {proof.logos.map((logo, i) => (
                             <div key={`brand-${i}`} className="flex items-center justify-center pointer-events-auto">
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src={logo.src} 
                                     alt={`${logo.name} logo`} 
                                     className="h-10 md:h-12 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-all duration-500" 

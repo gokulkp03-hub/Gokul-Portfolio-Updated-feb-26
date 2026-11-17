@@ -16,7 +16,7 @@ function BrandLogoItem({ logo }: { logo: { name: string; src: string } }) {
             title={logo.name}
         >
             {!hasError ? (
-                <img 
+                <img loading="lazy" decoding="async" 
                     src={logo.src} 
                     alt={`${logo.name} logo`} 
                     onError={() => setHasError(true)}
@@ -240,7 +240,7 @@ export default function Results() {
                                             </div>
                                         ) : mainImage ? (
                                             <>
-                                                <img
+                                                <img loading="lazy" decoding="async"
                                                     src={mainImage}
                                                     alt={camp.client || camp.title}
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

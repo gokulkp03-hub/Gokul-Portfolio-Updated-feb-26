@@ -301,7 +301,7 @@ export function ProjectForm({ initialData, onSuccess, onCancel, defaultCategory 
                             <div className="flex flex-wrap gap-2 mb-2">
                                 {formData.gallery.map((url, i) => (
                                     <div key={i} className="relative group w-16 h-16 rounded-lg overflow-hidden border border-neutral-700">
-                                        <img src={url} alt="" className="w-full h-full object-cover" />
+                                        <img loading="lazy" decoding="async" src={url} alt="" className="w-full h-full object-cover" />
                                         <button aria-label="Remove from gallery" type="button" onClick={() => removeArrayItem("gallery", i)} className="absolute inset-0 bg-red-500/80 items-center justify-center opacity-0 group-hover:opacity-100 flex transition-opacity">
                                             <X className="w-4 h-4 text-white" />
                                         </button>

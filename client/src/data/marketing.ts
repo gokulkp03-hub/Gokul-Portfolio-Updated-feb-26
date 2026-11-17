@@ -59,7 +59,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Active Campaigns", value: "25", trend: "up" }
         ],
         visuals: [
-            "/assets/images/brands/Aqua-Care/new.jpg"
+            "/assets/images/brands/Aqua-Care/new.webp"
         ],
         learnings: [
             "Visual demonstrations of filter discoloration outperformed polished product renders by 3x on click-through rate.",
@@ -69,7 +69,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         featured: true,
         role: "Performance Marketing Lead",
         duration: "Oct 2025 — Present",
-        logoUrl: "/assets/images/logos/Aquacare logo.png"
+        logoUrl: "/assets/images/logos/Aquacare logo.webp"
     },
     {
         id: "prepmeal-growth",
@@ -101,7 +101,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         ],
         visuals: [
             "/assets/images/brands/Prepmeal.webp",
-            "/assets/images/brands/Q4/Ad 9.jpg"
+            "/assets/images/brands/Q4/Ad 9.webp"
         ],
         learnings: [
             "Showing the actual unboxing and kitchen preparation consistently beat generic gym lifestyle shots.",
@@ -111,7 +111,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         featured: true,
         role: "Social Media Manager",
         duration: "Jan 2023 — Sep 2025",
-        logoUrl: "/assets/images/logos/PrepMeal.png"
+        logoUrl: "/assets/images/logos/PrepMeal.webp"
     },
     {
         id: "aureum-asset-management",
@@ -142,10 +142,10 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Target Lead Pipeline", value: "8–12/mo", trend: "up" }
         ],
         visuals: [
-            "/assets/images/case-studies/aureum/slide-1.png",
-            "/assets/images/case-studies/aureum/slide-4.png",
-            "/assets/images/case-studies/aureum/slide-7.png",
-            "/assets/images/case-studies/aureum/slide-10.png"
+            "/assets/images/case-studies/aureum/slide-1.webp",
+            "/assets/images/case-studies/aureum/slide-4.webp",
+            "/assets/images/case-studies/aureum/slide-7.webp",
+            "/assets/images/case-studies/aureum/slide-10.webp"
         ],
         learnings: [
             "High-ticket B2B industrial leasing requires credentialing and proof of past deliveries upfront.",
@@ -185,10 +185,10 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Phone Calls", value: "+40%", trend: "up" }
         ],
         visuals: [
-            "/assets/images/case-studies/steaburg/Steaburg.jpeg",
-            "/assets/images/case-studies/steaburg/audit.png",
-            "/assets/images/case-studies/steaburg/strategy.png",
-            "/assets/images/case-studies/steaburg/works.png"
+            "/assets/images/case-studies/steaburg/Steaburg.webp",
+            "/assets/images/case-studies/steaburg/audit.webp",
+            "/assets/images/case-studies/steaburg/strategy.webp",
+            "/assets/images/case-studies/steaburg/works.webp"
         ],
         learnings: [
             "Local citations are the backbone of UAE business rankings.",
@@ -227,9 +227,9 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Total Spend", value: "AED 50K+", trend: "up" }
         ],
         visuals: [
-            "/assets/images/brands/SIAS-Group/search_console.png",
-            "/assets/images/brands/SIAS-Group/traffic_sources.png",
-            "/assets/images/brands/SIAS-Group/full_layout.png"
+            "/assets/images/brands/SIAS-Group/search_console.webp",
+            "/assets/images/brands/SIAS-Group/traffic_sources.webp",
+            "/assets/images/brands/SIAS-Group/full_layout.webp"
         ],
         learnings: [
             "Foundational technical SEO is often overlooked but provides the highest ROI for B2B.",
@@ -268,8 +268,8 @@ export const marketingCampaigns: MarketingCampaign[] = [
             { label: "Conversion Rate", value: "1.8%", trend: "up" }
         ],
         visuals: [
-            "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
-            "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg"
+            "/assets/images/brands/Galaxy-Star/galaxy-3.webp",
+            "/assets/images/brands/Galaxy-Star/Galaxy 1.webp"
         ],
         learnings: [
             "Website speed is the single most important factor for luxury e-com bounce rates.",
@@ -278,6 +278,6 @@ export const marketingCampaigns: MarketingCampaign[] = [
         tags: ["Ecommerce", "UI/UX", "Brand Digitalization"],
         role: "E-com Strategist",
         duration: "8 Months",
-        logoUrl: "/assets/images/logos/Galaxy Star Perfumes.png"
+        logoUrl: "/assets/images/logos/Galaxy Star Perfumes.webp"
     }
 ];

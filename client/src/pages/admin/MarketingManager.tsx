@@ -100,7 +100,7 @@ export default function MarketingManager() {
                             {filteredAssets?.map((asset) => (
                                 <div key={asset.id} className="group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden hover:border-orange-500/30 transition-all duration-500 flex flex-col h-full">
                                     <div className="aspect-video relative overflow-hidden bg-neutral-950">
-                                        <img src={asset.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="" />
+                                        <img loading="lazy" decoding="async" src={asset.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="" />
                                         <div className="absolute top-4 left-4">
                                             <span className={cn(
                                                 "px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-[10px] font-bold uppercase tracking-widest",

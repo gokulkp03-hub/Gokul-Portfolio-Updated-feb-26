@@ -24,15 +24,15 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     category: "Commercial Food & Culinary",
     year: "2025",
     title: "Artisanal Macro Culinary Shoot",
-    previewImage: "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
+    previewImage: "/assets/images/portfolio-all/Sourdough_Avocado.webp",
     brief: "Create appetite-inducing, high-resolution direct-response culinary assets for UAE subscription meal launch.",
     approach: "Utilized directional natural key lighting with dark slate surfaces to highlight rich textures, micro-greens, and vibrant organic ingredients.",
     deliverables: ["45 High-Res Food Stills", "Social Ad Creatives", "Menu Packaging Imagery"],
     gallery: [
-      "/assets/images/portfolio-all/Sourdough_Avocado.jpg",
-      "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg",
-      "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg",
-      "/assets/images/portfolio-all/Cheesecake.jpg"
+      "/assets/images/portfolio-all/Sourdough_Avocado.webp",
+      "/assets/images/portfolio-all/Vegan_Buddha_Bowl.webp",
+      "/assets/images/portfolio-all/Chocolate_Milk_Cookies.webp",
+      "/assets/images/portfolio-all/Cheesecake.webp"
     ]
   },
   {
@@ -48,8 +48,8 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     deliverables: ["Catalogue Product Stills", "E-Commerce Hero Visuals", "Technical Brochure Visuals"],
     gallery: [
       "https://res.cloudinary.com/dgmieaf9g/image/upload/v1740523296/portfolio/aquacare_featured.jpg",
-      "/assets/images/portfolio-all/Ad.jpg",
-      "/assets/images/portfolio-all/Ad_04.jpg"
+      "/assets/images/portfolio-all/Ad.webp",
+      "/assets/images/portfolio-all/Ad_04.webp"
     ]
   },
   {
@@ -65,8 +65,8 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     deliverables: ["Billboard Print Visuals", "Instagram Story Assets", "Product Display Cards"],
     gallery: [
       "/assets/images/brands/Galaxy-Star/Galaxy 1.webp",
-      "/assets/images/portfolio-all/Xmas_-_Galaxy.jpg",
-      "/assets/images/portfolio-all/DSC08771.jpg"
+      "/assets/images/portfolio-all/Xmas_-_Galaxy.webp",
+      "/assets/images/portfolio-all/DSC08771.webp"
     ]
   },
   {
@@ -82,8 +82,8 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     deliverables: ["Editorial Campaign Stills", "Rental App Banners", "Social Media Stills"],
     gallery: [
       "/assets/images/brands/Beyond-Cars/beyondcarsin.webp",
-      "/assets/images/portfolio-all/DSC09457.jpg",
-      "/assets/images/portfolio-all/DSC09598.jpg"
+      "/assets/images/portfolio-all/DSC09457.webp",
+      "/assets/images/portfolio-all/DSC09598.webp"
     ]
   },
   {
@@ -93,14 +93,14 @@ export const SHOOT_PROJECTS: ShootProject[] = [
     category: "Culinary & Hospitality",
     year: "2025",
     title: "Bespoke Hospitality & Beverage Visuals",
-    previewImage: "/assets/images/portfolio-all/Iced_V60.jpg",
+    previewImage: "/assets/images/portfolio-all/Iced_V60.webp",
     brief: "Capture artisanal coffee brewing and cafe atmosphere for specialty hospitality brand.",
     approach: "Macro texture photography emphasizing steam, ice condensation, and rich espresso crema under soft directional diffuse light.",
     deliverables: ["Menu Photography", "Website Hero Banners", "Point-of-Sale Displays"],
     gallery: [
-      "/assets/images/portfolio-all/Iced_V60.jpg",
-      "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg",
-      "/assets/images/portfolio-all/ginger_shot.jpg"
+      "/assets/images/portfolio-all/Iced_V60.webp",
+      "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.webp",
+      "/assets/images/portfolio-all/ginger_shot.webp"
     ]
   }
 ];
@@ -152,7 +152,7 @@ export const PhotoShootIndex: React.FC = () => {
               }}
               className="fixed z-50 pointer-events-none hidden md:block w-72 h-48 rounded-xl overflow-hidden shadow-2xl border border-white/20"
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src={hoveredProject.previewImage}
                 alt={hoveredProject.title}
                 className="w-full h-full object-cover"
@@ -264,7 +264,7 @@ export const PhotoShootIndex: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {activeCaseStudy.gallery.map((imgUrl, idx) => (
                     <div key={idx} className="rounded-2xl overflow-hidden border border-neutral-800 aspect-[4/3] bg-neutral-950">
-                      <img src={imgUrl} alt={`Shoot frame ${idx + 1}`} className="w-full h-full object-cover" />
+                      <img loading="lazy" decoding="async" src={imgUrl} alt={`Shoot frame ${idx + 1}`} className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>

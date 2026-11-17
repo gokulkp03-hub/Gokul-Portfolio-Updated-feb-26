@@ -36,7 +36,7 @@ export function BeforeAfter({
             onTouchMove={handleMove}
         >
             {/* Base Image (After/Retouched) */}
-            <img
+            <img loading="lazy" decoding="async"
                 src={afterImage}
                 alt="After"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
@@ -52,7 +52,7 @@ export function BeforeAfter({
                 className="absolute inset-0 z-10 pointer-events-none select-none"
                 style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
-                <img
+                <img loading="lazy" decoding="async"
                     src={beforeImage}
                     alt="Before"
                     className="absolute inset-0 w-full h-full object-cover"

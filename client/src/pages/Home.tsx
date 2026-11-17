@@ -163,12 +163,12 @@ export default function Home() {
 
                 <div className="lg:col-span-5">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20">
-                    <img 
-                      src="/assets/images/brands/Aqua-Care/new.jpg" 
+                    <img loading="lazy" decoding="async" 
+                      src="/assets/images/brands/Aqua-Care/new.webp" 
                       alt="Aqua Care Meta Ad creative and product systems"
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        e.currentTarget.src = "/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.jpg";
+                        e.currentTarget.src = "/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.webp";
                       }}
                     />
                   </div>
@@ -223,7 +223,7 @@ export default function Home() {
 
                 <div className="lg:col-span-5">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20">
-                    <img 
+                    <img loading="lazy" decoding="async" 
                       src="/assets/images/brands/Prepmeal.webp" 
                       alt="PrepMeal content and meal prep delivery creative"
                       className="w-full h-full object-cover"
@@ -276,7 +276,7 @@ export default function Home() {
 
                 <div className="lg:col-span-5">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20 group cursor-pointer" onClick={() => setShowreelOpen(true)}>
-                    <img 
+                    <img loading="lazy" decoding="async" 
                       src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg" 
                       alt="Commercial video reel preview"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -450,7 +450,7 @@ export default function Home() {
                 <picture>
                   <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
                   <img 
-                    src="/assets/images/profile/gokul-kp.jpg" 
+                    src="/assets/images/profile/gokul-kp.webp" 
                     alt="Gokul KP — Performance Marketer &amp; Video Producer"
                     title="Gokul KP"
                     width="1080"
@@ -459,7 +459,7 @@ export default function Home() {
                     decoding="async"
                     className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
                     onError={(e) => {
-                      e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.jpg";
+                      e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.webp";
                     }}
                   />
                 </picture>
@@ -566,7 +566,7 @@ export default function Home() {
             onClick={() => setShowreelOpen(true)}
             className="relative aspect-video sm:aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-border/60 bg-muted/20 group cursor-pointer"
           >
-            <img 
+            <img loading="lazy" decoding="async" 
               src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_1200,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg" 
               alt="Video showreel preview"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

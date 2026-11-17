@@ -368,7 +368,7 @@ export default function PortfolioLayout() {
                                     />
                                 )
                             ) : (
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src={selectedItem.thumbnail} 
                                     className="w-full h-full object-cover" 
                                     alt={selectedItem.title} 

@@ -78,7 +78,7 @@ export default function PrepmealCaseStudy() {
 
         {/* Hero Image */}
         <div className="w-full aspect-[21/9] bg-muted/30 border border-border/40 rounded-2xl mb-16 overflow-hidden relative group rounded-3xl">
-            <img src="/assets/images/case-studies/prepmeal/PrepMeal Website.jpg" alt="Prepmeal Presentation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }}/>
+            <img fetchPriority="high" decoding="async" src="/assets/images/case-studies/prepmeal/PrepMeal Website.webp" alt="Prepmeal Presentation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }}/>
             <div className="absolute inset-0 bg-black/20" />
         </div>
 
@@ -181,11 +181,11 @@ export default function PrepmealCaseStudy() {
                     </div>
 
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.webp')}
                         className="mt-6 aspect-[21/9] rounded-2xl overflow-hidden border border-border/40 bg-muted/20 group cursor-pointer relative shadow-lg"
                     >
-                        <img 
-                            src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" 
+                        <img loading="lazy" decoding="async" 
+                            src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" 
                             alt="Prepmeal Fresh Culinary Production" 
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                         />
@@ -209,12 +209,12 @@ export default function PrepmealCaseStudy() {
                 <div className="md:col-span-8">
                     <div className="space-y-6">
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.webp')}
                             className="p-6 rounded-2xl bg-muted/20 border border-border/40 hover:border-emerald-500/30 transition-all group cursor-pointer"
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">1. Creative Production</h3>
@@ -226,12 +226,12 @@ export default function PrepmealCaseStudy() {
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.webp')}
                             className="p-6 rounded-2xl bg-muted/20 border border-border/40 hover:border-emerald-500/30 transition-all group cursor-pointer"
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img src="/assets/images/optimized/pancakes.webp" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <img loading="lazy" decoding="async" src="/assets/images/optimized/pancakes.webp" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">2. Direct WhatsApp Funnel</h3>
@@ -243,12 +243,12 @@ export default function PrepmealCaseStudy() {
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.webp')}
                             className="p-6 rounded-2xl bg-muted/20 border border-border/40 hover:border-emerald-500/30 transition-all group cursor-pointer"
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img src="/assets/images/optimized/prepmeal-burrito.webp" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">3. Offer Testing</h3>
@@ -276,60 +276,60 @@ export default function PrepmealCaseStudy() {
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" alt="Chicken Pesto" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" alt="Chicken Pesto" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Chicken Pesto Bowl</span>
                         </div>
                     </div>
 
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/case-studies/prepmeal/Pancakes.jpg" alt="Protein Pancakes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Fluffy Protein Pancakes</span>
                         </div>
                     </div>
 
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/optimized/prepmeal-burrito.webp" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Chicken Butter Burrito</span>
                         </div>
                     </div>
 
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Sourdough Labneh &amp; Zaatar</span>
                         </div>
                     </div>
 
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/optimized/prepmeal-acai.webp" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-acai.webp" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Superfood Acai Smoothie</span>
                         </div>
                     </div>
 
                     <div 
-                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.jpg')}
+                        onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img src="/assets/images/case-studies/prepmeal/Macros Club.jpg" alt="Macros Club Lifestyle" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Macros Club.webp" alt="Macros Club Lifestyle" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Macros Club Social Creative</span>
                         </div>
@@ -404,7 +404,7 @@ export default function PrepmealCaseStudy() {
                             className="glass-card p-3 rounded-2xl border-border/40 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all shadow-xl relative"
                         >
                             <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src="/assets/images/case-studies/prepmeal/proof-dashboard-1.webp" 
                                     alt="PrepMeal Meta Ads Manager Campaign Overview" 
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -424,7 +424,7 @@ export default function PrepmealCaseStudy() {
                             className="glass-card p-3 rounded-2xl border-border/40 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all shadow-xl relative"
                         >
                             <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src="/assets/images/case-studies/prepmeal/proof-dashboard-2.webp" 
                                     alt="PrepMeal Cost Per Messaging Conversation Breakdown" 
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -510,60 +510,60 @@ export default function PrepmealCaseStudy() {
                 <div className="md:col-span-8">
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/case-studies/prepmeal/Chicken Pesto.jpg" alt="Chicken Pesto Meal Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" alt="Chicken Pesto Meal Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Chicken Pesto Macro Meal</span>
                             </div>
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Sourdough &amp; Labneh Prep</span>
                             </div>
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/optimized/prepmeal-acai.webp" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-acai.webp" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fresh Organic Acai</span>
                             </div>
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/optimized/prepmeal-burrito.webp" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">High-Protein Burrito</span>
                             </div>
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/optimized/pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img loading="lazy" decoding="async" src="/assets/images/optimized/pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fitness Protein Pancakes</span>
                             </div>
                         </div>
 
                         <div 
-                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.jpg')}
+                            onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img src="/assets/images/case-studies/prepmeal/Macros Club.jpg" alt="Prepmeal Plan Menu" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }} />
+                            <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Macros Club.webp" alt="Prepmeal Plan Menu" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Macro Meal Card</span>
                             </div>
@@ -591,7 +591,7 @@ export default function PrepmealCaseStudy() {
               >
                 <X className="w-5 h-5" />
               </button>
-              <img src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
+              <img loading="lazy" decoding="async" src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
             </div>
           </div>
         )}

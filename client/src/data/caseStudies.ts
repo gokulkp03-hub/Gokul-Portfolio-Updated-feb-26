@@ -51,10 +51,10 @@ export const caseStudies: CaseStudy[] = [
             { label: "Community Growth", value: "3.5x", trend: "up" },
             { label: "Ad Spend Supported", value: "AED 300K+", trend: "up" }
         ],
-        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg",
+        image: "/assets/images/case-studies/prepmeal/PrepMeal Website.webp",
         visuals: [
-            "/assets/images/case-studies/prepmeal/PrepMeal Website.jpg",
-            "/assets/images/brands/Q4/Ad 9.jpg"
+            "/assets/images/case-studies/prepmeal/PrepMeal Website.webp",
+            "/assets/images/brands/Q4/Ad 9.webp"
         ],
         tags: ["Social Media Management", "Content Planning", "Coordination"],
         featured: true
@@ -83,11 +83,11 @@ export const caseStudies: CaseStudy[] = [
             { label: "Local Visibility", value: "+40%", trend: "up" },
             { label: "Search Actions", value: "Consistently Up", trend: "up" }
         ],
-        image: "/assets/images/case-studies/steaburg/strategy.png",
+        image: "/assets/images/case-studies/steaburg/strategy.webp",
         visuals: [
-            "/assets/images/case-studies/steaburg/audit.png",
-            "/assets/images/case-studies/steaburg/strategy.png",
-            "/assets/images/case-studies/steaburg/works.png"
+            "/assets/images/case-studies/steaburg/audit.webp",
+            "/assets/images/case-studies/steaburg/strategy.webp",
+            "/assets/images/case-studies/steaburg/works.webp"
         ],
         tags: ["Local SEO", "GBP Optimization", "Marketing Support"],
         featured: true,
@@ -117,10 +117,10 @@ export const caseStudies: CaseStudy[] = [
             { label: "B2B Impressions", value: "2.5k+", trend: "up" },
             { label: "Lead Quality", value: "High", trend: "up" }
         ],
-        image: "/assets/images/case-studies/sisa/full_layout.png",
+        image: "/assets/images/case-studies/sisa/full_layout.webp",
         visuals: [
-            "/assets/images/case-studies/sisa/search_console.png",
-            "/assets/images/case-studies/sisa/traffic_sources.png"
+            "/assets/images/case-studies/sisa/search_console.webp",
+            "/assets/images/case-studies/sisa/traffic_sources.webp"
         ],
         tags: ["Technical SEO", "B2B Marketing", "Crawl Optimization"],
         featured: true,

@@ -120,7 +120,7 @@ export default function ProjectManager() {
                                     {filteredProjects?.map((project) => (
                                         <div key={project.id} className="group bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden hover:border-orange-500/30 transition-all duration-500 flex flex-col h-full">
                                             <div className="aspect-video relative overflow-hidden bg-neutral-950">
-                                                <img src={project.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="" />
+                                                <img loading="lazy" decoding="async" src={project.thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="" />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60" />
                                                 <div className="absolute top-4 left-4">
                                                     <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-[10px] font-bold uppercase tracking-widest">
@@ -160,7 +160,7 @@ export default function ProjectManager() {
                                 <div className="bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden divide-y divide-neutral-800/50">
                                     {filteredProjects?.map((project) => (
                                         <div key={project.id} className="p-4 flex items-center gap-6 hover:bg-neutral-800/30 transition-all group">
-                                            <img src={project.thumbnail} className="w-24 h-16 object-cover rounded-xl" alt="" />
+                                            <img loading="lazy" decoding="async" src={project.thumbnail} className="w-24 h-16 object-cover rounded-xl" alt="" />
                                             <div className="flex-1 min-w-0">
                                                 <h4 className="font-bold truncate">{project.title}</h4>
                                                 <p className="text-xs text-neutral-500 uppercase tracking-widest font-bold mt-1">{project.category}</p>

@@ -221,7 +221,7 @@ export function WorkPreviewStrip() {
                 </div>
               ) : (
                 <div className="rounded-2xl md:rounded-3xl overflow-hidden bg-black border border-white/10 shadow-2xl">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={lightbox.src}
                     alt={lightbox.title}
                     className="w-full max-h-[80vh] object-contain"

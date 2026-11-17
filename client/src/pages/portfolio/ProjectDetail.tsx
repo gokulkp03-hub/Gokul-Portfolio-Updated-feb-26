@@ -312,7 +312,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                 />
                             )
                         ) : (
-                            <img
+                            <img fetchPriority="high" decoding="async"
                                 src={project.thumbnail}
                                 alt={project.title}
                                 className="absolute inset-0 w-full h-full object-cover"
@@ -410,7 +410,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                                         <div className="rounded-2xl overflow-hidden border border-border/40 bg-zinc-950 p-2">
                                             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
-                                                <img 
+                                                <img loading="lazy" decoding="async" 
                                                     src="/assets/images/case-studies/steaburg/gbp-before.webp" 
                                                     alt="Steaburg Google Business Profile Before Optimization"
                                                     className="w-full h-full object-cover"
@@ -420,7 +420,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                         </div>
                                         <div className="rounded-2xl overflow-hidden border border-orange-500/30 bg-zinc-950 p-2">
                                             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
-                                                <img 
+                                                <img loading="lazy" decoding="async" 
                                                     src="/assets/images/case-studies/steaburg/gbp-after.webp" 
                                                     alt="Steaburg Google Business Profile After Optimization"
                                                     className="w-full h-full object-cover"
@@ -447,7 +447,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                 <div className="grid grid-cols-2 gap-4">
                                     {gallery.slice(0, 4).map((img: string, i: number) => (
                                         <div key={i} className="aspect-square rounded-2xl overflow-hidden bg-muted border border-border/40">
-                                            <img src={img} alt="Visual Proof" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                                            <img loading="lazy" decoding="async" src={img} alt="Visual Proof" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                                         </div>
                                     ))}
                                 </div>
@@ -471,7 +471,7 @@ export default function ProjectDetail({ category: propCategory, slug: propSlug }
                                         className="group cursor-pointer"
                                     >
                                         <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-muted border border-border/40 transition-colors group-hover:border-primary/30">
-                                            <img
+                                            <img loading="lazy" decoding="async"
                                                 src={p.thumbnail}
                                                 alt={p.title}
                                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

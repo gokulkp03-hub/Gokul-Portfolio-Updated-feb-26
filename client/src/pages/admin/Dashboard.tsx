@@ -73,7 +73,7 @@ export default function AdminDashboard() {
                         <div className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden divide-y divide-neutral-800/50">
                             {projects?.slice(0, 5).map((project) => (
                                 <div key={project.id} className="p-4 flex items-center gap-4 hover:bg-neutral-800/30 transition-colors group cursor-pointer">
-                                    <img src={project.thumbnail} alt={project.title} className="w-16 h-12 object-cover rounded-lg group-hover:scale-105 transition-transform" />
+                                    <img loading="lazy" decoding="async" src={project.thumbnail} alt={project.title} className="w-16 h-12 object-cover rounded-lg group-hover:scale-105 transition-transform" />
                                     <div className="flex-1 min-w-0">
                                         <p className="font-semibold truncate">{project.title}</p>
                                         <p className="text-xs text-neutral-500 uppercase tracking-wider">{project.category}</p>

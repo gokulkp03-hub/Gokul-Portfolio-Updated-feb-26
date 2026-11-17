@@ -69,7 +69,7 @@ export default function BlogPost({ slug }: { slug: string }) {
           {/* Thumbnail */}
           {blog.thumbnail && (
             <div className="aspect-[21/9] w-full rounded-[2rem] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl">
-              <img 
+              <img fetchPriority="high" decoding="async" 
                 src={blog.thumbnail} 
                 alt={blog.title} 
                 className="w-full h-full object-cover"

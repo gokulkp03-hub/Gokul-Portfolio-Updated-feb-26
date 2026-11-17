@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -183,6 +184,8 @@ function App() {
 
   return (
     <ErrorBoundary>
+      {/* Respect the OS "reduce motion" setting for every Framer Motion animation. */}
+      <MotionConfig reducedMotion="user">
       <ThemeProvider defaultTheme="dark" switchable={true}>
         <TooltipProvider>
           <CustomCursor />
@@ -192,6 +195,7 @@ function App() {
           <ConsentBanner />
         </TooltipProvider>
       </ThemeProvider>
+      </MotionConfig>
     </ErrorBoundary>
   );
 }

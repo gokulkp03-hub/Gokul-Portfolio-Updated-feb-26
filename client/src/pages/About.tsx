@@ -72,7 +72,7 @@ export default function About() {
                                     <picture>
                                         <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
                                         <img
-                                            src="/assets/images/profile/gokul-kp.jpg"
+                                            src="/assets/images/profile/gokul-kp.webp"
                                             alt="Gokul KP — Performance Marketer & Video Producer"
                                             title="Gokul KP"
                                             width="1080"
@@ -81,7 +81,7 @@ export default function About() {
                                             decoding="async"
                                             className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
                                             onError={(e) => {
-                                                e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.jpg";
+                                                e.currentTarget.src = "/assets/images/profile/gokul-kp-dubai.webp";
                                             }}
                                         />
                                     </picture>
@@ -195,14 +195,14 @@ export default function About() {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-border/40 bg-muted/20 relative">
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src="/assets/images/profile/on-set-1.webp" 
                                     alt="Gokul KP directing commercial video shoot on set" 
                                     className="w-full h-full object-cover"
                                 />
                             </div>
                             <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-border/40 bg-muted/20 relative">
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src="/assets/images/profile/on-set-2.webp" 
                                     alt="Gokul KP on location during commercial production" 
                                     className="w-full h-full object-cover"

@@ -2,13 +2,13 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { MouseEvent } from "react";
 
 const brandingImages = {
-    logo: "/assets/images/brands/Little-Rooster/Little Rooster Logo.png",
-    social: "/assets/images/brands/Little-Rooster/Little Rooster Social Media Post.jpeg",
-    tshirt: "/assets/images/brands/Little-Rooster/Tshirt Mockup.jpg",
-    cap: "/assets/images/brands/Little-Rooster/Cap Mockup.jpg",
-    smallBag: "/assets/images/brands/Little-Rooster/paperbag.jpg",
-    largeBag: "/assets/images/brands/Little-Rooster/shopping_bag_mockup.jpg",
-    bagNoBg: "/assets/images/brands/Little-Rooster/paperbag-nobg.png",
+    logo: "/assets/images/brands/Little-Rooster/Little Rooster Logo.webp",
+    social: "/assets/images/brands/Little-Rooster/Little Rooster Social Media Post.webp",
+    tshirt: "/assets/images/brands/Little-Rooster/Tshirt Mockup.webp",
+    cap: "/assets/images/brands/Little-Rooster/Cap Mockup.webp",
+    smallBag: "/assets/images/brands/Little-Rooster/paperbag.webp",
+    largeBag: "/assets/images/brands/Little-Rooster/shopping_bag_mockup.webp",
+    bagNoBg: "/assets/images/brands/Little-Rooster/paperbag-nobg.webp",
 };
 
 export function LittleRoosterBranding() {
@@ -54,7 +54,7 @@ export function LittleRoosterBranding() {
                         filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.7)) drop-shadow(0 12px 24px rgba(0,0,0,0.5))",
                     }}
                 >
-                    <img
+                    <img loading="lazy" decoding="async"
                         src={brandingImages.bagNoBg}
                         alt="Little Rooster Paper Bag"
                         className="w-full h-auto object-contain select-none"
@@ -89,7 +89,7 @@ export function LittleRoosterBranding() {
                             variants={{ hidden: { opacity: 0, y: 16, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}
                             className="relative rounded-[2rem] overflow-hidden bg-[#2D4995] h-52 flex-shrink-0 flex items-center justify-center p-8 group/card transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#2D4995]/40"
                         >
-                            <img src={brandingImages.logo} alt="Little Rooster Logo" className="w-[70%] h-[70%] object-contain drop-shadow-xl transition-transform duration-700 group-hover/card:scale-110" />
+                            <img loading="lazy" decoding="async" src={brandingImages.logo} alt="Little Rooster Logo" className="w-[70%] h-[70%] object-contain drop-shadow-xl transition-transform duration-700 group-hover/card:scale-110" />
                         </motion.div>
 
                         <motion.div
@@ -107,7 +107,7 @@ export function LittleRoosterBranding() {
                             className="relative rounded-[2rem] overflow-hidden bg-[#F6F6F6] group/card transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40"
                             style={{ flex: 1, minHeight: 0 }}
                         >
-                            <img src={brandingImages.largeBag} alt="Shopping Bag Mockup" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" />
+                            <img loading="lazy" decoding="async" src={brandingImages.largeBag} alt="Shopping Bag Mockup" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" />
                         </motion.div>
                     </div>
 
@@ -118,7 +118,7 @@ export function LittleRoosterBranding() {
                             className="relative rounded-[2rem] overflow-hidden bg-[#dce4f5] group/card transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40"
                             style={{ flex: 1, minHeight: 0 }}
                         >
-                            <img src={brandingImages.tshirt} alt="T-Shirt Mockup" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" />
+                            <img loading="lazy" decoding="async" src={brandingImages.tshirt} alt="T-Shirt Mockup" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" />
                         </motion.div>
 
                         <motion.div
@@ -126,7 +126,7 @@ export function LittleRoosterBranding() {
                             className="relative rounded-[2rem] overflow-hidden bg-[#f0ede6] group/card transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40"
                             style={{ flex: 1, minHeight: 0 }}
                         >
-                            <img src={brandingImages.cap} alt="Cap Mockup" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" />
+                            <img loading="lazy" decoding="async" src={brandingImages.cap} alt="Cap Mockup" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105" />
                         </motion.div>
                     </div>
 
@@ -139,7 +139,7 @@ export function LittleRoosterBranding() {
                             variants={{ hidden: { opacity: 0, y: 16, scale: 0.97 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }}
                             className="relative flex-1 h-full"
                         >
-                            <img src={brandingImages.social} alt="Social Media Poster" className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover/card:scale-105" />
+                            <img loading="lazy" decoding="async" src={brandingImages.social} alt="Social Media Poster" className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover/card:scale-105" />
                         </motion.div>
                     </div>
 

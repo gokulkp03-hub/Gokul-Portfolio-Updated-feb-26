@@ -12,7 +12,7 @@ const FEATURED_ITEMS = [
         client: "Aqua Care UAE",
         category: "Performance Ads",
         metric: "2,357 DMs · 212 Leads",
-        image: "/assets/images/brands/Aqua-Care/new.jpg",
+        image: "/assets/images/brands/Aqua-Care/new.webp",
         path: "/marketing/aqua-care-uae",
         isVideo: false,
         videoUrl: "",
@@ -20,7 +20,7 @@ const FEATURED_ITEMS = [
         accentClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
         hoverBorderClass: "hover:border-emerald-500/40 hover:shadow-emerald-500/10",
         btnBgClass: "bg-emerald-500 text-black",
-        logo: "/assets/images/logos/Aquacare logo.png"
+        logo: "/assets/images/logos/Aquacare logo.webp"
     },
     {
         id: "gobeyondcars-featured",
@@ -36,7 +36,7 @@ const FEATURED_ITEMS = [
         accentClass: "text-blue-400 bg-blue-500/10 border-blue-500/20",
         hoverBorderClass: "hover:border-blue-500/40 hover:shadow-blue-500/10",
         btnBgClass: "bg-blue-500 text-white",
-        logo: "/assets/images/logos/beyondcars.png"
+        logo: "/assets/images/logos/beyondcars.webp"
     },
     {
         id: "galaxystar-featured",
@@ -44,7 +44,7 @@ const FEATURED_ITEMS = [
         client: "Galaxy Star Perfumes",
         category: "E-Commerce",
         metric: "1.8% CVR",
-        image: "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
+        image: "/assets/images/brands/Galaxy-Star/galaxy-3.webp",
         path: "/portfolio",
         isVideo: false,
         videoUrl: "",
@@ -52,7 +52,7 @@ const FEATURED_ITEMS = [
         accentClass: "text-orange-400 bg-orange-500/10 border-orange-500/20",
         hoverBorderClass: "hover:border-orange-500/40 hover:shadow-orange-500/10",
         btnBgClass: "bg-orange-500 text-black",
-        logo: "/assets/images/logos/Galaxy Star Perfumes.png"
+        logo: "/assets/images/logos/Galaxy Star Perfumes.webp"
     },
     {
         id: "prepmeal-featured",
@@ -68,7 +68,7 @@ const FEATURED_ITEMS = [
         accentClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
         hoverBorderClass: "hover:border-purple-500/40 hover:shadow-purple-500/10",
         btnBgClass: "bg-purple-500 text-white",
-        logo: "/assets/images/logos/PrepMeal.png"
+        logo: "/assets/images/logos/PrepMeal.webp"
     },
     {
         id: "entrepreneur-mindset-featured",
@@ -147,7 +147,7 @@ export function FeaturedWork() {
                                 }}
                             />
                         ) : (
-                            <img
+                            <img loading="lazy" decoding="async"
                                 src={item.image}
                                 alt={item.title}
                                 className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
@@ -169,7 +169,7 @@ export function FeaturedWork() {
 
                         <div className="absolute bottom-8 left-8 right-8 transition-all duration-500 group-hover:translate-y-[-10px]">
                             {item.logo ? (
-                                <img 
+                                <img loading="lazy" decoding="async" 
                                     src={item.logo} 
                                     alt={item.client} 
                                     className="h-6 max-w-[120px] object-contain opacity-60 group-hover:opacity-90 transition-opacity mb-2"
@@ -223,7 +223,7 @@ export function FeaturedWork() {
                                     autoPlay
                                 />
                             ) : (
-                                <img src={selectedItem.image} className="w-full h-full object-cover" alt={selectedItem.title} onError={(e) => {
+                                <img loading="lazy" decoding="async" src={selectedItem.image} className="w-full h-full object-cover" alt={selectedItem.title} onError={(e) => {
                                     e.currentTarget.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop";
                                 }} />
                             )}

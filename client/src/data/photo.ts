@@ -11,7 +11,7 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "food-pancakes-1",
         title: "Maple Drip Pancakes",
-        image: "/assets/images/brands/Food-Photography/Pancakes.jpg",
+        image: "/assets/images/brands/Food-Photography/Pancakes.webp",
         category: "Food",
         description: "Mouth-watering breakfast lifestyle photography.",
         featured: true
@@ -19,7 +19,7 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "food-cheesecake-1",
         title: "Artisan Cheesecake",
-        image: "/assets/images/brands/Food-Photography/Cheesecake.jpg",
+        image: "/assets/images/brands/Food-Photography/Cheesecake.webp",
         category: "Food",
         description: "Delicious dessert detailing and styling.",
         featured: true
@@ -27,7 +27,7 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "wedding-photo-1",
         title: "Timeless Wedding Story",
-        image: "/assets/images/photography/wedding/wedding-1.jpg",
+        image: "/assets/images/photography/wedding/wedding-1.webp",
         category: "Wedding",
         description: "Capturing the elegance and emotion of a traditional wedding celebration.",
         featured: true
@@ -35,7 +35,7 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "auto-porsche-1",
         title: "Porsche 718 Cayman",
-        image: "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg",
+        image: "/assets/images/brands/Beyond-Cars/Porsche 718 Cayman.webp",
         category: "Automobile",
         description: "Sleek automotive photography focusing on design and performance.",
         featured: true
@@ -43,70 +43,70 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "perfume-galaxy-1",
         title: "Galaxy Star Fragrance",
-        image: "/assets/images/brands/Galaxy-Star/galaxy-3.jpg",
+        image: "/assets/images/brands/Galaxy-Star/galaxy-3.webp",
         category: "Product",
         description: "High-end product photography for luxury fragrance brands."
     },
     {
         id: "auto-rover-1",
         title: "Range Rover Prestige",
-        image: "/assets/images/brands/Beyond-Cars/range rover-1.jpg",
+        image: "/assets/images/brands/Beyond-Cars/range rover-1.webp",
         category: "Automobile",
         description: "Lifestyle automotive shots showcasing premium vehicles."
     },
     {
         id: "food-vita-bloom",
         title: "Vita Bloom Nutritional",
-        image: "/assets/images/brands/Aqua-Care/Vita bloom.jpg",
+        image: "/assets/images/brands/Aqua-Care/Vita bloom.webp",
         category: "Food",
         description: "Commercial food and beverage photography."
     },
     {
         id: "interior-knk-1",
         title: "Modern Residential Design",
-        image: "/assets/images/brands/Knk/Artboard 1 copy 2.jpg",
+        image: "/assets/images/brands/Knk/Artboard 1 copy 2.webp",
         category: "Architecture",
         description: "Architectural photography showcasing contemporary interior design."
     },
     {
         id: "auto-porsche-cayenne",
         title: "Porsche Cayenne Coupe GTS",
-        image: "/assets/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.jpg",
+        image: "/assets/images/brands/Beyond-Cars/Porsche Cayenne Coupe GTS.webp",
         category: "Automobile",
         description: "Power and luxury combined in this high-performance SUV."
     },
     {
         id: "product-acero-ad",
         title: "Acero Steel Solutions",
-        image: "/assets/images/brands/Acero/Ad 01.png",
+        image: "/assets/images/brands/Acero/Ad 01.webp",
         category: "Corporate",
         description: "Industrial photography highlighting structural excellence."
     },
     {
         id: "lifestyle-q4-clean",
         title: "Q4 Premium Cleaning",
-        image: "/assets/images/brands/Q4/Ad 9.jpg",
+        image: "/assets/images/brands/Q4/Ad 9.webp",
         category: "Lifestyle",
         description: "Commercial lifestyle photography for professional services."
     },
     {
         id: "product-galaxy-1",
         title: "Aura Fragrance",
-        image: "/assets/images/brands/Galaxy-Star/Galaxy 1.jpg",
+        image: "/assets/images/brands/Galaxy-Star/Galaxy 1.webp",
         category: "Product",
         description: "Minimalist product photography for luxury retail."
     },
     {
         id: "auto-range-rover-2",
         title: "Range Rover Sport",
-        image: "/assets/images/brands/Beyond-Cars/range rover-1.jpg",
+        image: "/assets/images/brands/Beyond-Cars/range rover-1.webp",
         category: "Automobile",
         description: "Adventure meets luxury in the Range Rover Sport."
     },
     {
         id: "food-dietary-mix",
         title: "Healthy Staples",
-        image: "/assets/images/brands/Aqua-Care/Vita bloom.jpg",
+        image: "/assets/images/brands/Aqua-Care/Vita bloom.webp",
         category: "Food",
         description: "Conceptual food photography for nutritional brands."
     },
@@ -127,28 +127,28 @@ export const photoProjects: PhotoProject[] = [
     {
         id: "food-acai-bowl",
         title: "Fresh Acai Smoothie",
-        image: "/assets/images/brands/Food-Photography/Acai Smoothie.jpg",
+        image: "/assets/images/brands/Food-Photography/Acai Smoothie.webp",
         category: "Food",
         description: "Vibrant and healthy food and beverage presentation."
     },
     {
         id: "food-iced-v60",
         title: "Iced V60 Pour Over",
-        image: "/assets/images/brands/Food-Photography/Iced V60.jpg",
+        image: "/assets/images/brands/Food-Photography/Iced V60.webp",
         category: "Food",
         description: "Specialty coffee photography highlighting texture and lighting."
     },
     {
         id: "food-chicken-pesto",
         title: "Chicken Pesto Pasta",
-        image: "/assets/images/brands/Food-Photography/Chicken Pesto.jpg",
+        image: "/assets/images/brands/Food-Photography/Chicken Pesto.webp",
         category: "Food",
         description: "Savory dishes captured with appetizing detail."
     },
     {
         id: "food-sourdough-zaatar",
         title: "Sourdough Labneh Zaatar",
-        image: "/assets/images/brands/Food-Photography/Sourdough Labneh Zaatar.jpg",
+        image: "/assets/images/brands/Food-Photography/Sourdough Labneh Zaatar.webp",
         category: "Food",
         description: "Artisanal bakery and cafe food photography."
     }

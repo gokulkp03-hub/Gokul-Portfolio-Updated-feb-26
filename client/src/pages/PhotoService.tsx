@@ -10,30 +10,30 @@ import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const foodStills = [
-    { src: "/assets/images/portfolio-all/Sourdough_Avocado.jpg", alt: "Sourdough avocado toast with microgreens on ceramic plate, overhead shot" },
-    { src: "/assets/images/portfolio-all/Vegan_Buddha_Bowl.jpg", alt: "Vibrant vegan buddha bowl with roasted chickpeas, quinoa, and avocado" },
-    { src: "/assets/images/portfolio-all/Cheesecake.jpg", alt: "Artisan berry cheesecake slice plated with fresh raspberry coulis" },
-    { src: "/assets/images/portfolio-all/Chocolate_Milk_Cookies.jpg", alt: "Freshly baked chocolate chip cookies served with a glass of milk" },
-    { src: "/assets/images/portfolio-all/Iced_V60.jpg", alt: "Single-origin pour-over iced V60 coffee in fluted glassware" },
-    { src: "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.jpg", alt: "Toasted sourdough bread with creamy labneh, zaatar, and extra virgin olive oil" },
-    { src: "/assets/images/portfolio-all/ginger_shot.jpg", alt: "Organic cold-pressed immunity ginger wellness shot in glass bottle" }
+    { src: "/assets/images/portfolio-all/Sourdough_Avocado.webp", alt: "Sourdough avocado toast with microgreens on ceramic plate, overhead shot" },
+    { src: "/assets/images/portfolio-all/Vegan_Buddha_Bowl.webp", alt: "Vibrant vegan buddha bowl with roasted chickpeas, quinoa, and avocado" },
+    { src: "/assets/images/portfolio-all/Cheesecake.webp", alt: "Artisan berry cheesecake slice plated with fresh raspberry coulis" },
+    { src: "/assets/images/portfolio-all/Chocolate_Milk_Cookies.webp", alt: "Freshly baked chocolate chip cookies served with a glass of milk" },
+    { src: "/assets/images/portfolio-all/Iced_V60.webp", alt: "Single-origin pour-over iced V60 coffee in fluted glassware" },
+    { src: "/assets/images/portfolio-all/Sourdough_Labneh_Zaatar.webp", alt: "Toasted sourdough bread with creamy labneh, zaatar, and extra virgin olive oil" },
+    { src: "/assets/images/portfolio-all/ginger_shot.webp", alt: "Organic cold-pressed immunity ginger wellness shot in glass bottle" }
 ];
 
 const lifestyleStills = [
-    "/assets/images/portfolio-all/Vita_bloom.jpg",
-    "/assets/images/portfolio-all/DSC01510_(1).jpg",
-    "/assets/images/portfolio-all/DSC01680.jpg",
-    "/assets/images/portfolio-all/DSC01738.jpg",
-    "/assets/images/portfolio-all/DSC01768.jpg",
-    "/assets/images/portfolio-all/DSC03166.jpg",
-    "/assets/images/portfolio-all/DSC03971.jpg",
-    "/assets/images/portfolio-all/DSC04050.jpg",
-    "/assets/images/portfolio-all/DSC08771.jpg",
-    "/assets/images/portfolio-all/DSC08907.jpg",
-    "/assets/images/portfolio-all/DSC08980.jpg",
-    "/assets/images/portfolio-all/DSC09457.jpg",
-    "/assets/images/portfolio-all/DSC09598.jpg",
-    "/assets/images/portfolio-all/DSC09621.jpg"
+    "/assets/images/portfolio-all/Vita_bloom.webp",
+    "/assets/images/portfolio-all/DSC01510_(1).webp",
+    "/assets/images/portfolio-all/DSC01680.webp",
+    "/assets/images/portfolio-all/DSC01738.webp",
+    "/assets/images/portfolio-all/DSC01768.webp",
+    "/assets/images/portfolio-all/DSC03166.webp",
+    "/assets/images/portfolio-all/DSC03971.webp",
+    "/assets/images/portfolio-all/DSC04050.webp",
+    "/assets/images/portfolio-all/DSC08771.webp",
+    "/assets/images/portfolio-all/DSC08907.webp",
+    "/assets/images/portfolio-all/DSC08980.webp",
+    "/assets/images/portfolio-all/DSC09457.webp",
+    "/assets/images/portfolio-all/DSC09598.webp",
+    "/assets/images/portfolio-all/DSC09621.webp"
 ];
 
 const lifestyleDescriptions = [
@@ -55,22 +55,22 @@ const lifestyleDescriptions = [
 
 const graphicAdDesigns = [
     { src: "/assets/images/portfolio-all/steaburg-design.webp", title: "Steaburg Culinary Brand Key Visual", tag: "Social Promo Design" },
-    { src: "/assets/images/portfolio-all/AD_1_DEC.jpg", title: "Holiday Meta Ad Creative", tag: "Direct-Response Ad" },
-    { src: "/assets/images/portfolio-all/AD_2_DEC.jpg", title: "Festive Campaign Offer Graphic", tag: "Social Promo Design" },
-    { src: "/assets/images/portfolio-all/Ad.jpg", title: "Aqua Care Product Feature Graphic", tag: "E-Commerce Poster" },
-    { src: "/assets/images/portfolio-all/Ad_04.jpg", title: "Aqua Care RO Filter Campaign", tag: "High-ROAS Meta Banner" },
-    { src: "/assets/images/portfolio-all/Ad_08-1.jpg", title: "Water System Performance Ad", tag: "Conversion Graphic" },
-    { src: "/assets/images/portfolio-all/Ad_1_Residential_construction_services.jpg", title: "Residential Construction Lead Ad", tag: "B2B Meta Ad Design" },
-    { src: "/assets/images/portfolio-all/Artboard_1_1761316769324.jpg", title: "Brand Identity & Artboard Layout", tag: "Visual Identity" },
-    { src: "/assets/images/portfolio-all/Childrens_Day.jpg", title: "Seasonal Campaign Creative", tag: "Social Poster Design" },
-    { src: "/assets/images/portfolio-all/Copy_of_Macros_Club.jpg", title: "Macros Club Fitness Graphic", tag: "Subscription Ad" },
-    { src: "/assets/images/portfolio-all/Cover_1.jpg", title: "Brand Cover & Banner Asset", tag: "Editorial Header Design" },
-    { src: "/assets/images/portfolio-all/Xmas_-_Galaxy.jpg", title: "Galaxy Star Perfumes Luxury Graphic", tag: "Campaign Key Visual" },
-    { src: "/assets/images/portfolio-all/acero_warrior.jpg", title: "Acero Warrior Poster", tag: "Brand Graphic" },
-    { src: "/assets/images/portfolio-all/xmas_2_tess.jpg", title: "Seasonal Retail Offer Banner", tag: "Promo Creative" },
-    { src: "/assets/images/portfolio-all/jagp10.jpg", title: "Brand Identity Design Asset 01", tag: "Graphical Poster" },
-    { src: "/assets/images/portfolio-all/jagp5.jpg", title: "Brand Identity Design Asset 02", tag: "Graphical Poster" },
-    { src: "/assets/images/portfolio-all/IMG_7409.jpg", title: "Social Feed Poster Graphic", tag: "Direct-Response Ad" }
+    { src: "/assets/images/portfolio-all/AD_1_DEC.webp", title: "Holiday Meta Ad Creative", tag: "Direct-Response Ad" },
+    { src: "/assets/images/portfolio-all/AD_2_DEC.webp", title: "Festive Campaign Offer Graphic", tag: "Social Promo Design" },
+    { src: "/assets/images/portfolio-all/Ad.webp", title: "Aqua Care Product Feature Graphic", tag: "E-Commerce Poster" },
+    { src: "/assets/images/portfolio-all/Ad_04.webp", title: "Aqua Care RO Filter Campaign", tag: "High-ROAS Meta Banner" },
+    { src: "/assets/images/portfolio-all/Ad_08-1.webp", title: "Water System Performance Ad", tag: "Conversion Graphic" },
+    { src: "/assets/images/portfolio-all/Ad_1_Residential_construction_services.webp", title: "Residential Construction Lead Ad", tag: "B2B Meta Ad Design" },
+    { src: "/assets/images/portfolio-all/Artboard_1_1761316769324.webp", title: "Brand Identity & Artboard Layout", tag: "Visual Identity" },
+    { src: "/assets/images/portfolio-all/Childrens_Day.webp", title: "Seasonal Campaign Creative", tag: "Social Poster Design" },
+    { src: "/assets/images/portfolio-all/Copy_of_Macros_Club.webp", title: "Macros Club Fitness Graphic", tag: "Subscription Ad" },
+    { src: "/assets/images/portfolio-all/Cover_1.webp", title: "Brand Cover & Banner Asset", tag: "Editorial Header Design" },
+    { src: "/assets/images/portfolio-all/Xmas_-_Galaxy.webp", title: "Galaxy Star Perfumes Luxury Graphic", tag: "Campaign Key Visual" },
+    { src: "/assets/images/portfolio-all/acero_warrior.webp", title: "Acero Warrior Poster", tag: "Brand Graphic" },
+    { src: "/assets/images/portfolio-all/xmas_2_tess.webp", title: "Seasonal Retail Offer Banner", tag: "Promo Creative" },
+    { src: "/assets/images/portfolio-all/jagp10.webp", title: "Brand Identity Design Asset 01", tag: "Graphical Poster" },
+    { src: "/assets/images/portfolio-all/jagp5.webp", title: "Brand Identity Design Asset 02", tag: "Graphical Poster" },
+    { src: "/assets/images/portfolio-all/IMG_7409.webp", title: "Social Feed Poster Graphic", tag: "Direct-Response Ad" }
 ];
 
 const packages = [
@@ -103,8 +103,8 @@ export default function PhotoService() {
             
             {/* 1. WebGL Three.js Hero Shader */}
             <PhotoShaderHero
-                imageSrc="/assets/images/photography/photo-hero-camera.jpg"
-                fallbackSrc="/assets/images/photography/photo-hero-camera.jpg"
+                imageSrc="/assets/images/photography/photo-hero-camera.webp"
+                fallbackSrc="/assets/images/photography/photo-hero-camera.webp"
                 headlineLine1="Creative"
                 headlineLine2="Photography"
                 sublabel="Food, product, and brand photography built for modern brands and visual feeds."

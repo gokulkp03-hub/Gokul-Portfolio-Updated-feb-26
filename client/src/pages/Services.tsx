@@ -79,7 +79,7 @@ export default function Services() {
     {
       title: "Performance Marketing",
       badge: "Paid Acquisition",
-      thumbnail: "/assets/images/brands/Aqua-Care/new.jpg",
+      thumbnail: "/assets/images/brands/Aqua-Care/new.webp",
       description: "Data-driven ad strategies across Meta and TikTok that scale your revenue with precision.",
       icon: <Target className="w-8 h-8 text-orange-500" />,
       features: [
