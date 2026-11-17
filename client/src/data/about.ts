@@ -1,3 +1,4 @@
+import { M } from "./metrics.js";
 export interface ExperienceMetric {
     label: string;
     value: string;
@@ -92,9 +93,9 @@ export const experiences: ExperienceItem[] = [
             "Cross-border campaign management covering both UAE and Oman accounts."
         ],
         metrics: [
-            { label: "Messaging Conversations", value: "2,357" },
-            { label: "Meta Form Leads", value: "212" },
-            { label: "Lowest CPL (Winning Ad)", value: "AED 4.32" }
+            { label: "Messaging Conversations", value: M.aquacare.conversations },
+            { label: "Meta Form Leads", value: M.aquacare.leads },
+            { label: "Lowest CPL (Winning Ad)", value: M.aquacare.bestCpl }
         ],
         tags: ["Meta Ads", "Ad Creative", "WhatsApp Routing", "GCC Markets"]
     },
@@ -106,14 +107,14 @@ export const experiences: ExperienceItem[] = [
         isCurrent: false,
         summary: "Content production, social media, and paid acquisition support for a meal-prep subscription brand.",
         details: [
-            "150+ vertical video assets produced for Instagram Reels and TikTok.",
-            "Meta ad campaigns supported with AED 150,000+ in spend.",
-            "Customer acquisition scaled to 21,000+ meals delivered."
+            `${M.prepmeal.videos} vertical video assets produced for Instagram Reels and TikTok.`,
+            `Meta ad campaigns supported with ${M.prepmeal.spendLong} in spend.`,
+            `Customer acquisition scaled to ${M.prepmeal.meals} meals delivered.`
         ],
         metrics: [
-            { label: "Meals Delivered", value: "21,000+" },
-            { label: "Vertical Videos", value: "150+" },
-            { label: "Meta Spend Supported", value: "AED 150K+" }
+            { label: "Meals Delivered", value: M.prepmeal.meals },
+            { label: "Vertical Videos", value: M.prepmeal.videos },
+            { label: "Meta Spend Supported", value: M.prepmeal.spend }
         ],
         tags: ["Short-form Video", "Subscription F&B", "Paid Acquisition"]
     },

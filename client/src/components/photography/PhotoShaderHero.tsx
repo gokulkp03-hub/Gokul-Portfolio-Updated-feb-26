@@ -1,5 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 
+import { Img } from "@/components/ui/Img";
 interface PhotoShaderHeroProps {
   imageSrc: string;
   fallbackSrc?: string;
@@ -38,7 +39,7 @@ export const PhotoShaderHero: React.FC<PhotoShaderHeroProps> = ({
       {useWebGL ? (
         <Suspense
           fallback={
-            <img
+            <Img sizes="100vw"
               src={fallbackSrc || imageSrc}
               alt="Hero Food & Product Photography"
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
@@ -48,7 +49,7 @@ export const PhotoShaderHero: React.FC<PhotoShaderHeroProps> = ({
           <PhotoShaderCanvas imageSrc={imageSrc} />
         </Suspense>
       ) : (
-        <img
+        <Img sizes="100vw"
           src={fallbackSrc || imageSrc}
           alt="Hero Food & Product Photography"
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"

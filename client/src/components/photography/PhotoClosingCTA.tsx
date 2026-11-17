@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
+import { Img } from "@/components/ui/Img";
 export const PhotoClosingCTA: React.FC = () => {
   return (
     <section className="relative py-24 md:py-40 bg-neutral-950 border-t border-neutral-800 text-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-25 mix-blend-luminosity pointer-events-none">
-        <img loading="lazy" decoding="async"
+        <Img sizes="100vw" loading="lazy" decoding="async"
           src="/assets/images/portfolio-all/Sourdough_Avocado.webp"
           alt="Culinary Still Background"
           className="w-full h-full object-cover filter blur-[2px]"

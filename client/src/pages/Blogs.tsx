@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { ArrowRight, Loader2, Calendar } from "lucide-react";
 import { format } from "date-fns";
 
+import { Img } from "@/components/ui/Img";
 export default function Blogs() {
   const { data: blogs, isLoading } = trpc.blogs.list.useQuery();
 
@@ -36,7 +37,7 @@ export default function Blogs() {
                 <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group block bg-zinc-900/40 border border-white/5 rounded-[2rem] overflow-hidden hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1">
                     {blog.thumbnail && (
                       <div className="aspect-[16/10] overflow-hidden">
-                        <img loading="lazy" decoding="async" 
+                        <Img loading="lazy" decoding="async" 
                           src={blog.thumbnail} 
                           alt={blog.title} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

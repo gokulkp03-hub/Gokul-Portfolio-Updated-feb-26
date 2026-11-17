@@ -2,6 +2,7 @@ import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { bio, whatIDo, experiences, behindTheCampaign, tools } from "@/data/about";
+import { Img } from "@/components/ui/Img";
 import { 
     ArrowUpRight, 
     ArrowRight, 
@@ -71,7 +72,7 @@ export default function About() {
                                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border/60 bg-muted/20 shadow-xl">
                                     <picture>
                                         <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
-                                        <img
+                                        <Img
                                             src="/assets/images/profile/gokul-kp.webp"
                                             alt="Gokul KP — Performance Marketer & Video Producer"
                                             title="Gokul KP"
@@ -195,14 +196,14 @@ export default function About() {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-border/40 bg-muted/20 relative">
-                                <img loading="lazy" decoding="async" 
+                                <Img loading="lazy" decoding="async" 
                                     src="/assets/images/profile/on-set-1.webp" 
                                     alt="Gokul KP directing commercial video shoot on set" 
                                     className="w-full h-full object-cover"
                                 />
                             </div>
                             <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-border/40 bg-muted/20 relative">
-                                <img loading="lazy" decoding="async" 
+                                <Img loading="lazy" decoding="async" 
                                     src="/assets/images/profile/on-set-2.webp" 
                                     alt="Gokul KP on location during commercial production" 
                                     className="w-full h-full object-cover"

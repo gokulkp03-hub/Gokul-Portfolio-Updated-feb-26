@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, CheckCircle2 } from "lucide-react";
 
+import { Img } from "@/components/ui/Img";
 export interface ShootProject {
   id: string;
   number: string;
@@ -152,7 +153,7 @@ export const PhotoShootIndex: React.FC = () => {
               }}
               className="fixed z-50 pointer-events-none hidden md:block w-72 h-48 rounded-xl overflow-hidden shadow-2xl border border-white/20"
             >
-              <img loading="lazy" decoding="async"
+              <Img loading="lazy" decoding="async"
                 src={hoveredProject.previewImage}
                 alt={hoveredProject.title}
                 className="w-full h-full object-cover"
@@ -264,7 +265,7 @@ export const PhotoShootIndex: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {activeCaseStudy.gallery.map((imgUrl, idx) => (
                     <div key={idx} className="rounded-2xl overflow-hidden border border-neutral-800 aspect-[4/3] bg-neutral-950">
-                      <img loading="lazy" decoding="async" src={imgUrl} alt={`Shoot frame ${idx + 1}`} className="w-full h-full object-cover" />
+                      <Img loading="lazy" decoding="async" src={imgUrl} alt={`Shoot frame ${idx + 1}`} className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>

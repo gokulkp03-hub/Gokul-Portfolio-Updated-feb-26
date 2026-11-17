@@ -13,6 +13,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { applyMeta, escapeHtml, NOT_FOUND_META } from "../server/_core/pageMeta";
 
+import { M } from "../client/src/data/metrics.js";
 type Link = [href: string, label: string];
 type Route = {
   path: string;
@@ -22,6 +23,8 @@ type Route = {
   intro?: string;
   links?: Link[];
   noindex?: boolean;
+  /** Structured-data summary for case studies (skipped automatically for noindex pages). */
+  caseStudy?: { client: string; results: string[]; period?: string };
 };
 
 const MAIN_LINKS: Link[] = [
@@ -48,7 +51,7 @@ const routes: Route[] = [
       "Gokul KP combines Meta Ads, WhatsApp lead generation, and performance creative to help UAE and GCC brands turn paid traffic into measurable growth.",
     h1: "Gokul KP — Performance Marketer & Video Producer in Dubai, UAE",
     intro:
-      "Performance-driven marketing campaigns, commercial video production, and Meta ad creatives for GCC brands. AED 166,000+ in managed Meta spend, 8,400+ WhatsApp conversations across UAE & Oman campaigns, and a best documented ROAS of 4.45x.",
+      `Performance-driven marketing campaigns, commercial video production, and Meta ad creatives for GCC brands. ${M.totalMetaSpendLong} in managed Meta spend, ${M.whatsappConversations} WhatsApp conversations across UAE & Oman campaigns, and a best documented ROAS of ${M.bestRoas}.`,
     links: [...MAIN_LINKS, ...CASE_STUDY_LINKS],
   },
   {
@@ -128,14 +131,24 @@ const routes: Route[] = [
     description:
       "Meta Ads performance marketing case study for AquaCare UAE, covering campaign strategy, creative testing, audience testing, lead generation and messaging acquisition across 25 campaigns.",
     h1: "Aqua Care UAE: Multi-Product Meta Ads & Lead System",
-    intro: "25 campaigns, 2,357 messaging conversations and 212 Meta leads across Aqua Care's water-filtration product line.",
+    intro: `25 campaigns, ${M.aquacare.conversations} messaging conversations and ${M.aquacare.leads} Meta leads across Aqua Care's water-filtration product line.`,
   },
   {
     path: "/marketing/prepmeal",
     title: "PrepMeal UAE WhatsApp Lead Generation Case Study",
     description:
-      "A UAE meal-prep case study covering Meta Ads, WhatsApp lead generation, creative production, AED 150K+ spend, 6,133 messaging conversations and campaign learnings.",
+      `A UAE meal-prep case study covering Meta Ads, WhatsApp lead generation, creative production, ${M.prepmeal.spend} spend, ${M.prepmeal.conversations} messaging conversations and campaign learnings.`,
     h1: "PrepMeal: Performance Marketing & Scale",
+    caseStudy: {
+      client: "PrepMeal",
+      period: "2023-01/2025-09",
+      results: [
+        `${M.prepmeal.conversations} messaging conversations`,
+        `${M.prepmeal.spend} Meta spend supported`,
+        `${M.prepmeal.meals} meals delivered`,
+        `${M.prepmeal.videos} vertical videos produced`,
+      ],
+    },
   },
   {
     path: "/marketing/steaburg-local-seo",
@@ -143,6 +156,10 @@ const routes: Route[] = [
     description:
       "How Google Business Profile optimization and a review system supported stronger local visibility and phone-call growth for Steaburg.",
     h1: "Steaburg Sharjah: Local SEO",
+    caseStudy: {
+      client: "Steaburg",
+      results: ["Google reviews grown from 26 to 100+", "Top-3 local map rankings in Sharjah"],
+    },
   },
   {
     path: "/marketing/aureum-asset-management",
@@ -150,8 +167,33 @@ const routes: Route[] = [
     description:
       "Institutional B2B paid media strategy and lead acquisition system for built-to-suit logistics parks and industrial facilities in Dubai & Abu Dhabi.",
     h1: "Aureum Asset Management: B2B Paid Media & Lead Generation",
+    caseStudy: {
+      client: "Aureum Asset Management",
+      results: ["B2B paid media and lead acquisition strategy for logistics and industrial facilities"],
+    },
   },
 ];
+
+function caseStudyLd(route: Route): object {
+  const cs = route.caseStudy!;
+  const url = `https://www.gokulkp.com${route.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${url}#case-study`,
+    name: route.h1,
+    headline: route.title,
+    description: route.description,
+    url,
+    inLanguage: "en",
+    creator: { "@id": "https://www.gokulkp.com/#person" },
+    author: { "@id": "https://www.gokulkp.com/#person" },
+    about: { "@type": "Organization", name: cs.client },
+    ...(cs.period ? { temporalCoverage: cs.period } : {}),
+    abstract: cs.results.join(" · "),
+    isPartOf: { "@id": "https://www.gokulkp.com/#website" },
+  };
+}
 
 function bodyFor(route: Route): string {
   const nav = MAIN_LINKS.map(([href, label]) => `<a href="${href}">${escapeHtml(label)}</a>`).join(" ");
@@ -202,6 +244,7 @@ for (const route of routes) {
     description: route.description,
     noindex: route.noindex,
     bodyHtml: bodyFor(route),
+    jsonLd: route.caseStudy && caseStudyLd(route),
   });
   const file = route.path === "/" ? "index.html" : `${route.path.slice(1)}/index.html`;
   const fullPath = path.join(distDir, file);

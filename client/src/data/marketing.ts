@@ -1,3 +1,4 @@
+import { M } from "./metrics.js";
 export interface MarketingCampaign {
     id: string;
     slug: string;
@@ -49,12 +50,12 @@ export const marketingCampaigns: MarketingCampaign[] = [
             "Produced vertical UGC video assets testing hook angles, problem agitation, and unboxing.",
             "Configured Instagram-to-WhatsApp routing to ensure sales response times stayed under 2 minutes."
         ],
-        results: "Generated 2,357 messaging conversations and 212 Meta form leads with 1.21M reach across UAE and Oman. Lowest documented CPL on a winning Shower Filter creative: AED 4.32.",
+        results: `Generated ${M.aquacare.conversations} messaging conversations and ${M.aquacare.leads} Meta form leads with ${M.aquacare.reach} reach across UAE and Oman. Lowest documented CPL on a winning Shower Filter creative: ${M.aquacare.bestCpl}.`,
         metrics: [
-            { label: "Messaging Conversations", value: "2,357", trend: "up" },
-            { label: "Meta Leads", value: "212", trend: "up" },
-            { label: "Reach (UAE & Oman)", value: "1.21M", trend: "up" },
-            { label: "Lowest CPL (Winning Ad)", value: "AED 4.32", trend: "up" },
+            { label: "Messaging Conversations", value: M.aquacare.conversations, trend: "up" },
+            { label: "Meta Leads", value: M.aquacare.leads, trend: "up" },
+            { label: "Reach (UAE & Oman)", value: M.aquacare.reach, trend: "up" },
+            { label: "Lowest CPL (Winning Ad)", value: M.aquacare.bestCpl, trend: "up" },
             { label: "Cost / Messaging Conv.", value: "AED 1.03", trend: "up" },
             { label: "Active Campaigns", value: "25", trend: "up" }
         ],
@@ -79,7 +80,7 @@ export const marketingCampaigns: MarketingCampaign[] = [
         platform: "Meta Ads & Short-form Video",
         title: "Acquisition Campaigns & Social Video",
         headline: "Content production and paid acquisition support for a subscription meal-prep brand.",
-        description: "Cross-channel content production and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with AED 150,000+ in spend.",
+        description: `Cross-channel content production and paid campaigns for PrepMeal, producing over 150 vertical videos while managing and supporting Meta ad campaigns with ${M.prepmeal.spendLong} in spend.`,
         objective: "Drive qualified messaging enquiries and subscription orders for weekly healthy meal plans.",
         challenge: "The meal-prep category has high competition and creative fatigue happens quickly, requiring continuous video production and offer iteration.",
         strategy: [
@@ -88,16 +89,16 @@ export const marketingCampaigns: MarketingCampaign[] = [
             "Offer testing around trial weeks and promo discounts."
         ],
         execution: [
-            "Scripted, shot, and edited 150+ vertical video assets for Instagram Reels and TikTok.",
-            "Supported Meta ad accounts with AED 150,000+ in spend across acquisition campaigns.",
+            `Scripted, shot, and edited ${M.prepmeal.videos} vertical video assets for Instagram Reels and TikTok.`,
+            `Supported Meta ad accounts with ${M.prepmeal.spendLong} in spend across acquisition campaigns.`,
             "Monitored lead quality with the sales team to adjust ad messaging and audience targeting."
         ],
-        results: "Supported the delivery of 21,000+ meals, generated 6,133 messaging conversations, and contributed to a 3.5x ROAS on direct-response lead-gen campaigns.",
+        results: `Supported the delivery of ${M.prepmeal.meals} meals, generated ${M.prepmeal.conversations} messaging conversations, and contributed to a ${M.prepmeal.roas} ROAS on direct-response lead-gen campaigns.`,
         metrics: [
-            { label: "Meals Delivered", value: "21,000+", trend: "up" },
-            { label: "Messaging Conversations", value: "6,133", trend: "up" },
-            { label: "Meta Spend Supported", value: "AED 150K+", trend: "up" },
-            { label: "Lead-Gen ROAS", value: "3.5x", trend: "up" }
+            { label: "Meals Delivered", value: M.prepmeal.meals, trend: "up" },
+            { label: "Messaging Conversations", value: M.prepmeal.conversations, trend: "up" },
+            { label: "Meta Spend Supported", value: M.prepmeal.spend, trend: "up" },
+            { label: "Lead-Gen ROAS", value: M.prepmeal.roas, trend: "up" }
         ],
         visuals: [
             "/assets/images/brands/Prepmeal.webp",

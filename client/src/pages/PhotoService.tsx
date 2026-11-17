@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import { Img } from "@/components/ui/Img";
 const foodStills = [
     { src: "/assets/images/portfolio-all/Sourdough_Avocado.webp", alt: "Sourdough avocado toast with microgreens on ceramic plate, overhead shot" },
     { src: "/assets/images/portfolio-all/Vegan_Buddha_Bowl.webp", alt: "Vibrant vegan buddha bowl with roasted chickpeas, quinoa, and avocado" },
@@ -142,7 +143,7 @@ export default function PhotoService() {
                                 transition={{ duration: 0.6, delay: (i % 6) * 0.08 }}
                                 className="break-inside-avoid relative group rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800/80 shadow-lg"
                             >
-                                <img
+                                <Img sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                                     src={item.src}
                                     alt={item.alt}
                                     className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
@@ -187,7 +188,7 @@ export default function PhotoService() {
                                 transition={{ duration: 0.6, delay: (i % 6) * 0.08 }}
                                 className="break-inside-avoid relative group rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800/80 shadow-lg"
                             >
-                                <img
+                                <Img sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                                     src={src}
                                     alt={lifestyleDescriptions[i] || `Commercial product and lifestyle still ${i + 1}`}
                                     className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
@@ -233,7 +234,7 @@ export default function PhotoService() {
                                 className="group relative rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800 hover:border-orange-500/40 shadow-xl transition-all duration-300 flex flex-col justify-between"
                             >
                                 <div className="aspect-[4/5] overflow-hidden bg-neutral-900 relative">
-                                    <img
+                                    <Img sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                                         src={item.src}
                                         alt={item.title}
                                         className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"

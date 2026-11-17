@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { MorphBlob } from "@/components/ui/MorphBlob";
 import { SEO } from "@/components/SEO";
 
+import { Img } from "@/components/ui/Img";
+import { M } from "@/data/metrics";
 export default function PrepmealCaseStudy() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -35,7 +37,7 @@ export default function PrepmealCaseStudy() {
     <div className="min-h-screen pt-24 pb-20 bg-background text-foreground font-sans relative overflow-hidden">
         <SEO
           title="PrepMeal UAE WhatsApp Lead Generation Case Study"
-          description="A UAE meal-prep case study covering Meta Ads, WhatsApp lead generation, creative production, AED 150K+ spend, 6,133 messaging conversations and campaign learnings."
+          description={`A UAE meal-prep case study covering Meta Ads, WhatsApp lead generation, creative production, ${M.prepmeal.spend} spend, ${M.prepmeal.conversations} messaging conversations and campaign learnings.`}
           url="/marketing/prepmeal"
         />
         <MorphBlob color="emerald-500" size={500} opacity={0.06} blur={120} className="-right-20 top-0" animDuration={16} />
@@ -55,9 +57,9 @@ export default function PrepmealCaseStudy() {
             className="bg-emerald-500 text-black p-8 md:p-14 rounded-[2rem] mb-20 text-center flex flex-col items-center justify-center border border-emerald-400/50 shadow-2xl shadow-emerald-500/20"
         >
             <span className="text-xs font-bold uppercase tracking-[0.25em] mb-4 opacity-80 italic">Verified Performance (Meta Ads Lifetime)</span>
-            <h2 className="text-5xl md:text-[6.5rem] font-display font-bold tracking-tighter leading-none mb-6">6,133 Inquiries</h2>
+            <h2 className="text-5xl md:text-[6.5rem] font-display font-bold tracking-tighter leading-none mb-6">{M.prepmeal.conversations} Conversations</h2>
             <p className="text-xl md:text-2xl font-bold uppercase tracking-tight max-w-2xl">
-                Generated 6,133 messaging conversations from 4.4M+ impressions & AED 150K+ spend.
+                Generated {M.prepmeal.conversations} messaging conversations from {M.prepmeal.impressions} impressions & {M.prepmeal.spend} spend.
             </p>
         </motion.div>
 
@@ -65,7 +67,7 @@ export default function PrepmealCaseStudy() {
             Prepmeal: Performance Marketing & Scale.
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mb-16 font-medium leading-relaxed">
-            Full-funnel Meta Ads strategy for a UAE meal-prep startup. Managed AED 150K+ in spend across 50 campaigns to scale WhatsApp customer conversations and subscription growth.
+            Full-funnel Meta Ads strategy for a UAE meal-prep startup. Managed {M.prepmeal.spend} in spend across 50 campaigns to scale WhatsApp customer conversations and subscription growth.
         </p>
 
         {/* Meta */}
@@ -78,7 +80,7 @@ export default function PrepmealCaseStudy() {
 
         {/* Hero Image */}
         <div className="w-full aspect-[21/9] bg-muted/30 border border-border/40 rounded-2xl mb-16 overflow-hidden relative group rounded-3xl">
-            <img fetchPriority="high" decoding="async" src="/assets/images/case-studies/prepmeal/PrepMeal Website.webp" alt="Prepmeal Presentation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }}/>
+            <Img sizes="(min-width: 1280px) 1240px, 100vw" fetchPriority="high" decoding="async" src="/assets/images/case-studies/prepmeal/PrepMeal Website.webp" alt="Prepmeal Presentation" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }}/>
             <div className="absolute inset-0 bg-black/20" />
         </div>
 
@@ -87,11 +89,11 @@ export default function PrepmealCaseStudy() {
             <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-8">Lifetime Meta Ads Performance (Jul 2023 – Aug 2026)</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-emerald-500 mb-2">6,133</div>
+                    <div className="text-3xl font-bold text-emerald-500 mb-2">{M.prepmeal.conversations}</div>
                     <div className="text-xs text-muted-foreground uppercase tracking-wider">Conversations Started</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
-                    <div className="text-3xl font-bold text-foreground mb-2">AED 150K+</div>
+                    <div className="text-3xl font-bold text-foreground mb-2">{M.prepmeal.spend}</div>
                     <div className="text-xs text-muted-foreground uppercase tracking-wider">Total Ad Spend</div>
                 </div>
                 <div className="glass-card p-6 bg-card">
@@ -108,7 +110,7 @@ export default function PrepmealCaseStudy() {
         {/* Campaign Breakdown Table & Key Insights */}
         <section className="mb-20 p-8 md:p-10 rounded-3xl bg-muted/20 border border-border/50">
             <h2 className="text-2xl font-display font-bold text-foreground mb-3">Meta Ads Campaign Performance Breakdown</h2>
-            <p className="text-sm text-muted-foreground mb-8 font-light">Analysis of top-performing Meta campaigns driving high-intent messaging leads and subscriptions across the GCC.</p>
+            <p className="text-sm text-muted-foreground mb-8 font-light">Analysis of top-performing Meta campaigns driving high-intent messaging conversations and subscriptions across the GCC.</p>
             
             <div className="space-y-4">
                 <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -120,7 +122,7 @@ export default function PrepmealCaseStudy() {
                         <p className="text-xs text-muted-foreground mt-1">AED 3,395 spend · 10.3% CTR (9x account avg)</p>
                     </div>
                     <div className="text-right flex md:flex-col justify-between items-center md:items-end">
-                        <span className="text-2xl font-bold text-emerald-400">913 Leads</span>
+                        <span className="text-2xl font-bold text-emerald-400">913 Chats</span>
                         <span className="text-xs font-semibold text-muted-foreground">AED 3.72 / Conv</span>
                     </div>
                 </div>
@@ -134,7 +136,7 @@ export default function PrepmealCaseStudy() {
                         <p className="text-xs text-muted-foreground mt-1">AED 11,351 spend · High-converting chat flow</p>
                     </div>
                     <div className="text-right flex md:flex-col justify-between items-center md:items-end">
-                        <span className="text-2xl font-bold text-foreground">1,243 Leads</span>
+                        <span className="text-2xl font-bold text-foreground">1,243 Chats</span>
                         <span className="text-xs font-semibold text-muted-foreground">AED 9.13 / Conv</span>
                     </div>
                 </div>
@@ -145,7 +147,7 @@ export default function PrepmealCaseStudy() {
                         <p className="text-xs text-muted-foreground mt-1">AED 12,523 spend · Short-form video UGC</p>
                     </div>
                     <div className="text-right flex md:flex-col justify-between items-center md:items-end">
-                        <span className="text-2xl font-bold text-foreground">655 Leads</span>
+                        <span className="text-2xl font-bold text-foreground">655 Chats</span>
                         <span className="text-xs font-semibold text-muted-foreground">AED 19.12 / Conv</span>
                     </div>
                 </div>
@@ -156,7 +158,7 @@ export default function PrepmealCaseStudy() {
                         <p className="text-xs text-muted-foreground mt-1">AED 24,413 spend · Broad demographic retargeting</p>
                     </div>
                     <div className="text-right flex md:flex-col justify-between items-center md:items-end">
-                        <span className="text-2xl font-bold text-foreground">675 Leads</span>
+                        <span className="text-2xl font-bold text-foreground">675 Chats</span>
                         <span className="text-xs font-semibold text-muted-foreground">AED 36.17 / Conv</span>
                     </div>
                 </div>
@@ -184,7 +186,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.webp')}
                         className="mt-6 aspect-[21/9] rounded-2xl overflow-hidden border border-border/40 bg-muted/20 group cursor-pointer relative shadow-lg"
                     >
-                        <img loading="lazy" decoding="async" 
+                        <Img loading="lazy" decoding="async" 
                             src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" 
                             alt="Prepmeal Fresh Culinary Production" 
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -214,7 +216,7 @@ export default function PrepmealCaseStudy() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <Img sizes="(min-width: 640px) 40vw, 100vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Creative Production" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">1. Creative Production</h3>
@@ -231,7 +233,7 @@ export default function PrepmealCaseStudy() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img loading="lazy" decoding="async" src="/assets/images/optimized/pancakes.webp" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <Img sizes="(min-width: 640px) 40vw, 100vw" loading="lazy" decoding="async" src="/assets/images/optimized/pancakes.webp" alt="Direct WhatsApp Funnel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">2. Direct WhatsApp Funnel</h3>
@@ -248,7 +250,7 @@ export default function PrepmealCaseStudy() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
                                 <div className="sm:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-black border border-border/40">
-                                    <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <Img sizes="(min-width: 640px) 40vw, 100vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="Offer Testing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 </div>
                                 <div className="sm:col-span-7">
                                     <h3 className="text-lg font-bold text-emerald-500 mb-2">3. Offer Testing</h3>
@@ -279,7 +281,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" alt="Chicken Pesto" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" alt="Chicken Pesto" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Chicken Pesto Bowl</span>
                         </div>
@@ -289,7 +291,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Fluffy Protein Pancakes</span>
                         </div>
@@ -299,7 +301,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="Chicken Butter Burrito" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Chicken Butter Burrito</span>
                         </div>
@@ -309,7 +311,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Sourdough Labneh Zaatar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Sourdough Labneh &amp; Zaatar</span>
                         </div>
@@ -319,7 +321,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-acai.webp" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-acai.webp" alt="Acai Smoothie" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Superfood Acai Smoothie</span>
                         </div>
@@ -329,7 +331,7 @@ export default function PrepmealCaseStudy() {
                         onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.webp')}
                         className="group relative aspect-square rounded-2xl overflow-hidden border border-border/40 bg-muted/30 cursor-pointer shadow-md"
                     >
-                        <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Macros Club.webp" alt="Macros Club Lifestyle" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Macros Club.webp" alt="Macros Club Lifestyle" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                             <span className="text-xs font-semibold text-white">Macros Club Social Creative</span>
                         </div>
@@ -346,7 +348,7 @@ export default function PrepmealCaseStudy() {
                     <ul className="space-y-4 text-muted-foreground font-light text-lg">
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Managed AED 150K+ in spend across 50 campaigns on Meta Ads (Instagram & Facebook).</span>
+                            <span>Managed {M.prepmeal.spend} in spend across 50 campaigns on Meta Ads (Instagram & Facebook).</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
@@ -354,7 +356,7 @@ export default function PrepmealCaseStudy() {
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
-                            <span>Scaled WhatsApp messaging campaigns, delivering 6,133 total direct customer conversations.</span>
+                            <span>Scaled WhatsApp messaging campaigns, delivering {M.prepmeal.conversations} total direct customer conversations.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2.5 flex-shrink-0"></span>
@@ -372,7 +374,7 @@ export default function PrepmealCaseStudy() {
                 <div className="md:col-span-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
                         <div className="p-8 rounded-3xl bg-emerald-950/30 border border-emerald-500/20">
-                            <div className="text-5xl font-bold text-emerald-500 mb-2">6,133</div>
+                            <div className="text-5xl font-bold text-emerald-500 mb-2">{M.prepmeal.conversations}</div>
                             <div className="text-xs text-zinc-400 font-bold uppercase tracking-widest">Total Messaging Conversations</div>
                         </div>
                         <div className="p-8 rounded-3xl bg-emerald-950/30 border border-emerald-500/20">
@@ -404,7 +406,7 @@ export default function PrepmealCaseStudy() {
                             className="glass-card p-3 rounded-2xl border-border/40 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all shadow-xl relative"
                         >
                             <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
-                                <img loading="lazy" decoding="async" 
+                                <Img loading="lazy" decoding="async" 
                                     src="/assets/images/case-studies/prepmeal/proof-dashboard-1.webp" 
                                     alt="PrepMeal Meta Ads Manager Campaign Overview" 
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -414,7 +416,7 @@ export default function PrepmealCaseStudy() {
                                 </div>
                             </div>
                             <div className="p-2 text-xs text-muted-foreground">
-                                Meta Ads Campaign Overview — 6,133 messaging leads
+                                Meta Ads Campaign Overview — {M.prepmeal.conversations} messaging conversations
                             </div>
                         </div>
 
@@ -424,7 +426,7 @@ export default function PrepmealCaseStudy() {
                             className="glass-card p-3 rounded-2xl border-border/40 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all shadow-xl relative"
                         >
                             <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
-                                <img loading="lazy" decoding="async" 
+                                <Img loading="lazy" decoding="async" 
                                     src="/assets/images/case-studies/prepmeal/proof-dashboard-2.webp" 
                                     alt="PrepMeal Cost Per Messaging Conversation Breakdown" 
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -513,7 +515,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Pesto.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" alt="Chicken Pesto Meal Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Chicken Pesto.webp" alt="Chicken Pesto Meal Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Chicken Pesto Macro Meal</span>
                             </div>
@@ -523,7 +525,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Sourdough Labneh Zaatar.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-sourdough.webp" alt="Healthy Breakfast Prep" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Sourdough &amp; Labneh Prep</span>
                             </div>
@@ -533,7 +535,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Acai Smoothie.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-acai.webp" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-acai.webp" alt="Fresh Acai Bowl" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fresh Organic Acai</span>
                             </div>
@@ -543,7 +545,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Chicken Butter Burrito.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/prepmeal-burrito.webp" alt="High Protein Burrito" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">High-Protein Burrito</span>
                             </div>
@@ -553,7 +555,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Pancakes.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img loading="lazy" decoding="async" src="/assets/images/optimized/pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/optimized/pancakes.webp" alt="Protein Pancakes" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Fitness Protein Pancakes</span>
                             </div>
@@ -563,7 +565,7 @@ export default function PrepmealCaseStudy() {
                             onClick={() => setSelectedImage('/assets/images/case-studies/prepmeal/Macros Club.webp')}
                             className="group overflow-hidden rounded-2xl border border-border/40 bg-muted/20 aspect-square relative cursor-pointer"
                         >
-                            <img loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Macros Club.webp" alt="Prepmeal Plan Menu" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }} />
+                            <Img sizes="(min-width: 768px) 33vw, 50vw" loading="lazy" decoding="async" src="/assets/images/case-studies/prepmeal/Macros Club.webp" alt="Prepmeal Plan Menu" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display='none'; }} />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
                                 <span className="text-xs font-semibold text-white">Macro Meal Card</span>
                             </div>
@@ -591,7 +593,7 @@ export default function PrepmealCaseStudy() {
               >
                 <X className="w-5 h-5" />
               </button>
-              <img loading="lazy" decoding="async" src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
+              <Img loading="lazy" decoding="async" src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
             </div>
           </div>
         )}

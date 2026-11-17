@@ -1,3 +1,4 @@
+import { M } from "./metrics.js";
 export interface CaseStudy {
     id: string;
     slug: string;
@@ -41,7 +42,7 @@ export const caseStudies: CaseStudy[] = [
             "WhatsApp-based customer service coordination for higher retention."
         ],
         execution: [
-            "Produced 150+ vertical video assets for TikTok and Instagram.",
+            `Produced ${M.prepmeal.videos} vertical video assets for TikTok and Instagram.`,
             "Supported Meta Ad campaigns with creative strategy and content.",
             "Coordinated with production team for consistent visual output."
         ],

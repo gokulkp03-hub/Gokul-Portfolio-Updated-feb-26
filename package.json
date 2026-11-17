@@ -18,7 +18,8 @@
     "test": "vitest run",
     "db:push": "drizzle-kit push",
     "db:seed": "tsx scripts/seed-drizzle.ts",
-    "hash-password": "node scripts/hash-admin-password.mjs"
+    "hash-password": "node scripts/hash-admin-password.mjs",
+    "images": "node scripts/build-images.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.4",

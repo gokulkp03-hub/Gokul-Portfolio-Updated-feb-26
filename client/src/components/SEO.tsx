@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { mustNotIndex } from '@shared/seoPolicy';
 
+import { M } from "@/data/metrics";
 interface SEOProps {
   title?: string;
   description?: string;
@@ -18,7 +19,7 @@ export function SEO({
   noindex = false
 }: SEOProps) {
   const defaultTitle = "Gokul KP — Performance Marketer & Video Producer | Dubai, UAE";
-  const defaultDescription = "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 8,400+ WhatsApp conversations, AED 166K+ managed Meta spend, and up to 4.45x ROAS.";
+  const defaultDescription = `Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with ${M.whatsappConversations} WhatsApp conversations, ${M.totalMetaSpend} managed Meta spend, and up to ${M.bestRoas} ROAS.`;
   // 1200x630 JPEG: the format/size every social network previews reliably.
   const defaultImage = "https://www.gokulkp.com/assets/images/og/gokul-kp-og.webp";
   const baseUrl = "https://www.gokulkp.com";

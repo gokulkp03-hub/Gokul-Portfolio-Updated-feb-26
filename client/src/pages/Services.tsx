@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
+import { Img } from "@/components/ui/Img";
 function GrowthStep({ item, isLast }: { item: any, isLast: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-20% 0px -40% 0px" });
@@ -183,7 +184,7 @@ export default function Services() {
 
                 {/* 4:3 Thumbnail Slot */}
                 <div className="mb-6 aspect-[4/3] rounded-2xl overflow-hidden border border-border/40 bg-zinc-950 relative">
-                  <img 
+                  <Img 
                     src={service.thumbnail} 
                     alt={`${service.title} thumbnail`} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

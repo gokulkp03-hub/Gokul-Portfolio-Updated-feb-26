@@ -9,6 +9,7 @@ import { marketingCampaigns as staticMarketing } from "@/data/marketing";
 import { SEO } from "@/components/SEO";
 import { trackEvent } from "@/utils/analytics";
 
+import { Img } from "@/components/ui/Img";
 type FilterCategory = "all" | "ads" | "video" | "photo" | "social" | "influencer" | "web";
 
 const categoryIcons: Record<string, any> = {
@@ -368,7 +369,7 @@ export default function PortfolioLayout() {
                                     />
                                 )
                             ) : (
-                                <img loading="lazy" decoding="async" 
+                                <Img loading="lazy" decoding="async" 
                                     src={selectedItem.thumbnail} 
                                     className="w-full h-full object-cover" 
                                     alt={selectedItem.title} 

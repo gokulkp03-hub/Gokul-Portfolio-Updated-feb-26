@@ -66,6 +66,7 @@ const categories: Category[] = ["All", "Weddings", "Events", "Product", "Persona
 
 import { SEO } from "@/components/SEO";
 
+import { Img } from "@/components/ui/Img";
 export default function VideoService() {
     const [activeCategory, setActiveCategory] = useState<Category>("All");
     const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -266,7 +267,7 @@ export default function VideoService() {
                                     className="group relative aspect-video rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer border border-border/30 hover:border-blue-500/40 transition-colors duration-300"
                                 >
                                     {/* Video Thumbnail / Preview */}
-                                    <img
+                                    <Img
                                         src={getCloudinaryThumb(video.thumbnail || video.videoUrl || "")}
                                         alt={video.title}
                                         loading="lazy"
@@ -381,7 +382,7 @@ export default function VideoService() {
                                         />
                                     ) : (
                                         <div className="relative w-full h-full group/facade">
-                                            <img
+                                            <Img
                                                 src={`https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/${embed.publicId}.jpg`}
                                                 alt={embed.title}
                                                 loading="lazy"

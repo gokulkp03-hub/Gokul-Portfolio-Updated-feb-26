@@ -5,6 +5,7 @@ import { ArrowLeft, Loader2, Calendar } from "lucide-react";
 import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 
+import { Img } from "@/components/ui/Img";
 export default function BlogPost({ slug }: { slug: string }) {
   const [_, navigate] = useLocation();
   const { data: blog, isLoading, error } = trpc.blogs.getBySlug.useQuery(slug);
@@ -69,7 +70,7 @@ export default function BlogPost({ slug }: { slug: string }) {
           {/* Thumbnail */}
           {blog.thumbnail && (
             <div className="aspect-[21/9] w-full rounded-[2rem] overflow-hidden border border-white/5 bg-zinc-900 shadow-2xl">
-              <img fetchPriority="high" decoding="async" 
+              <Img sizes="(min-width: 1280px) 1240px, 100vw" fetchPriority="high" decoding="async" 
                 src={blog.thumbnail} 
                 alt={blog.title} 
                 className="w-full h-full object-cover"

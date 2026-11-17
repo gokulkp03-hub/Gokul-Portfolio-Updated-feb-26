@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { SEO } from "@/components/SEO";
 
+import { Img } from "@/components/ui/Img";
+import { M } from "@/data/metrics";
 export default function AquaCareCaseStudy() {
   const [playReel, setPlayReel] = useState(false);
   const [showTechnicalData, setShowTechnicalData] = useState(false);
@@ -90,21 +92,21 @@ export default function AquaCareCaseStudy() {
             {/* 3 Core Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-800/80">
               <div className="p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-                <div className="text-3xl font-display font-bold text-emerald-400">2,357</div>
+                <div className="text-3xl font-display font-bold text-emerald-400">{M.aquacare.conversations}</div>
                 <div className="text-xs font-semibold text-white mt-1">Messaging Inquiries</div>
                 <div className="text-[11px] text-zinc-400 mt-0.5">WhatsApp &amp; Instagram DMs</div>
               </div>
 
               <div className="p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-                <div className="text-3xl font-display font-bold text-blue-400">212</div>
+                <div className="text-3xl font-display font-bold text-blue-400">{M.aquacare.leads}</div>
                 <div className="text-xs font-semibold text-white mt-1">Meta Form Leads</div>
-                <div className="text-[11px] text-zinc-400 mt-0.5">As low as AED 4.32 / lead</div>
+                <div className="text-[11px] text-zinc-400 mt-0.5">As low as {M.aquacare.bestCpl} / lead</div>
               </div>
 
               <div className="p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-                <div className="text-3xl font-display font-bold text-zinc-100">1.21M</div>
+                <div className="text-3xl font-display font-bold text-zinc-100">{M.aquacare.reach}</div>
                 <div className="text-xs font-semibold text-white mt-1">Audience Reached</div>
-                <div className="text-[11px] text-zinc-400 mt-0.5">2.23M impressions · AED 11.1K spend</div>
+                <div className="text-[11px] text-zinc-400 mt-0.5">{M.aquacare.impressions} impressions · {M.aquacare.spend} spend</div>
               </div>
             </div>
           </div>
@@ -128,7 +130,7 @@ export default function AquaCareCaseStudy() {
             >
               <div>
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
-                  <img fetchPriority="high" decoding="async" 
+                  <Img sizes="(min-width: 1280px) 1240px, 100vw" fetchPriority="high" decoding="async" 
                     src="/assets/images/brands/Aqua-Care/shower-filter-reel-poster.webp" 
                     alt="Shower Filter Direct Response Creative Reel" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -140,7 +142,7 @@ export default function AquaCareCaseStudy() {
                     <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-white">Watch Reel</span>
                   </div>
                   <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold text-emerald-400 border border-emerald-500/30">
-                    AED 4.32 CPL
+                    {M.aquacare.bestCpl} CPL
                   </div>
                 </div>
 
@@ -152,7 +154,7 @@ export default function AquaCareCaseStudy() {
                 </div>
 
                 <p className="text-xs text-zinc-300 leading-relaxed font-light">
-                  A high-volume entry product that captured <strong className="text-white">183+ Meta leads</strong> at just <strong className="text-emerald-400 font-semibold">AED 4.85 per lead</strong>, with the top Reel delivering leads at AED 4.32.
+                  A high-volume entry product that captured <strong className="text-white">183+ Meta leads</strong> at just <strong className="text-emerald-400 font-semibold">AED 4.85 per lead</strong>, with the top Reel delivering leads at {M.aquacare.bestCpl}.
                 </p>
 
                 <div className="mt-3 pt-2.5 border-t border-zinc-800/60 flex items-center justify-between">
@@ -181,7 +183,7 @@ export default function AquaCareCaseStudy() {
             >
               <div>
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
-                  <img loading="lazy" decoding="async" 
+                  <Img loading="lazy" decoding="async" 
                     src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" 
                     alt="Countertop Dispenser WhatsApp Ad" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -213,7 +215,7 @@ export default function AquaCareCaseStudy() {
             >
               <div>
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-zinc-800/80 bg-zinc-950">
-                  <img loading="lazy" decoding="async" 
+                  <Img loading="lazy" decoding="async" 
                     src="/assets/images/aquacare-reel/ig-overview.webp" 
                     alt="100K+ Viral Reel Creative" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -252,7 +254,7 @@ export default function AquaCareCaseStudy() {
               className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-emerald-500/30 transition-all"
             >
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/aquacare-countertop-dispenser-hero.webp" alt="Stage 1 Awareness Creative — AquaCare Countertop Dispenser" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/aquacare-countertop-dispenser-hero.webp" alt="Stage 1 Awareness Creative — AquaCare Countertop Dispenser" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
               </div>
               <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 1 — Awareness</span>
               <h4 className="text-sm font-bold text-white mb-2">Broad Education</h4>
@@ -266,7 +268,7 @@ export default function AquaCareCaseStudy() {
               className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-blue-500/30 transition-all"
             >
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Stage 2 Engagement Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Stage 2 Engagement Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider block mb-1">Stage 2 — Engagement</span>
               <h4 className="text-sm font-bold text-white mb-2">WhatsApp Conversations</h4>
@@ -280,7 +282,7 @@ export default function AquaCareCaseStudy() {
               className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800 group cursor-pointer hover:border-emerald-500/30 transition-all"
             >
               <div className="aspect-video rounded-xl overflow-hidden mb-3.5 border border-zinc-800 bg-black">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Stage 3 Lead Capture Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Stage 3 Lead Capture Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">Stage 3 — Lead Capture</span>
               <h4 className="text-sm font-bold text-white mb-2">Instant Lead Forms</h4>
@@ -314,7 +316,7 @@ export default function AquaCareCaseStudy() {
                   })}
                   className="relative aspect-video rounded-xl overflow-hidden mb-4 border border-zinc-800 bg-black group cursor-pointer"
                 >
-                  <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/shower-filter-reel-poster.webp" alt="Winning Shower Filter Reel Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/shower-filter-reel-poster.webp" alt="Winning Shower Filter Reel Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/20">
                     <div className="w-10 h-10 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
                       <Play className="w-4 h-4 fill-current translate-x-0.5" />
@@ -340,7 +342,7 @@ export default function AquaCareCaseStudy() {
                 </div>
 
                 <p className="text-xs text-zinc-300 leading-relaxed font-light mb-4">
-                  Positioned around hair and skincare benefits in UAE tap water. The winning <strong className="text-white">Shower Filter Reel</strong> alone generated <strong className="text-blue-300">145 leads at AED 4.32 CPL</strong>.
+                  Positioned around hair and skincare benefits in UAE tap water. The winning <strong className="text-white">Shower Filter Reel</strong> alone generated <strong className="text-blue-300">145 leads at {M.aquacare.bestCpl} CPL</strong>.
                 </p>
               </div>
 
@@ -358,7 +360,7 @@ export default function AquaCareCaseStudy() {
                   onClick={() => setSelectedImage('/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp')}
                   className="relative aspect-video rounded-xl overflow-hidden mb-4 border border-zinc-800 bg-black group cursor-pointer"
                 >
-                  <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Countertop Dispenser Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Countertop Dispenser Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   <span className="absolute bottom-2 left-3 text-[11px] font-mono text-zinc-300 flex items-center gap-1.5">
                     <Eye className="w-3 h-3 text-emerald-400" /> Winning Meta Ad Creative · RO Dispenser
@@ -408,7 +410,7 @@ export default function AquaCareCaseStudy() {
             className="glass-card p-3 rounded-2xl border-zinc-800 overflow-hidden group cursor-pointer hover:border-emerald-500/40 transition-all duration-300 shadow-2xl relative"
           >
             <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900">
-              <img loading="lazy" decoding="async" 
+              <Img loading="lazy" decoding="async" 
                 src="/assets/images/brands/Aqua-Care/Aqua Care meta ads campaigns screen shot.webp" 
                 alt="Verified Meta Ads Manager Campaign Dashboard" 
                 className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500" 
@@ -420,7 +422,7 @@ export default function AquaCareCaseStudy() {
               </div>
             </div>
             <div className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-zinc-400 font-light">
-              <p>Direct export from Meta Ads Manager: 2,357 messaging chats, 212 form leads, AED 0.79 CPC across the UAE.</p>
+              <p>Direct export from Meta Ads Manager: {M.aquacare.conversations} messaging chats, {M.aquacare.leads} form leads, AED 0.79 CPC across the UAE.</p>
               <span className="font-mono text-emerald-400 font-semibold shrink-0">100% Verified Live Data</span>
             </div>
           </div>
@@ -440,9 +442,9 @@ export default function AquaCareCaseStudy() {
               className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Vita bloom.webp" alt="Vita Bloom Shower Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Vita bloom.webp" alt="Vita Bloom Shower Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-emerald-400 border border-emerald-500/30">
-                  AED 4.32 CPL
+                  {M.aquacare.bestCpl} CPL
                 </div>
               </div>
               <div className="px-1">
@@ -457,7 +459,7 @@ export default function AquaCareCaseStudy() {
               className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-blue-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Countertop Dispenser Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Countertop-Dispenser-1.webp" alt="Countertop Dispenser Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-blue-400 border border-blue-500/30">
                   AED 1.03 / Chat
                 </div>
@@ -474,7 +476,7 @@ export default function AquaCareCaseStudy() {
               className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Multi-Stage Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Filters 2.webp" alt="Multi-Stage Filter Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-zinc-300 border border-zinc-700">
                   Retention
                 </div>
@@ -491,7 +493,7 @@ export default function AquaCareCaseStudy() {
               className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-amber-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Oman National Day.webp" alt="Oman National Day Campaign" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Oman National Day.webp" alt="Oman National Day Campaign" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-amber-400 border border-amber-500/30">
                   Seasonal
                 </div>
@@ -508,7 +510,7 @@ export default function AquaCareCaseStudy() {
               className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-emerald-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/new.webp" alt="Hydration Lifestyle Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/new.webp" alt="Hydration Lifestyle Creative" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-emerald-400 border border-emerald-500/30">
                   Lifestyle
                 </div>
@@ -525,7 +527,7 @@ export default function AquaCareCaseStudy() {
               className="glass-card p-3 rounded-2xl border-zinc-800 hover:border-purple-500/40 transition-all duration-300 group cursor-pointer"
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 mb-3 border border-zinc-900 relative">
-                <img loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.webp" alt="Platinum Plus RO System" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Img sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" src="/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.webp" alt="Platinum Plus RO System" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[11px] font-mono text-purple-400 border border-purple-500/30">
                   High-Ticket
                 </div>
@@ -809,7 +811,7 @@ export default function AquaCareCaseStudy() {
               />
             ) : (
               <>
-                <img loading="lazy" decoding="async" src="/assets/images/aquacare-reel/ig-overview.webp" className="w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-105" alt="Reel hook screen" />
+                <Img loading="lazy" decoding="async" src="/assets/images/aquacare-reel/ig-overview.webp" className="w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-105" alt="Reel hook screen" />
                 <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center gap-4 cursor-pointer" onClick={() => setPlayReel(true)}>
                   <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
                     <Play className="w-8 h-8 fill-current translate-x-0.5" />
@@ -945,7 +947,7 @@ export default function AquaCareCaseStudy() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-4 flex flex-col gap-4 shadow-lg">
               <div className="aspect-[9/16] w-full rounded-2xl overflow-hidden border border-zinc-900 bg-black">
-                <img loading="lazy" decoding="async" src="/assets/images/aquacare-reel/ig-overview.webp" className="w-full h-full object-cover" alt="Instagram Insights Overview" />
+                <Img loading="lazy" decoding="async" src="/assets/images/aquacare-reel/ig-overview.webp" className="w-full h-full object-cover" alt="Instagram Insights Overview" />
               </div>
               <div className="px-2">
                 <h4 className="text-sm font-bold text-white uppercase tracking-wider">Instagram Reel Insights</h4>
@@ -955,7 +957,7 @@ export default function AquaCareCaseStudy() {
 
             <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-4 flex flex-col gap-4 shadow-lg justify-between">
               <div className="aspect-video w-full rounded-2xl overflow-hidden border border-zinc-900 bg-black flex items-center justify-center">
-                <img loading="lazy" decoding="async" src="/assets/images/aquacare-reel/yt-studio.webp" className="w-full h-full object-contain" alt="YouTube Studio Overview" />
+                <Img loading="lazy" decoding="async" src="/assets/images/aquacare-reel/yt-studio.webp" className="w-full h-full object-contain" alt="YouTube Studio Overview" />
               </div>
               <div className="px-2">
                 <h4 className="text-sm font-bold text-white uppercase tracking-wider">YouTube Studio Video Analytics</h4>
@@ -983,7 +985,7 @@ export default function AquaCareCaseStudy() {
               >
                 <X className="w-5 h-5" />
               </button>
-              <img loading="lazy" decoding="async" src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
+              <Img loading="lazy" decoding="async" src={selectedImage} alt="Expanded preview" className="w-full h-full max-h-[82vh] object-contain rounded-xl" />
             </div>
           </div>
         )}

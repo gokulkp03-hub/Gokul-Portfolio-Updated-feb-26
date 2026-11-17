@@ -15,6 +15,8 @@ import { useState } from "react";
 import { proof } from "@/data/proof";
 import ShowreelModal from "@/components/ShowreelModal";
 
+import { Img } from "@/components/ui/Img";
+import { M } from "@/data/metrics";
 export default function Home() {
   const [showreelOpen, setShowreelOpen] = useState(false);
 
@@ -164,15 +166,15 @@ export default function Home() {
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">2,357</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.aquacare.conversations}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">messaging conversations</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">212</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.aquacare.leads}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">Meta form leads</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60 col-span-2 sm:col-span-1">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">AED 4.32</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.aquacare.bestCpl}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">lowest CPL on winning ad</p>
                     </div>
                   </div>
@@ -190,7 +192,7 @@ export default function Home() {
 
                 <div className="lg:col-span-5">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20">
-                    <img loading="lazy" decoding="async" 
+                    <Img loading="lazy" decoding="async" 
                       src="/assets/images/brands/Aqua-Care/new.webp" 
                       alt="Water filtration Meta ad creative and product systems"
                       className="w-full h-full object-cover"
@@ -219,20 +221,20 @@ export default function Home() {
                   </h3>
 
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                    Content production and paid acquisition support for a healthy meal-prep brand. Over 150 vertical videos produced alongside AED 150,000+ in managed Meta ad spend.
+                    Content production and paid acquisition support for a healthy meal-prep brand. Over 150 vertical videos produced alongside {M.prepmeal.spendLong} in managed Meta ad spend.
                   </p>
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">150+</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.prepmeal.videos}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">vertical videos</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">AED 150K+</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.prepmeal.spend}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">Meta spend supported</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60 col-span-2 sm:col-span-1">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">21,000+</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.prepmeal.meals}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">meals delivered</p>
                     </div>
                   </div>
@@ -250,7 +252,7 @@ export default function Home() {
 
                 <div className="lg:col-span-5">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20">
-                    <img loading="lazy" decoding="async" 
+                    <Img loading="lazy" decoding="async" 
                       src="/assets/images/brands/Prepmeal.webp" 
                       alt="PrepMeal content and meal prep delivery creative"
                       className="w-full h-full object-cover"
@@ -281,7 +283,7 @@ export default function Home() {
 
                   <div className="grid grid-cols-2 gap-4 pt-2">
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
-                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">150+</p>
+                      <p className="text-2xl font-display font-bold text-foreground tabular-nums">{M.prepmeal.videos}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">videos produced & delivered</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-background border border-border/60">
@@ -303,7 +305,7 @@ export default function Home() {
 
                 <div className="lg:col-span-5">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20 group cursor-pointer" onClick={() => setShowreelOpen(true)}>
-                    <img loading="lazy" decoding="async" 
+                    <Img loading="lazy" decoding="async" 
                       src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_800,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg" 
                       alt="Commercial video reel preview"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -476,7 +478,7 @@ export default function Home() {
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border/60 bg-muted/20 max-w-sm mx-auto shadow-xl">
                 <picture>
                   <source srcSet="/assets/images/profile/gokul-kp.webp" type="image/webp" />
-                  <img 
+                  <Img 
                     src="/assets/images/profile/gokul-kp.webp" 
                     alt="Gokul KP — Performance Marketer &amp; Video Producer"
                     title="Gokul KP"
@@ -593,7 +595,7 @@ export default function Home() {
             onClick={() => setShowreelOpen(true)}
             className="relative aspect-video sm:aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-border/60 bg-muted/20 group cursor-pointer"
           >
-            <img loading="lazy" decoding="async" 
+            <Img loading="lazy" decoding="async" 
               src="https://res.cloudinary.com/dgmieaf9g/video/upload/so_auto,f_jpg,w_1200,q_auto/v1/lamourmedia_1761496555_3752003203673245690_4144321886_zcwmht.jpg" 
               alt="Video showreel preview"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

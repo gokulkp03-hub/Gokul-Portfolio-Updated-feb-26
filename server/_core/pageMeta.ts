@@ -62,7 +62,17 @@ function setFallbackBody(html: string, body: string): string {
 }
 
 /** Applies page metadata to an HTML template. Used by the prerender script and the SEO function. */
-export function applyMeta(html: string, path: string, meta: PageMeta & { noindex?: boolean; bodyHtml?: string }): string {
+/** Serialises JSON-LD safely for embedding in a <script> tag. */
+function jsonLdScript(data: object): string {
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  return `<script type="application/ld+json" data-page-ld>${json}</script>`;
+}
+
+export function applyMeta(
+  html: string,
+  path: string,
+  meta: PageMeta & { noindex?: boolean; bodyHtml?: string; jsonLd?: object }
+): string {
   const url = `${SITE_URL}${path === "/" ? "" : path}`;
   let out = replaceTag(html, /<title[^>]*>[\s\S]*?<\/title>/, `<title data-static-seo>${escapeHtml(meta.title)}</title>`);
   out = setMeta(out, "name", "title", meta.title);
@@ -82,6 +92,10 @@ export function applyMeta(html: string, path: string, meta: PageMeta & { noindex
     out = setMeta(out, "property", "twitter:image", image);
   }
   out = setCanonical(out, url);
+  // Pages hidden from search get no structured data either.
+  if (meta.jsonLd && !noindex) {
+    out = out.replace("</head>", () => `  ${jsonLdScript(meta.jsonLd!)}\n</head>`);
+  }
   out = setFallbackBody(
     out,
     meta.bodyHtml ??

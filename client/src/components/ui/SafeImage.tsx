@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { cn, getMediaUrl } from "@/lib/utils";
 
+import { Img } from "@/components/ui/Img";
 interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     fallbackSrc?: string;
     aspectRatio?: "square" | "video" | "portrait" | "wide";
@@ -66,7 +67,7 @@ export function SafeImage({
                     <span className="text-[11px] uppercase tracking-widest font-bold opacity-30">Media Unavailable</span>
                 </div>
             ) : (
-                <img
+                <Img
                     ref={imgRef}
                     src={getMediaUrl(src)}
                     alt={alt}
