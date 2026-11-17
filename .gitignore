@@ -110,3 +110,4 @@ client/public/images/brands/**/*.mov
 
 /generated/prisma
 /todo.md
+client/public/uploads/

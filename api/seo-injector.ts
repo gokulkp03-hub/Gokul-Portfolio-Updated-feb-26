@@ -1,29 +1,51 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { injectDynamicSEO } from "../server/_core/seoInjector";
+import fs from "fs/promises";
+import path from "path";
+import { injectDynamicSEO, SITE_URL } from "../server/_core/seoInjector";
+
+let cachedTemplate: string | null = null;
+
+/**
+ * Loads the SPA shell. Prefers the copy bundled with the function (see
+ * `functions.includeFiles` in vercel.json). Falls back to fetching it from a
+ * fixed origin — never from the request's Host header, which a client controls.
+ */
+async function loadTemplate(): Promise<string> {
+  if (cachedTemplate) return cachedTemplate;
+
+  for (const file of ["dist/shell.html", "dist/index.html"]) {
+    try {
+      cachedTemplate = await fs.readFile(path.join(process.cwd(), file), "utf-8");
+      return cachedTemplate;
+    } catch {
+      // try the next option
+    }
+  }
+
+  const origin =
+    process.env.VERCEL_ENV === "production" || !process.env.VERCEL_URL
+      ? SITE_URL
+      : `https://${process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL}`;
+  const response = await fetch(`${origin}/shell.html`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch shell.html from ${origin}: ${response.status}`);
+  }
+  cachedTemplate = await response.text();
+  return cachedTemplate;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    // Determine the base URL to fetch the raw index.html from the same domain
-    const protocol = req.headers["x-forwarded-proto"] || "https";
-    const host = req.headers["x-forwarded-host"] || req.headers.host;
-    const baseUrl = `${protocol}://${host}`;
-    
-    // Fetch the generic static index.html from the root path
-    const response = await fetch(`${baseUrl}/index.html`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch index.html: ${response.statusText}`);
-    }
-    
-    let template = await response.text();
-    
-    // Inject the dynamic SEO tags
-    // req.url is the path that was requested (e.g. /blogs/my-slug)
-    const requestUrl = req.headers["x-invoke-path"] || req.url || "/";
-    template = await injectDynamicSEO(requestUrl as string, template);
-    
-    res.setHeader("Content-Type", "text/html");
-    res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
-    return res.status(200).send(template);
+    const template = await loadTemplate();
+    const requestUrl = (req.headers["x-invoke-path"] as string | undefined) || req.url || "/";
+    const { status, html } = await injectDynamicSEO(requestUrl, template);
+
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.setHeader(
+      "Cache-Control",
+      status === 200 ? "public, s-maxage=60, stale-while-revalidate=300" : "public, s-maxage=60"
+    );
+    return res.status(status).send(html);
   } catch (error) {
     console.error("Error in SEO injector:", error);
     return res.status(500).end();

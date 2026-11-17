@@ -1,4 +1,5 @@
 import AdminLayout from "@/components/layout/AdminLayout";
+import { UPLOAD_MAX_BYTES, UPLOAD_MIME_EXTENSIONS } from "@shared/const";
 import { trpc } from "@/lib/trpc";
 import { useState, useRef } from "react";
 import {
@@ -51,6 +52,17 @@ export default function MediaLibrary() {
         const file = e.target.files?.[0];
         if (!file) return;
 
+        if (!(file.type in UPLOAD_MIME_EXTENSIONS)) {
+            toast.error("Unsupported file type. Use JPG, PNG, WebP, AVIF, GIF, MP4, WebM or PDF.");
+            if (fileInputRef.current) fileInputRef.current.value = "";
+            return;
+        }
+        if (file.size > UPLOAD_MAX_BYTES) {
+            toast.error("File is larger than 3 MB. Compress it, or host large videos on Cloudinary/YouTube and add them as an embed.");
+            if (fileInputRef.current) fileInputRef.current.value = "";
+            return;
+        }
+
         setIsUploading(true);
         const reader = new FileReader();
 
@@ -66,7 +78,7 @@ export default function MediaLibrary() {
                 refetch();
             } catch (error) {
                 console.error("Upload error:", error);
-                toast.error("Failed to upload file");
+                toast.error((error as Error)?.message || "Failed to upload file");
             } finally {
                 setIsUploading(false);
                 if (fileInputRef.current) fileInputRef.current.value = "";
@@ -152,6 +164,7 @@ export default function MediaLibrary() {
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
                         <input
                             type="file"
+                            accept={Object.keys(UPLOAD_MIME_EXTENSIONS).join(",")}
                             className="hidden"
                             ref={fileInputRef}
                             onChange={handleFileUpload}

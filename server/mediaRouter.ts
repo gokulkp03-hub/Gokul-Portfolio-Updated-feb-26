@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { adminProcedure, router } from "./_core/trpc";
 import { db } from "./db";
 import { media } from "../drizzle/schema";
@@ -6,6 +7,30 @@ import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { eq, desc } from "drizzle-orm";
+import { put, del } from "@vercel/blob";
+import { UPLOAD_MAX_BYTES, UPLOAD_MIME_EXTENSIONS } from "../shared/const";
+
+const BLOB_HOST_SUFFIX = ".blob.vercel-storage.com";
+
+/** Local dev only: files land in Vite's public dir so `/uploads/...` is served. */
+function localUploadDir() {
+    return process.env.UPLOADS_DIR || path.join(process.cwd(), "client", "public", "uploads");
+}
+
+function isBlobUrl(url: string): boolean {
+    try {
+        return new URL(url).hostname.endsWith(BLOB_HOST_SUFFIX);
+    } catch {
+        return false;
+    }
+}
+
+/** Only https URLs may be stored as external media (no javascript:, data:, http:). */
+const httpsUrl = z
+    .string()
+    .trim()
+    .url()
+    .refine(value => new URL(value).protocol === "https:", "URL must start with https://");
 
 export const mediaRouter = router({
     list: adminProcedure.query(async () => {
@@ -18,34 +43,46 @@ export const mediaRouter = router({
     upload: adminProcedure
         .input(
             z.object({
-                fileName: z.string(),
-                fileType: z.string(),
-                base64Data: z.string(), // Raw base64 data
-                width: z.number().optional(),
-                height: z.number().optional(),
+                fileName: z.string().trim().min(1).max(200),
+                fileType: z.string().refine(type => type in UPLOAD_MIME_EXTENSIONS, {
+                    message: `Unsupported file type. Allowed: ${Object.keys(UPLOAD_MIME_EXTENSIONS).join(", ")}`,
+                }),
+                // Base64 length is ~4/3 of the file size; reject oversized payloads before decoding.
+                base64Data: z.string().max(Math.ceil((UPLOAD_MAX_BYTES * 4) / 3) + 4, "File is larger than 3 MB"),
+                width: z.number().int().positive().optional(),
+                height: z.number().int().positive().optional(),
             })
         )
         .mutation(async ({ input }) => {
             const buffer = Buffer.from(input.base64Data, "base64");
-            
-            // Determine file extension
-            const extMatch = input.fileName.match(/\.[0-9a-z]+$/i);
-            const ext = extMatch ? extMatch[0] : (input.fileType.startsWith('video') ? '.mp4' : '.png');
-            
-            // Use unique filename
-            const uniqueName = crypto.randomUUID() + ext;
-            const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
+            if (buffer.length === 0 || buffer.length > UPLOAD_MAX_BYTES) {
+                throw new TRPCError({ code: "BAD_REQUEST", message: "File is empty or larger than 3 MB" });
+            }
 
-            // Ensure directory exists
-            await fs.mkdir(uploadDir, { recursive: true });
+            // The extension comes from the validated MIME type, never from the client's file name.
+            const uniqueName = crypto.randomUUID() + UPLOAD_MIME_EXTENSIONS[input.fileType];
+            let url: string;
 
-            // Write File
-            const filePath = path.join(uploadDir, uniqueName);
-            await fs.writeFile(filePath, buffer);
+            if (process.env.BLOB_READ_WRITE_TOKEN) {
+                const blob = await put(`uploads/${uniqueName}`, buffer, {
+                    access: "public",
+                    contentType: input.fileType,
+                    addRandomSuffix: false,
+                });
+                url = blob.url;
+            } else if (process.env.VERCEL) {
+                // The Vercel filesystem is read-only, so local writes would fail or vanish.
+                throw new TRPCError({
+                    code: "PRECONDITION_FAILED",
+                    message: "Uploads need a Vercel Blob store. Create one under Storage and connect it to this project.",
+                });
+            } else {
+                const dir = localUploadDir();
+                await fs.mkdir(dir, { recursive: true });
+                await fs.writeFile(path.join(dir, uniqueName), buffer);
+                url = `/uploads/${uniqueName}`;
+            }
 
-            const url = `/uploads/${uniqueName}`;
-
-            // Save metadata in database
             const result = await db
                 .insert(media)
                 .values({
@@ -62,9 +99,9 @@ export const mediaRouter = router({
     addExternal: adminProcedure
         .input(
             z.object({
-                url: z.string(),
-                type: z.string(), // e.g., 'video/embed'
-                title: z.string().optional(),
+                url: httpsUrl,
+                type: z.string().trim().min(1).max(50), // e.g., 'video/embed'
+                title: z.string().trim().max(200).optional(),
             })
         )
         .mutation(async ({ input }) => {
@@ -89,16 +126,16 @@ export const mediaRouter = router({
                 .get();
             if (!item) return;
 
-            // Delete from disk if it starts with /uploads
-            if (item.url.startsWith("/uploads/")) {
-                const fileName = item.url.replace("/uploads/", "");
-                const uploadDir = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "uploads");
-                const filePath = path.join(uploadDir, fileName);
-                try {
-                    await fs.unlink(filePath);
-                } catch (err) {
-                    console.error("Failed to delete local file:", err);
+            try {
+                if (isBlobUrl(item.url) && process.env.BLOB_READ_WRITE_TOKEN) {
+                    await del(item.url);
+                } else if (item.url.startsWith("/uploads/")) {
+                    // basename() prevents path traversal out of the uploads folder.
+                    const fileName = path.basename(item.url);
+                    await fs.unlink(path.join(localUploadDir(), fileName));
                 }
+            } catch (err) {
+                console.error("Failed to delete stored file:", err);
             }
 
             const result = await db
@@ -108,4 +145,3 @@ export const mediaRouter = router({
             return result[0];
         }),
 });
-

@@ -1,23 +1,30 @@
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 import { db } from "./db";
-import { siteContents } from "../drizzle/schema";
+import { siteContents, type SiteContent } from "../drizzle/schema";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
 
 export const contentRouter = router({
-    get: publicProcedure.query(async () => {
-        let content = await db
+    get: publicProcedure.query(async (): Promise<SiteContent> => {
+        // Read-only: a public GET must never write. Defaults are returned until an admin saves content.
+        const content = await db
             .select()
             .from(siteContents)
             .where(eq(siteContents.id, 1))
             .get();
 
-        if (!content) {
-            const result = await db.insert(siteContents).values({ id: 1 }).returning();
-            content = result[0];
-        }
-
-        return content;
+        return content ?? {
+            id: 1,
+            heroTitle: null,
+            heroSubtitle: null,
+            aboutText: null,
+            services: null,
+            skills: null,
+            socials: null,
+            contact: null,
+            sections: null,
+            updatedAt: new Date(0),
+        };
     }),
 
     update: adminProcedure

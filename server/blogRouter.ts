@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc";
 import { blogs } from "../drizzle/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 import { db } from "./db";
 
 export const blogRouter = router({
@@ -38,11 +38,14 @@ export const blogRouter = router({
       }
 
       if (result.published) {
-        // Increment views in background
-        db.update(blogs)
-          .set({ views: (result.views || 0) + 1 })
+        // Atomic increment, awaited so serverless doesn't freeze before it runs.
+        // A failed counter update must not break the page.
+        await db
+          .update(blogs)
+          .set({ views: sql`coalesce(${blogs.views}, 0) + 1` })
           .where(eq(blogs.id, result.id))
-          .run();
+          .run()
+          .catch(err => console.error("[Blog] view count update failed:", (err as Error).message));
       }
 
       return result;

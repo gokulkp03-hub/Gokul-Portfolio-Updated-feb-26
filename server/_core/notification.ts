@@ -1,114 +1,105 @@
-import { TRPCError } from "@trpc/server";
-import { ENV } from "./env";
+/**
+ * Lead notifications for the site owner.
+ *
+ * Channels (configure at least one in Vercel → Environment Variables):
+ * - Email via Resend: RESEND_API_KEY, optional LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM.
+ *   Without a verified domain, Resend only delivers from onboarding@resend.dev
+ *   to the email address of the Resend account owner.
+ * - Webhook: LEAD_WEBHOOK_URL receives JSON `{ "text": "..." }`
+ *   (works with Slack incoming webhooks; Discord accepts it at `<url>/slack`).
+ */
 
-export type NotificationPayload = {
-  title: string;
-  content: string;
+export type Lead = {
+  name: string;
+  email: string;
+  service: string;
+  details: string;
 };
 
-const TITLE_MAX_LENGTH = 1200;
-const CONTENT_MAX_LENGTH = 20000;
+const DEFAULT_TO = "gokulkp03@gmail.com";
+const DEFAULT_FROM = "Portfolio Leads <onboarding@resend.dev>";
+const TIMEOUT_MS = 8000;
 
-const trimValue = (value: string): string => value.trim();
-const isNonEmptyString = (value: unknown): value is string =>
-  typeof value === "string" && value.trim().length > 0;
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
-const buildEndpointUrl = (baseUrl: string): string => {
-  const normalizedBase = baseUrl.endsWith("/")
-    ? baseUrl
-    : `${baseUrl}/`;
-  return new URL(
-    "webdevtoken.v1.WebDevService/SendNotification",
-    normalizedBase
-  ).toString();
-};
+function leadText(lead: Lead): string {
+  return [
+    `New portfolio lead: ${lead.name}`,
+    `Email: ${lead.email}`,
+    `Service: ${lead.service}`,
+    "",
+    lead.details || "(no details provided)",
+  ].join("\n");
+}
 
-const validatePayload = (input: NotificationPayload): NotificationPayload => {
-  if (!isNonEmptyString(input.title)) {
-    throw new TRPCError({
-      code: "BAD_REQUEST",
-      message: "Notification title is required.",
-    });
+async function post(url: string, init: RequestInit): Promise<void> {
+  const res = await fetch(url, { ...init, signal: AbortSignal.timeout(TIMEOUT_MS) });
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(`${res.status} ${res.statusText} ${detail.slice(0, 300)}`);
   }
-  if (!isNonEmptyString(input.content)) {
-    throw new TRPCError({
-      code: "BAD_REQUEST",
-      message: "Notification content is required.",
-    });
-  }
+}
 
-  const title = trimValue(input.title);
-  const content = trimValue(input.content);
+async function sendEmail(lead: Lead, apiKey: string) {
+  const html = `
+    <h2>New portfolio lead</h2>
+    <p><strong>Name:</strong> ${escapeHtml(lead.name)}<br>
+    <strong>Email:</strong> ${escapeHtml(lead.email)}<br>
+    <strong>Service:</strong> ${escapeHtml(lead.service)}</p>
+    <p style="white-space:pre-wrap">${escapeHtml(lead.details || "(no details provided)")}</p>`;
+  await post("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: process.env.LEAD_NOTIFY_FROM || DEFAULT_FROM,
+      to: (process.env.LEAD_NOTIFY_TO || DEFAULT_TO).split(",").map(s => s.trim()),
+      reply_to: lead.email,
+      subject: `New lead: ${lead.name} — ${lead.service}`.replace(/[\r\n]+/g, " ").slice(0, 200),
+      text: leadText(lead),
+      html,
+    }),
+  });
+}
 
-  if (title.length > TITLE_MAX_LENGTH) {
-    throw new TRPCError({
-      code: "BAD_REQUEST",
-      message: `Notification title must be at most ${TITLE_MAX_LENGTH} characters.`,
-    });
-  }
-
-  if (content.length > CONTENT_MAX_LENGTH) {
-    throw new TRPCError({
-      code: "BAD_REQUEST",
-      message: `Notification content must be at most ${CONTENT_MAX_LENGTH} characters.`,
-    });
-  }
-
-  return { title, content };
-};
+async function sendWebhook(lead: Lead, url: string) {
+  await post(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: leadText(lead) }),
+  });
+}
 
 /**
- * Dispatches a project-owner notification through the Manus Notification Service.
- * Returns `true` if the request was accepted, `false` when the upstream service
- * cannot be reached (callers can fall back to email/slack). Validation errors
- * bubble up as TRPC errors so callers can fix the payload.
+ * Sends the lead to every configured channel. Never throws: the lead is
+ * already saved in the database, so a failed notification must not fail the form.
+ * Returns how many channels delivered.
  */
-export async function notifyOwner(
-  payload: NotificationPayload
-): Promise<boolean> {
-  const { title, content } = validatePayload(payload);
+export async function notifyNewLead(lead: Lead): Promise<number> {
+  const tasks: Array<[string, Promise<void>]> = [];
+  const resendKey = process.env.RESEND_API_KEY;
+  const webhook = process.env.LEAD_WEBHOOK_URL;
+  if (resendKey) tasks.push(["email", sendEmail(lead, resendKey)]);
+  if (webhook) tasks.push(["webhook", sendWebhook(lead, webhook)]);
 
-  if (!ENV.forgeApiUrl) {
-    throw new TRPCError({
-      code: "INTERNAL_SERVER_ERROR",
-      message: "Notification service URL is not configured.",
-    });
+  if (tasks.length === 0) {
+    console.error(
+      "[Lead] No notification channel configured (set RESEND_API_KEY or LEAD_WEBHOOK_URL). Lead saved to the database only."
+    );
+    return 0;
   }
 
-  if (!ENV.forgeApiKey) {
-    throw new TRPCError({
-      code: "INTERNAL_SERVER_ERROR",
-      message: "Notification service API key is not configured.",
-    });
-  }
-
-  const endpoint = buildEndpointUrl(ENV.forgeApiUrl);
-
-  try {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        authorization: `Bearer ${ENV.forgeApiKey}`,
-        "content-type": "application/json",
-        "connect-protocol-version": "1",
-      },
-      body: JSON.stringify({ title, content }),
-    });
-
-    if (!response.ok) {
-      const detail = await response.text().catch(() => "");
-      console.warn(
-        `[Notification] Failed to notify owner (${response.status} ${response.statusText})${
-          detail ? `: ${detail}` : ""
-        }`
-      );
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.warn("[Notification] Error calling notification service:", error);
-    return false;
-  }
+  const results = await Promise.allSettled(tasks.map(([, p]) => p));
+  let delivered = 0;
+  results.forEach((r, i) => {
+    if (r.status === "fulfilled") delivered++;
+    else console.error(`[Lead] ${tasks[i][0]} notification failed:`, (r.reason as Error).message);
+  });
+  return delivered;
 }
