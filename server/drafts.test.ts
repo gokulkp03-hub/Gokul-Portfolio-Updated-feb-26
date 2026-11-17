@@ -103,8 +103,8 @@ describe("SEO injector", () => {
   it("injects published content with its own canonical and body", async () => {
     const result = await injectDynamicSEO("/marketing/live-project?utm=x", html);
     expect(result.status).toBe(200);
-    expect(result.html).toContain("<title>Live project | Gokul KP</title>");
-    expect(result.html).toContain('<link rel="canonical" href="https://www.gokulkp.com/marketing/live-project" />');
+    expect(result.html).toContain("<title data-static-seo>Live project | Gokul KP</title>");
+    expect(result.html).toContain('<link rel="canonical" href="https://www.gokulkp.com/marketing/live-project" data-static-seo />');
     expect(result.html).toContain("<h1>Live project</h1>");
     expect(result.html).not.toContain("<h1>Home</h1>");
   });

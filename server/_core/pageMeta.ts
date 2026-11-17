@@ -42,13 +42,13 @@ function replaceTag(html: string, pattern: RegExp, replacement: string): string 
 
 /** Sets or inserts a <meta> tag identified by `attr="key"`. */
 function setMeta(html: string, attr: "name" | "property", key: string, content: string): string {
-  const tag = `<meta ${attr}="${key}" content="${escapeHtml(content)}" />`;
+  const tag = `<meta ${attr}="${key}" content="${escapeHtml(content)}" data-static-seo />`;
   const pattern = new RegExp(`<meta ${attr}="${key.replace(/[.:]/g, "\\$&")}"[^>]*>`, "s");
   return pattern.test(html) ? replaceTag(html, pattern, tag) : html.replace("</head>", () => `  ${tag}\n</head>`);
 }
 
 function setCanonical(html: string, url: string): string {
-  const tag = `<link rel="canonical" href="${escapeHtml(url)}" />`;
+  const tag = `<link rel="canonical" href="${escapeHtml(url)}" data-static-seo />`;
   return /<link rel="canonical"[^>]*>/.test(html)
     ? replaceTag(html, /<link rel="canonical"[^>]*>/, tag)
     : html.replace("</head>", () => `  ${tag}\n</head>`);
@@ -62,7 +62,7 @@ function setFallbackBody(html: string, body: string): string {
 /** Applies page metadata to an HTML template. Used by the prerender script and the SEO function. */
 export function applyMeta(html: string, path: string, meta: PageMeta & { noindex?: boolean; bodyHtml?: string }): string {
   const url = `${SITE_URL}${path === "/" ? "" : path}`;
-  let out = replaceTag(html, /<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(meta.title)}</title>`);
+  let out = replaceTag(html, /<title[^>]*>[\s\S]*?<\/title>/, `<title data-static-seo>${escapeHtml(meta.title)}</title>`);
   out = setMeta(out, "name", "title", meta.title);
   out = setMeta(out, "name", "description", meta.description);
   out = setMeta(out, "name", "robots", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large");

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { MorphBlob } from "@/components/ui/MorphBlob";
+import { SEO } from "@/components/SEO";
 
 export default function PrepmealCaseStudy() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -32,6 +33,11 @@ export default function PrepmealCaseStudy() {
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-background text-foreground font-sans relative overflow-hidden">
+        <SEO
+          title="PrepMeal UAE WhatsApp Lead Generation Case Study"
+          description="A UAE meal-prep case study covering Meta Ads, WhatsApp lead generation, creative production, AED 150K+ spend, 6,133 messaging conversations and campaign learnings."
+          url="/marketing/prepmeal"
+        />
         <MorphBlob color="emerald-500" size={500} opacity={0.06} blur={120} className="-right-20 top-0" animDuration={16} />
       
       <div className="container max-w-4xl relative z-10">

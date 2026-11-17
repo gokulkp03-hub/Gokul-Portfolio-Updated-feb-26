@@ -6,9 +6,9 @@ import { Filter, Users, MessageCircle, DollarSign, Activity } from "lucide-react
 export const funnelNodes3D = [
   { id: "reach", label: "Reach", value: "7.3M Impressions", desc: "Broad targeting and algorithmic scaling.", icon: Filter, pos: new THREE.Vector3(-4, 2, -2) },
   { id: "attention", label: "Attention", value: "320K+ Views", desc: "High-retention video hooks.", icon: Users, pos: new THREE.Vector3(-2, 1, 0) },
-  { id: "leads", label: "Leads", value: "7,300+ Enquiries", desc: "Qualified WhatsApp & form leads.", icon: MessageCircle, pos: new THREE.Vector3(0, 0, 1) },
+  { id: "leads", label: "Leads", value: "8,400+ Conversations", desc: "WhatsApp messaging conversations across AquaCare & PrepMeal.", icon: MessageCircle, pos: new THREE.Vector3(0, 0, 1) },
   { id: "revenue", label: "Revenue", value: "AED 31K+ Spike", desc: "Direct response campaign revenue.", icon: DollarSign, pos: new THREE.Vector3(2, -1, 0) },
-  { id: "efficiency", label: "Efficiency", value: "4.45x Avg ROAS", desc: "Tracked return on ad spend.", icon: Activity, pos: new THREE.Vector3(4, -2, -2) }
+  { id: "efficiency", label: "Efficiency", value: "4.45x Best ROAS", desc: "Best documented return on ad spend (winning lead campaign).", icon: Activity, pos: new THREE.Vector3(4, -2, -2) }
 ];
 
 export default function CampaignDataTerrain3D() {

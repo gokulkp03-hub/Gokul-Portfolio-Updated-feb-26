@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "vercel dev",
-    "build": "vite build && node scripts/prerender.js",
-    "vercel-build": "vite build && node scripts/prerender.js",
+    "build": "vite build && tsx scripts/prerender.ts",
+    "vercel-build": "vite build && tsx scripts/prerender.ts",
     "start": "vercel dev",
     "preview": "vite preview",
     "check": "tsc --noEmit",

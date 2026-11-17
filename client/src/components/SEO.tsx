@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
   title?: string;
   description?: string;
-  keywords?: string;
   image?: string;
   url?: string;
   noindex?: boolean;
@@ -12,15 +12,14 @@ interface SEOProps {
 export function SEO({ 
   title, 
   description, 
-  keywords, 
   image, 
   url,
   noindex = false
 }: SEOProps) {
   const defaultTitle = "Gokul KP — Performance Marketer & Video Producer | Dubai, UAE";
-  const defaultDescription = "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 7,300+ WhatsApp leads, AED 166K+ managed spend, and up to 4.45x ROAS.";
-  const defaultKeywords = "Gokul, Gokul Dubai, Gokul kp, best digital marketer in dubai, Video editor in dubai, Videographer, Videographer in uae, Performance Marketer Dubai, Performance Marketer UAE, Digital Marketer Dubai, Meta Ads Specialist UAE, B2C Lead Generation UAE, B2B Lead Generation Dubai, WhatsApp Automation GCC, Video Production Dubai, Growth Strategist Dubai";
-  const defaultImage = "https://www.gokulkp.com/assets/images/profile/gokul-kp-performance-marketer-dubai.webp";
+  const defaultDescription = "Performance Marketer and Video Producer in Dubai, UAE. Scaled GCC brands with 8,400+ WhatsApp conversations, AED 166K+ managed Meta spend, and up to 4.45x ROAS.";
+  // 1200x630 JPEG: the format/size every social network previews reliably.
+  const defaultImage = "https://www.gokulkp.com/assets/images/og/gokul-kp-og.jpg";
   const baseUrl = "https://www.gokulkp.com";
 
   let metaTitle = defaultTitle;
@@ -29,8 +28,7 @@ export function SEO({
   }
 
   const metaDescription = description || defaultDescription;
-  const metaKeywords = keywords || defaultKeywords;
-  const metaImage = image || defaultImage;
+  const metaImage = !image ? defaultImage : image.startsWith("http") ? image : `${baseUrl}${encodeURI(image.startsWith("/") ? image : `/${image}`)}`;
   
   let canonicalPath = "";
   if (url) {
@@ -42,12 +40,18 @@ export function SEO({
     canonicalPath = baseUrl;
   }
 
+  // The prerendered HTML ships its own head tags (marked data-static-seo) for
+  // crawlers that don't run JS. Helmet adds new tags rather than replacing
+  // those, so remove them once React has rendered its own set.
+  useEffect(() => {
+    document.head.querySelectorAll("[data-static-seo]").forEach(el => el.remove());
+  }, []);
+
   return (
     <Helmet>
       <title>{metaTitle}</title>
       <meta name="title" content={metaTitle} />
       <meta name="description" content={metaDescription} />
-      <meta name="keywords" content={metaKeywords} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       <link rel="canonical" href={canonicalPath} />
 

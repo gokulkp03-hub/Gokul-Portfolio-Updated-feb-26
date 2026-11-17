@@ -4,9 +4,9 @@ import { Filter, Users, MessageCircle, DollarSign, Activity } from "lucide-react
 export const funnelNodes = [
   { id: "reach", label: "Reach", value: "7.3M Impressions", desc: "Broad targeting and algorithmic scaling.", icon: Filter },
   { id: "attention", label: "Attention", value: "320K+ Views", desc: "High-retention video hooks.", icon: Users },
-  { id: "leads", label: "Leads", value: "7,300+ Enquiries", desc: "Qualified WhatsApp & form leads.", icon: MessageCircle },
+  { id: "leads", label: "Leads", value: "8,400+ Conversations", desc: "WhatsApp messaging conversations across AquaCare & PrepMeal.", icon: MessageCircle },
   { id: "revenue", label: "Revenue", value: "AED 31K+ Spike", desc: "Direct response campaign revenue.", icon: DollarSign },
-  { id: "efficiency", label: "Efficiency", value: "4.45x Avg ROAS", desc: "Tracked return on ad spend.", icon: Activity }
+  { id: "efficiency", label: "Efficiency", value: "4.45x Best ROAS", desc: "Best documented return on ad spend (winning lead campaign).", icon: Activity }
 ];
 
 // Lazy-load Three.js 3D canvas ONLY when on desktop

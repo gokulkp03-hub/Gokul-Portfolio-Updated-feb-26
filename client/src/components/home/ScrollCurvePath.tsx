@@ -47,7 +47,7 @@ export const ScrollCurvePath: React.FC = () => {
       topProgress: 0.18, // Capabilities section
       align: "right",
       icon: TrendingUp,
-      stat: "4.45x Avg ROAS",
+      stat: "4.45x Best ROAS",
       label: "GCC Tracked Return",
       className: "top-[18%] right-[8%] sm:right-[14%]"
     },
@@ -55,7 +55,7 @@ export const ScrollCurvePath: React.FC = () => {
       topProgress: 0.38, // Proof Strip
       align: "left",
       icon: Zap,
-      stat: "7,300+ Leads",
+      stat: "8,400+ Conversations",
       label: "Direct WhatsApp Funnel",
       className: "top-[38%] left-[6%] sm:left-[12%]"
     },

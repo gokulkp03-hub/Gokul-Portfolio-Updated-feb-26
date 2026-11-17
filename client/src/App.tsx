@@ -14,6 +14,7 @@ import { PageTransition } from "@/components/ui/PageTransition";
 import { ConsentBanner } from "./components/ui/ConsentBanner";
 import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { installContactLinkTracking } from "@/utils/analytics";
 
 // Lazy-loaded public routes
 const Home = lazy(() => import("./pages/Home"));
@@ -111,8 +112,8 @@ function Router() {
               </Route>
               <Route path="/marketing/aqua-care-uae" component={AquaCareCaseStudy} />
               <Route path="/marketing/prepmeal" component={PrepmealCaseStudy} />
-              <Route path="/marketing/prepmeal-growth" component={PrepmealCaseStudy} />
-              <Route path="/marketing/prepmeal-launch" component={PrepmealCaseStudy} />
+              <Route path="/marketing/prepmeal-growth">{() => <Redirect to="/marketing/prepmeal" replace />}</Route>
+              <Route path="/marketing/prepmeal-launch">{() => <Redirect to="/marketing/prepmeal" replace />}</Route>
               <Route path="/marketing/:slug">
                 {(params) => <ProjectDetail category="marketing" slug={params.slug} />}
               </Route>
@@ -178,17 +179,7 @@ function Router() {
 }
 
 function App() {
-  useEffect(() => {
-    const loader = document.getElementById("page-loader");
-    if (loader) {
-      loader.style.opacity = "0";
-      loader.style.visibility = "hidden";
-      const timeout = setTimeout(() => {
-        if (loader.parentNode) loader.parentNode.removeChild(loader);
-      }, 400);
-      return () => clearTimeout(timeout);
-    }
-  }, []);
+  useEffect(() => installContactLinkTracking(), []);
 
   return (
     <ErrorBoundary>
