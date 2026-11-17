@@ -1,6 +1,6 @@
-import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { db } from "./db";
-import { siteContents, type SiteContent } from "../drizzle/schema";
+import { adminProcedure, publicProcedure, router } from "./_core/trpc.js";
+import { db } from "./db.js";
+import { siteContents, type SiteContent } from "../drizzle/schema.js";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
 

@@ -1,8 +1,8 @@
 import type { NodeHTTPCreateContextFnOptions } from "@trpc/server/adapters/node-http";
 import type { IncomingMessage, ServerResponse } from "http";
 import jwt from "jsonwebtoken";
-import { readSessionToken } from "./cookies";
-import type { User } from "../../drizzle/schema";
+import { readSessionToken } from "./cookies.js";
+import type { User } from "../../drizzle/schema.js";
 
 export type TrpcContext = {
   req: IncomingMessage;

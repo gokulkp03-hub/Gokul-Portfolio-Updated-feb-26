@@ -1,8 +1,8 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import * as schema from "../drizzle/schema";
-import { users } from "../drizzle/schema";
+import * as schema from "../drizzle/schema.js";
+import { users } from "../drizzle/schema.js";
 import { eq } from "drizzle-orm";
 
 const url = process.env.DATABASE_URL || "file:./dev.db";

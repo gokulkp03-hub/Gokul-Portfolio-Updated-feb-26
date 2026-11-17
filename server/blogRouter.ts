@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc";
-import { blogs } from "../drizzle/schema";
+import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc.js";
+import { blogs } from "../drizzle/schema.js";
 import { eq, desc, sql } from "drizzle-orm";
-import { db } from "./db";
+import { db } from "./db.js";
 
 export const blogRouter = router({
   list: publicProcedure

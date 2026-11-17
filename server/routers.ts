@@ -1,11 +1,11 @@
-import { serializeClearedSessionCookie } from "./_core/cookies";
-import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
-import { projectRouter } from "./projectRouter";
-import { contentRouter } from "./contentRouter";
-import { mediaRouter } from "./mediaRouter";
-import { contactRouter } from "./contactRouter";
-import { blogRouter } from "./blogRouter";
+import { serializeClearedSessionCookie } from "./_core/cookies.js";
+import { systemRouter } from "./_core/systemRouter.js";
+import { publicProcedure, router } from "./_core/trpc.js";
+import { projectRouter } from "./projectRouter.js";
+import { contentRouter } from "./contentRouter.js";
+import { mediaRouter } from "./mediaRouter.js";
+import { contactRouter } from "./contactRouter.js";
+import { blogRouter } from "./blogRouter.js";
 
 export const appRouter = router({
   // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly

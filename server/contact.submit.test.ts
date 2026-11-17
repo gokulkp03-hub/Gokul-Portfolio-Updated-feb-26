@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 
 // Never write test leads into the real (possibly production) database.
-vi.mock("./db", async () => (await import("./test/memoryDb")).createMemoryDbModule());
+vi.mock("./db", async () => (await import("./test/memoryDb.js")).createMemoryDbModule());
 
-import { appRouter } from "./routers";
-import { CONTACT_MAX_PER_IP } from "./contactRouter";
-import type { TrpcContext } from "./_core/context";
+import { appRouter } from "./routers.js";
+import { CONTACT_MAX_PER_IP } from "./contactRouter.js";
+import type { TrpcContext } from "./_core/context.js";
 
 function createMockContext(): TrpcContext {
   return {

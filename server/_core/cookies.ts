@@ -1,6 +1,6 @@
 import type { IncomingMessage } from "http";
 import { parse, serialize } from "cookie";
-import { COOKIE_NAME } from "../../shared/const";
+import { COOKIE_NAME } from "../../shared/const.js";
 
 /** Admin sessions last one day; the JWT expiry and cookie Max-Age both use this. */
 export const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24;

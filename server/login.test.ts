@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("./db", async () => (await import("./test/memoryDb")).createMemoryDbModule());
+vi.mock("./db", async () => (await import("./test/memoryDb.js")).createMemoryDbModule());
 
-import * as db from "./db";
-import { hashPassword, verifyPasswordHash } from "./_core/password";
-import { MAX_FAILURES_PER_IP } from "./_core/loginRateLimit";
+import * as db from "./db.js";
+import { hashPassword, verifyPasswordHash } from "./_core/password.js";
+import { MAX_FAILURES_PER_IP } from "./_core/loginRateLimit.js";
 
 type MockRes = {
   statusCode: number;
@@ -51,7 +51,7 @@ async function loadHandler() {
   // env.ts reads process.env at import time, so re-import after changing it.
   vi.resetModules();
   vi.doMock("../server/db", () => db);
-  return (await import("../api/login")).default as (req: any, res: any) => Promise<unknown>;
+  return (await import("../api/login.js")).default as (req: any, res: any) => Promise<unknown>;
 }
 
 beforeEach(() => {

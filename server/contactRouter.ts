@@ -1,11 +1,11 @@
 import { TRPCError } from "@trpc/server";
-import { publicProcedure, adminProcedure, router } from "./_core/trpc";
+import { publicProcedure, adminProcedure, router } from "./_core/trpc.js";
 import { z } from "zod";
-import { db, client } from "./db";
-import { contactSubmissions } from "../drizzle/schema";
+import { db, client } from "./db.js";
+import { contactSubmissions } from "../drizzle/schema.js";
 import { desc } from "drizzle-orm";
-import { notifyNewLead } from "./_core/notification";
-import { countHits, getClientIp, recordHit } from "./_core/rateLimit";
+import { notifyNewLead } from "./_core/notification.js";
+import { countHits, getClientIp, recordHit } from "./_core/rateLimit.js";
 
 /** Max contact submissions per IP per window. Real enquiries rarely exceed one or two. */
 export const CONTACT_MAX_PER_IP = 5;

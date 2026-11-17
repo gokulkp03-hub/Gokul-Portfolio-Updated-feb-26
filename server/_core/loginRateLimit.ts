@@ -1,9 +1,9 @@
-import type { client as dbClient } from "../db";
-import { clearHits, countHits, recordHit } from "./rateLimit";
+import type { client as dbClient } from "../db.js";
+import { clearHits, countHits, recordHit } from "./rateLimit.js";
 
 type Client = typeof dbClient;
 
-export { getClientIp } from "./rateLimit";
+export { getClientIp } from "./rateLimit.js";
 
 /**
  * Limits failed admin logins.

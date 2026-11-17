@@ -1,6 +1,6 @@
-import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc";
-import { db } from "./db";
-import { projects } from "../drizzle/schema";
+import { adminProcedure, isAdminUser, publicProcedure, router } from "./_core/trpc.js";
+import { db } from "./db.js";
+import { projects } from "../drizzle/schema.js";
 import { z } from "zod";
 import { and, eq, asc, desc } from "drizzle-orm";
 

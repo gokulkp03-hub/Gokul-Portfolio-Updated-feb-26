@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import fs from "fs/promises";
 import path from "path";
-import { injectDynamicSEO, SITE_URL } from "../server/_core/seoInjector";
+import { injectDynamicSEO, SITE_URL } from "../server/_core/seoInjector.js";
 
 let cachedTemplate: string | null = null;
 

@@ -1,14 +1,14 @@
 import { TRPCError } from "@trpc/server";
-import { adminProcedure, router } from "./_core/trpc";
-import { db } from "./db";
-import { media } from "../drizzle/schema";
+import { adminProcedure, router } from "./_core/trpc.js";
+import { db } from "./db.js";
+import { media } from "../drizzle/schema.js";
 import { z } from "zod";
 import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { eq, desc } from "drizzle-orm";
 import { put, del } from "@vercel/blob";
-import { UPLOAD_MAX_BYTES, UPLOAD_MIME_EXTENSIONS } from "../shared/const";
+import { UPLOAD_MAX_BYTES, UPLOAD_MIME_EXTENSIONS } from "../shared/const.js";
 
 const BLOB_HOST_SUFFIX = ".blob.vercel-storage.com";
 

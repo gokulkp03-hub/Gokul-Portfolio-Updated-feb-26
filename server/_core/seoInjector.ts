@@ -1,11 +1,11 @@
-import { db } from "../db";
-import { blogs, projects } from "../../drizzle/schema";
+import { db } from "../db.js";
+import { blogs, projects } from "../../drizzle/schema.js";
 import { and, eq } from "drizzle-orm";
-import { projects as staticProjects } from "../../client/src/data/projects";
-import { marketingCampaigns as staticMarketing } from "../../client/src/data/marketing";
-import { applyMeta, NOT_FOUND_META, withBrand, type InjectResult, type PageMeta } from "./pageMeta";
+import { projects as staticProjects } from "../../client/src/data/projects.js";
+import { marketingCampaigns as staticMarketing } from "../../client/src/data/marketing.js";
+import { applyMeta, NOT_FOUND_META, withBrand, type InjectResult, type PageMeta } from "./pageMeta.js";
 
-export { SITE_URL } from "./pageMeta";
+export { SITE_URL } from "./pageMeta.js";
 
 async function findBlog(slug: string): Promise<PageMeta | null> {
   const blog = await db

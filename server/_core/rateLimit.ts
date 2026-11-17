@@ -1,5 +1,5 @@
 import type { IncomingMessage } from "http";
-import type { client as dbClient } from "../db";
+import type { client as dbClient } from "../db.js";
 
 type Client = typeof dbClient;
 

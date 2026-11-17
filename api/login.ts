@@ -1,14 +1,14 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import * as db from "../server/db";
-import { serializeSessionCookie, SESSION_MAX_AGE_SECONDS } from "../server/_core/cookies";
-import { ENV } from "../server/_core/env";
-import { safeEqual, verifyPasswordHash } from "../server/_core/password";
+import * as db from "../server/db.js";
+import { serializeSessionCookie, SESSION_MAX_AGE_SECONDS } from "../server/_core/cookies.js";
+import { ENV } from "../server/_core/env.js";
+import { safeEqual, verifyPasswordHash } from "../server/_core/password.js";
 import {
   checkLoginAllowed,
   clearLoginFailures,
   getClientIp,
   recordLoginFailure,
-} from "../server/_core/loginRateLimit";
+} from "../server/_core/loginRateLimit.js";
 import jwt from "jsonwebtoken";
 
 function credentialsMatch(username: string, password: string): boolean {

@@ -1,12 +1,12 @@
 import { beforeAll, describe, expect, it, vi } from "vitest";
 
-vi.mock("./db", async () => (await import("./test/memoryDb")).createMemoryDbModule());
+vi.mock("./db", async () => (await import("./test/memoryDb.js")).createMemoryDbModule());
 
-import { db } from "./db";
-import { blogs, projects } from "../drizzle/schema";
-import { appRouter } from "./routers";
-import { injectDynamicSEO } from "./_core/seoInjector";
-import type { TrpcContext } from "./_core/context";
+import { db } from "./db.js";
+import { blogs, projects } from "../drizzle/schema.js";
+import { appRouter } from "./routers.js";
+import { injectDynamicSEO } from "./_core/seoInjector.js";
+import type { TrpcContext } from "./_core/context.js";
 
 function ctxFor(role: "admin" | "user" | null): TrpcContext {
   return {

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { parse } from "cookie";
-import { appRouter } from "./routers";
-import { COOKIE_NAME } from "../shared/const";
-import { readSessionToken, serializeSessionCookie } from "./_core/cookies";
-import type { TrpcContext } from "./_core/context";
+import { appRouter } from "./routers.js";
+import { COOKIE_NAME } from "../shared/const.js";
+import { readSessionToken, serializeSessionCookie } from "./_core/cookies.js";
+import type { TrpcContext } from "./_core/context.js";
 
 function createContext() {
   const headers: Record<string, string> = {};
