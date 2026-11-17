@@ -79,6 +79,24 @@
   ],
   "headers": [
     {
+      "source": "/marketing/aqua-care-uae",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/assets/:path((?:.*/)?[^/]*[Aa][Qq][Uu][Aa][^/]*(?:/.*)?)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, noimageindex"
+        }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [
         {

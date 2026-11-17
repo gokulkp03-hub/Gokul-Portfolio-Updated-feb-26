@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { mustNotIndex } from '@shared/seoPolicy';
 
 interface SEOProps {
   title?: string;
@@ -52,7 +53,7 @@ export function SEO({
       <title>{metaTitle}</title>
       <meta name="title" content={metaTitle} />
       <meta name="description" content={metaDescription} />
-      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+      <meta name="robots" content={noindex || mustNotIndex(canonicalPath, metaTitle, metaDescription) ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       <link rel="canonical" href={canonicalPath} />
 
       <meta property="og:type" content="website" />

@@ -192,7 +192,7 @@ export default function Home() {
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 bg-muted/20">
                     <img loading="lazy" decoding="async" 
                       src="/assets/images/brands/Aqua-Care/new.webp" 
-                      alt="Aqua Care Meta Ad creative and product systems"
+                      alt="Water filtration Meta ad creative and product systems"
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         e.currentTarget.src = "/assets/images/brands/Aqua-Care/Aqua-Care-Platinum-Plus-RO-Faucet.webp";

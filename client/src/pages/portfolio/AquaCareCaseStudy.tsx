@@ -43,6 +43,7 @@ export default function AquaCareCaseStudy() {
         title="AquaCare Meta Ads Case Study | Performance Marketing — Gokul KP"
         description="Meta Ads performance marketing case study for AquaCare UAE, covering campaign strategy, creative testing, lead generation, and messaging acquisition across 25 campaigns."
         url="https://www.gokulkp.com/marketing/aqua-care-uae"
+        noindex
       />
 
       <style dangerouslySetInnerHTML={{ __html: `

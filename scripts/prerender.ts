@@ -35,7 +35,6 @@ const MAIN_LINKS: Link[] = [
 ];
 
 const CASE_STUDY_LINKS: Link[] = [
-  ["/marketing/aqua-care-uae", "Aqua Care UAE — Meta Ads case study"],
   ["/marketing/prepmeal", "PrepMeal UAE — WhatsApp lead generation case study"],
   ["/marketing/steaburg-local-seo", "Steaburg Sharjah — Local SEO case study"],
   ["/marketing/aureum-asset-management", "Aureum Asset Management — B2B acquisition case study"],

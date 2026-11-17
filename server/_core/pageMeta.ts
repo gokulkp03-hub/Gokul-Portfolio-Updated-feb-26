@@ -1,3 +1,5 @@
+import { mustNotIndex } from "../../shared/seoPolicy.js";
+
 /**
  * Pure HTML helpers shared by the build-time prerender and the SEO function.
  * No database or Node-only imports so the prerender script can use it.
@@ -65,7 +67,8 @@ export function applyMeta(html: string, path: string, meta: PageMeta & { noindex
   let out = replaceTag(html, /<title[^>]*>[\s\S]*?<\/title>/, `<title data-static-seo>${escapeHtml(meta.title)}</title>`);
   out = setMeta(out, "name", "title", meta.title);
   out = setMeta(out, "name", "description", meta.description);
-  out = setMeta(out, "name", "robots", meta.noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large");
+  const noindex = meta.noindex || mustNotIndex(path, meta.title, meta.description);
+  out = setMeta(out, "name", "robots", noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large");
   out = setMeta(out, "property", "og:title", meta.title);
   out = setMeta(out, "property", "og:description", meta.description);
   out = setMeta(out, "property", "og:url", url);
