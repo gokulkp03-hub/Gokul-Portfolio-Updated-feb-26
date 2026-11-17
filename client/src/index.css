@@ -514,3 +514,25 @@ html,
 body {
   overflow-x: clip;
 }
+
+/* Home: scrolling creative strip (CreativeStrip.tsx) */
+.creative-strip-track {
+  /* Items use margin-right (not gap) so the two copies are exactly equal width: seamless loop. */
+  display: flex;
+  width: max-content;
+  animation: creative-strip 60s linear infinite;
+}
+.creative-strip-reverse {
+  animation-direction: reverse;
+}
+.creative-strip:hover .creative-strip-track {
+  animation-play-state: paused;
+}
+@keyframes creative-strip {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .creative-strip { overflow-x: auto; }
+  .creative-strip-track { animation: none; }
+}

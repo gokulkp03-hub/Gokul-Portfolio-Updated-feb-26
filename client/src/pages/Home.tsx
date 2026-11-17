@@ -14,6 +14,8 @@ import {
 import { useState } from "react";
 import { proof } from "@/data/proof";
 import ShowreelModal from "@/components/ShowreelModal";
+import { CreativeStrip } from "@/components/home/CreativeStrip";
+import { WebsitesShowcase } from "@/components/home/WebsitesShowcase";
 
 import { Img } from "@/components/ui/Img";
 import { M } from "@/data/metrics";
@@ -126,6 +128,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* 1b. VISUAL BREAK: scrolling creative strip */}
+      <CreativeStrip />
 
       {/* 2. SELECTED WORK */}
       <section id="work" className="py-16 md:py-28 border-b border-border/40">
@@ -341,102 +346,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. WHAT I DO */}
-      <section className="py-16 md:py-28 border-b border-border/40">
-        <div className="container px-4 md:px-8 max-w-[1240px] mx-auto space-y-16">
-          
-          <div className="border-b border-border/40 pb-6">
-            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">Scope</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight uppercase">
-              What I do.
-            </h2>
-            <p className="text-base text-muted-foreground mt-2 max-w-xl">
-              Four core areas of execution across paid acquisition and creative production.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* 01 PAID MEDIA */}
-            <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-orange-500">01</span>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Paid Media</span>
-              </div>
-              <h3 className="text-2xl font-display font-bold text-foreground">PAID MEDIA</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Structured media buying focused on qualified inquiries and sales, not vanity impressions. Hands-on campaign architecture, creative testing, and budget scaling.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {["Meta Ads Manager", "Lead Generation", "Creative Testing", "Campaign Structure"].map((item) => (
-                  <span key={item} className="text-xs font-medium bg-background px-3 py-1.5 rounded-full border border-border/60 text-foreground/80">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* 02 CONTENT */}
-            <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-orange-500">02</span>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Creative</span>
-              </div>
-              <h3 className="text-2xl font-display font-bold text-foreground">CONTENT</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Direct-response video and brand creative designed for vertical platforms and mobile feeds. Scripting, shooting, and editing handled in-house for fast iteration.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {["Short-form Video", "Creative Production", "Product Photography", "Creative Direction"].map((item) => (
-                  <span key={item} className="text-xs font-medium bg-background px-3 py-1.5 rounded-full border border-border/60 text-foreground/80">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* 03 GROWTH */}
-            <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-orange-500">03</span>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Strategy</span>
-              </div>
-              <h3 className="text-2xl font-display font-bold text-foreground">GROWTH</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Competitor analysis, hook exploration, and content planning that builds organic credibility while providing creative testing data for paid campaigns.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {["Content Strategy", "Competitor Research", "Offer Testing", "Social Media"].map((item) => (
-                  <span key={item} className="text-xs font-medium bg-background px-3 py-1.5 rounded-full border border-border/60 text-foreground/80">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* 04 AUTOMATION */}
-            <div className="p-8 rounded-3xl border border-border/50 bg-muted/10 space-y-6">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-orange-500">04</span>
-                <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/60">Automation</span>
-              </div>
-              <h3 className="text-2xl font-display font-bold text-foreground">AUTOMATION</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Connecting ad clicks and social inquiries directly to sales representatives on WhatsApp in under two minutes to prevent lead drop-off.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {["ManyChat", "Instagram → WhatsApp", "Lead Routing", "CRM Workflows"].map((item) => (
-                  <span key={item} className="text-xs font-medium bg-background px-3 py-1.5 rounded-full border border-border/60 text-foreground/80">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
+      {/* 3. WEBSITES (replaces "What I do", which lives on About and Services) */}
+      <WebsitesShowcase />
 
       {/* 4. ABOUT */}
       <section className="py-16 md:py-28 border-b border-border/40">
