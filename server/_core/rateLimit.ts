@@ -1,5 +1,7 @@
 import type { IncomingMessage } from "http";
-import type { Client } from "@libsql/client";
+import type { client as dbClient } from "../db";
+
+type Client = typeof dbClient;
 
 /**
  * Fixed-window counters stored in the database. Serverless instances don't
@@ -18,7 +20,7 @@ function ensureTable(client: Client) {
           window_start INTEGER NOT NULL
         )`
       )
-      .catch(err => {
+      .catch((err: unknown) => {
         tableReady = null; // retry on the next request
         throw err;
       });

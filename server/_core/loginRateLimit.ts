@@ -1,5 +1,7 @@
-import type { Client } from "@libsql/client";
+import type { client as dbClient } from "../db";
 import { clearHits, countHits, recordHit } from "./rateLimit";
+
+type Client = typeof dbClient;
 
 export { getClientIp } from "./rateLimit";
 
