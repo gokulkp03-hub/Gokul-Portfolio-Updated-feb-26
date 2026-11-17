@@ -1,7 +1,5 @@
 import 'dotenv/config';
-import Database from 'better-sqlite3';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import * as schema from '../drizzle/schema';
+import { db } from '../server/db';
 import {
     projects as projectsTable,
     categories as categoriesTable,
@@ -13,10 +11,7 @@ import { marketingCampaigns } from '../client/src/data/marketing';
 import { bio, skills } from '../client/src/data/about';
 import { proof } from '../client/src/data/proof';
 
-const dbPath = (process.env.DATABASE_URL || "./dev.db").replace("file:", "");
-console.log(`Using database file: ${dbPath}`);
-const sqlite = new Database(dbPath);
-const db = drizzle(sqlite, { schema });
+console.log(`Using database: ${(process.env.DATABASE_URL || "file:./dev.db").split("?")[0]}`);
 
 async function main() {
     console.log('Start Drizzle seeding...');
