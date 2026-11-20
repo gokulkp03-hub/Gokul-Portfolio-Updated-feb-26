@@ -75,7 +75,21 @@ export const whatIDo: ServiceCategory[] = [
         title: "AUTOMATION",
         summary: "Connecting ad clicks and social inquiries directly to sales representatives on WhatsApp in under two minutes.",
         skills: ["ManyChat", "Instagram → WhatsApp", "Lead Routing", "CRM Workflows"]
+    },
+    {
+        id: "ai",
+        title: "AI PRODUCTION",
+        summary: "AI video, imagery and AI-assisted builds where they're faster or cheaper than a shoot — always directed, edited and checked by hand before anything goes live.",
+        skills: ["Google Flow", "Higgsfield", "ChatGPT Agent", "Claude Code"]
     }
+];
+
+/** AI tools used in day-to-day work, shown on the About page. */
+export const aiStack: { tool: string; use: string }[] = [
+    { tool: "Claude Code", use: "Building and maintaining websites — including this one — from design to deployment." },
+    { tool: "ChatGPT Agent", use: "Research, competitor scans, ad-copy drafts and campaign briefs." },
+    { tool: "Google Flow", use: "AI video scenes and product shots for ad creatives." },
+    { tool: "Higgsfield", use: "AI motion and camera moves for short-form video ads." },
 ];
 
 export const experiences: ExperienceItem[] = [
@@ -184,7 +198,11 @@ export const tools = [
     "Premiere Pro",
     "CapCut",
     "Canva",
-    "ManyChat"
+    "ManyChat",
+    "Google Flow",
+    "Higgsfield",
+    "ChatGPT",
+    "Claude Code"
 ];
 
 // Backwards compatibility for any leftover references

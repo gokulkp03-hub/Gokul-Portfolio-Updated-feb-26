@@ -1,7 +1,7 @@
 import { SEO } from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { bio, whatIDo, experiences, behindTheCampaign, tools } from "@/data/about";
+import { bio, whatIDo, experiences, behindTheCampaign, tools, aiStack } from "@/data/about";
 import { Img } from "@/components/ui/Img";
 import { 
     ArrowUpRight, 
@@ -151,7 +151,7 @@ export default function About() {
                         {whatIDo.map((cat, idx) => (
                             <div 
                                 key={cat.id}
-                                className="p-8 rounded-3xl border border-border/50 bg-muted/10 hover:bg-muted/20 hover:border-border transition-all duration-300 flex flex-col justify-between"
+                                className={`p-8 rounded-3xl border border-border/50 bg-muted/10 hover:bg-muted/20 hover:border-border transition-all duration-300 flex flex-col justify-between ${whatIDo.length % 2 === 1 && idx === whatIDo.length - 1 ? "md:col-span-2" : ""}`}
                             >
                                 <div className="space-y-4 mb-6">
                                     <div className="flex items-center justify-between">
@@ -393,6 +393,29 @@ export default function About() {
                                 <p className="text-sm text-muted-foreground leading-relaxed">
                                     {item.description}
                                 </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* 5b. AI TOOLKIT */}
+                <section className="space-y-8">
+                    <div className="border-b border-border/40 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                        <div>
+                            <p className="text-xs font-mono uppercase tracking-widest text-orange-500 mb-2">AI toolkit</p>
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground uppercase">
+                                How I use AI
+                            </h2>
+                        </div>
+                        <p className="text-sm text-muted-foreground max-w-md">
+                            AI speeds up production; it doesn't replace judgement. Every output is directed, edited and checked by hand.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {aiStack.map((item) => (
+                            <div key={item.tool} className="p-6 rounded-2xl border border-border/50 bg-muted/10">
+                                <h3 className="text-lg font-display font-bold text-foreground">{item.tool}</h3>
+                                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.use}</p>
                             </div>
                         ))}
                     </div>

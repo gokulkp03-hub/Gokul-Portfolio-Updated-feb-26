@@ -12,8 +12,13 @@ export interface Website {
   highlights: string[];
   desktopShot: string;
   mobileShot?: string;
+  /** "soon" = built but not live yet: shown with a "Launching soon" badge and no outbound link. */
+  status?: "live" | "soon";
 }
 
+// To add Melborine & Gold before launch: save screenshots as
+// /assets/images/websites/melborine-desktop.webp (1440x900 view) and
+// melborine-mobile.webp, then add an entry here with status: "soon".
 export const websites: Website[] = [
   {
     name: "Joyce J Charuvila & Associates",

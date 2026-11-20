@@ -25,6 +25,7 @@ export function WebsitesShowcase() {
         <div className="space-y-16 md:space-y-24">
           {websites.map(site => {
             const domain = site.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+            const live = site.status !== "soon";
             return (
               <article key={site.url} className="grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-center">
                 {/* Mockups */}
@@ -35,7 +36,13 @@ export function WebsitesShowcase() {
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   className="relative pb-10 md:pb-14"
                 >
-                  <a href={site.url} target="_blank" rel="noopener noreferrer" className="block" aria-label={`Open ${domain}`}>
+                  <a
+                    href={live ? site.url : undefined}
+                    target={live ? "_blank" : undefined}
+                    rel={live ? "noopener noreferrer" : undefined}
+                    className="block"
+                    aria-label={live ? `Open ${domain}` : undefined}
+                  >
                     <div className="overflow-hidden rounded-xl border border-border/60 bg-zinc-900 shadow-2xl">
                       <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
@@ -71,6 +78,11 @@ export function WebsitesShowcase() {
                 <div>
                   <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                     {site.industry} · {site.location}
+                    {!live && (
+                      <span className="ml-3 rounded-full border border-orange-500/40 bg-orange-500/10 px-2.5 py-0.5 text-orange-500">
+                        Launching soon
+                      </span>
+                    )}
                   </p>
                   <h3 className="mt-3 text-2xl md:text-3xl font-display font-bold text-foreground">{site.name}</h3>
                   <p className="mt-4 text-base text-muted-foreground leading-relaxed">{site.summary}</p>
@@ -81,14 +93,14 @@ export function WebsitesShowcase() {
                       </li>
                     ))}
                   </ul>
-                  <a
+                  {live && <a
                     href={site.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-8 inline-flex items-center gap-2 rounded-full border border-border/60 px-6 py-3 text-sm font-semibold text-foreground hover:border-orange-500/60 hover:text-orange-500 transition-colors"
                   >
                     Visit {domain} <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  </a>}
                 </div>
               </article>
             );
